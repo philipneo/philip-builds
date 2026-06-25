@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Shift Downtime Calculator</title>
+    <meta
+      name="description"
+      content="A mobile-friendly downtime calculator for clean end-of-shift reports."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow">Operations tool demo</p>
+        <h1 id="page-title">Shift Downtime Calculator</h1>
+        <p>
+          Add downtime minutes, handle charging overlap, and copy a clean EOS
+          report in one tap.
+        </p>
+        <div class="demo-note">
+          <strong>Portfolio demo</strong>
+          <span>Built as an example of a small custom calculator or report generator.</span>
+        </div>
+      </section>
+
+      <section class="calculator" aria-label="Downtime calculator">
+        <form id="downtimeForm" class="entry-panel">
+          <div class="field-grid">
+            <label>
+              Break 1
+              <input name="break1" type="number" min="0" step="1" value="0" inputmode="numeric" />
+            </label>
+            <label>
+              Lunch
+              <input name="lunch" type="number" min="0" step="1" value="0" inputmode="numeric" />
+            </label>
+            <label>
+              Break 2
+              <input name="break2" type="number" min="0" step="1" value="0" inputmode="numeric" />
+            </label>
+            <label>
+              EBB
+              <input name="ebb" type="number" min="0" step="1" value="0" inputmode="numeric" />
+            </label>
+            <label>
+              Charging
+              <input name="charging" type="number" min="0" step="1" value="0" inputmode="numeric" />
+            </label>
+            <label>
+              Troubleshooting
+              <input name="troubleshooting" type="number" min="0" step="1" value="0" inputmode="numeric" />
+            </label>
+            <label>
+              Other downtime
+              <input name="other" type="number" min="0" step="1" value="0" inputmode="numeric" />
+            </label>
+            <label>
+              Route / shift label
+              <input name="shiftLabel" type="text" placeholder="Example: AM shift" />
+            </label>
+          </div>
+
+          <label class="check-row">
+            <input name="chargingOverlap" type="checkbox" />
+            Charging overlapped with break/lunch
+          </label>
+
+          <label>
+            Notes
+            <textarea
+              name="notes"
+              rows="4"
+              placeholder="Example: charging overlapped with lunch; brief troubleshooting after handoff"
+            ></textarea>
+          </label>
+
+          <div class="actions">
+            <button class="primary" type="button" id="copyReport">Copy report</button>
+            <button type="button" id="loadSample">Load sample</button>
+            <button type="reset" id="resetForm">Reset</button>
+          </div>
+        </form>
+
+        <aside class="results" aria-live="polite">
+          <div class="metric-card primary-metric">
+            <span>Total downtime</span>
+            <strong id="totalMinutes">0 min</strong>
+          </div>
+          <div class="metric-card">
+            <span>Decimal hours</span>
+            <strong id="decimalHours">0.00</strong>
+          </div>
+          <div class="metric-card">
+            <span>Excluding overlap</span>
+            <strong id="adjustedMinutes">0 min</strong>
+          </div>
+
+          <section class="report-box" aria-labelledby="report-title">
+            <div class="report-head">
+              <h2 id="report-title">EOS report</h2>
+              <span id="saveStatus">Saved locally</span>
+            </div>
+            <pre id="reportOutput"></pre>
+          </section>
+        </aside>
+      </section>
+    </main>
+
+    <div id="toast" role="status" aria-live="polite"></div>
+    <script src="script.js"></script>
+  </body>
+</html>
