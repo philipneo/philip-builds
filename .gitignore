@@ -1,4 +1,9 @@
 # Private sales/outreach working files
+private/
+raw/
+outputs/proposals/
+outputs/client-deliverables/
+
 AFTER_SEND_PLAYBOOK.md
 CALL_FORM_TARGETS.md
 DRAFTS_CREATED.md
