@@ -212,6 +212,44 @@ article strong {
   background: #edf2f7;
 }
 
+.work-with-me {
+  background: #ffffff;
+}
+
+.work-with-me .section-head p:last-child {
+  margin-bottom: 0;
+}
+
+.offer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.offer-card {
+  box-shadow: none;
+}
+
+.offer-card span {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  min-height: 32px;
+  padding: 0 10px;
+  border-radius: 8px;
+  background: #eff6ff;
+  color: var(--accent-dark);
+  font-size: 0.9rem;
+  font-weight: 850;
+}
+
+.work-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
 .project span {
   display: inline-block;
   margin-bottom: 12px;
@@ -278,6 +316,7 @@ article strong {
   }
 
   .three,
+  .offer-grid,
   .two,
   .projects-grid {
     grid-template-columns: 1fr;
