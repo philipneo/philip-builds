@@ -639,19 +639,25 @@ ul {
 }
 
 .screen-lines i {
-  display: block;
-  height: 52px;
-  border: 1px solid #d8dee8;
-  border-radius: 12px;
-  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: #f4f6fa;
+  font-style: normal;
+  font-size: 0.78rem;
 }
 
-.screen-lines i:nth-child(2) {
-  width: 86%;
+.screen-lines i b {
+  font-weight: 600;
+  color: #1a2332;
 }
 
-.screen-lines i:nth-child(3) {
-  width: 72%;
+.screen-lines i s {
+  text-decoration: none;
+  color: #6b7a99;
+  font-weight: 500;
 }
 
 .contact-section {
