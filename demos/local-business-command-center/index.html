@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Local Business Command Center | Philip Builds Studio</title>
+    <meta name="description" content="A premium interactive demo showing what a local service business dashboard could look like — quote estimator, daily checklist, and end-of-day summary. Philip Builds Studio." />
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body class="no-js">
+
+    <!-- ── HEADER ── -->
+    <header class="cc-header">
+      <a class="cc-brand" href="../../index.html">
+        <span class="cc-brand-badge">PBS</span>
+        Philip Builds Studio
+      </a>
+      <nav class="cc-nav" aria-label="Demo sections">
+        <a href="#hero" class="active">Overview</a>
+        <a href="#overview">Dashboard</a>
+        <a href="#quote">Quote</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#summary">Summary</a>
+      </nav>
+      <a class="cc-nav-cta" href="#quote">Try the demo</a>
+    </header>
+
+    <!-- ── HERO ── -->
+    <section id="hero">
+      <div class="hero-glow-1" aria-hidden="true"></div>
+      <div class="hero-glow-2" aria-hidden="true"></div>
+
+      <div class="hero-copy reveal">
+        <p class="hero-eyebrow">Flagship interactive demo</p>
+        <h1 class="hero-h1">Run the day from<br><span>one clean screen.</span></h1>
+        <p class="hero-sub">A fictional command-center demo for local service businesses — quote requests, daily schedule, job notes, and simple revenue snapshots in one mobile-friendly page.</p>
+        <div class="hero-actions">
+          <a class="btn-primary" href="#quote">Try the quote estimator</a>
+          <a class="btn-ghost" href="../../portfolio/index.html">Back to portfolio</a>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <!-- Floating accent cards -->
+        <div class="float-card float-1">
+          <div class="float-card-label">Today's Revenue</div>
+          <div class="float-card-value">$840</div>
+          <div class="float-card-sub">↑ 3 jobs completed</div>
+        </div>
+        <div class="float-card float-2">
+          <div class="float-card-label">Quote Requests</div>
+          <div class="float-card-value">2</div>
+          <div class="float-card-sub">Pending response</div>
+        </div>
+
+        <!-- Main dashboard preview -->
+        <div class="dash-preview">
+          <div class="dash-bar">
+            <span class="dash-bar-left">Command Center</span>
+            <span class="dash-bar-right">Thu · Jun 26</span>
+          </div>
+          <div class="dash-stats">
+            <div class="dash-stat">
+              <div class="dash-stat-label">Jobs</div>
+              <div class="dash-stat-value">3</div>
+              <div class="dash-stat-sub">confirmed</div>
+            </div>
+            <div class="dash-stat">
+              <div class="dash-stat-label">Revenue</div>
+              <div class="dash-stat-value">$840</div>
+              <div class="dash-stat-sub">est. today</div>
+            </div>
+            <div class="dash-stat">
+              <div class="dash-stat-label">Quotes</div>
+              <div class="dash-stat-value">2</div>
+              <div class="dash-stat-sub">pending</div>
+            </div>
+          </div>
+          <div class="dash-jobs">
+            <div class="dash-jobs-title">Today's Schedule</div>
+            <div class="dash-job-row">
+              <span class="dash-job-time">9:30 AM</span>
+              <span class="dash-job-name">Santos — Full Detail</span>
+              <span class="pill pill-green">Done</span>
+            </div>
+            <div class="dash-job-row">
+              <span class="dash-job-time">11:15 AM</span>
+              <span class="dash-job-name">Morales — Interior Reset</span>
+              <span class="pill pill-yellow">En Route</span>
+            </div>
+            <div class="dash-job-row">
+              <span class="dash-job-time">2:00 PM</span>
+              <span class="dash-job-name">Park — Exterior Wash</span>
+              <span class="pill pill-blue">Upcoming</span>
+            </div>
+          </div>
+          <div class="dash-quotes">
+            <div class="dash-quotes-title">Quote Requests</div>
+            <div class="dash-quote-row">
+              <span class="dash-quote-name">Rivera</span>
+              <span class="dash-quote-service">Ceramic coating</span>
+              <button class="dash-respond-btn" type="button">Respond</button>
+            </div>
+            <div class="dash-quote-row">
+              <span class="dash-quote-name">Nguyen</span>
+              <span class="dash-quote-service">Interior + exterior</span>
+              <button class="dash-respond-btn" type="button">Respond</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── STORY / DASHBOARD OVERVIEW ── -->
+    <section id="overview">
+      <div class="story-layout">
+
+        <!-- Sticky left: mini dashboard visual -->
+        <div class="story-sticky-col">
+          <div class="mini-dashboard reveal">
+            <div class="mdb-header">
+              <span class="mdb-title">Today's Overview</span>
+              <span class="mdb-date" id="liveDate">Thu, Jun 26</span>
+            </div>
+            <div class="mdb-stats">
+              <div class="mdb-stat">
+                <div class="mdb-stat-l">Jobs</div>
+                <div class="mdb-stat-v">3</div>
+              </div>
+              <div class="mdb-stat">
+                <div class="mdb-stat-l">Revenue</div>
+                <div class="mdb-stat-v">$840</div>
+              </div>
+              <div class="mdb-stat">
+                <div class="mdb-stat-l">Open</div>
+                <div class="mdb-stat-v">2</div>
+              </div>
+            </div>
+
+            <div class="mdb-section">
+              <div class="mdb-section-label">Schedule</div>
+              <div class="mdb-job">
+                <span class="mdb-job-time">9:30 AM</span>
+                <span class="mdb-job-desc">Santos — Full Detail</span>
+                <span class="pill pill-green">Done</span>
+              </div>
+              <div class="mdb-job">
+                <span class="mdb-job-time">11:15 AM</span>
+                <span class="mdb-job-desc">Morales — Interior</span>
+                <span class="pill pill-yellow">Active</span>
+              </div>
+              <div class="mdb-job">
+                <span class="mdb-job-time">2:00 PM</span>
+                <span class="mdb-job-desc">Park — Wash</span>
+                <span class="pill pill-blue">Up next</span>
+              </div>
+            </div>
+
+            <div class="mdb-section">
+              <div class="mdb-section-label">Day Progress</div>
+              <div class="progress-bar-outer">
+                <div class="progress-bar-fill" style="width:57%"></div>
+              </div>
+              <div style="font-size:0.72rem;color:var(--muted);margin-top:6px">4 of 7 tasks complete</div>
+            </div>
+
+            <div class="mdb-section">
+              <div class="mdb-section-label">Customer Note</div>
+              <div class="mdb-note">"Gate code 4821 — Santos. Side yard access."</div>
+            </div>
+
+            <div class="mdb-section">
+              <div class="mdb-section-label">Quote Queue</div>
+              <div class="mdb-job">
+                <span class="mdb-job-time" style="min-width:auto;margin-right:4px">Rivera</span>
+                <span class="mdb-job-desc">Ceramic coating</span>
+                <span class="pill pill-red">Pending</span>
+              </div>
+              <div class="mdb-job">
+                <span class="mdb-job-time" style="min-width:auto;margin-right:4px">Nguyen</span>
+                <span class="mdb-job-desc">Interior + Ext.</span>
+                <span class="pill pill-red">Pending</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: scroll story blocks -->
+        <div class="story-scroll-col">
+          <div class="story-block reveal">
+            <div class="story-block-num">Before</div>
+            <h3>Quote requests scattered across texts, DMs, and sticky notes.</h3>
+            <p>Most local service businesses track everything in their head — incoming requests, scheduled jobs, supplies needed, follow-ups. One missed message means a lost customer.</p>
+          </div>
+
+          <div class="story-block reveal">
+            <div class="story-block-num">Step 01</div>
+            <h3>Collect the request and estimate a price before the call.</h3>
+            <p>When a quote comes in, knowing the service, size, and add-ons before responding saves time and helps set expectations. The quote tool below does this in 30 seconds.</p>
+          </div>
+
+          <div class="story-block reveal">
+            <div class="story-block-num">Step 02</div>
+            <h3>Organize today's jobs with a running schedule and status view.</h3>
+            <p>Who's confirmed. Who's next. What notes apply. A single page that shows everything happening today — no app switching, no re-checking texts.</p>
+          </div>
+
+          <div class="story-block reveal">
+            <div class="story-block-num">Step 03</div>
+            <h3>Generate a clean end-of-day view you can copy and share.</h3>
+            <p>Jobs completed, revenue estimate, open requests, follow-ups needed. One copy button. This is what the Summary section at the bottom of this page demonstrates.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── QUOTE ESTIMATOR ── -->
+    <section id="quote">
+      <p class="section-eyebrow reveal">Interactive tool</p>
+      <h2 class="section-h2 reveal">Quote estimator.</h2>
+      <p class="section-sub reveal">Select the service, vehicle size, and any add-ons to get an instant price estimate. Demo only — no data is saved or sent.</p>
+
+      <div class="quote-layout">
+        <!-- Inputs -->
+        <div class="quote-form-card reveal">
+
+          <div>
+            <label class="field-label" for="qService">Service type</label>
+            <select id="qService">
+              <option value="79">Exterior Wash — $79</option>
+              <option value="149" selected>Interior Reset — $149</option>
+              <option value="249">Full Detail — $249</option>
+              <option value="499">Ceramic Coating — $499</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="field-label" for="qSize">Vehicle / property size</label>
+            <select id="qSize">
+              <option value="0">Compact / Small (sedan, hatchback)</option>
+              <option value="20" selected>Mid-size (SUV, crossover)</option>
+              <option value="40">Large (truck, full-size SUV, van)</option>
+              <option value="70">XL / Oversized</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="field-label">Add-ons</label>
+            <div class="addons-grid">
+              <label class="addon-row">
+                <input type="checkbox" data-price="50" id="aEngine" />
+                <div class="addon-row-text">
+                  <strong>Engine Bay Cleaning</strong>
+                  <small>Full degreaser wash and detail</small>
+                </div>
+                <span class="addon-price">+$50</span>
+              </label>
+              <label class="addon-row">
+                <input type="checkbox" data-price="35" id="aOdor" />
+                <div class="addon-row-text">
+                  <strong>Odor Treatment</strong>
+                  <small>Deep ozone or enzyme treatment</small>
+                </div>
+                <span class="addon-price">+$35</span>
+              </label>
+              <label class="addon-row">
+                <input type="checkbox" data-price="30" id="aPaint" />
+                <div class="addon-row-text">
+                  <strong>Paint Protection Wax</strong>
+                  <small>Applied after detail service</small>
+                </div>
+                <span class="addon-price">+$30</span>
+              </label>
+              <label class="addon-row">
+                <input type="checkbox" data-price="25" id="aHeadlight" />
+                <div class="addon-row-text">
+                  <strong>Headlight Restoration</strong>
+                  <small>Polish and UV sealant coat</small>
+                </div>
+                <span class="addon-price">+$25</span>
+              </label>
+            </div>
+          </div>
+
+          <div>
+            <label class="field-label" for="qUrgency">Timing</label>
+            <select id="qUrgency">
+              <option value="0">Standard booking — no rush</option>
+              <option value="40">Same-day / next-day (+$40)</option>
+            </select>
+          </div>
+
+        </div>
+
+        <!-- Result -->
+        <div class="quote-result reveal" aria-live="polite" aria-label="Estimated quote">
+          <div class="quote-result-header">Estimated Total</div>
+          <div class="quote-result-body">
+            <div class="quote-total-display" id="qTotal">$169</div>
+            <div class="quote-breakdown" id="qBreakdown">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+          <div class="quote-disclaimer">
+            Demo estimate only — not a real quote. Actual pricing varies by condition, location, and booking schedule. No data is saved or sent.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── WORKFLOW CHECKLIST ── -->
+    <section id="workflow">
+      <p class="section-eyebrow reveal">Daily workflow</p>
+      <h2 class="section-h2 reveal">Work through the day, one step at a time.</h2>
+      <p class="section-sub reveal">Check off each item as you go. Progress updates live — and the summary at the bottom reflects your completed count.</p>
+
+      <div class="workflow-layout">
+        <div class="checklist-card reveal">
+          <div class="checklist-header">
+            <span class="checklist-title">Daily Checklist</span>
+            <span class="checklist-count" id="checklistCount">0 / 7 done</span>
+          </div>
+          <div class="checklist-progress">
+            <div class="progress-bar-outer">
+              <div class="progress-bar-fill" id="checklistBar" style="width:0%"></div>
+            </div>
+            <div class="progress-meta">
+              <span id="progressLabel">0% complete</span>
+              <span id="progressEta">Est. finish: —</span>
+            </div>
+          </div>
+          <div class="checklist-items" role="group" aria-label="Daily checklist items">
+            <label class="checklist-item">
+              <input type="checkbox" class="cl-item" data-category="Morning" />
+              <span class="checklist-item-text">Review all incoming quote requests</span>
+              <span class="checklist-item-category">Morning</span>
+            </label>
+            <label class="checklist-item">
+              <input type="checkbox" class="cl-item" data-category="Morning" />
+              <span class="checklist-item-text">Confirm first appointment</span>
+              <span class="checklist-item-category">Morning</span>
+            </label>
+            <label class="checklist-item">
+              <input type="checkbox" class="cl-item" data-category="Prep" />
+              <span class="checklist-item-text">Pack supplies and restock chemicals</span>
+              <span class="checklist-item-category">Prep</span>
+            </label>
+            <label class="checklist-item">
+              <input type="checkbox" class="cl-item" data-category="Field" />
+              <span class="checklist-item-text">Complete and note each service</span>
+              <span class="checklist-item-category">Field</span>
+            </label>
+            <label class="checklist-item">
+              <input type="checkbox" class="cl-item" data-category="Field" />
+              <span class="checklist-item-text">Mark payment received per job</span>
+              <span class="checklist-item-category">Field</span>
+            </label>
+            <label class="checklist-item">
+              <input type="checkbox" class="cl-item" data-category="Close" />
+              <span class="checklist-item-text">Send follow-up message to customers</span>
+              <span class="checklist-item-category">Close</span>
+            </label>
+            <label class="checklist-item">
+              <input type="checkbox" class="cl-item" data-category="Close" />
+              <span class="checklist-item-text">Review daily total and open requests</span>
+              <span class="checklist-item-category">Close</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Sticky summary sidebar -->
+        <div class="summary-sticky">
+          <div class="summary-card reveal">
+            <div class="summary-card-header">Live Summary</div>
+            <div class="summary-rows">
+              <div class="summary-row">
+                <span>Tasks done</span>
+                <strong id="sumDone">0 of 7</strong>
+              </div>
+              <div class="summary-row">
+                <span>Progress</span>
+                <strong id="sumPct">0%</strong>
+              </div>
+              <div class="summary-row">
+                <span>Next step</span>
+                <strong id="sumNext">Review quote requests</strong>
+              </div>
+              <div class="summary-row">
+                <span>Status</span>
+                <strong id="sumStatus"><span class="pill pill-blue">In progress</span></strong>
+              </div>
+            </div>
+          </div>
+
+          <div style="font-size:0.8rem;color:var(--muted);line-height:1.5;padding:4px 0">
+            Check items off above — the summary card and the end-of-day section both update in real time.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── END OF DAY SUMMARY ── -->
+    <section id="summary">
+      <p class="section-eyebrow reveal">End-of-day summary</p>
+      <h2 class="section-h2 reveal">Clean daily recap, ready to copy.</h2>
+      <p class="section-sub reveal">Your completed jobs, estimated revenue, and open items — all in one card. Hit copy and paste it anywhere.</p>
+
+      <div class="eod-card reveal" id="eodCard">
+        <div class="eod-card-header">
+          <span class="eod-card-title">Daily Summary — <span id="eodDate">Today</span></span>
+          <span class="eod-badge" id="eodBadge">In Progress</span>
+        </div>
+        <div class="eod-body">
+          <div class="eod-stats">
+            <div class="eod-stat">
+              <div class="eod-stat-label">Tasks Completed</div>
+              <div class="eod-stat-value" id="eodDone">0 / 7</div>
+            </div>
+            <div class="eod-stat">
+              <div class="eod-stat-label">Est. Revenue</div>
+              <div class="eod-stat-value" id="eodRevenue">$840</div>
+            </div>
+          </div>
+          <div class="eod-list">
+            <div class="eod-list-row">
+              <span>Jobs scheduled</span>
+              <span>3</span>
+            </div>
+            <div class="eod-list-row">
+              <span>Open quote requests</span>
+              <span id="eodQuotes">2 pending</span>
+            </div>
+            <div class="eod-list-row">
+              <span>Follow-ups needed</span>
+              <span id="eodFollowup">1</span>
+            </div>
+          </div>
+          <p class="eod-note" id="eodNote">Update the checklist above to see this summary reflect your progress. Demo only — no data is saved.</p>
+        </div>
+        <div class="eod-actions">
+          <button class="btn-primary" type="button" id="copyBtn" style="min-height:40px;padding:0 16px;font-size:0.9rem">Copy summary</button>
+          <span class="copy-status" id="copyStatus" aria-live="polite">✓ Copied to clipboard</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── WHAT THIS PROVES ── -->
+    <section id="proof">
+      <p class="section-eyebrow reveal">What this shows</p>
+      <h2 class="section-h2 reveal">Useful tools, not just pretty pages.</h2>
+      <p class="section-sub reveal">No fake client claims. Here is what this demo actually demonstrates.</p>
+
+      <div class="proof-grid">
+        <div class="proof-item reveal">
+          <div class="proof-icon">📱</div>
+          <h3>Mobile-first design</h3>
+          <p>Every section of this page works on a 375px screen, not just desktop. Local operators check their phones, not MacBooks.</p>
+        </div>
+        <div class="proof-item reveal">
+          <div class="proof-icon">⚡</div>
+          <h3>Live interactive tools</h3>
+          <p>The quote estimator and checklist both update in real time with zero libraries, no backend, and no network requests.</p>
+        </div>
+        <div class="proof-item reveal">
+          <div class="proof-icon">🗂️</div>
+          <h3>Organized business workflows</h3>
+          <p>The dashboard, schedule, and checklist show how a single page can replace scattered texts, sticky notes, and DMs.</p>
+        </div>
+        <div class="proof-item reveal">
+          <div class="proof-icon">💬</div>
+          <h3>Clear quote paths</h3>
+          <p>The estimator walks through service, size, add-ons, and urgency — the same decision a real customer would make.</p>
+        </div>
+        <div class="proof-item reveal">
+          <div class="proof-icon">🎨</div>
+          <h3>Premium presentation</h3>
+          <p>Dark theme, glowing gradients, and glassmorphism cards — the kind of design that makes a local business look serious.</p>
+        </div>
+        <div class="proof-item reveal">
+          <div class="proof-icon">🔒</div>
+          <h3>Private by design</h3>
+          <p>No data leaves this page. No tracking. No external scripts. Everything runs in your browser, period.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FOOTER ── -->
+    <footer>
+      <p class="footer-note">Local Business Command Center is a fictional demo created for Philip Builds Studio. No real client data, customer reviews, or business results are used or implied. All names, jobs, and revenue figures are made up for demonstration purposes.</p>
+      <div class="footer-links">
+        <a href="../../portfolio/index.html">Portfolio</a>
+        <a href="../../index.html">Philip Builds Studio</a>
+      </div>
+    </footer>
+
+  </body>
+</html>

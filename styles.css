@@ -444,6 +444,90 @@ ul {
   background: #fff;
 }
 
+.work-flagship {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 26px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #0f1829 0%, #0f2233 60%, #080d1a 100%);
+  border: 1px solid rgba(59,130,246,0.25);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.22), 0 0 30px rgba(59,130,246,0.08);
+}
+
+.work-flagship-copy span {
+  color: #60a5fa;
+  font-size: 0.76rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.work-flagship-copy h3 {
+  color: #fff;
+  font-size: 1.35rem;
+  margin: 6px 0 8px;
+}
+
+.work-flagship-copy p {
+  color: #94a3b8;
+  margin-bottom: 14px;
+  font-size: 0.95rem;
+}
+
+.work-flagship-copy a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 16px;
+  border-radius: 8px;
+  background: #3b82f6;
+  color: #fff;
+  font-weight: 850;
+  font-size: 0.9rem;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(59,130,246,0.35);
+}
+
+.work-flagship-copy a:hover { background: #2563eb; }
+
+.work-flagship-tags {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.wft {
+  padding: 5px 10px;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #94a3b8;
+  font-size: 0.74rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.work-more-link {
+  margin-top: 18px;
+  text-align: right;
+}
+
+.work-more-link a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--accent-dark);
+  font-weight: 850;
+  font-size: 0.92rem;
+  text-decoration: none;
+}
+
+.work-more-link a:hover { color: var(--accent); }
+
 .demo-section {
   background: #fff;
 }
@@ -730,6 +814,17 @@ ul {
 
 .stagger > .reveal:nth-child(4) {
   --reveal-delay: 270ms;
+}
+
+@media (max-width: 860px) {
+  .work-flagship {
+    grid-template-columns: 1fr;
+  }
+
+  .work-flagship-tags {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 }
 
 @media (max-width: 920px) {
