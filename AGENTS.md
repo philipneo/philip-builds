@@ -35,9 +35,6 @@ Private operating files:
 
 - `private/PROJECT_STATUS.md`
 - `private/AGENTS.md`
-- `private/DETAILING_50_PROSPECT_TRACKER.md`
-- `private/FIRST_CLIENT_CLOSE_KIT.md`
-- `private/REPLY_HANDLING.md`
 - Other files under `private/`
 
 Keep private notes, lead trackers, client details, and internal business decisions out of public pages unless Philip explicitly asks.
