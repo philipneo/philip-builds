@@ -25,3 +25,5 @@ dtla_medspa_prospects.csv
 
 # Local OS/editor noise
 .DS_Store
+
+.claude/

@@ -53,6 +53,7 @@ footer a {
   display: inline-flex;
   align-items: center;
   gap: 9px;
+  min-height: 44px;
 }
 
 .brand span {
@@ -70,6 +71,13 @@ nav {
   display: flex;
   gap: 12px;
   font-size: 0.9rem;
+}
+
+nav a,
+footer a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
 }
 
 main {

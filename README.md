@@ -1,52 +1,45 @@
-# Codex Cashflow Lab
+# Philip Builds Studio
 
-A tiny local workbench for turning Codex into a practical money-making assistant.
+Public website and demo workbench for Philip Builds Studio, a small website-building business for local service businesses.
 
-Open `index.html` in a browser, choose a niche, and use the generated launch pack to pitch a simple AI automation service to small businesses.
+Open `index.html` in a browser to preview the public Philip Builds Studio homepage.
 
-## New Starter Portfolio Path
+## Site-Building Mode
 
-The attached ChatGPT playbook points to a simpler first money lane:
+Philip Builds Studio is now centered on a simpler public offer:
 
-> Build tiny useful outcomes, then sell cheap starter fixes.
+> Clean, mobile-ready one-page websites for local service businesses. Fast turnaround, fixed price, no tech headaches.
 
-I added:
+Public assets:
 
 - `portfolio/index.html` - a simple portfolio page for Philip.
-- `demos/shift-downtime-calculator/index.html` - the first clickable demo app.
-- `WEBSITE_FIX_OUTREACH_PACK.md` - copy-paste messages for starter clients.
-- `START_HERE_WEBSITE_FIXES.md` - the next-step checklist.
+- `demos/mobile-detailing-landing-page/index.html` - GlossLane business landing page demo.
+- `demos/shift-downtime-calculator/index.html` - a clickable operations tool demo.
+- `demos/cashflow-lab/index.html` - archived internal planning tool.
 
-Open both directly in a browser. No install step required.
+## Folder Map
+
+- `index.html`, `styles.css` - the public Philip Builds Studio homepage.
+- `portfolio/` - Philip's public portfolio page.
+- `demos/` - clickable public demo apps, including the archived Cashflow Lab.
+- `docs/` - setup and publishing instructions.
+- `private/` - internal business ops, trackers, sales notes, and planning files.
+
+Open pages directly in a browser. No install step required.
 
 Best first offer:
 
-> I fix 1-3 website issues or build one small page/tool for `$75-$150`.
+> I build a clean one-page website for local service businesses starting at `$150`.
 
-Use the demo to prove you can turn a real workflow into a useful tool.
+Use the demos to show layout quality, clear calls to action, and simple useful tools.
 
-## Best first play
+## Build Priorities
 
-Start with **Home services** and the **Fast** mode.
-
-Pitch: missed-call recovery and lead follow-up.
-
-Why this is the easiest first offer:
-
-- The pain is obvious.
-- The buyer is usually local and reachable.
-- The first version can be built with simple tools like Google Sheets, Gmail, Zapier/Make, forms, and SMS.
-- You can charge a setup fee without pretending it is a giant SaaS.
-
-## Seven-day sprint
-
-1. Pick one niche.
-2. Copy the launch pack.
-3. List 30 local businesses.
-4. Send 20 thoughtful emails or DMs.
-5. Book 3 calls.
-6. Close 1 simple setup.
-7. Build only the workflow the customer actually needs.
+1. Keep the homepage clear and business-facing.
+2. Make demos easy to find and click.
+3. Keep packages simple: Starter, Standard, Monthly Care.
+4. Avoid false claims about real clients.
+5. Keep mobile layout clean.
 
 ## Guardrails
 

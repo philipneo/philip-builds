@@ -3,164 +3,279 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Codex Cashflow Lab</title>
+    <title>Philip Builds Studio — Small Websites for Local Businesses</title>
+    <meta
+      name="description"
+      content="Clean, mobile-ready one-page websites for local service businesses. Starting at $150. Fixed price. Fast turnaround."
+    />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <main class="app-shell">
-      <aside class="sidebar" aria-label="Cashflow controls">
-        <div>
-          <p class="eyebrow">Codex Cashflow Lab</p>
-          <h1>Build a sellable AI automation offer.</h1>
-          <p class="lede">
-            Pick a niche, sharpen the pain, generate a productized service, then track who you pitch.
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Philip Builds Studio home">
+        <span>PBS</span>
+        Philip Builds Studio
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="#problem">Problem</a>
+        <a href="#demo">Demo</a>
+        <a href="#packages">Packages</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section id="hero" class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Websites for local service businesses</p>
+          <h1 id="hero-title">Your Business Deserves a Real Website</h1>
+          <p>
+            I build clean, mobile-friendly one-page sites for local service
+            businesses, starting at $150.
+          </p>
+          <div class="actions">
+            <a class="button primary" href="#demo">See How It Looks</a>
+            <a class="button" href="mailto:philipbuildsstudio@gmail.com?subject=Project%20Inquiry">Start a Project</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="problem" class="section problem-section" aria-labelledby="problem-title">
+        <div class="section-head">
+          <p class="eyebrow">Problem</p>
+          <h2 id="problem-title">A confusing website makes good businesses look harder to trust.</h2>
+          <p>
+            Local customers usually check your site from a phone. If they cannot
+            quickly find your services, prices, photos, or contact button, they
+            move on.
           </p>
         </div>
+        <div class="problem-grid">
+          <article>
+            <h3>Hard to scan</h3>
+            <p>Too much clutter makes it hard for customers to understand what you offer.</p>
+          </article>
+          <article>
+            <h3>Weak contact path</h3>
+            <p>A hidden phone, quote, or email button costs attention at the exact moment it matters.</p>
+          </article>
+          <article>
+            <h3>Not built for phones</h3>
+            <p>Small text, awkward spacing, and cramped buttons make the business feel less ready.</p>
+          </article>
+        </div>
+      </section>
 
-        <section class="control-group" aria-labelledby="niche-label">
-          <label id="niche-label" for="niche">Niche</label>
-          <select id="niche"></select>
-        </section>
-
-        <section class="control-group" aria-labelledby="goal-label">
-          <label id="goal-label" for="goal">Revenue target</label>
-          <div class="stepper">
-            <button id="targetDown" type="button" aria-label="Decrease revenue target">-</button>
-            <input id="goal" type="number" min="500" step="500" value="3000" />
-            <button id="targetUp" type="button" aria-label="Increase revenue target">+</button>
-          </div>
-        </section>
-
-        <section class="control-group" aria-labelledby="mode-label">
-          <span id="mode-label">Selling mode</span>
-          <div class="segmented" role="group" aria-label="Selling mode">
-            <button class="segment active" type="button" data-mode="fast">Fast</button>
-            <button class="segment" type="button" data-mode="premium">Premium</button>
-            <button class="segment" type="button" data-mode="retainer">Retainer</button>
-          </div>
-        </section>
-
-        <button id="copyPack" class="primary-action" type="button">
-          Copy launch pack
-        </button>
-      </aside>
-
-      <section class="workspace" aria-live="polite">
-        <header class="topbar">
+      <section id="demo" class="section demo-section" aria-labelledby="demo-title">
+        <div class="section-head">
+          <p class="eyebrow">Demo / GlossLane</p>
+          <h2 id="demo-title">See a one-page service business demo.</h2>
+          <p>
+            GlossLane is a fictional mobile detailing page that shows the kind
+            of service menu, pricing, quote path, and mobile layout I build.
+          </p>
+        </div>
+        <article class="demo-feature">
           <div>
-            <p class="eyebrow">This week</p>
-            <h2 id="offerTitle">Lead Response Booster</h2>
+            <span>Landing page demo</span>
+            <h3>GlossLane Mobile Detailing</h3>
+            <p>
+              A clean one-page example with packages, proof placeholders, a
+              quote form, and booking calls to action.
+            </p>
           </div>
-          <div class="scoreboard" aria-label="Offer score">
-            <span id="score">86</span>
-            <small>sellability</small>
-          </div>
-        </header>
+          <a class="button primary" href="demos/mobile-detailing-landing-page/index.html">Open GlossLane Demo</a>
+        </article>
+      </section>
 
-        <section class="overview-grid">
-          <article class="panel offer-panel">
-            <div class="panel-heading">
-              <span class="icon" aria-hidden="true">+</span>
-              <h3>Offer</h3>
-            </div>
-            <p id="offerCopy"></p>
-            <div class="price-row">
-              <span id="setupPrice"></span>
-              <span id="monthlyPrice"></span>
-            </div>
+      <section id="services" class="section intro-grid" aria-labelledby="services-title">
+        <div class="section-head">
+          <p class="eyebrow">What I Build</p>
+          <h2 id="services-title">Clean pages that help customers understand and contact you.</h2>
+          <p>
+            Philip Builds Studio builds clean, mobile-ready one-page websites
+            for local service businesses. Fast turnaround, fixed price, no tech
+            headaches.
+          </p>
+        </div>
+        <div class="value-list" aria-label="Website features">
+          <div>
+            <strong>Services and pricing</strong>
+            <span>Show what you do, who it is for, and what it costs.</span>
+          </div>
+          <div>
+            <strong>Clear contact buttons</strong>
+            <span>Make calling, emailing, or requesting a quote easy.</span>
+          </div>
+          <div>
+            <strong>Mobile-ready layout</strong>
+            <span>Built to look clean on the phone your customers actually use.</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="packages" class="section package-section" aria-labelledby="packages-title">
+        <div class="section-head">
+          <p class="eyebrow">Packages</p>
+          <h2 id="packages-title">Fixed-price website help without the maze.</h2>
+        </div>
+        <div class="package-grid">
+          <article class="package-card">
+            <span class="price">$150</span>
+            <h3>Starter Site</h3>
+            <p>
+              One-page mobile site with services, pricing, photos, and a
+              contact button.
+            </p>
+            <ul>
+              <li>3-5 day turnaround</li>
+              <li>One revision</li>
+              <li>Best for a simple first site</li>
+            </ul>
           </article>
 
-          <article class="panel">
-            <div class="panel-heading">
-              <span class="icon" aria-hidden="true">$</span>
-              <h3>Math</h3>
-            </div>
-            <dl class="metrics">
-              <div>
-                <dt>Clients needed</dt>
-                <dd id="clientsNeeded"></dd>
-              </div>
-              <div>
-                <dt>Pitch target</dt>
-                <dd id="pitchTarget"></dd>
-              </div>
-              <div>
-                <dt>Expected close rate</dt>
-                <dd id="closeRate"></dd>
-              </div>
-            </dl>
+          <article class="package-card featured">
+            <span class="price">$300</span>
+            <h3>Business Site</h3>
+            <p>
+              Everything in Starter plus a second page, stronger copywriting,
+              and basic SEO setup.
+            </p>
+            <ul>
+              <li>Two-page site structure</li>
+              <li>Clearer service copy</li>
+              <li>Basic search-friendly page setup</li>
+            </ul>
           </article>
 
-          <article class="panel">
-            <div class="panel-heading">
-              <span class="icon" aria-hidden="true">!</span>
-              <h3>Pain To Sell</h3>
-            </div>
-            <ul id="painList" class="tight-list"></ul>
+          <article class="package-card">
+            <span class="price">$50/month</span>
+            <h3>Site Care</h3>
+            <p>
+              Simple updates after launch so your site stays useful without
+              becoming another chore.
+            </p>
+            <ul>
+              <li>Price updates</li>
+              <li>New photos and promo changes</li>
+              <li>Small fixes</li>
+            </ul>
           </article>
-        </section>
+        </div>
+      </section>
 
-        <section class="split">
-          <article class="panel">
-            <div class="panel-heading">
-              <span class="icon" aria-hidden="true">></span>
-              <h3>Outreach Draft</h3>
-            </div>
-            <textarea id="outreach" spellcheck="true"></textarea>
-            <div class="button-row">
-              <button id="copyOutreach" type="button">Copy</button>
-              <button id="refreshOutreach" type="button">Refresh</button>
-            </div>
+      <section id="process" class="section process-section" aria-labelledby="process-title">
+        <div class="section-head">
+          <p class="eyebrow">Process</p>
+          <h2 id="process-title">Simple scope, then a focused build.</h2>
+        </div>
+        <div class="process-grid">
+          <article>
+            <span>01</span>
+            <h3>Send the basics</h3>
+            <p>Business name, current link if you have one, services, photos, and the best contact path.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Confirm the scope</h3>
+            <p>We keep the page focused: what to build, what it costs, and what counts as done.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Review and launch</h3>
+            <p>You review the page, request the included revision, and get a cleaner public link.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="work" class="section work-section" aria-labelledby="work-title">
+        <div class="section-head">
+          <p class="eyebrow">More Work</p>
+          <h2 id="work-title">More demos you can click through.</h2>
+          <p>
+            These are demo projects, not claims about real clients. They show
+            the kind of layout, structure, and small tools I can build.
+          </p>
+        </div>
+        <div class="work-grid">
+          <article class="work-card">
+            <span>Studio page</span>
+            <h3>Portfolio</h3>
+            <p>
+              A simple page showing service options, demos, contact details,
+              and small-business project examples.
+            </p>
+            <a href="portfolio/index.html">Open portfolio</a>
           </article>
 
-          <article class="panel">
-            <div class="panel-heading">
-              <span class="icon" aria-hidden="true">#</span>
-              <h3>Delivery Checklist</h3>
-            </div>
-            <ul id="checklist" class="check-list"></ul>
+          <article class="work-card">
+            <span>Tool demo</span>
+            <h3>Shift Downtime Calculator</h3>
+            <p>
+              A mobile-friendly calculator that turns repeated shift notes into
+              a clean end-of-shift report.
+            </p>
+            <a href="demos/shift-downtime-calculator/index.html">Open calculator</a>
           </article>
-        </section>
 
-        <section class="panel tracker-panel">
-          <div class="panel-heading">
-            <span class="icon" aria-hidden="true">=</span>
-            <h3>Lead Tracker</h3>
-          </div>
-          <form id="leadForm" class="lead-form">
-            <input id="businessName" type="text" placeholder="Business name" required />
-            <input id="contact" type="text" placeholder="Contact or URL" required />
-            <select id="leadStatus">
-              <option>To pitch</option>
-              <option>Pitched</option>
-              <option>Follow up</option>
-              <option>Booked call</option>
-              <option>Closed</option>
-            </select>
-            <button type="submit">Add lead</button>
-          </form>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>Business</th>
-                  <th>Contact</th>
-                  <th>Status</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody id="leadRows"></tbody>
-            </table>
-          </div>
-          <div class="button-row">
-            <button id="exportCsv" type="button">Export CSV</button>
-            <button id="clearLeads" type="button">Clear</button>
-          </div>
-        </section>
+          <article class="work-card">
+            <span>Internal tool</span>
+            <h3>Cashflow Lab</h3>
+            <p>
+              The original planning tool for shaping small service offers,
+              pricing, and delivery checklists.
+            </p>
+            <a href="demos/cashflow-lab/index.html">Open Cashflow Lab</a>
+          </article>
+        </div>
+      </section>
+
+      <section id="faq" class="section faq-section" aria-labelledby="faq-title">
+        <div class="section-head">
+          <p class="eyebrow">FAQ</p>
+          <h2 id="faq-title">Straight answers before the project starts.</h2>
+        </div>
+        <div class="faq-grid">
+          <article>
+            <h3>What do you need from me?</h3>
+            <p>Your business name, services, prices if you have them, photos, and the best contact button.</p>
+          </article>
+          <article>
+            <h3>Is this a huge website project?</h3>
+            <p>No. The goal is a clean, useful site with a simple scope and fixed price.</p>
+          </article>
+          <article>
+            <h3>Can you update it later?</h3>
+            <p>Yes. Site Care covers small updates like new photos, price edits, promos, and quick fixes.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="contact" class="section contact-section" aria-labelledby="contact-title">
+        <div>
+          <p class="eyebrow">Final CTA</p>
+          <h2 id="contact-title">Need a cleaner website for your business?</h2>
+          <p>
+            Send the business name, current link if you have one, and what you
+            want the page to help customers do.
+          </p>
+        </div>
+        <a
+          class="button primary"
+          href="mailto:philipbuildsstudio@gmail.com?subject=Project%20Inquiry"
+        >
+          Start a Project
+        </a>
       </section>
     </main>
 
-    <div id="toast" role="status" aria-live="polite"></div>
-    <script src="script.js"></script>
+    <footer class="site-footer">
+      <p><strong>Philip Builds Studio</strong></p>
+      <a href="mailto:philipbuildsstudio@gmail.com">philipbuildsstudio@gmail.com</a>
+      <a href="portfolio/index.html">Portfolio</a>
+      <a href="https://instagram.com/philipbuildsstudio/">Instagram</a>
+    </footer>
   </body>
 </html>

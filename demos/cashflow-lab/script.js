@@ -6,7 +6,7 @@ const offers = {
     closeRate: 8,
     score: 88,
     promise:
-      "Install a simple AI-assisted follow-up workflow that catches missed calls, sends a text within 60 seconds, logs the lead, and reminds the owner until the lead is booked or disqualified.",
+      "Install a simple follow-up workflow that catches missed calls, sends a text within 60 seconds, logs the lead, and reminds the owner until the lead is booked or disqualified.",
     pains: [
       "Owners lose jobs when they are on-site and cannot answer.",
       "Leads go cold quickly after a quote request.",
@@ -98,7 +98,7 @@ const modeProfiles = {
 const state = {
   niche: "Home services",
   mode: "fast",
-  leads: JSON.parse(localStorage.getItem("cashflow-leads") || "[]")
+  leads: JSON.parse(localStorage.getItem("cashflow-opportunity-notes") || "[]")
 };
 
 const els = {
@@ -114,7 +114,7 @@ const els = {
   score: document.querySelector("#score"),
   painList: document.querySelector("#painList"),
   checklist: document.querySelector("#checklist"),
-  outreach: document.querySelector("#outreach"),
+  messageDraft: document.querySelector("#messageDraft"),
   toast: document.querySelector("#toast"),
   leadRows: document.querySelector("#leadRows")
 };
@@ -145,9 +145,9 @@ function activeOffer() {
   };
 }
 
-function outreachDraft(offer) {
+function messageDraft(offer) {
   const niche = state.niche.toLowerCase();
-  return `Subject: quick idea for ${niche} leads
+  return `Subject: quick idea for ${niche}
 
 Hi [Name],
 
@@ -161,7 +161,7 @@ The first version is intentionally simple:
 - notify the owner or staff
 - produce a weekly lead report
 
-Would it be worth a 15 minute call to see if this would save you missed revenue? If it is not useful, I will tell you quickly.
+Would it be worth a 15 minute call to see if this would be useful? If it is not a fit, I will tell you quickly.
 
 Best,
 Philip`;
@@ -181,7 +181,7 @@ function renderOffer() {
   els.pitchTarget.textContent = `${pitches} businesses`;
   els.closeRate.textContent = `${offer.closeRate}%`;
   els.score.textContent = offer.score;
-  els.outreach.value = outreachDraft(offer);
+  els.messageDraft.value = messageDraft(offer);
 
   els.painList.replaceChildren(...offer.pains.map((pain) => {
     const li = document.createElement("li");
@@ -237,7 +237,7 @@ function renderLeads() {
 }
 
 function saveLeads() {
-  localStorage.setItem("cashflow-leads", JSON.stringify(state.leads));
+  localStorage.setItem("cashflow-opportunity-notes", JSON.stringify(state.leads));
   renderLeads();
 }
 
@@ -251,7 +251,7 @@ function exportCsv() {
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
   link.href = url;
-  link.download = "cashflow-leads.csv";
+  link.download = "cashflow-opportunity-notes.csv";
   link.click();
   URL.revokeObjectURL(url);
 }
@@ -282,11 +282,11 @@ document.querySelector("#targetUp").addEventListener("click", () => {
   renderOffer();
 });
 
-document.querySelector("#copyOutreach").addEventListener("click", () => {
-  copyText(els.outreach.value, "Outreach copied");
+document.querySelector("#copyMessage").addEventListener("click", () => {
+  copyText(els.messageDraft.value, "Message copied");
 });
 
-document.querySelector("#refreshOutreach").addEventListener("click", renderOffer);
+document.querySelector("#refreshMessage").addEventListener("click", renderOffer);
 
 document.querySelector("#copyPack").addEventListener("click", () => {
   const offer = activeOffer();
@@ -298,8 +298,8 @@ ${offer.promise}
 Price:
 ${currency(offer.setup)} setup + ${currency(offer.monthly)}/mo support
 
-Outreach:
-${els.outreach.value}
+Project message:
+${els.messageDraft.value}
 
 Delivery checklist:
 ${offer.checklist.map((item) => `- ${item}`).join("\n")}`;

@@ -7,7 +7,7 @@ Run these in Terminal on your Mac.
 ## 1. Go To The Folder
 
 ```bash
-cd /Users/philipmiranda/Documents/money
+cd path/to/philip-builds
 ```
 
 ## 2. Check What Is In Git
