@@ -74,5 +74,51 @@
     const defaultPackage = document.querySelector('[data-package="Interior Reset"]');
     if (defaultPackage) defaultPackage.classList.add("is-selected");
     renderQuote();
+
+    // ── Phone booking flow: live total ──
+    const phone = document.getElementById("glossPhone");
+    if (phone) {
+      const phoneState = { pkgName: "Interior Reset", pkgPrice: 149, addons: { "Pet hair reset": 35 } };
+      const totalEl = document.getElementById("glossPhoneTotal");
+      const summaryEl = document.getElementById("glossPhoneSummary");
+
+      const renderPhone = () => {
+        const total = phoneState.pkgPrice + Object.values(phoneState.addons).reduce((sum, p) => sum + p, 0);
+        if (totalEl) totalEl.textContent = `$${total} demo total`;
+        if (summaryEl) {
+          const names = Object.keys(phoneState.addons);
+          summaryEl.textContent = names.length
+            ? `${phoneState.pkgName} + ${names.join(", ")}. Confirm to preview demo booking.`
+            : `${phoneState.pkgName}. Confirm to preview demo booking.`;
+        }
+      };
+
+      phone.querySelectorAll("[data-gloss-pkg]").forEach((button) => {
+        button.addEventListener("click", () => {
+          phone.querySelectorAll("[data-gloss-pkg]").forEach((item) => item.classList.remove("is-selected"));
+          button.classList.add("is-selected");
+          phoneState.pkgName = button.dataset.glossPkg;
+          phoneState.pkgPrice = Number(button.dataset.price || 0);
+          renderPhone();
+        });
+      });
+
+      phone.querySelectorAll("[data-gloss-addon]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const name = button.dataset.glossAddon;
+          const price = Number(button.dataset.price || 0);
+          if (phoneState.addons[name]) {
+            delete phoneState.addons[name];
+            button.classList.remove("is-selected");
+          } else {
+            phoneState.addons[name] = price;
+            button.classList.add("is-selected");
+          }
+          renderPhone();
+        });
+      });
+
+      renderPhone();
+    }
   });
 })();

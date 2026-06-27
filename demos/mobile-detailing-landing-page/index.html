@@ -147,6 +147,51 @@
         </div>
       </section>
 
+      <section id="story" class="section">
+        <div class="section-head reveal">
+          <p class="eyebrow">How a booking comes together</p>
+          <h2>From "how much?" to a confirmed window.</h2>
+        </div>
+        <div class="pbs-story">
+          <div class="pbs-story-aside">
+            <div class="story-gloss-card reveal">
+              <div class="sgc-top">
+                <span>Demo booking</span>
+                <span class="sgc-tag">GlossLane</span>
+              </div>
+              <div class="sgc-rows">
+                <div class="sgc-row"><span>Package</span><strong>Interior Reset</strong></div>
+                <div class="sgc-row sgc-addon"><span>+ Pet hair reset</span><strong>$35</strong></div>
+                <div class="sgc-row sgc-total"><span>Demo total</span><strong>$184</strong></div>
+              </div>
+              <div class="sgc-foot">Same math as the live quote panel above.</div>
+            </div>
+          </div>
+          <div class="pbs-story-steps">
+            <div class="pbs-story-step reveal">
+              <p class="pbs-step-num">Before</p>
+              <h3>Detailing prices hide behind "text us for a quote."</h3>
+              <p>Customers can't compare packages, so they bounce to the shop that just shows the number.</p>
+            </div>
+            <div class="pbs-story-step reveal">
+              <p class="pbs-step-num">Step 01</p>
+              <h3>Three packages, each with a clear starting price.</h3>
+              <p>Quick Shine, Interior Reset, and Gloss Package set the floor before anyone reaches out.</p>
+            </div>
+            <div class="pbs-story-step reveal">
+              <p class="pbs-step-num">Step 02</p>
+              <h3>Add-ons adjust the total in real time.</h3>
+              <p>The quote panel above and the phone flow below run the same math — no surprises at the curb.</p>
+            </div>
+            <div class="pbs-story-step reveal">
+              <p class="pbs-step-num">Step 03</p>
+              <h3>The customer confirms a window, not a mystery.</h3>
+              <p>Demo-only confirmation here; a real build would text the booking back automatically.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="process" class="section" aria-labelledby="process-title">
         <div class="section-head reveal">
           <p class="eyebrow">Process</p>
@@ -177,34 +222,34 @@
       </section>
 
       <section id="booking" class="section phone-section" aria-labelledby="booking-title">
-        <div class="phone-wrap reveal" aria-hidden="true">
-          <div class="phone-shell phone-shell-md" data-phone-flow>
+        <div class="phone-wrap reveal">
+          <div class="phone-shell phone-shell-md" data-phone-flow id="glossPhone">
             <div class="phone-notch"></div>
             <div class="phone-screen gloss-phone">
 
               <div class="phone-pane is-active">
                 <span>Step 1 of 3</span>
                 <strong>Pick a package</strong>
-                <button type="button">Quick Shine · $79</button>
-                <button type="button" class="is-selected">Interior Reset · $149</button>
-                <button type="button">Gloss Package · $249</button>
+                <button type="button" data-gloss-pkg="Quick Shine" data-price="79">Quick Shine · $79</button>
+                <button type="button" class="is-selected" data-gloss-pkg="Interior Reset" data-price="149">Interior Reset · $149</button>
+                <button type="button" data-gloss-pkg="Gloss Package" data-price="249">Gloss Package · $249</button>
                 <button class="button primary" type="button" data-phone-next>Next →</button>
               </div>
 
               <div class="phone-pane">
                 <span>Step 2 of 3</span>
                 <strong>Pick add-ons</strong>
-                <button type="button" class="is-selected">+ Pet hair reset · $35</button>
-                <button type="button">+ Headlight restore · $40</button>
-                <button type="button">+ Clay bar · $55</button>
+                <button type="button" class="is-selected" data-gloss-addon="Pet hair reset" data-price="35">+ Pet hair reset · $35</button>
+                <button type="button" data-gloss-addon="Headlight restore" data-price="40">+ Headlight restore · $40</button>
+                <button type="button" data-gloss-addon="Clay bar" data-price="55">+ Clay bar · $55</button>
                 <button class="button primary" type="button" data-phone-next>See total →</button>
                 <button class="button ghost" type="button" data-phone-back>← Back</button>
               </div>
 
               <div class="phone-pane">
                 <span>Step 3 of 3</span>
-                <strong>$184 demo total</strong>
-                <p>Interior Reset + Pet hair reset. Confirm to preview demo booking.</p>
+                <strong id="glossPhoneTotal">$184 demo total</strong>
+                <p id="glossPhoneSummary">Interior Reset + Pet hair reset. Confirm to preview demo booking.</p>
                 <button class="button primary" type="button">Preview booking</button>
                 <button class="button ghost" type="button" data-phone-back>← Edit</button>
               </div>

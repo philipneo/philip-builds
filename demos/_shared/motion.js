@@ -121,6 +121,49 @@
     });
   }
 
+  function initCopy() {
+    document.querySelectorAll("[data-copy]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const sourceId = button.getAttribute("data-copy");
+        const source = sourceId ? document.getElementById(sourceId) : null;
+        const text = button.getAttribute("data-copy-text") || (source ? (source.innerText || source.textContent || "") : "");
+        if (!text) return;
+
+        const statusSel = button.getAttribute("data-copy-status");
+        const status = statusSel ? document.querySelector(statusSel) : button.parentElement && button.parentElement.querySelector(".pbs-copy-status");
+        const flash = () => {
+          if (!status) return;
+          status.textContent = status.getAttribute("data-copy-label") || "✓ Copied";
+          status.classList.add("is-shown");
+          window.setTimeout(() => status.classList.remove("is-shown"), 2200);
+        };
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(flash).catch(() => fallbackCopy(text, flash));
+        } else {
+          fallbackCopy(text, flash);
+        }
+      });
+    });
+  }
+
+  function fallbackCopy(text, done) {
+    try {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.setAttribute("readonly", "");
+      ta.style.position = "absolute";
+      ta.style.left = "-9999px";
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      document.body.removeChild(ta);
+      if (done) done();
+    } catch (err) {
+      /* no-op: demo only */
+    }
+  }
+
   window.PBS.animateValue = function (element, from, to, prefix, suffix, decimals) {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
     const p = prefix || "";
@@ -147,6 +190,7 @@
   window.PBS.initStickyNav = initStickyNav;
   window.PBS.initTabSwitch = initTabSwitch;
   window.PBS.initAccordion = initAccordion;
+  window.PBS.initCopy = initCopy;
 
   document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.add("js");
@@ -156,5 +200,6 @@
     initTabSwitch();
     initAccordion();
     initPhoneScreens();
+    initCopy();
   });
 })();

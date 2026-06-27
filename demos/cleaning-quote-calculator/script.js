@@ -76,6 +76,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     prevTotal = newTotal;
     renderBreakdown();
+    renderSummary(newTotal);
+  }
+
+  function renderSummary(total) {
+    const el = document.getElementById('calcSummary');
+    if (!el) return;
+    const rows = buildBreakdown();
+    const lines = rows.map(r => `  ${r.label}: $${r.price}`);
+    el.textContent =
+      'CleanQuote — Demo Estimate\n' +
+      '---------------------------\n' +
+      lines.join('\n') +
+      `\n---------------------------\n  Estimated total: $${total}\n\nDemo only — not a real quote.`;
   }
 
   // ── Counter buttons (bedrooms / bathrooms) ──
@@ -168,5 +181,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ── Initial render ──
   renderBreakdown();
+  renderSummary(calcTotal());
 
 });

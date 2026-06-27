@@ -255,12 +255,61 @@
             <div class="result-total" id="calcTotal">$50</div>
             <div class="result-breakdown" id="calcBreakdown" aria-live="polite"></div>
             <div class="result-disc">Demo estimate — not a real quote. No data is saved or sent.</div>
+            <div class="result-copy-row">
+              <button class="result-copy-btn" type="button" data-copy="calcSummary" data-copy-status="#calcCopyStatus">Copy estimate</button>
+              <span class="pbs-copy-status" id="calcCopyStatus" data-copy-label="✓ Copied to clipboard"></span>
+            </div>
+            <pre id="calcSummary" class="visually-hidden" aria-hidden="true"></pre>
             <button class="result-send-btn" type="button" id="calcSendBtn">Send this estimate →</button>
             <div class="result-sent" id="calcSent" style="display:none">
               <div class="rs-icon">✓</div>
               <div class="rs-text">In a real version, this would go straight to your inbox.</div>
               <button class="rs-reset" type="button" id="calcReset">Start over</button>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STICKY SCROLL STORY -->
+    <section id="story" class="s-story">
+      <div class="pbs-story">
+        <div class="pbs-story-aside">
+          <div class="story-quote-card reveal">
+            <div class="sqc-head">
+              <span>Live demo estimate</span>
+              <span class="sqc-tag">CleanQuote</span>
+            </div>
+            <div class="sqc-rows">
+              <div class="sqc-row"><span>3 Bedrooms</span><span>$75</span></div>
+              <div class="sqc-row"><span>2 Bathrooms</span><span>$50</span></div>
+              <div class="sqc-row"><span>Kitchen</span><span>$40</span></div>
+              <div class="sqc-row sqc-addon"><span>Deep Clean</span><span>+$40</span></div>
+              <div class="sqc-row sqc-total"><span>Estimate</span><strong>$205</strong></div>
+            </div>
+            <div class="sqc-foot">A real estimate, ready before the customer calls.</div>
+          </div>
+        </div>
+        <div class="pbs-story-steps">
+          <div class="pbs-story-step reveal">
+            <p class="pbs-step-num">Before</p>
+            <h3>Every quote starts with a phone call and a guess.</h3>
+            <p>Customers text "how much to clean a 3-bed?" and the owner ballparks it from memory. Slow to answer, easy to underprice, easy to lose.</p>
+          </div>
+          <div class="pbs-story-step reveal">
+            <p class="pbs-step-num">Step 01</p>
+            <h3>The visitor builds their own estimate in 60 seconds.</h3>
+            <p>Rooms, add-ons, and timing — the calculator above does the math live, so the price is set before anyone picks up the phone.</p>
+          </div>
+          <div class="pbs-story-step reveal">
+            <p class="pbs-step-num">Step 02</p>
+            <h3>The owner gets a clean, itemized starting point.</h3>
+            <p>No vague "interested in a clean" form. The request arrives with the rooms, add-ons, and urgency already priced.</p>
+          </div>
+          <div class="pbs-story-step reveal">
+            <p class="pbs-step-num">Step 03</p>
+            <h3>One tap copies the estimate to share or follow up.</h3>
+            <p>The "Copy estimate" button turns the live total into shareable text — the same deliverable feeling the Command Center demo ends on.</p>
           </div>
         </div>
       </div>

@@ -79,6 +79,20 @@
       });
     }
 
+    const phoneButtons = Array.from(document.querySelectorAll("[data-phone-package]"));
+    const phoneLabel = document.getElementById("phonePackageLabel");
+    const phoneHint = document.getElementById("phonePackageHint");
+    phoneButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        phoneButtons.forEach((item) => item.classList.remove("is-selected"));
+        button.classList.add("is-selected");
+        const name = button.dataset.phonePackage;
+        const price = button.dataset.phonePrice;
+        if (phoneLabel) phoneLabel.textContent = `${name} from $${price}`;
+        if (phoneHint) phoneHint.textContent = "Demo preview — tap to request a quote";
+      });
+    });
+
     updateSummary();
     showStep(1);
   });

@@ -149,6 +149,81 @@
   background-size: 44px 44px;
 }
 
+/* ─── SHARED STICKY SCROLL STORY ────────────────────────────
+   Theme-adaptive. Uses each page's own --accent / --muted /
+   --line vars when present, falling back to neutral tokens. */
+.pbs-story {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(28px, 5vw, 72px);
+  align-items: start;
+}
+
+.pbs-story-aside {
+  position: sticky;
+  top: 88px;
+  will-change: transform;
+}
+
+.pbs-story-steps {
+  display: grid;
+  gap: clamp(40px, 7vw, 76px);
+  padding: 12px 0;
+}
+
+.pbs-story-step {
+  border-left: 2px solid var(--line, var(--pbs-line));
+  padding-left: 20px;
+}
+
+.pbs-story-step .pbs-step-num {
+  margin: 0 0 10px;
+  color: var(--accent, var(--accent-bright, var(--pbs-blue)));
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pbs-story-step h3 {
+  margin: 0 0 10px;
+  font-size: clamp(1.25rem, 2.4vw, 1.7rem);
+  line-height: 1.12;
+}
+
+.pbs-story-step p {
+  margin: 0;
+  color: var(--muted, var(--pbs-muted));
+  line-height: 1.7;
+}
+
+@media (max-width: 880px) {
+  .pbs-story {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .pbs-story-aside {
+    position: static;
+  }
+}
+
+/* ─── SHARED COPY-TO-CLIPBOARD ──────────────────────────────── */
+.pbs-copy-status {
+  display: inline-block;
+  margin-left: 10px;
+  opacity: 0;
+  transform: translateY(2px);
+  transition: opacity 200ms ease, transform 200ms ease;
+  color: var(--green, var(--pbs-green));
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.pbs-copy-status.is-shown {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 @keyframes pbs-shimmer {
   0% { transform: translateX(-140%) skewX(-16deg); opacity: 0; }
   22% { opacity: 1; }

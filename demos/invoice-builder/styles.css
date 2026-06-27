@@ -718,6 +718,48 @@ footer div {
   }
 }
 
+/* ── STORY INVOICE CARD ── */
+.story-invoice-card {
+  border: 1px solid var(--line, rgba(148,163,184,0.24));
+  border-radius: 16px;
+  background: var(--panel, #fff);
+  box-shadow: var(--shadow, 0 26px 80px rgba(15,23,42,0.16));
+  overflow: hidden;
+}
+
+.sic-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line, rgba(148,163,184,0.24));
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.sic-rows { display: grid; gap: 8px; padding: 16px 18px; }
+
+.sic-rows > div {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+}
+
+.sic-grand {
+  margin-top: 6px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line, rgba(148,163,184,0.24));
+  font-weight: 800;
+  font-size: 1.05rem;
+}
+
+.sic-foot {
+  padding: 12px 18px 16px;
+  border-top: 1px solid var(--line, rgba(148,163,184,0.24));
+  font-size: 0.82rem;
+  color: var(--muted, #667085);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

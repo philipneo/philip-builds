@@ -1025,6 +1025,102 @@ body { margin: 0; background: var(--bg); color: var(--ink); }
   .how-timeline { padding: 0 0; }
 }
 
+/* ── COPY DELIVERABLE ── */
+.result-copy-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.result-copy-btn {
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--accent-dark);
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.result-copy-btn:hover { border-color: var(--accent); background: var(--accent-glow); }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── STICKY SCROLL STORY ── */
+.s-story {
+  padding: 80px max(20px, calc((100vw - 1100px) / 2));
+  background: #f7fffe;
+}
+
+.story-quote-card {
+  border: 1.5px solid var(--line);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.sqc-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--accent-dark);
+}
+
+.sqc-tag {
+  font-size: 0.68rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.sqc-rows { display: grid; gap: 8px; padding: 16px 18px; }
+
+.sqc-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: var(--ink);
+}
+
+.sqc-row.sqc-addon { color: var(--accent-dark); }
+
+.sqc-row.sqc-total {
+  margin-top: 6px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+.sqc-foot {
+  padding: 12px 18px 16px;
+  border-top: 1px solid var(--line);
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+@media (max-width: 600px) {
+  .s-story { padding: 60px 16px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .float { animation: none !important; }
 }

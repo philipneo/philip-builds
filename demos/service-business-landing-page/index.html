@@ -132,19 +132,46 @@
         <div class="section-head reveal">
           <p class="eyebrow">Workflow shift</p>
           <h2 id="workflow-title">From buried details to a real quote path.</h2>
-          <p>Fictional demo concept — shows how a service page can convert scattered info into a clean mobile-first decision.</p>
+          <p>Fictional demo concept — how a service page turns scattered info into a clean mobile-first decision.</p>
         </div>
-        <div class="workflow-grid">
-          <article class="workflow-card reveal">
-            <span>Before</span>
-            <h3>Long paragraphs and a hidden contact button</h3>
-            <p>Customers scroll, scan, and bounce. Pricing lives in a separate PDF or doesn't appear at all.</p>
-          </article>
-          <article class="workflow-card after reveal reveal-delay-1">
-            <span>After</span>
-            <h3>Three packages and a three-step quote form</h3>
-            <p>Service options, prices, and a focused quote flow that finishes in under a minute on a phone.</p>
-          </article>
+        <div class="pbs-story">
+          <div class="pbs-story-aside">
+            <div class="story-svc-card reveal">
+              <div class="ssc-top">
+                <span>Quote request</span>
+                <span class="ssc-tag">Example Service Co.</span>
+              </div>
+              <div class="ssc-rows">
+                <div class="ssc-row"><span>Service</span><strong>Standard Service</strong></div>
+                <div class="ssc-row"><span>Timing</span><strong>This week</strong></div>
+                <div class="ssc-row"><span>Notes</span><strong>2-story, north gutters</strong></div>
+                <div class="ssc-row ssc-price"><span>Starting at</span><strong>$149</strong></div>
+              </div>
+              <div class="ssc-foot">The owner sees a priced request, not a vague "interested" form.</div>
+            </div>
+          </div>
+          <div class="pbs-story-steps">
+            <div class="pbs-story-step reveal">
+              <p class="pbs-step-num">Before</p>
+              <h3>Long paragraphs and a contact button below the fold.</h3>
+              <p>Customers scroll, scan, and bounce. Pricing lives in a separate PDF — or doesn't appear at all.</p>
+            </div>
+            <div class="pbs-story-step reveal">
+              <p class="pbs-step-num">Step 01</p>
+              <h3>Three packages set the price expectation up front.</h3>
+              <p>Quick Visit, Standard, and Full Service each carry a fixed scope and number, so the visitor self-qualifies before contacting anyone.</p>
+            </div>
+            <div class="pbs-story-step reveal">
+              <p class="pbs-step-num">Step 02</p>
+              <h3>A three-step quote form finishes in under a minute.</h3>
+              <p>Service, timing, and notes — the same flow below, sized for a thumb, with a live summary the visitor can see building.</p>
+            </div>
+            <div class="pbs-story-step reveal">
+              <p class="pbs-step-num">Step 03</p>
+              <h3>The request lands already organized and priced.</h3>
+              <p>The owner opens a clean, structured lead instead of a one-line message — faster to reply, easier to book.</p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -258,11 +285,11 @@
             <div class="phone-notch"></div>
             <div class="phone-screen service-phone">
               <span class="eyebrow">Example Service Co.</span>
-              <h3>Standard Service from $149</h3>
-              <button class="phone-choice" type="button">Quick Visit · $79</button>
-              <button class="phone-choice" type="button">Standard · $149</button>
-              <button class="phone-choice" type="button">Full Service · $249</button>
-              <div>Tap to request a quote</div>
+              <h3 id="phonePackageLabel">Standard Service from $149</h3>
+              <button class="phone-choice" type="button" data-phone-package="Quick Visit" data-phone-price="79">Quick Visit · $79</button>
+              <button class="phone-choice is-selected" type="button" data-phone-package="Standard Service" data-phone-price="149">Standard · $149</button>
+              <button class="phone-choice" type="button" data-phone-package="Full Service" data-phone-price="249">Full Service · $249</button>
+              <div id="phonePackageHint">Tap a package to preview the price</div>
             </div>
           </div>
         </div>

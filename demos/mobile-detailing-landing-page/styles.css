@@ -684,6 +684,64 @@ footer div {
   }
 }
 
+/* ── STORY GLOSS CARD ── */
+.story-gloss-card {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.sgc-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.8rem;
+  font-weight: 900;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.sgc-tag { color: var(--muted); }
+
+.sgc-rows { display: grid; gap: 10px; padding: 16px 18px; }
+
+.sgc-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+
+.sgc-row.sgc-addon strong { color: var(--gold); }
+
+.sgc-total {
+  margin-top: 6px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  font-weight: 900;
+}
+
+.sgc-total strong { color: var(--cyan); font-size: 1.4rem; }
+
+.sgc-foot {
+  padding: 12px 18px 16px;
+  border-top: 1px solid var(--line);
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.gloss-phone button.is-selected {
+  border-color: transparent;
+  background: linear-gradient(135deg, var(--cyan), var(--gold));
+  color: #081017;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

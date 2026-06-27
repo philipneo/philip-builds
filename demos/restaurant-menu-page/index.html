@@ -83,8 +83,15 @@
                 <span>Cart preview</span>
                 <strong>$24 demo total</strong>
                 <p>2× Tacos al Pastor and 1× Agua Fresca. Confirm to preview the demo order.</p>
-                <button class="button primary" type="button">Preview order</button>
+                <button class="button primary" type="button" data-phone-next>Confirm order →</button>
                 <button class="button ghost" type="button" data-phone-back>← Edit</button>
+              </div>
+
+              <div class="phone-pane">
+                <span>Demo confirmation</span>
+                <strong>Order #142 previewed</strong>
+                <p>A real build would send this to the kitchen and text the customer a pickup time. Demo only — nothing was sent.</p>
+                <button class="button ghost" type="button" data-phone-back>← Back</button>
               </div>
 
             </div>
@@ -210,6 +217,28 @@
             <button class="button primary" type="button" id="confirmOrder">Preview demo order →</button>
             <p class="demo-note" id="orderStatus">Add items from the menu. No data leaves this page.</p>
           </aside>
+        </div>
+      </section>
+
+      <!-- OWNER KITCHEN VIEW -->
+      <section class="section board-section" aria-labelledby="kitchen-title">
+        <div class="section-head reveal">
+          <p class="eyebrow">Owner / kitchen view</p>
+          <h2 id="kitchen-title">The same order, seen from behind the counter.</h2>
+          <p>Customers tap to order; the kitchen sees a clean ticket queue. One page, two perspectives — the way the Command Center demo pairs an owner screen with a phone.</p>
+        </div>
+        <div class="menu-board reveal">
+          <div class="board-copy">
+            <span>Live demo tickets</span>
+            <h3>Tickets land in order, priced and timed.</h3>
+            <p>No shouted orders, no lost slips — every demo order becomes a structured ticket the kitchen can work top to bottom.</p>
+          </div>
+          <div class="board-grid">
+            <div><strong>#142 · 2× Tacos al Pastor</strong><span>New</span></div>
+            <div><strong>#141 · Pozole Bowl</strong><span>Firing</span></div>
+            <div><strong>#140 · Carnitas Plate</strong><span>Plating</span></div>
+            <div><strong>#139 · Churros</strong><span>Ready</span></div>
+          </div>
         </div>
       </section>
 
