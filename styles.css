@@ -269,7 +269,7 @@ nav a:focus-visible {
   padding: 22px;
 }
 
-.mockup-card-large span {
+.mockup-card-large > span:first-child {
   width: 72px;
   height: 72px;
   border-radius: 18px;
@@ -303,10 +303,12 @@ nav a:focus-visible {
   align-items: center;
   justify-content: center;
   min-height: 42px;
+  padding: 0 16px;
   border-radius: 8px;
   background: #fff;
   color: var(--ink);
   font-weight: 900;
+  white-space: nowrap;
 }
 
 .mockup-card-small {

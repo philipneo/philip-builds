@@ -23,6 +23,10 @@ BUSINESS_EMAIL_SETUP.md
 PRIVATE_QUOTE_PROPOSAL_TEMPLATE.md
 dtla_medspa_prospects.csv
 
+# Internal handoff/session notes — not for public repo
+*_handoff.md
+*_new_chat_handoff.md
+
 # Local OS/editor noise
 .DS_Store
 
