@@ -6,7 +6,9 @@
     <title>Local Business Command Center | Philip Builds Studio</title>
     <meta name="description" content="A premium interactive demo showing what a local service business dashboard could look like — quote estimator, daily checklist, and end-of-day summary. Philip Builds Studio." />
     <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../_shared/motion.css" />
     <link rel="stylesheet" href="styles.css" />
+    <script src="../_shared/motion.js" defer></script>
     <script src="script.js" defer></script>
   </head>
   <body class="no-js">
@@ -20,6 +22,7 @@
       <nav class="cc-nav" aria-label="Demo sections">
         <a href="#hero" class="active">Overview</a>
         <a href="#overview">Dashboard</a>
+        <a href="#operator">Phone</a>
         <a href="#quote">Quote</a>
         <a href="#workflow">Workflow</a>
         <a href="#summary">Summary</a>
@@ -59,7 +62,7 @@
         <div class="dash-preview">
           <div class="dash-bar">
             <span class="dash-bar-left">Command Center</span>
-            <span class="dash-bar-right">Thu · Jun 26</span>
+            <span class="dash-bar-right" id="dashBarDate">Today</span>
           </div>
           <div class="dash-stats">
             <div class="dash-stat">
@@ -101,12 +104,75 @@
             <div class="dash-quote-row">
               <span class="dash-quote-name">Rivera</span>
               <span class="dash-quote-service">Ceramic coating</span>
-              <button class="dash-respond-btn" type="button">Respond</button>
+              <span class="dash-respond-btn">Review</span>
             </div>
             <div class="dash-quote-row">
               <span class="dash-quote-name">Nguyen</span>
               <span class="dash-quote-service">Interior + exterior</span>
-              <button class="dash-respond-btn" type="button">Respond</button>
+              <span class="dash-respond-btn">Review</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── OPERATOR DEVICE STORY ── -->
+    <section id="operator" class="operator-section">
+      <div class="operator-copy reveal">
+        <p class="section-eyebrow">Phone operator view</p>
+        <h2 class="section-h2">The same day plan, pocket-sized.</h2>
+        <p class="section-sub">The desktop view gives the owner a command screen. The phone view keeps the next job, quote queue, notes, and checklist close while they are out working.</p>
+        <div class="operator-points">
+          <div><span>01</span><strong>Next job</strong><p>Address, status, and service notes stay one tap away.</p></div>
+          <div><span>02</span><strong>Quote queue</strong><p>Pending requests stay visible without jumping between apps.</p></div>
+          <div><span>03</span><strong>Closeout</strong><p>Checklist progress rolls into the end-of-day recap.</p></div>
+        </div>
+      </div>
+
+      <div class="operator-devices reveal reveal-delay-2">
+        <div class="browser-shell operator-browser">
+          <div class="browser-bar">
+            <div class="browser-dots">
+              <span class="browser-dot browser-dot-r"></span>
+              <span class="browser-dot browser-dot-y"></span>
+              <span class="browser-dot browser-dot-g"></span>
+            </div>
+            <div class="browser-url">command-center.demo/day</div>
+          </div>
+          <div class="browser-viewport operator-browser-view">
+            <div class="operator-browser-head">
+              <span>Thursday command view</span>
+              <strong>3 jobs, 2 quotes, 7 tasks</strong>
+            </div>
+            <div class="operator-browser-grid">
+              <div><span>Morning</span><strong>Santos detail</strong><small>Completed</small></div>
+              <div><span>Midday</span><strong>Morales interior</strong><small>Active</small></div>
+              <div><span>Afternoon</span><strong>Park exterior</strong><small>Upcoming</small></div>
+              <div><span>Queue</span><strong>Rivera request</strong><small>Needs response</small></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="phone-shell operator-phone-shell float" data-phone-flow>
+          <div class="phone-screen operator-phone">
+            <div class="phone-pane is-active">
+              <span>Next job</span>
+              <h3>Morales</h3>
+              <p>Interior Reset. Gate code 4821. Bring odor kit.</p>
+              <button type="button" data-phone-next>Open checklist</button>
+            </div>
+            <div class="phone-pane">
+              <span>Checklist</span>
+              <h3>4 of 7 done</h3>
+              <p>Pack supplies, note service, mark payment, send follow-up.</p>
+              <button type="button" data-phone-next>View summary</button>
+              <button type="button" data-phone-back>Back</button>
+            </div>
+            <div class="phone-pane">
+              <span>Closeout</span>
+              <h3>Daily recap</h3>
+              <p>3 jobs, $840 estimate, 2 quotes pending. Demo only.</p>
+              <button type="button" data-phone-back>Edit</button>
             </div>
           </div>
         </div>
@@ -489,7 +555,7 @@
 
     <!-- ── FOOTER ── -->
     <footer>
-      <p class="footer-note">Local Business Command Center is a fictional demo created for Philip Builds Studio. No real client data, customer reviews, or business results are used or implied. All names, jobs, and revenue figures are made up for demonstration purposes.</p>
+      <p class="footer-note">Local Business Command Center is a fictional demo created for Philip Builds Studio. No actual customer data, customer reviews, or business outcomes are used or implied. All names, jobs, and revenue figures are sample content for demonstration purposes.</p>
       <div class="footer-links">
         <a href="../../portfolio/index.html">Portfolio</a>
         <a href="../../index.html">Philip Builds Studio</a>

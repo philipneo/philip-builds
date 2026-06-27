@@ -1,0 +1,200 @@
+:root {
+  --pbs-radius: 16px;
+  --pbs-radius-lg: 26px;
+  --pbs-dark: #07111f;
+  --pbs-ink: #101828;
+  --pbs-muted: #667085;
+  --pbs-line: rgba(148, 163, 184, 0.24);
+  --pbs-blue: #3b82f6;
+  --pbs-green: #10b981;
+  --pbs-gold: #f59e0b;
+  --pbs-shadow: 0 26px 80px rgba(15, 23, 42, 0.16);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 700ms ease, transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 90ms; }
+.reveal-delay-2 { transition-delay: 180ms; }
+.reveal-delay-3 { transition-delay: 270ms; }
+
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-140%) skewX(-16deg);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.32), transparent);
+  animation: pbs-shimmer 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.glow-pulse {
+  animation: pbs-glow-pulse 3.8s ease-in-out infinite;
+}
+
+.float {
+  animation: pbs-float 6.5s ease-in-out infinite;
+}
+
+.spin-slow {
+  animation: pbs-spin 18s linear infinite;
+}
+
+.browser-shell {
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.13);
+  border-radius: var(--pbs-radius-lg);
+  background: rgba(15, 23, 42, 0.86);
+  box-shadow: 0 30px 90px rgba(2, 6, 23, 0.28);
+}
+
+.browser-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 0 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  color: #94a3b8;
+}
+
+.browser-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.browser-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.browser-dot-r { background: #fb7185; }
+.browser-dot-y { background: #fbbf24; }
+.browser-dot-g { background: #34d399; }
+
+.browser-url {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.browser-viewport {
+  background: #fff;
+}
+
+.phone-shell {
+  position: relative;
+  width: min(100%, 320px);
+  min-height: 640px;
+  padding: 14px;
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 42px;
+  background: #060b16;
+  box-shadow: 0 34px 90px rgba(2, 6, 23, 0.28);
+}
+
+.phone-shell::before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  z-index: 3;
+  width: 94px;
+  height: 6px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.18);
+}
+
+.phone-screen {
+  min-height: 612px;
+  overflow: hidden;
+  border-radius: 30px;
+  background: #fff;
+}
+
+.demo-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: rgba(59, 130, 246, 0.12);
+  color: var(--pbs-blue);
+  font-size: 0.75rem;
+  font-weight: 900;
+}
+
+.demo-grid-bg {
+  background:
+    linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+    linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+@keyframes pbs-shimmer {
+  0% { transform: translateX(-140%) skewX(-16deg); opacity: 0; }
+  22% { opacity: 1; }
+  64% { opacity: 1; }
+  100% { transform: translateX(160%) skewX(-16deg); opacity: 0; }
+}
+
+@keyframes pbs-glow-pulse {
+  0%, 100% { box-shadow: 0 0 0 rgba(59, 130, 246, 0); }
+  50% { box-shadow: 0 0 44px rgba(59, 130, 246, 0.24); }
+}
+
+@keyframes pbs-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes pbs-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 520px) {
+  .phone-shell {
+    min-height: 560px;
+    padding: 12px;
+    border-radius: 36px;
+  }
+
+  .phone-screen {
+    min-height: 536px;
+    border-radius: 26px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

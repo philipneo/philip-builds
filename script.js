@@ -69,3 +69,13 @@ if (typeof prefersReducedMotion.addEventListener === "function") {
 } else if (typeof prefersReducedMotion.addListener === "function") {
   prefersReducedMotion.addListener(handleMotionPreferenceChange);
 }
+
+const projectBriefButton = document.getElementById("projectBriefButton");
+const projectBriefStatus = document.getElementById("projectBriefStatus");
+
+if (projectBriefButton && projectBriefStatus) {
+  projectBriefButton.addEventListener("click", () => {
+    projectBriefStatus.textContent =
+      "Brief ready: business name, current link, services, photos, budget range, and the customer action the page should make easier.";
+  });
+}

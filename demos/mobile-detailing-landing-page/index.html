@@ -4,181 +4,263 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>GlossLane Mobile Detailing | Demo Landing Page</title>
-    <meta
-      name="description"
-      content="A fictional mobile-detailing landing page demo with pricing, quote capture, service proof sections, and booking calls to action."
-    />
+    <meta name="description" content="A fictional mobile-detailing landing page demo with cinematic hero, packages, animated add-on selector, process timeline, phone booking flow, and service area." />
     <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../_shared/motion.css" />
     <link rel="stylesheet" href="styles.css" />
+    <script src="../_shared/motion.js" defer></script>
+    <script src="script.js" defer></script>
   </head>
   <body>
-    <header class="site-header">
-      <a class="brand" href="#top" aria-label="GlossLane home">
+
+    <div class="demo-ribbon" role="note">
+      Fictional mobile-detailing demo — not a real business, real prices, or real reviews.
+    </div>
+
+    <header class="site-header" data-sticky-header>
+      <a class="brand" href="../../index.html" aria-label="GlossLane home">
         <span>GL</span>
         GlossLane
       </a>
       <nav aria-label="Page navigation">
-        <a href="#services">Services</a>
-        <a href="#proof">Results</a>
-        <a href="#quote">Quote</a>
+        <a href="#packages">Packages</a>
+        <a href="#addons">Add-ons</a>
+        <a href="#process">Process</a>
+        <a href="#booking">Booking</a>
+        <a href="#area">Area</a>
       </nav>
+      <a class="header-cta" href="#booking">Book a slot</a>
     </header>
 
     <main id="top">
-      <section class="hero">
+
+      <section class="hero" aria-labelledby="hero-title">
         <div class="hero-copy">
-          <p class="eyebrow">Fictional demo landing page</p>
-          <h1>Mobile detailing that meets customers where they park.</h1>
-          <p>
-            A polished one-page site concept for a local detailing business:
-            clear prices, trust signals, quote capture, and obvious booking
-            buttons on every screen size.
-          </p>
+          <p class="eyebrow">Fictional detailing landing page demo</p>
+          <h1 id="hero-title">Mobile detailing that shows up where you park.</h1>
+          <p>A polished one-page concept for a local detailing crew — clear packages, animated add-on quote, and a booking flow built for the phone in the driver's hand.</p>
           <div class="actions">
-            <a class="button primary" href="#quote">Request a Quote</a>
-            <a class="button" href="tel:+15550141010">Book Now</a>
+            <a class="button primary" href="#booking">Book a slot</a>
+            <a class="button ghost" href="#packages">See packages</a>
           </div>
+          <p class="demo-note">Demo only — no real bookings, prices, or reviews.</p>
         </div>
-        <div class="hero-panel" aria-label="Demo booking summary">
-          <span class="status">Next mobile slots</span>
-          <strong>Example booking window</strong>
-          <p>Exterior wash, interior reset, and full detail packages available.</p>
-          <dl>
-            <div>
-              <dt>Starting at</dt>
-              <dd>$79</dd>
+
+        <div class="hero-visual reveal reveal-delay-2" aria-hidden="true">
+          <div class="car-stage">
+            <span class="shine"></span>
+            <span class="paint-line"></span>
+            <div class="car-body">
+              <span class="roof"></span>
+              <span class="window"></span>
+              <span class="wheel wheel-a"></span>
+              <span class="wheel wheel-b"></span>
             </div>
-            <div>
-              <dt>Book online</dt>
-              <dd>Quote form below</dd>
+            <div class="detail-ticket">
+              <span>Next slot</span>
+              <strong>Today · 2:00 PM</strong>
+              <small>Interior Reset · 90 min</small>
             </div>
-          </dl>
+          </div>
         </div>
       </section>
 
-      <section id="services" class="section">
-        <div class="section-head">
-          <p class="eyebrow">Services & pricing</p>
-          <h2>Easy packages, simple decisions.</h2>
+      <section id="packages" class="section" aria-labelledby="packages-title">
+        <div class="section-head reveal">
+          <p class="eyebrow">Packages</p>
+          <h2 id="packages-title">Three honest packages, picked in ten seconds.</h2>
+          <p>Each package has a fixed scope and a clear starting price. No call required to know what it costs.</p>
         </div>
-        <div class="pricing-grid">
-          <article>
+        <div class="package-grid">
+          <article class="package-card reveal">
             <span>Express</span>
             <h3>Quick Shine</h3>
-            <p>Exterior foam wash, wheel clean, tire dressing, and window wipe.</p>
+            <p>Exterior foam wash, wheels, tires, windows, and a quick interior wipe-down.</p>
             <strong>$79</strong>
           </article>
-          <article class="featured">
-            <span>Featured</span>
+          <article class="package-card featured reveal reveal-delay-1">
+            <span>Most booked</span>
             <h3>Interior Reset</h3>
-            <p>Vacuum, wipe-down, mats, cupholders, light stain attention, and windows.</p>
+            <p>Vacuum, full interior wipe-down, mats, cupholders, light stain attention, and glass.</p>
             <strong>$149</strong>
           </article>
-          <article>
-            <span>Full detail</span>
+          <article class="package-card reveal reveal-delay-2">
+            <span>Premier</span>
             <h3>Gloss Package</h3>
-            <p>Interior reset, exterior wash, wax sealant, wheels, trim, and finishing touch.</p>
+            <p>Interior Reset plus exterior wash, wax sealant, wheels, trim, and a finishing touch.</p>
             <strong>$249</strong>
           </article>
         </div>
       </section>
 
-      <section id="proof" class="section proof-section">
-        <div class="section-head">
-          <p class="eyebrow">Demo transformation</p>
-          <h2>From hard-to-scan to ready to quote.</h2>
-          <p>
-            Fictional demo concept — not a live business result. This section
-            shows how a service page can turn scattered details into a clear
-            mobile-first path.
-          </p>
+      <section id="addons" class="section addon-section" aria-labelledby="addon-title">
+        <div class="section-head reveal">
+          <p class="eyebrow">Add-ons</p>
+          <h2 id="addon-title">Tune the package, watch the total move.</h2>
+          <p>Click an add-on. The quote panel updates instantly. Demo math, real interaction.</p>
         </div>
-        <div class="before-after" aria-label="Fictional before and after website concept">
-          <article class="concept-card before-concept">
-            <span>Before: Basic Online Presence</span>
-            <h3>Unclear services</h3>
-            <p>Generic text, buried pricing, and no obvious quote path for mobile visitors.</p>
-            <div class="mini-site messy-site" aria-hidden="true">
-              <i></i>
-              <i></i>
-              <i></i>
-              <b></b>
+        <div class="addon-layout">
+          <div class="addon-controls reveal">
+            <button class="addon is-on" type="button" data-addon="Pet hair reset" data-price="35"><span>Pet hair reset</span><strong>+$35</strong></button>
+            <button class="addon" type="button" data-addon="Headlight restore" data-price="40"><span>Headlight restore</span><strong>+$40</strong></button>
+            <button class="addon" type="button" data-addon="Engine bay clean" data-price="45"><span>Engine bay clean</span><strong>+$45</strong></button>
+            <button class="addon" type="button" data-addon="Leather conditioning" data-price="30"><span>Leather conditioning</span><strong>+$30</strong></button>
+            <button class="addon" type="button" data-addon="Clay bar treatment" data-price="55"><span>Clay bar treatment</span><strong>+$55</strong></button>
+            <button class="addon" type="button" data-addon="Tar &amp; sap removal" data-price="25"><span>Tar &amp; sap removal</span><strong>+$25</strong></button>
+          </div>
+          <aside class="quote-card reveal reveal-delay-2" aria-live="polite">
+            <span>Live demo quote</span>
+            <h3 id="selectedPackage">Interior Reset</h3>
+            <div class="addon-rows" id="addonRows"></div>
+            <div class="total-row">
+              <span>Demo total</span>
+              <strong id="detailTotal">$184</strong>
             </div>
+            <button class="button" type="button" id="saveDetailBtn">Preview demo booking →</button>
+            <p class="demo-note" id="detailStatus">Pick a package and add-ons to see the live total.</p>
+          </aside>
+        </div>
+
+        <div class="package-grid" style="margin-top:32px" aria-label="Quick-pick packages">
+          <button class="addon" type="button" data-package="Quick Shine" data-price="79"><span>Quick Shine</span><strong>$79</strong></button>
+          <button class="addon is-on" type="button" data-package="Interior Reset" data-price="149"><span>Interior Reset</span><strong>$149</strong></button>
+          <button class="addon" type="button" data-package="Gloss Package" data-price="249"><span>Gloss Package</span><strong>$249</strong></button>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="preview-title">
+        <div class="section-head reveal">
+          <p class="eyebrow">Desktop view</p>
+          <h2 id="preview-title">The same page on a laptop, still cinematic.</h2>
+        </div>
+        <div class="landing-preview reveal">
+          <div class="preview-copy">
+            <span>Demo</span>
+            <h3>One page. One booking path. Zero clutter.</h3>
+            <p>Headline, packages, add-on quote, and a booking flow that feels like part of the same product, not three different vendors.</p>
+          </div>
+          <div class="preview-cards">
+            <div><span>From</span><strong>$79</strong></div>
+            <div><span>Most booked</span><strong>$149</strong></div>
+            <div><span>Full detail</span><strong>$249</strong></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="process" class="section" aria-labelledby="process-title">
+        <div class="section-head reveal">
+          <p class="eyebrow">Process</p>
+          <h2 id="process-title">Book in a minute, done in a window.</h2>
+        </div>
+        <div class="timeline">
+          <article class="reveal">
+            <span>01</span>
+            <h3>Pick a package</h3>
+            <p>Three options, fixed scope, transparent price.</p>
           </article>
-          <article class="concept-card after-concept">
-            <span>After: Clean Service Website</span>
-            <h3>Clear menu and CTA</h3>
-            <p>Packages, starting prices, service notes, and a quote button that is easy to tap.</p>
-            <div class="mini-site clean-site" aria-hidden="true">
-              <strong>Interior Reset</strong>
-              <em>$149</em>
-              <i></i>
-              <span class="mock-button">Request a Quote</span>
-            </div>
+          <article class="reveal reveal-delay-1">
+            <span>02</span>
+            <h3>Add what you need</h3>
+            <p>Add-ons update the quote in real time, no surprises.</p>
+          </article>
+          <article class="reveal reveal-delay-2">
+            <span>03</span>
+            <h3>Confirm a slot</h3>
+            <p>Demo-only confirmation — a real version would text you.</p>
+          </article>
+          <article class="reveal reveal-delay-3">
+            <span>04</span>
+            <h3>We show up</h3>
+            <p>Crew arrives in the booked window, finishes the scope.</p>
           </article>
         </div>
       </section>
 
-      <section class="section reviews" aria-labelledby="reviews-title">
-        <div class="section-head">
-          <p class="eyebrow">Page proof</p>
-          <h2 id="reviews-title">Trust signals without made-up reviews.</h2>
+      <section id="booking" class="section phone-section" aria-labelledby="booking-title">
+        <div class="phone-wrap reveal" aria-hidden="true">
+          <div class="phone-shell phone-shell-md" data-phone-flow>
+            <div class="phone-notch"></div>
+            <div class="phone-screen gloss-phone">
+
+              <div class="phone-pane is-active">
+                <span>Step 1 of 3</span>
+                <strong>Pick a package</strong>
+                <button type="button">Quick Shine · $79</button>
+                <button type="button" class="is-selected">Interior Reset · $149</button>
+                <button type="button">Gloss Package · $249</button>
+                <button class="button primary" type="button" data-phone-next>Next →</button>
+              </div>
+
+              <div class="phone-pane">
+                <span>Step 2 of 3</span>
+                <strong>Pick add-ons</strong>
+                <button type="button" class="is-selected">+ Pet hair reset · $35</button>
+                <button type="button">+ Headlight restore · $40</button>
+                <button type="button">+ Clay bar · $55</button>
+                <button class="button primary" type="button" data-phone-next>See total →</button>
+                <button class="button ghost" type="button" data-phone-back>← Back</button>
+              </div>
+
+              <div class="phone-pane">
+                <span>Step 3 of 3</span>
+                <strong>$184 demo total</strong>
+                <p>Interior Reset + Pet hair reset. Confirm to preview demo booking.</p>
+                <button class="button primary" type="button">Preview booking</button>
+                <button class="button ghost" type="button" data-phone-back>← Edit</button>
+              </div>
+
+            </div>
+          </div>
         </div>
-        <div class="review-grid">
-          <article>
-            <span>Service clarity</span>
-            <p>Each package explains what is included so a customer can choose quickly.</p>
+        <div class="phone-copy reveal reveal-delay-2">
+          <span class="eyebrow">Phone booking flow</span>
+          <h2 id="booking-title">A three-tap flow on the device the customer is holding.</h2>
+          <p>Same packages, same add-on math, same live total — sized for a thumb. Demo only, nothing books.</p>
+        </div>
+      </section>
+
+      <section id="area" class="section" aria-labelledby="area-title">
+        <div class="section-head reveal">
+          <p class="eyebrow">Service area</p>
+          <h2 id="area-title">Mobile crew, local radius.</h2>
+        </div>
+        <div class="area-grid">
+          <article class="reveal">
+            <span>Inside</span>
+            <h3>Downtown &amp; near suburbs</h3>
+            <p>Same-week scheduling, no trip fee.</p>
           </article>
-          <article>
-            <span>Quote path</span>
-            <p>The form asks for the useful basics before a call or text follow-up.</p>
+          <article class="reveal reveal-delay-1">
+            <span>Edge</span>
+            <h3>Outer suburbs</h3>
+            <p>Quoted with a small trip fee, confirmed before booking.</p>
           </article>
-          <article>
-            <span>Mobile layout</span>
-            <p>Buttons, pricing, and service cards are built to be readable on a phone.</p>
+          <article class="reveal reveal-delay-2">
+            <span>Outside</span>
+            <h3>Beyond the radius</h3>
+            <p>Honest "not yet" — saves a wasted call.</p>
           </article>
         </div>
       </section>
 
-      <section id="quote" class="section quote-section">
-        <div>
-          <p class="eyebrow">Request a quote</p>
-          <h2>Turn interest into a lead.</h2>
-          <p>
-            This demo form shows how a one-page site can collect the details a
-            business owner needs before calling or texting back.
-          </p>
+      <section class="cta-section" aria-labelledby="cta-title">
+        <p class="eyebrow">Want a detailing page like this?</p>
+        <h2 id="cta-title">Philip Builds Studio builds cinematic one-page sites for local crews.</h2>
+        <p>Fixed scope, fixed price, hands you a clean public link.</p>
+        <div class="actions">
+          <a class="button primary" href="../../index.html#contact">Start a project</a>
+          <a class="button ghost" href="../../portfolio/index.html">See the portfolio</a>
         </div>
-        <form>
-          <label>
-            Name
-            <input type="text" name="name" placeholder="Your name" />
-          </label>
-          <label>
-            Phone or email
-            <input type="text" name="contact" placeholder="Best contact" />
-          </label>
-          <label>
-            Vehicle and service
-            <select name="service">
-              <option>Quick Shine - $79</option>
-              <option>Interior Reset - $149</option>
-              <option>Gloss Package - $249</option>
-              <option>Not sure yet</option>
-            </select>
-          </label>
-          <label>
-            Notes
-            <textarea name="notes" rows="4" placeholder="Example: SUV, pet hair, downtown parking garage"></textarea>
-          </label>
-          <button type="button">Request a Quote</button>
-        </form>
       </section>
+
     </main>
 
     <footer>
-      <p>GlossLane is a fictional brand created for a portfolio demo. No real business content is used.</p>
-      <a href="../../portfolio/index.html">Back to Philip’s portfolio</a>
+      <p>GlossLane is a fictional brand created by Philip Builds Studio for a portfolio demo. No real business, customers, reviews, or transactions are represented. No data is collected or transmitted.</p>
+      <div>
+        <a href="../../index.html">Philip Builds Studio</a>
+        <a href="../../portfolio/index.html">Portfolio</a>
+      </div>
     </footer>
   </body>
 </html>

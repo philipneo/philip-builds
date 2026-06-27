@@ -35,7 +35,7 @@
           <h1 id="hero-title">Websites and tools that work for local operators.</h1>
           <p>
             Clean, mobile-first pages and simple tools for service businesses.
-            Starting at $150. Fixed price. No tech headaches.
+            Starting at $150. Fixed scope. One revision. Clean public link.
           </p>
           <div class="actions">
             <a class="button primary" href="demos/local-business-command-center/index.html">View Flagship Demo</a>
@@ -308,6 +308,52 @@
         </div>
       </section>
 
+      <section id="tools" class="section tools-preview-section reveal" aria-labelledby="tools-title">
+        <div class="section-head reveal reveal-up">
+          <p class="eyebrow">Practical Tools</p>
+          <h2 id="tools-title">Small builders that do actual work in the browser.</h2>
+          <p>
+            Beyond landing pages, Philip Builds Studio builds lightweight tools
+            for repeated local-business tasks: estimating, billing, reporting,
+            and simple decision flows.
+          </p>
+        </div>
+        <div class="tools-preview-layout">
+          <article class="tools-preview-main reveal reveal-scale">
+            <span>Tool showroom</span>
+            <h3>Cleaning Quote Calculator</h3>
+            <p>Rooms, add-ons, urgency, animated estimate breakdown, owner dashboard, and demo confirmation.</p>
+            <a class="button primary" href="demos/cleaning-quote-calculator/index.html">Open calculator</a>
+          </article>
+          <div class="tools-preview-grid stagger">
+            <article class="reveal reveal-up">
+              <span>Billing</span>
+              <h3>Invoice Builder</h3>
+              <p>Line items, tax, discount, live preview, copy summary, and browser print.</p>
+              <a href="demos/invoice-builder/index.html">Open invoice tool</a>
+            </article>
+            <article class="reveal reveal-up">
+              <span>Estimating</span>
+              <h3>Contractor Estimate Builder</h3>
+              <p>Quantity, unit price, markup, and printable estimate structure.</p>
+              <a href="demos/contractor-estimate-builder/index.html">Open estimate builder</a>
+            </article>
+            <article class="reveal reveal-up">
+              <span>Operations</span>
+              <h3>Shift Downtime Calculator</h3>
+              <p>Turns downtime minutes into a clean end-of-shift report.</p>
+              <a href="demos/shift-downtime-calculator/index.html">Open downtime tool</a>
+            </article>
+            <article class="reveal reveal-up">
+              <span>Planning</span>
+              <h3>Cashflow Lab</h3>
+              <p>Shapes service offers, pricing, and delivery checklists.</p>
+              <a href="demos/cashflow-lab/index.html">Open Cashflow Lab</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section id="faq" class="section faq-section reveal" aria-labelledby="faq-title">
         <div class="section-head reveal reveal-up">
           <p class="eyebrow">FAQ</p>
@@ -338,20 +384,23 @@
             want the page to help customers do.
           </p>
         </div>
-        <a
+        <button
+          type="button"
           class="button primary reveal reveal-scale"
-          href="mailto:philipbuildsstudio@gmail.com?subject=Project%20Inquiry"
+          id="projectBriefButton"
         >
           Start a Project
-        </a>
+        </button>
+        <p class="contact-status" id="projectBriefStatus" aria-live="polite">
+          Project brief: business name, current link, services, photos, and the action the page should make easier.
+        </p>
       </section>
     </main>
 
     <footer class="site-footer">
       <p><strong>Philip Builds Studio</strong></p>
-      <a href="mailto:philipbuildsstudio@gmail.com">philipbuildsstudio@gmail.com</a>
       <a href="portfolio/index.html">Portfolio</a>
-      <a href="https://instagram.com/philipbuildsstudio/">Instagram</a>
+      <a href="#contact">Start a Project</a>
     </footer>
   </body>
 </html>

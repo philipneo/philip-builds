@@ -3,271 +3,260 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Restaurant Menu Page | Philip Builds Studio</title>
-    <meta name="description" content="A demo restaurant menu page — styled, mobile-friendly, easy to update. Portfolio demo by Philip Builds Studio." />
+    <title>The Kettle House | Restaurant Menu Demo</title>
+    <meta name="description" content="A fictional restaurant menu page demo with hero plate visual, phone ordering mockup, category tabs, featured items, and live order preview. Philip Builds Studio." />
     <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../_shared/motion.css" />
     <link rel="stylesheet" href="styles.css" />
+    <script src="../_shared/motion.js" defer></script>
+    <script src="script.js" defer></script>
   </head>
   <body>
-    <header>
-      <a class="brand" href="../../index.html">
-        <span>MNU</span>
-        Menu Page Demo
+
+    <div class="demo-ribbon" role="note">
+      Fictional restaurant demo — The Kettle House is not a real business.
+    </div>
+
+    <header class="site-header" data-sticky-header>
+      <a class="brand" href="../../index.html" aria-label="The Kettle House">
+        <span>KH</span>
+        The Kettle House
       </a>
-      <span style="font-size:0.82rem;color:var(--muted-text);font-family:Inter,sans-serif">Philip Builds Studio</span>
+      <nav aria-label="Page navigation">
+        <a href="#board">Menu board</a>
+        <a href="#menu">Full menu</a>
+        <a href="#order">Order</a>
+        <a href="#why">Why this page</a>
+      </nav>
+      <a class="header-cta" href="#order">Order preview · <span id="orderCount">0</span></a>
     </header>
 
-    <div class="menu-hero">
-      <p class="eyebrow">Est. 2019 · San Diego, CA</p>
-      <h1>Casa Moreno Kitchen</h1>
-      <p class="tagline">Handmade flavors · Family recipes · Fresh daily</p>
-      <div class="hero-divider">
-        <hr /><span>✦</span><hr />
-      </div>
-      <p style="font-size:0.84rem;color:#a8a29e;margin:16px 0 0;font-family:Inter,sans-serif">
-        Demo — fictional restaurant. This page shows what a real menu page could look like.
-      </p>
-    </div>
+    <main id="top">
 
-    <nav class="menu-nav" aria-label="Menu sections">
-      <a href="#starters" class="active">Starters</a>
-      <a href="#mains">Mains</a>
-      <a href="#sides">Sides</a>
-      <a href="#desserts">Desserts</a>
-      <a href="#drinks">Drinks</a>
-    </nav>
-
-    <main>
-      <!-- Starters -->
-      <section class="menu-section" id="starters">
-        <div class="section-head"><h2>Starters</h2></div>
-        <div class="menu-grid">
-          <div class="menu-item">
-            <div class="item-row">
-              <span class="item-name">Tortilla Soup</span>
-              <span class="item-dots"></span>
-              <span class="item-price">$9</span>
-            </div>
-            <p class="item-desc">House-made broth, crispy strips, avocado, crema, cotija</p>
+      <!-- HERO -->
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Fictional restaurant menu demo</p>
+          <h1 id="hero-title">A menu that earns the first bite of attention.</h1>
+          <p>One page for what you serve, what it costs, and how to start an order — built for the phone that's already in the customer's hand.</p>
+          <div class="actions">
+            <a class="button primary" href="#menu">See the menu</a>
+            <a class="button ghost" href="#order">Try the order flow</a>
           </div>
-          <div class="menu-item">
-            <div class="item-row">
-              <span class="item-name">Elote Dip</span>
-              <span class="item-dots"></span>
-              <span class="item-price">$10</span>
-            </div>
-            <p class="item-desc">Roasted corn, chipotle mayo, lime, tajín, served with chips</p>
-          </div>
-          <div class="menu-item">
-            <div class="item-row">
-              <span class="item-name">Guacamole &amp; Chips</span>
-              <span class="item-dots"></span>
-              <span class="item-price">$11</span>
-            </div>
-            <p class="item-desc">Made fresh to order · habanero optional</p>
-            <span class="item-badge">House favorite</span>
-          </div>
-          <div class="menu-item">
-            <div class="item-row">
-              <span class="item-name">Queso Fundido</span>
-              <span class="item-dots"></span>
-              <span class="item-price">$12</span>
-            </div>
-            <p class="item-desc">Melted Oaxacan cheese, chorizo, roasted peppers, flour tortillas</p>
-          </div>
+          <p class="demo-note">Demo only — no real orders, prices, or kitchen.</p>
         </div>
-      </section>
 
-      <!-- Mains -->
-      <section class="menu-section" id="mains">
-        <div class="section-head"><h2>Mains</h2></div>
-        <div class="menu-grid">
-          <div class="menu-item">
-            <div class="item-row">
-              <span class="item-name">Carne Asada Plate</span>
-              <span class="item-dots"></span>
-              <span class="item-price">$18</span>
+        <div class="hero-visual reveal reveal-delay-2" aria-hidden="true">
+          <div class="plate-stage">
+            <div class="plate">
+              <span class="taco taco-a"></span>
+              <span class="taco taco-b"></span>
+              <span class="sauce sauce-a"></span>
+              <span class="sauce sauce-b"></span>
             </div>
-            <p class="item-desc">Grilled skirt steak, rice, beans, pico, flour tortillas</p>
-            <span class="item-badge">Chef's pick</span>
-          </div>
-          <div class="menu-item">
-            <div class="item-row">
-              <span class="item-name">Pollo Asado Tacos</span>
-              <span class="item-dots"></span>
-              <span class="item-price">$15</span>
-            </div>
-            <p class="item-desc">3 corn tortillas, citrus-marinated chicken, salsa verde, onion</p>
-          </div>
-          <div class="menu-item">
-            <div class="item-row">
-              <span class="item-name">Enchiladas Rojas</span>
-              <span class="item-dots"></span>
-              <span class="item-price">$14</span>
-            </div>
-            <p class="item-desc">3 beef or cheese enchiladas, red chile sauce, crema, rice</p>
-          </div>
-          <div class="menu-item">
-            <div class="item-row">
-              <span class="item-name">Veggie Burrito</span>
-              <span class="item-dots"></span>
-              <span class="item-price">$13</span>
-            </div>
-            <p class="item-desc">Black beans, roasted peppers, rice, salsa, avocado — fully plant-based</p>
-            <span class="item-badge">Vegan</span>
-          </div>
-          <div class="menu-item">
-            <div class="item-row">
-              <span class="item-name">Camarones al Mojo</span>
-              <span class="item-dots"></span>
-              <span class="item-price">$19</span>
-            </div>
-            <p class="item-desc">Garlic butter shrimp, white rice, grilled corn, lime</p>
-          </div>
-          <div class="menu-item">
-            <div class="item-row">
-              <span class="item-name">Chile Verde</span>
-              <span class="item-dots"></span>
-              <span class="item-price">$16</span>
-            </div>
-            <p class="item-desc">Slow-braised pork, tomatillo sauce, rice, warm tortillas</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Sides -->
-      <section class="menu-section" id="sides">
-        <div class="section-head"><h2>Sides</h2></div>
-        <div class="menu-grid">
-          <div class="menu-item">
-            <div class="item-row">
-              <span class="item-name">Mexican Rice</span>
-              <span class="item-dots"></span>
-              <span class="item-price">$4</span>
-            </div>
-          </div>
-          <div class="menu-item">
-            <div class="item-row">
-              <span class="item-name">Refried Beans</span>
-              <span class="item-dots"></span>
-              <span class="item-price">$4</span>
-            </div>
-          </div>
-          <div class="menu-item">
-            <div class="item-row">
-              <span class="item-name">Street Corn (1 ea)</span>
-              <span class="item-dots"></span>
-              <span class="item-price">$5</span>
-            </div>
-          </div>
-          <div class="menu-item">
-            <div class="item-row">
-              <span class="item-name">Flour Tortillas (3)</span>
-              <span class="item-dots"></span>
-              <span class="item-price">$3</span>
+            <div class="kitchen-ticket">
+              <span>Kitchen ticket</span>
+              <strong>Order #142</strong>
+              <small>2× Tacos al Pastor · 1× Agua Fresca</small>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Desserts -->
-      <section class="menu-section" id="desserts">
-        <div class="section-head"><h2>Desserts</h2></div>
-        <div class="menu-grid">
-          <div class="menu-item">
-            <div class="item-row">
-              <span class="item-name">Churros (4)</span>
-              <span class="item-dots"></span>
-              <span class="item-price">$8</span>
+      <!-- PHONE ORDERING MOCKUP -->
+      <section class="section phone-section" aria-labelledby="phone-title">
+        <div class="phone-wrap reveal" aria-hidden="true">
+          <div class="phone-shell phone-shell-md" data-phone-flow>
+            <div class="phone-notch"></div>
+            <div class="phone-screen order-phone">
+
+              <div class="phone-pane is-active">
+                <span>The Kettle House</span>
+                <strong>Order to-go</strong>
+                <button type="button">🌮 Tacos al Pastor · $11</button>
+                <button type="button">🍲 Pozole Bowl · $13</button>
+                <button type="button">🥑 Guacamole &amp; Chips · $9</button>
+                <button class="button primary" type="button" data-phone-next>See cart →</button>
+              </div>
+
+              <div class="phone-pane">
+                <span>Cart preview</span>
+                <strong>$24 demo total</strong>
+                <p>2× Tacos al Pastor and 1× Agua Fresca. Confirm to preview the demo order.</p>
+                <button class="button primary" type="button">Preview order</button>
+                <button class="button ghost" type="button" data-phone-back>← Edit</button>
+              </div>
+
             </div>
-            <p class="item-desc">Cinnamon sugar, chocolate dipping sauce</p>
           </div>
-          <div class="menu-item">
-            <div class="item-row">
-              <span class="item-name">Flan de Casa</span>
-              <span class="item-dots"></span>
-              <span class="item-price">$7</span>
-            </div>
-            <p class="item-desc">Classic caramel custard, house recipe</p>
-            <span class="item-badge">House favorite</span>
+        </div>
+        <div>
+          <p class="eyebrow">Phone ordering</p>
+          <h2 id="phone-title">Built for the device the customer is holding.</h2>
+          <p>Tap a category, tap an item, watch the cart update. No menu PDF, no pinch-to-zoom, no separate ordering app.</p>
+        </div>
+      </section>
+
+      <!-- MENU BOARD HERO -->
+      <section id="board" class="section board-section" aria-labelledby="board-title">
+        <div class="section-head reveal">
+          <p class="eyebrow">Menu board</p>
+          <h2 id="board-title">A board you can scan in five seconds.</h2>
+        </div>
+        <div class="menu-board reveal">
+          <div class="board-copy">
+            <span>Today</span>
+            <h3>House plates, fresh sauces, honest prices.</h3>
+            <p>The board is the page is the menu. One look, one decision, one tap to start the order.</p>
           </div>
-          <div class="menu-item">
-            <div class="item-row">
-              <span class="item-name">Tres Leches Slice</span>
-              <span class="item-dots"></span>
-              <span class="item-price">$8</span>
-            </div>
-            <p class="item-desc">Soaked sponge, whipped cream, seasonal fruit</p>
+          <div class="board-grid">
+            <div><strong>Tacos al Pastor</strong><span>$11</span></div>
+            <div><strong>Pozole Bowl</strong><span>$13</span></div>
+            <div><strong>Carnitas Plate</strong><span>$15</span></div>
+            <div><strong>Veggie Burrito</strong><span>$12</span></div>
+            <div><strong>Churros (4)</strong><span>$7</span></div>
           </div>
         </div>
       </section>
 
-      <!-- Drinks -->
-      <section class="menu-section" id="drinks">
-        <div class="section-head"><h2>Drinks</h2></div>
-        <div class="menu-grid">
-          <div class="menu-item">
-            <div class="item-row">
-              <span class="item-name">Agua Fresca</span>
-              <span class="item-dots"></span>
-              <span class="item-price">$4</span>
-            </div>
-            <p class="item-desc">Hibiscus, horchata, or tamarind · ask about seasonal</p>
-          </div>
-          <div class="menu-item">
-            <div class="item-row">
-              <span class="item-name">Mexican Coke</span>
-              <span class="item-dots"></span>
-              <span class="item-price">$4</span>
-            </div>
-          </div>
-          <div class="menu-item">
-            <div class="item-row">
-              <span class="item-name">Sparkling Water</span>
-              <span class="item-dots"></span>
-              <span class="item-price">$3</span>
-            </div>
-          </div>
-          <div class="menu-item">
-            <div class="item-row">
-              <span class="item-name">Coffee / Café de Olla</span>
-              <span class="item-dots"></span>
-              <span class="item-price">$4</span>
-            </div>
-            <p class="item-desc">Traditional spiced Mexican coffee, cinnamon &amp; piloncillo</p>
-          </div>
+      <!-- FEATURED -->
+      <section class="section" aria-labelledby="featured-title">
+        <div class="section-head reveal">
+          <p class="eyebrow">Featured</p>
+          <h2 id="featured-title">Three picks the kitchen wants you to try.</h2>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card reveal">
+            <span>House favorite</span>
+            <h3>Tacos al Pastor</h3>
+            <p>Marinated pork, charred pineapple, onion, cilantro on warm corn tortillas.</p>
+            <strong>$11</strong>
+            <button type="button" data-add-item="Tacos al Pastor" data-price="11">+ Add to order</button>
+          </article>
+          <article class="feature-card reveal reveal-delay-1">
+            <span>Chef's pick</span>
+            <h3>Pozole Bowl</h3>
+            <p>Slow-simmered hominy stew, garnished with cabbage, radish, and lime.</p>
+            <strong>$13</strong>
+            <button type="button" data-add-item="Pozole Bowl" data-price="13">+ Add to order</button>
+          </article>
+          <article class="feature-card reveal reveal-delay-2">
+            <span>Sweet finish</span>
+            <h3>Churros (4)</h3>
+            <p>Cinnamon sugar, warm chocolate dipping sauce on the side.</p>
+            <strong>$7</strong>
+            <button type="button" data-add-item="Churros" data-price="7">+ Add to order</button>
+          </article>
         </div>
       </section>
+
+      <!-- FULL MENU WITH TABS + ORDER PREVIEW -->
+      <section id="menu" class="section menu-section" aria-labelledby="menu-title">
+        <div class="section-head reveal">
+          <p class="eyebrow">Full menu</p>
+          <h2 id="menu-title">Pick a category, build a demo order.</h2>
+        </div>
+
+        <div class="menu-tabs" role="tablist">
+          <button type="button" class="is-active" data-menu-tab="starters" role="tab">Starters</button>
+          <button type="button" data-menu-tab="mains" role="tab">Mains</button>
+          <button type="button" data-menu-tab="sides" role="tab">Sides</button>
+          <button type="button" data-menu-tab="desserts" role="tab">Desserts</button>
+          <button type="button" data-menu-tab="drinks" role="tab">Drinks</button>
+        </div>
+
+        <div class="menu-layout">
+          <div>
+            <div class="menu-panel is-active" data-menu-panel="starters" role="tabpanel">
+              <article><strong>Guacamole &amp; Chips</strong><span>$9</span><button type="button" data-add-item="Guacamole &amp; Chips" data-price="9">+ Add</button></article>
+              <article><strong>Elote Dip</strong><span>$10</span><button type="button" data-add-item="Elote Dip" data-price="10">+ Add</button></article>
+              <article><strong>Queso Fundido</strong><span>$12</span><button type="button" data-add-item="Queso Fundido" data-price="12">+ Add</button></article>
+            </div>
+
+            <div class="menu-panel" data-menu-panel="mains" role="tabpanel" hidden>
+              <article><strong>Tacos al Pastor</strong><span>$11</span><button type="button" data-add-item="Tacos al Pastor" data-price="11">+ Add</button></article>
+              <article><strong>Pozole Bowl</strong><span>$13</span><button type="button" data-add-item="Pozole Bowl" data-price="13">+ Add</button></article>
+              <article><strong>Carnitas Plate</strong><span>$15</span><button type="button" data-add-item="Carnitas Plate" data-price="15">+ Add</button></article>
+              <article><strong>Veggie Burrito</strong><span>$12</span><button type="button" data-add-item="Veggie Burrito" data-price="12">+ Add</button></article>
+            </div>
+
+            <div class="menu-panel" data-menu-panel="sides" role="tabpanel" hidden>
+              <article><strong>Mexican Rice</strong><span>$4</span><button type="button" data-add-item="Mexican Rice" data-price="4">+ Add</button></article>
+              <article><strong>Refried Beans</strong><span>$4</span><button type="button" data-add-item="Refried Beans" data-price="4">+ Add</button></article>
+              <article><strong>Street Corn</strong><span>$5</span><button type="button" data-add-item="Street Corn" data-price="5">+ Add</button></article>
+            </div>
+
+            <div class="menu-panel" data-menu-panel="desserts" role="tabpanel" hidden>
+              <article><strong>Churros (4)</strong><span>$7</span><button type="button" data-add-item="Churros" data-price="7">+ Add</button></article>
+              <article><strong>Flan de Casa</strong><span>$7</span><button type="button" data-add-item="Flan de Casa" data-price="7">+ Add</button></article>
+              <article><strong>Tres Leches Slice</strong><span>$8</span><button type="button" data-add-item="Tres Leches Slice" data-price="8">+ Add</button></article>
+            </div>
+
+            <div class="menu-panel" data-menu-panel="drinks" role="tabpanel" hidden>
+              <article><strong>Agua Fresca</strong><span>$4</span><button type="button" data-add-item="Agua Fresca" data-price="4">+ Add</button></article>
+              <article><strong>Mexican Coke</strong><span>$4</span><button type="button" data-add-item="Mexican Coke" data-price="4">+ Add</button></article>
+              <article><strong>Café de Olla</strong><span>$4</span><button type="button" data-add-item="Café de Olla" data-price="4">+ Add</button></article>
+            </div>
+          </div>
+
+          <aside id="order" class="order-preview" aria-live="polite">
+            <span>Demo order preview</span>
+            <h3>Your cart</h3>
+            <div class="order-rows" id="orderRows"></div>
+            <div class="order-total">
+              <span>Demo total</span>
+              <strong id="orderTotal">$0</strong>
+            </div>
+            <button class="button primary" type="button" id="confirmOrder">Preview demo order →</button>
+            <p class="demo-note" id="orderStatus">Add items from the menu. No data leaves this page.</p>
+          </aside>
+        </div>
+      </section>
+
+      <!-- WHY -->
+      <section id="why" class="section" aria-labelledby="why-title">
+        <div class="section-head reveal">
+          <p class="eyebrow">Why this page</p>
+          <h2 id="why-title">What a real restaurant page should actually do.</h2>
+        </div>
+        <div class="why-grid">
+          <article class="reveal">
+            <span>Scannable menu</span>
+            <h3>Five-second board</h3>
+            <p>The hero is the menu. Customers can decide before they even scroll.</p>
+          </article>
+          <article class="reveal reveal-delay-1">
+            <span>Mobile-first</span>
+            <h3>One-tap items</h3>
+            <p>Each item has a clear price and a single + Add button — no menu PDF, no app install.</p>
+          </article>
+          <article class="reveal reveal-delay-2">
+            <span>Owner-friendly</span>
+            <h3>Easy to update</h3>
+            <p>Prices and items live in plain HTML. A weekly special is a two-minute edit, not a project.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="cta-section" aria-labelledby="cta-title">
+        <p class="eyebrow">Want a menu page like this?</p>
+        <h2 id="cta-title">Philip Builds Studio builds restaurant pages local owners can actually maintain.</h2>
+        <p>Fixed scope, fixed price, easy weekly edits.</p>
+        <div class="actions">
+          <a class="button primary" href="../../index.html#contact">Start a project</a>
+          <a class="button ghost" href="../../portfolio/index.html">See the portfolio</a>
+        </div>
+      </section>
+
     </main>
 
-    <div class="menu-note">
-      <strong>Casa Moreno Kitchen is a fictional demo restaurant.</strong> This page was built by Philip Builds Studio to show what a real restaurant menu page could look like. Consuming 2,000 calories a day is used for general nutrition advice.
-    </div>
-
     <footer>
-      <p>Restaurant Menu Page demo · Philip Builds Studio</p>
+      <p>The Kettle House is a fictional brand created by Philip Builds Studio for a portfolio demo. No real restaurant, customers, reviews, or transactions are represented. No data is collected or transmitted.</p>
       <div>
         <a href="../../index.html">Philip Builds Studio</a>
         <a href="../../portfolio/index.html">Portfolio</a>
       </div>
     </footer>
-
-    <script>
-      // Active nav on scroll
-      const sections = document.querySelectorAll('.menu-section');
-      const navLinks = document.querySelectorAll('.menu-nav a');
-
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            navLinks.forEach(l => l.classList.remove('active'));
-            const link = document.querySelector(`.menu-nav a[href="#${entry.target.id}"]`);
-            if (link) link.classList.add('active');
-          }
-        });
-      }, { rootMargin: '-30% 0px -60% 0px' });
-
-      sections.forEach(s => observer.observe(s));
-    </script>
   </body>
 </html>

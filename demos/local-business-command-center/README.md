@@ -20,6 +20,6 @@ Flagship interactive demo — a fictional daily command center for local service
 - Full reduced-motion support
 
 ## Notes
-All content is fictional. No real clients, revenue figures, or business results.
+All content is fictional. No actual customer work, revenue figures, or business outcomes.
 
 [Philip Builds Studio](../../index.html) · [Portfolio](../../portfolio/index.html)

@@ -4,252 +4,309 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Service Business Demo | Philip Builds Studio</title>
-    <meta
-      name="description"
-      content="A fictional one-page demo for a local home-services business: simple pricing, clear service options, and a quote path that works on mobile."
-    />
+    <meta name="description" content="A fictional service-business landing page demo: hero, packages, multi-step quote flow, service area map, FAQ, and sticky CTA. Philip Builds Studio." />
     <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../_shared/motion.css" />
     <link rel="stylesheet" href="styles.css" />
+    <script src="../_shared/motion.js" defer></script>
+    <script src="script.js" defer></script>
   </head>
   <body>
-    <header class="site-header">
-      <a class="brand" href="#top" aria-label="Example Service Co. home">
+
+    <div class="demo-ribbon" role="note">
+      Fictional service-business demo — not a real company or real quote.
+    </div>
+
+    <header class="site-header" data-sticky-header>
+      <a class="brand" href="../../index.html" aria-label="Philip Builds Studio">
         <span>ES</span>
         Example Service Co.
       </a>
       <nav aria-label="Page navigation">
         <a href="#services">Services</a>
-        <a href="#process">Process</a>
+        <a href="#workflow">Workflow</a>
         <a href="#quote">Quote</a>
+        <a href="#area">Area</a>
+        <a href="#faq">FAQ</a>
       </nav>
       <a class="header-cta" href="#quote">Request a Quote</a>
     </header>
 
     <main id="top">
 
-      <!-- Hero -->
       <section class="hero" aria-labelledby="hero-title">
-        <div class="hero-copy">
-          <p class="eyebrow">Fictional home-services demo</p>
-          <h1 id="hero-title">A cleaner service page for customers ready to book.</h1>
-          <p>
-            A fictional one-page demo for a local home-services business: simple
-            pricing, clear service options, and a quote path that works on mobile.
-            Starting at $79.
-          </p>
-          <div class="actions">
-            <a class="button primary" href="#quote">Request a Quote</a>
-            <a class="button" href="#services">View Services</a>
+        <div class="hero-inner">
+          <div class="hero-copy reveal">
+            <p class="eyebrow">Fictional service landing page demo</p>
+            <h1 id="hero-title">A service page that earns the call before the call.</h1>
+            <p>Packages, prices, and a real quote flow on one clean page. Built for local operators whose customers arrive on a phone with about ninety seconds of patience.</p>
+            <div class="hero-actions">
+              <a class="button primary" href="#quote">Try the quote flow</a>
+              <a class="button ghost" href="#services">View services</a>
+            </div>
+            <p class="demo-note">Demo only — nothing submits or sends.</p>
           </div>
-          <p class="demo-note">Fictional demo concept — not a live business or real client result.</p>
-        </div>
 
-        <aside class="booking-panel" aria-label="Example booking summary">
-          <div class="panel-badge">Available this week</div>
-          <strong>Service options, clear pricing</strong>
-          <p>Exterior cleaning, interior detail, yard prep, and seasonal maintenance — all quoted upfront.</p>
-          <ul class="panel-stats" aria-label="Service highlights">
-            <li>
-              <span>Starting at</span>
-              <strong>$79</strong>
-            </li>
-            <li>
-              <span>Quote path</span>
-              <strong>Online form</strong>
-            </li>
-            <li>
-              <span>Turnaround</span>
-              <strong>Same week</strong>
-            </li>
-            <li>
-              <span>Service area</span>
-              <strong>Local only</strong>
-            </li>
-          </ul>
-        </aside>
+          <div class="hero-visual reveal reveal-delay-2" aria-hidden="true">
+            <div class="browser-shell service-browser">
+              <div class="browser-bar">
+                <div class="browser-dots">
+                  <span class="browser-dot browser-dot-r"></span>
+                  <span class="browser-dot browser-dot-y"></span>
+                  <span class="browser-dot browser-dot-g"></span>
+                </div>
+                <div class="browser-url">example-service.demo</div>
+              </div>
+              <div class="browser-viewport browser-preview">
+                <div class="preview-hero">
+                  <span>Demo hero</span>
+                  <strong>Exterior &amp; interior cleaning, fixed scope.</strong>
+                </div>
+                <div class="preview-row"><span>Quick Visit</span><strong>$79</strong></div>
+                <div class="preview-row"><span>Standard Service</span><strong>$149</strong></div>
+                <div class="preview-row"><span>Full Service</span><strong>$249</strong></div>
+              </div>
+            </div>
+            <div class="floating-note">
+              <span>Quote turnaround</span>
+              Most replies same business day.
+            </div>
+          </div>
+        </div>
       </section>
 
-      <!-- Services / Pricing -->
-      <section id="services" class="section services-section" aria-labelledby="services-title">
-        <div class="section-head">
+      <section id="services" class="section" aria-labelledby="services-title">
+        <div class="section-head reveal">
           <p class="eyebrow">Services &amp; pricing</p>
-          <h2 id="services-title">Simple packages customers can understand fast.</h2>
-          <p>
-            Each option has a clear scope, upfront price, and honest description.
-            No buried fees, no unclear add-ons.
-          </p>
+          <h2 id="services-title">Three clean packages, no upsell maze.</h2>
+          <p>Each option has a fixed scope and an upfront price. Customers can self-select without a phone call.</p>
         </div>
-        <div class="pricing-grid">
-          <article class="price-card">
-            <div class="price-label">Quick visit</div>
-            <h3>Quick Visit</h3>
-            <p>A focused visit for one task: exterior rinse, window cleaning, gutter check, or minor repairs.</p>
-            <ul>
-              <li>Single task, fixed scope</li>
-              <li>In and out in under two hours</li>
-              <li>Good for recurring upkeep</li>
-            </ul>
-            <div class="price">$79</div>
+        <div class="service-grid">
+          <article class="service-card reveal">
+            <span>Quick Visit</span>
+            <h3>One focused task</h3>
+            <p>Exterior rinse, window cleaning, gutter check, or a minor repair. In and out in under two hours.</p>
+            <strong>$79</strong>
           </article>
-
-          <article class="price-card featured">
-            <div class="price-label">Most popular</div>
+          <article class="service-card featured reveal reveal-delay-1">
+            <span>Most popular</span>
             <h3>Standard Service</h3>
-            <p>A full visit covering two to three tasks: pressure washing, gutter clear, window clean, or light yard work.</p>
-            <ul>
-              <li>Two to three task scope</li>
-              <li>Half-day visit</li>
-              <li>Best for seasonal catch-up</li>
-            </ul>
-            <div class="price">$149</div>
+            <p>Two-to-three task visit: pressure wash, gutters, windows, or light yard work. Half-day window.</p>
+            <strong>$149</strong>
           </article>
-
-          <article class="price-card">
-            <div class="price-label">Full scope</div>
-            <h3>Full Service</h3>
-            <p>A complete exterior service day: pressure wash, gutters, windows, yard, and a final walkthrough.</p>
-            <ul>
-              <li>Full exterior scope</li>
-              <li>Full-day visit</li>
-              <li>Good for move-in or seasonal reset</li>
-            </ul>
-            <div class="price">$249</div>
+          <article class="service-card reveal reveal-delay-2">
+            <span>Full Service</span>
+            <h3>Whole exterior reset</h3>
+            <p>Pressure wash, gutters, windows, yard, and a closing walkthrough. Full-day visit.</p>
+            <strong>$249</strong>
           </article>
         </div>
       </section>
 
-      <!-- Why this page works -->
-      <section id="process" class="section why-section" aria-labelledby="why-title">
-        <div class="section-head">
-          <p class="eyebrow">What this page does</p>
-          <h2 id="why-title">Trust signals without made-up reviews.</h2>
-          <p>
-            A well-built service page answers the questions customers actually
-            have before they pick up the phone.
-          </p>
+      <section class="section" aria-labelledby="desktop-title">
+        <div class="section-head reveal">
+          <p class="eyebrow">Desktop view</p>
+          <h2 id="desktop-title">The same page on a laptop, still uncluttered.</h2>
         </div>
-        <div class="why-grid">
-          <div class="why-card">
-            <h3>Clear starting prices</h3>
-            <p>Customers see what each package costs before they ask. No surprise quotes, no guessing.</p>
-          </div>
-          <div class="why-card">
-            <h3>Mobile quote path</h3>
-            <p>The quote form works on the phone your customer is already using. No pinching or zooming to fill it out.</p>
-          </div>
-          <div class="why-card">
-            <h3>Service notes before the call</h3>
-            <p>Short package descriptions tell customers what is included so they arrive at the call ready to book.</p>
-          </div>
-          <div class="why-card">
-            <h3>Simple package comparison</h3>
-            <p>Three clean options let customers self-select without needing to call and ask which one fits.</p>
-          </div>
-          <div class="why-card">
-            <h3>No buried contact info</h3>
-            <p>The quote button stays visible on every section. Customers never have to scroll to find the next step.</p>
-          </div>
-          <div class="why-card">
-            <h3>Focused service area</h3>
-            <p>Local-only service keeps expectations clear. Customers know upfront whether you work in their area.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Before / After proof -->
-      <section class="section proof-section" aria-labelledby="proof-title">
-        <div class="section-head">
-          <p class="eyebrow">Demo transformation</p>
-          <h2 id="proof-title">From hard to read to ready to quote.</h2>
-          <p>
-            Fictional demo concept — not a real client result. This section shows
-            how a cluttered service page can become a clear mobile-first path.
-          </p>
-        </div>
-        <div class="before-after" aria-label="Fictional website transformation concept">
-          <article class="concept-card before-card">
-            <div class="concept-label">Before: Cluttered page</div>
-            <h3>Unclear services, buried price</h3>
-            <p>Long paragraphs, no pricing visible, and a contact link buried at the bottom of the page.</p>
-            <div class="mini-page messy-page" aria-hidden="true">
-              <i></i>
-              <i></i>
-              <i></i>
-              <b></b>
+        <div class="desktop-layout">
+          <div class="desktop-page reveal">
+            <div class="desktop-copy">
+              <span>Demo</span>
+              <h3>Book the service that matches the job.</h3>
             </div>
-          </article>
-
-          <article class="concept-card after-card">
-            <div class="concept-label">After: Clean service site</div>
-            <h3>Clear packages and quote button</h3>
-            <p>Upfront pricing, short package notes, and a quote button that is easy to tap from a phone.</p>
-            <div class="mini-page clean-page" aria-hidden="true">
-              <strong>Standard Service</strong>
-              <em>Most popular — $149</em>
-              <i></i>
-              <s>Request a Quote</s>
+            <div class="desktop-cards">
+              <div>Quick Visit · $79</div>
+              <div>Standard Service · $149</div>
+              <div>Full Service · $249</div>
             </div>
+          </div>
+          <aside class="desktop-aside reveal reveal-delay-2">
+            <span class="eyebrow">What this page does</span>
+            <h3>Quote path that fits a thumb.</h3>
+            <p>Visible packages, visible pricing, and a multi-step quote form that respects how customers actually read on a phone.</p>
+          </aside>
+        </div>
+      </section>
+
+      <section id="workflow" class="section" aria-labelledby="workflow-title">
+        <div class="section-head reveal">
+          <p class="eyebrow">Workflow shift</p>
+          <h2 id="workflow-title">From buried details to a real quote path.</h2>
+          <p>Fictional demo concept — shows how a service page can convert scattered info into a clean mobile-first decision.</p>
+        </div>
+        <div class="workflow-grid">
+          <article class="workflow-card reveal">
+            <span>Before</span>
+            <h3>Long paragraphs and a hidden contact button</h3>
+            <p>Customers scroll, scan, and bounce. Pricing lives in a separate PDF or doesn't appear at all.</p>
+          </article>
+          <article class="workflow-card after reveal reveal-delay-1">
+            <span>After</span>
+            <h3>Three packages and a three-step quote form</h3>
+            <p>Service options, prices, and a focused quote flow that finishes in under a minute on a phone.</p>
           </article>
         </div>
       </section>
 
-      <!-- Quote form -->
-      <section id="quote" class="section quote-section" aria-labelledby="quote-title">
-        <div class="section-head">
-          <p class="eyebrow">Request a quote</p>
-          <h2 id="quote-title">Tell us what you need.</h2>
-          <p>
-            This demo form shows how a service page can collect the details a
-            business owner needs before following up. No backend — this is a
-            demo-only form.
-          </p>
+      <section id="quote" class="section" aria-labelledby="quote-title">
+        <div class="section-head reveal">
+          <p class="eyebrow">Quote flow</p>
+          <h2 id="quote-title">A short, honest form customers will actually finish.</h2>
         </div>
+        <div class="quote-layout">
 
-        <form aria-label="Demo quote request form">
-          <label>
-            Name
-            <input type="text" name="name" placeholder="Your name" autocomplete="off" />
-          </label>
-          <label>
-            Phone or email
-            <input type="text" name="contact" placeholder="Best way to reach you" autocomplete="off" />
-          </label>
-          <label>
-            Service needed
-            <select name="service">
-              <option value="">Select a package</option>
-              <option>Quick Visit — $79</option>
-              <option>Standard Service — $149</option>
-              <option>Full Service — $249</option>
-              <option>Not sure yet</option>
-            </select>
-          </label>
-          <label>
-            Timeline
-            <select name="timeline">
-              <option value="">When do you need this?</option>
-              <option>This week</option>
-              <option>Next week</option>
-              <option>This month</option>
-              <option>Flexible</option>
-            </select>
-          </label>
-          <label>
-            Notes
-            <textarea name="notes" rows="3" placeholder="Example: two-story home, north side gutters, pet on property"></textarea>
-          </label>
-          <p class="demo-disclaimer">
-            Demo form only — submissions are not sent anywhere. A real site
-            would connect this to email, SMS, or a booking system.
-          </p>
-          <button type="button">Request a Quote</button>
-        </form>
+          <form id="serviceQuoteForm" class="quote-flow reveal" data-step="1" aria-label="Demo quote flow" onsubmit="event.preventDefault()">
+            <div class="step-progress" aria-hidden="true">
+              <span id="stepBar"></span>
+            </div>
+
+            <div class="quote-step" data-step-panel="1">
+              <div class="step-label">Step 1 of 3</div>
+              <h3>What service do you need?</h3>
+              <div class="choice-grid" data-choice-group="service" role="radiogroup" aria-label="Service">
+                <button class="choice" type="button" data-value="Quick Visit">Quick Visit — $79</button>
+                <button class="choice is-selected" type="button" data-value="Standard Service">Standard Service — $149</button>
+                <button class="choice" type="button" data-value="Full Service">Full Service — $249</button>
+                <button class="choice" type="button" data-value="Not sure yet">Not sure yet</button>
+              </div>
+              <div class="step-actions">
+                <button class="button primary next-step" type="button">Next →</button>
+              </div>
+            </div>
+
+            <div class="quote-step" data-step-panel="2" hidden>
+              <div class="step-label">Step 2 of 3</div>
+              <h3>When do you need this?</h3>
+              <div class="choice-grid" data-choice-group="timing" role="radiogroup" aria-label="Timing">
+                <button class="choice is-selected" type="button" data-value="This week">This week</button>
+                <button class="choice" type="button" data-value="Next week">Next week</button>
+                <button class="choice" type="button" data-value="This month">This month</button>
+                <button class="choice" type="button" data-value="Flexible">Flexible</button>
+              </div>
+              <div class="step-actions">
+                <button class="button ghost prev-step" type="button">← Back</button>
+                <button class="button primary next-step" type="button">Next →</button>
+              </div>
+            </div>
+
+            <div class="quote-step" data-step-panel="3" hidden>
+              <div class="step-label">Step 3 of 3</div>
+              <h3>Anything we should know?</h3>
+              <label>
+                Job notes
+                <textarea id="requestNote" rows="4" placeholder="Two-story home, north side gutters, dog in yard."></textarea>
+              </label>
+              <div class="step-actions">
+                <button class="button ghost prev-step" type="button">← Back</button>
+                <button class="button primary" id="previewRequestBtn" type="button">Preview demo request →</button>
+              </div>
+            </div>
+          </form>
+
+          <aside class="request-card reveal reveal-delay-2" aria-live="polite">
+            <span class="eyebrow">Demo summary</span>
+            <h3>Your request</h3>
+            <p><strong>Service:</strong> <span id="requestService">Standard Service</span></p>
+            <p><strong>Timing:</strong> <span id="requestTiming">This week</span></p>
+            <p><strong>Notes:</strong> <span id="requestNotePreview">Two-story home, north side gutters, dog in yard.</span></p>
+            <div id="requestStatus">Form summary updates live. No data leaves this page.</div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="area" class="section" aria-labelledby="area-title">
+        <div class="section-head reveal">
+          <p class="eyebrow">Service area</p>
+          <h2 id="area-title">Local-only, so the expectation is clear.</h2>
+          <p>A simple CSS-only map visual tells customers up front whether they're inside the service window.</p>
+        </div>
+        <div class="area-layout">
+          <div class="area-map reveal" aria-hidden="true">
+            <i></i>
+            <span class="pin pin-a"></span>
+            <span class="pin pin-b"></span>
+            <span class="pin pin-c"></span>
+          </div>
+          <div class="area-cards reveal reveal-delay-2">
+            <article>
+              <span>Inside radius</span>
+              <h3>Same-week scheduling</h3>
+              <p>Standard service days, fixed pricing, no trip fee.</p>
+            </article>
+            <article>
+              <span>Edge radius</span>
+              <h3>Quoted by appointment</h3>
+              <p>Light trip fee may apply; confirmed before the job is booked.</p>
+            </article>
+            <article>
+              <span>Outside radius</span>
+              <h3>Not currently serving</h3>
+              <p>Honest answer keeps the page useful and respects the visitor's time.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section phone-section" aria-labelledby="phone-title">
+        <div class="phone-copy reveal">
+          <span class="eyebrow">Phone view</span>
+          <h2 id="phone-title">Built for the device the customer is holding.</h2>
+          <p>Same three packages, same quote flow, sized for a thumb. No pinching, no zooming, no buried CTA.</p>
+        </div>
+        <div class="phone-wrap reveal reveal-delay-2">
+          <div class="phone-shell phone-shell-md">
+            <div class="phone-notch"></div>
+            <div class="phone-screen service-phone">
+              <span class="eyebrow">Example Service Co.</span>
+              <h3>Standard Service from $149</h3>
+              <button class="phone-choice" type="button">Quick Visit · $79</button>
+              <button class="phone-choice" type="button">Standard · $149</button>
+              <button class="phone-choice" type="button">Full Service · $249</button>
+              <div>Tap to request a quote</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="faq" class="section" aria-labelledby="faq-title">
+        <div class="section-head reveal">
+          <p class="eyebrow">FAQ</p>
+          <h2 id="faq-title">Answers the page handles before the call.</h2>
+        </div>
+        <div class="faq-list reveal" data-accordion>
+          <div>
+            <button type="button" data-accordion-trigger aria-expanded="false">Do you serve my area?</button>
+            <p hidden>The map section above shows the current radius. If you're outside, the page says so honestly — no wasted call.</p>
+          </div>
+          <div>
+            <button type="button" data-accordion-trigger aria-expanded="false">Are the prices fixed?</button>
+            <p hidden>Each package has a fixed scope and a fixed price. Anything outside scope is quoted before the job starts.</p>
+          </div>
+          <div>
+            <button type="button" data-accordion-trigger aria-expanded="false">How fast do you reply?</button>
+            <p hidden>Most quote requests get a same-business-day reply. The page sets that expectation in the hero.</p>
+          </div>
+          <div>
+            <button type="button" data-accordion-trigger aria-expanded="false">Is this a real business?</button>
+            <p hidden>No. Example Service Co. is a fictional brand built by Philip Builds Studio to show how a real service page can be structured.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta-section" aria-labelledby="cta-title">
+        <p class="eyebrow">Want a page like this?</p>
+        <h2 id="cta-title">Philip Builds Studio builds focused service pages for local operators.</h2>
+        <p>Fixed scope, one revision, hands you a clean public link.</p>
+        <div class="actions">
+          <a class="button primary" href="../../index.html#contact">Start a project</a>
+          <a class="button ghost" href="../../portfolio/index.html">See the portfolio</a>
+        </div>
       </section>
 
     </main>
 
     <footer>
-      <p>Example Service Co. is a fictional demo brand created for Philip Builds Studio. No real business content, customer reviews, or client results are used.</p>
+      <p>Example Service Co. is a fictional demo brand created by Philip Builds Studio. No real business content, customer reviews, or client results are used. No data is collected or transmitted by this page.</p>
       <div>
         <a href="../../index.html">Philip Builds Studio</a>
         <a href="../../portfolio/index.html">Portfolio</a>
