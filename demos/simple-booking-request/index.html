@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Simple Booking Request | Philip Builds Studio</title>
+    <meta name="description" content="A demo booking request form for service businesses. Shows how a real booking page could look. Demo only — nothing is sent." />
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="../../index.html">
+        <span>BK</span>
+        Booking Demo
+      </a>
+      <span style="font-size:0.82rem;color:var(--muted-text)">Philip Builds Studio</span>
+    </header>
+
+    <main>
+      <div class="intro">
+        <p class="demo-eyebrow">Portfolio demo</p>
+        <h1>Book a service appointment.</h1>
+        <p class="subtitle">This is a demo booking form showing what a real appointment request page could look like for a local service business. Nothing is sent or stored.</p>
+
+        <ul class="trust-list">
+          <li>Simple form — takes under 60 seconds to fill out</li>
+          <li>Pick a preferred date and time window</li>
+          <li>We confirm within 2 business hours</li>
+          <li>No payment required to request a booking</li>
+          <li>Cancel or reschedule anytime</li>
+        </ul>
+
+        <div style="background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px;display:grid;gap:8px">
+          <p style="margin:0;font-size:0.78rem;font-weight:900;text-transform:uppercase;letter-spacing:0.05em;color:var(--muted-text)">About this demo</p>
+          <p style="margin:0;font-size:0.88rem;color:var(--muted-text);line-height:1.5">This form is a Philip Builds Studio portfolio demo. It shows how a booking request page could be built for a real local business. The "Submit" button does not send data anywhere.</p>
+        </div>
+      </div>
+
+      <!-- Booking form -->
+      <div>
+        <div class="booking-form" id="bookingForm">
+          <div>
+            <p class="form-heading">Request an appointment</p>
+            <p class="form-subhead">We'll confirm availability and follow up within 2 hours.</p>
+          </div>
+
+          <div id="formFields">
+            <div style="display:grid;gap:18px">
+              <div class="two-col">
+                <label>First name
+                  <input type="text" id="fName" placeholder="Maria" autocomplete="given-name" />
+                </label>
+                <label>Last name
+                  <input type="text" id="lName" placeholder="Santos" autocomplete="family-name" />
+                </label>
+              </div>
+              <label>Phone number
+                <input type="tel" id="phone" placeholder="(619) 555-0100" autocomplete="tel" />
+              </label>
+              <label>Service requested
+                <select id="service">
+                  <option value="">Select a service…</option>
+                  <option>General repair / handyman</option>
+                  <option>Plumbing</option>
+                  <option>Electrical</option>
+                  <option>HVAC / Heating &amp; cooling</option>
+                  <option>Cleaning</option>
+                  <option>Landscaping / yard work</option>
+                  <option>Painting</option>
+                  <option>Other</option>
+                </select>
+              </label>
+              <div class="two-col">
+                <label>Preferred date
+                  <input type="date" id="prefDate" />
+                </label>
+                <label>Time window
+                  <select id="prefTime">
+                    <option>Morning (8–12)</option>
+                    <option>Afternoon (12–5)</option>
+                    <option>Evening (5–8)</option>
+                    <option>Flexible</option>
+                  </select>
+                </label>
+              </div>
+              <label>Address / area
+                <input type="text" id="addr" placeholder="Your street or neighborhood" autocomplete="street-address" />
+              </label>
+              <label>Notes (optional)
+                <textarea id="notes" rows="3" placeholder="Describe the issue or what you need done…"></textarea>
+              </label>
+
+              <button class="submit-btn" type="button" id="submitBtn">
+                Request Appointment →
+              </button>
+
+              <p class="form-disclaimer">Demo only — this form does not send data. A real version would email or text you a confirmation.</p>
+            </div>
+          </div>
+
+          <!-- Success state (hidden by default) -->
+          <div class="success-box" id="successBox">
+            <div class="success-icon">📅</div>
+            <h2>Request received!</h2>
+            <p>In a real setup, you'd get a confirmation text or email within 2 hours. This is a demo — nothing was actually sent.</p>
+            <button class="reset-btn" type="button" id="resetBtn">← Submit another</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>Simple Booking Request is a demo by Philip Builds Studio.</p>
+      <div>
+        <a href="../../index.html">Philip Builds Studio</a>
+        <a href="../../portfolio/index.html">Portfolio</a>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById('prefDate').value = new Date(new Date().getTime() + 86400000 * 3).toISOString().slice(0, 10);
+
+      document.getElementById('submitBtn').addEventListener('click', () => {
+        const fname = document.getElementById('fName').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        if (!fname || !phone) {
+          const missing = !fname ? document.getElementById('fName') : document.getElementById('phone');
+          missing.focus();
+          missing.style.borderColor = '#ef4444';
+          setTimeout(() => { missing.style.borderColor = ''; }, 2000);
+          return;
+        }
+        document.getElementById('formFields').style.display = 'none';
+        const sb = document.getElementById('successBox');
+        sb.style.display = 'flex';
+      });
+
+      document.getElementById('resetBtn').addEventListener('click', () => {
+        document.getElementById('formFields').style.display = '';
+        document.getElementById('successBox').style.display = 'none';
+        document.getElementById('fName').value = '';
+        document.getElementById('lName').value = '';
+        document.getElementById('phone').value = '';
+        document.getElementById('notes').value = '';
+        document.getElementById('fName').focus();
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Invoice Builder | Philip Builds Studio</title>
+    <meta name="description" content="A simple browser-only invoice builder for freelancers and small service businesses. Demo only — no data is saved or sent." />
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="../../index.html">
+        <span>INV</span>
+        Invoice Builder
+      </a>
+      <span style="font-size:0.82rem;color:var(--muted-text)">Demo tool · Philip Builds Studio</span>
+    </header>
+
+    <main>
+      <div class="page-header">
+        <p class="demo-eyebrow">Free demo tool</p>
+        <h1>Build a simple invoice.</h1>
+        <p class="subtitle">Fill in the fields on the left. The preview updates in real time. Demo only — nothing is saved or sent.</p>
+      </div>
+
+      <div class="builder-layout">
+        <!-- Input side -->
+        <div class="panel" id="inputPanel">
+          <p class="panel-title">Your details</p>
+          <label>Your business name
+            <input type="text" id="fromName" placeholder="Your Name or Business" value="Ace Handyman Services" />
+          </label>
+          <label>Invoice number
+            <input type="text" id="invoiceNum" value="INV-001" />
+          </label>
+          <label>Date
+            <input type="date" id="invoiceDate" />
+          </label>
+
+          <hr style="border:none;border-top:1px solid var(--line);margin:4px 0" />
+          <p class="panel-title">Bill to</p>
+          <label>Client name
+            <input type="text" id="toName" placeholder="Client or company name" value="Martinez Property Group" />
+          </label>
+
+          <hr style="border:none;border-top:1px solid var(--line);margin:4px 0" />
+          <p class="panel-title">Line items</p>
+          <div class="line-items" id="lineItems">
+            <div class="line-item">
+              <input type="text" class="desc" placeholder="Service description" value="Deck repair and sealing" />
+              <input type="number" class="amt" placeholder="$0.00" value="320" min="0" step="0.01" style="max-width:100px" />
+              <button class="remove-btn" type="button" aria-label="Remove line">×</button>
+            </div>
+            <div class="line-item">
+              <input type="text" class="desc" placeholder="Service description" value="Materials" />
+              <input type="number" class="amt" placeholder="$0.00" value="85" min="0" step="0.01" style="max-width:100px" />
+              <button class="remove-btn" type="button" aria-label="Remove line">×</button>
+            </div>
+          </div>
+          <button class="add-line-btn" type="button" id="addLine">+ Add line item</button>
+
+          <hr style="border:none;border-top:1px solid var(--line);margin:4px 0" />
+          <label>Tax / fee (%)
+            <input type="number" id="taxPct" value="0" min="0" max="100" step="0.1" placeholder="0" />
+          </label>
+          <label>Notes (optional)
+            <textarea id="invoiceNotes" rows="2" placeholder="Payment due within 30 days. Thank you for your business.">Payment due within 30 days. Thank you for your business.</textarea>
+          </label>
+        </div>
+
+        <!-- Preview side -->
+        <div>
+          <div class="invoice-preview" id="invoicePreview" aria-live="polite" aria-label="Invoice preview">
+            <div class="inv-header">
+              <div class="inv-from">
+                <strong id="prevFrom">Ace Handyman Services</strong>
+                <span>Invoice</span>
+              </div>
+              <div>
+                <div class="inv-badge">Invoice</div>
+                <div style="font-size:0.82rem;color:var(--muted-text);margin-top:6px">
+                  <span id="prevNum">INV-001</span><br>
+                  <span id="prevDate"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="inv-to">
+              <div class="inv-label">Bill to</div>
+              <strong id="prevTo">Martinez Property Group</strong>
+            </div>
+
+            <div class="inv-lines" id="prevLines">
+              <!-- populated by JS -->
+            </div>
+
+            <div class="inv-totals">
+              <div class="inv-total-row">
+                <span>Subtotal</span>
+                <span id="prevSubtotal">$0.00</span>
+              </div>
+              <div class="inv-total-row" id="taxRow">
+                <span id="taxLabel">Tax (0%)</span>
+                <span id="prevTax">$0.00</span>
+              </div>
+              <div class="inv-total-row final">
+                <span>Total due</span>
+                <span id="prevTotal">$0.00</span>
+              </div>
+            </div>
+
+            <div class="inv-note" id="prevNote">Payment due within 30 days. Thank you for your business.</div>
+          </div>
+
+          <div class="preview-actions" style="margin-top:14px">
+            <button class="btn primary" type="button" onclick="window.print()">Print / Save PDF</button>
+            <button class="btn" type="button" id="copyBtn">Copy summary</button>
+          </div>
+
+          <div class="demo-note" style="margin-top:12px">
+            Demo only — no data is saved or sent anywhere. Use Print / Save PDF to export a copy.
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>Invoice Builder is a demo tool by Philip Builds Studio. No data is stored.</p>
+      <div>
+        <a href="../../index.html">Philip Builds Studio</a>
+        <a href="../../portfolio/index.html">Portfolio</a>
+      </div>
+    </footer>
+
+    <script>
+      function fmt(n) { return '$' + Math.max(0, n).toFixed(2); }
+
+      function update() {
+        const from = document.getElementById('fromName').value || 'Your Business';
+        const num = document.getElementById('invoiceNum').value || 'INV-001';
+        const date = document.getElementById('invoiceDate').value;
+        const to = document.getElementById('toName').value || 'Client Name';
+        const tax = Math.max(0, parseFloat(document.getElementById('taxPct').value) || 0);
+        const note = document.getElementById('invoiceNotes').value;
+
+        document.getElementById('prevFrom').textContent = from;
+        document.getElementById('prevNum').textContent = num;
+        document.getElementById('prevDate').textContent = date ? new Date(date + 'T00:00').toLocaleDateString() : '';
+        document.getElementById('prevTo').textContent = to;
+        document.getElementById('prevNote').textContent = note;
+
+        const lines = document.querySelectorAll('.line-item');
+        const prevLines = document.getElementById('prevLines');
+        prevLines.innerHTML = '';
+        let subtotal = 0;
+
+        lines.forEach(line => {
+          const desc = line.querySelector('.desc').value || 'Service';
+          const amt = Math.max(0, parseFloat(line.querySelector('.amt').value) || 0);
+          subtotal += amt;
+          const row = document.createElement('div');
+          row.className = 'inv-line-row';
+          row.innerHTML = `<span class="inv-line-desc">${desc}</span><span class="inv-line-amt">${fmt(amt)}</span>`;
+          prevLines.appendChild(row);
+        });
+
+        const taxAmt = subtotal * (tax / 100);
+        const total = subtotal + taxAmt;
+
+        document.getElementById('prevSubtotal').textContent = fmt(subtotal);
+        document.getElementById('taxLabel').textContent = `Tax (${tax}%)`;
+        document.getElementById('prevTax').textContent = fmt(taxAmt);
+        document.getElementById('taxRow').style.display = tax > 0 ? 'flex' : 'none';
+        document.getElementById('prevTotal').textContent = fmt(total);
+      }
+
+      document.getElementById('addLine').addEventListener('click', () => {
+        const div = document.createElement('div');
+        div.className = 'line-item';
+        div.innerHTML = `<input type="text" class="desc" placeholder="Service description" />
+          <input type="number" class="amt" placeholder="$0.00" min="0" step="0.01" style="max-width:100px" />
+          <button class="remove-btn" type="button" aria-label="Remove line">×</button>`;
+        div.querySelector('.remove-btn').addEventListener('click', () => { div.remove(); update(); });
+        div.querySelectorAll('input').forEach(i => i.addEventListener('input', update));
+        document.getElementById('lineItems').appendChild(div);
+        div.querySelector('.desc').focus();
+        update();
+      });
+
+      document.querySelectorAll('.remove-btn').forEach(btn => {
+        btn.addEventListener('click', () => { btn.closest('.line-item').remove(); update(); });
+      });
+
+      document.getElementById('inputPanel').addEventListener('input', update);
+
+      document.getElementById('copyBtn').addEventListener('click', () => {
+        const lines = [...document.querySelectorAll('.inv-line-row')].map(r => r.textContent.replace(/\s+/g, ' ').trim()).join('\n');
+        const total = document.getElementById('prevTotal').textContent;
+        const text = `Invoice: ${document.getElementById('prevNum').textContent}\nTo: ${document.getElementById('prevTo').textContent}\n\n${lines}\n\nTotal: ${total}`;
+        navigator.clipboard.writeText(text).then(() => {
+          const btn = document.getElementById('copyBtn');
+          btn.textContent = 'Copied!';
+          setTimeout(() => { btn.textContent = 'Copy summary'; }, 2000);
+        });
+      });
+
+      // Set today's date
+      document.getElementById('invoiceDate').value = new Date().toISOString().slice(0, 10);
+      update();
+    </script>
+  </body>
+</html>

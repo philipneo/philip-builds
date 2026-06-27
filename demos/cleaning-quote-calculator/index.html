@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cleaning Quote Calculator | Philip Builds Studio</title>
+    <meta name="description" content="Estimate your home cleaning cost instantly. Demo tool — no data sent or stored." />
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="../../index.html">
+        <span>CLN</span>
+        Cleaning Quote
+      </a>
+      <span style="font-size:0.82rem;color:var(--muted-text)">Demo tool · Philip Builds Studio</span>
+    </header>
+
+    <main>
+      <div>
+        <p class="demo-eyebrow">Instant estimate demo</p>
+        <h1>Get a cleaning quote in seconds.</h1>
+        <p class="subtitle">Select your home size and add-ons to see an instant price range. Demo only — no data is sent or saved.</p>
+      </div>
+
+      <div class="calc-layout">
+        <!-- Inputs -->
+        <div class="panel">
+          <div>
+            <p class="section-title">Home size</p>
+            <label>Square footage
+              <select id="sqft">
+                <option value="500">Under 600 sq ft (studio / 1BR)</option>
+                <option value="900">600–1,200 sq ft (1–2 BR)</option>
+                <option value="1400" selected>1,200–1,800 sq ft (2–3 BR)</option>
+                <option value="2000">1,800–2,500 sq ft (3–4 BR)</option>
+                <option value="2800">2,500–3,500 sq ft (4–5 BR)</option>
+                <option value="3800">3,500+ sq ft (large home)</option>
+              </select>
+            </label>
+            <label style="margin-top:14px">Bathrooms
+              <select id="baths">
+                <option value="1">1 bathroom</option>
+                <option value="2" selected>2 bathrooms</option>
+                <option value="3">3 bathrooms</option>
+                <option value="4">4+ bathrooms</option>
+              </select>
+            </label>
+          </div>
+
+          <div>
+            <p class="section-title">Service type</p>
+            <label>
+              <select id="serviceType">
+                <option value="1">Standard clean</option>
+                <option value="1.5">Deep clean (+50%)</option>
+                <option value="1.8">Move-in / Move-out (+80%)</option>
+              </select>
+            </label>
+          </div>
+
+          <div>
+            <p class="section-title">Add-ons</p>
+            <div class="checkbox-group">
+              <label class="checkbox-row">
+                <input type="checkbox" data-price="45" id="addOven" />
+                <span><strong>Oven cleaning</strong><small>Deep scrub inside and out</small></span>
+                <span style="margin-left:auto;font-weight:700;color:var(--accent)">+$45</span>
+              </label>
+              <label class="checkbox-row">
+                <input type="checkbox" data-price="35" id="addFridge" />
+                <span><strong>Fridge interior</strong><small>Remove shelves, full clean</small></span>
+                <span style="margin-left:auto;font-weight:700;color:var(--accent)">+$35</span>
+              </label>
+              <label class="checkbox-row">
+                <input type="checkbox" data-price="60" id="addWindows" />
+                <span><strong>Interior windows</strong><small>Wipe frames and glass</small></span>
+                <span style="margin-left:auto;font-weight:700;color:var(--accent)">+$60</span>
+              </label>
+              <label class="checkbox-row">
+                <input type="checkbox" data-price="30" id="addLaundry" />
+                <span><strong>Laundry (1 load)</strong><small>Wash, dry, fold</small></span>
+                <span style="margin-left:auto;font-weight:700;color:var(--accent)">+$30</span>
+              </label>
+              <label class="checkbox-row">
+                <input type="checkbox" data-price="25" id="addCabinets" />
+                <span><strong>Cabinet exteriors</strong><small>Wipe all kitchen fronts</small></span>
+                <span style="margin-left:auto;font-weight:700;color:var(--accent)">+$25</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quote card -->
+        <div class="quote-card" aria-live="polite" aria-label="Quote estimate">
+          <p class="quote-eyebrow">Your estimate</p>
+          <div>
+            <div class="quote-total" id="qTotal">$—</div>
+            <div class="quote-range" id="qRange">Fill in details to see your quote</div>
+          </div>
+
+          <div class="quote-lines" id="qLines"></div>
+
+          <div class="disclaimer">
+            Demo only — not a real quote. No data is sent or saved. Actual pricing depends on home condition, location, and frequency.
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>Cleaning Quote Calculator is a demo tool by Philip Builds Studio.</p>
+      <div>
+        <a href="../../index.html">Philip Builds Studio</a>
+        <a href="../../portfolio/index.html">Portfolio</a>
+      </div>
+    </footer>
+
+    <script>
+      // Base rates: [low, high] per sq ft bracket
+      const SQ_RATES = { 500: [85, 110], 900: [110, 145], 1400: [145, 185], 2000: [185, 235], 2800: [235, 295], 3800: [295, 380] };
+      const BATH_RATE = 18; // per extra bath above 1
+
+      function calc() {
+        const sqft = parseInt(document.getElementById('sqft').value);
+        const baths = parseInt(document.getElementById('baths').value);
+        const svcMult = parseFloat(document.getElementById('serviceType').value);
+        const svcName = document.getElementById('serviceType').selectedOptions[0].text;
+
+        const [lo, hi] = SQ_RATES[sqft];
+        const bathExtra = (baths - 1) * BATH_RATE;
+
+        let addonsTotal = 0;
+        const addonLines = [];
+        document.querySelectorAll('[data-price]').forEach(cb => {
+          if (cb.checked) {
+            const p = parseInt(cb.dataset.price);
+            addonsTotal += p;
+            const name = cb.closest('.checkbox-row').querySelector('strong').textContent;
+            addonLines.push({ name, price: p });
+          }
+        });
+
+        const baseLoRaw = (lo + bathExtra) * svcMult;
+        const baseHiRaw = (hi + bathExtra) * svcMult;
+        const totalLo = Math.round(baseLoRaw + addonsTotal);
+        const totalHi = Math.round(baseHiRaw + addonsTotal);
+
+        document.getElementById('qTotal').textContent = `$${totalLo}–$${totalHi}`;
+        document.getElementById('qRange').textContent = 'Estimated price range';
+
+        const lines = document.getElementById('qLines');
+        lines.innerHTML = '';
+
+        const addRow = (label, val) => {
+          const d = document.createElement('div');
+          d.className = 'quote-line';
+          d.innerHTML = `<span>${label}</span><span>${val}</span>`;
+          lines.appendChild(d);
+        };
+
+        addRow('Base clean', `$${Math.round(lo * svcMult)}–$${Math.round(hi * svcMult)}`);
+        if (baths > 1) addRow(`+${baths - 1} extra bath${baths > 2 ? 's' : ''}`, `+$${bathExtra}`);
+        if (svcMult > 1) addRow(svcName.split('(')[0].trim(), 'included above');
+        addonLines.forEach(a => addRow(a.name, `+$${a.price}`));
+
+        const hr = document.createElement('hr');
+        hr.className = 'quote-divider';
+        lines.appendChild(hr);
+
+        const fin = document.createElement('div');
+        fin.className = 'quote-final';
+        fin.innerHTML = `<span>Estimated total</span><span>$${totalLo}–$${totalHi}</span>`;
+        lines.appendChild(fin);
+      }
+
+      document.addEventListener('change', calc);
+      calc();
+    </script>
+  </body>
+</html>

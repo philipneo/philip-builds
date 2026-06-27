@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Restaurant Menu Page | Philip Builds Studio</title>
+    <meta name="description" content="A demo restaurant menu page — styled, mobile-friendly, easy to update. Portfolio demo by Philip Builds Studio." />
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="../../index.html">
+        <span>MNU</span>
+        Menu Page Demo
+      </a>
+      <span style="font-size:0.82rem;color:var(--muted-text);font-family:Inter,sans-serif">Philip Builds Studio</span>
+    </header>
+
+    <div class="menu-hero">
+      <p class="eyebrow">Est. 2019 · San Diego, CA</p>
+      <h1>Casa Moreno Kitchen</h1>
+      <p class="tagline">Handmade flavors · Family recipes · Fresh daily</p>
+      <div class="hero-divider">
+        <hr /><span>✦</span><hr />
+      </div>
+      <p style="font-size:0.84rem;color:#a8a29e;margin:16px 0 0;font-family:Inter,sans-serif">
+        Demo — fictional restaurant. This page shows what a real menu page could look like.
+      </p>
+    </div>
+
+    <nav class="menu-nav" aria-label="Menu sections">
+      <a href="#starters" class="active">Starters</a>
+      <a href="#mains">Mains</a>
+      <a href="#sides">Sides</a>
+      <a href="#desserts">Desserts</a>
+      <a href="#drinks">Drinks</a>
+    </nav>
+
+    <main>
+      <!-- Starters -->
+      <section class="menu-section" id="starters">
+        <div class="section-head"><h2>Starters</h2></div>
+        <div class="menu-grid">
+          <div class="menu-item">
+            <div class="item-row">
+              <span class="item-name">Tortilla Soup</span>
+              <span class="item-dots"></span>
+              <span class="item-price">$9</span>
+            </div>
+            <p class="item-desc">House-made broth, crispy strips, avocado, crema, cotija</p>
+          </div>
+          <div class="menu-item">
+            <div class="item-row">
+              <span class="item-name">Elote Dip</span>
+              <span class="item-dots"></span>
+              <span class="item-price">$10</span>
+            </div>
+            <p class="item-desc">Roasted corn, chipotle mayo, lime, tajín, served with chips</p>
+          </div>
+          <div class="menu-item">
+            <div class="item-row">
+              <span class="item-name">Guacamole &amp; Chips</span>
+              <span class="item-dots"></span>
+              <span class="item-price">$11</span>
+            </div>
+            <p class="item-desc">Made fresh to order · habanero optional</p>
+            <span class="item-badge">House favorite</span>
+          </div>
+          <div class="menu-item">
+            <div class="item-row">
+              <span class="item-name">Queso Fundido</span>
+              <span class="item-dots"></span>
+              <span class="item-price">$12</span>
+            </div>
+            <p class="item-desc">Melted Oaxacan cheese, chorizo, roasted peppers, flour tortillas</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Mains -->
+      <section class="menu-section" id="mains">
+        <div class="section-head"><h2>Mains</h2></div>
+        <div class="menu-grid">
+          <div class="menu-item">
+            <div class="item-row">
+              <span class="item-name">Carne Asada Plate</span>
+              <span class="item-dots"></span>
+              <span class="item-price">$18</span>
+            </div>
+            <p class="item-desc">Grilled skirt steak, rice, beans, pico, flour tortillas</p>
+            <span class="item-badge">Chef's pick</span>
+          </div>
+          <div class="menu-item">
+            <div class="item-row">
+              <span class="item-name">Pollo Asado Tacos</span>
+              <span class="item-dots"></span>
+              <span class="item-price">$15</span>
+            </div>
+            <p class="item-desc">3 corn tortillas, citrus-marinated chicken, salsa verde, onion</p>
+          </div>
+          <div class="menu-item">
+            <div class="item-row">
+              <span class="item-name">Enchiladas Rojas</span>
+              <span class="item-dots"></span>
+              <span class="item-price">$14</span>
+            </div>
+            <p class="item-desc">3 beef or cheese enchiladas, red chile sauce, crema, rice</p>
+          </div>
+          <div class="menu-item">
+            <div class="item-row">
+              <span class="item-name">Veggie Burrito</span>
+              <span class="item-dots"></span>
+              <span class="item-price">$13</span>
+            </div>
+            <p class="item-desc">Black beans, roasted peppers, rice, salsa, avocado — fully plant-based</p>
+            <span class="item-badge">Vegan</span>
+          </div>
+          <div class="menu-item">
+            <div class="item-row">
+              <span class="item-name">Camarones al Mojo</span>
+              <span class="item-dots"></span>
+              <span class="item-price">$19</span>
+            </div>
+            <p class="item-desc">Garlic butter shrimp, white rice, grilled corn, lime</p>
+          </div>
+          <div class="menu-item">
+            <div class="item-row">
+              <span class="item-name">Chile Verde</span>
+              <span class="item-dots"></span>
+              <span class="item-price">$16</span>
+            </div>
+            <p class="item-desc">Slow-braised pork, tomatillo sauce, rice, warm tortillas</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sides -->
+      <section class="menu-section" id="sides">
+        <div class="section-head"><h2>Sides</h2></div>
+        <div class="menu-grid">
+          <div class="menu-item">
+            <div class="item-row">
+              <span class="item-name">Mexican Rice</span>
+              <span class="item-dots"></span>
+              <span class="item-price">$4</span>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div class="item-row">
+              <span class="item-name">Refried Beans</span>
+              <span class="item-dots"></span>
+              <span class="item-price">$4</span>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div class="item-row">
+              <span class="item-name">Street Corn (1 ea)</span>
+              <span class="item-dots"></span>
+              <span class="item-price">$5</span>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div class="item-row">
+              <span class="item-name">Flour Tortillas (3)</span>
+              <span class="item-dots"></span>
+              <span class="item-price">$3</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Desserts -->
+      <section class="menu-section" id="desserts">
+        <div class="section-head"><h2>Desserts</h2></div>
+        <div class="menu-grid">
+          <div class="menu-item">
+            <div class="item-row">
+              <span class="item-name">Churros (4)</span>
+              <span class="item-dots"></span>
+              <span class="item-price">$8</span>
+            </div>
+            <p class="item-desc">Cinnamon sugar, chocolate dipping sauce</p>
+          </div>
+          <div class="menu-item">
+            <div class="item-row">
+              <span class="item-name">Flan de Casa</span>
+              <span class="item-dots"></span>
+              <span class="item-price">$7</span>
+            </div>
+            <p class="item-desc">Classic caramel custard, house recipe</p>
+            <span class="item-badge">House favorite</span>
+          </div>
+          <div class="menu-item">
+            <div class="item-row">
+              <span class="item-name">Tres Leches Slice</span>
+              <span class="item-dots"></span>
+              <span class="item-price">$8</span>
+            </div>
+            <p class="item-desc">Soaked sponge, whipped cream, seasonal fruit</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Drinks -->
+      <section class="menu-section" id="drinks">
+        <div class="section-head"><h2>Drinks</h2></div>
+        <div class="menu-grid">
+          <div class="menu-item">
+            <div class="item-row">
+              <span class="item-name">Agua Fresca</span>
+              <span class="item-dots"></span>
+              <span class="item-price">$4</span>
+            </div>
+            <p class="item-desc">Hibiscus, horchata, or tamarind · ask about seasonal</p>
+          </div>
+          <div class="menu-item">
+            <div class="item-row">
+              <span class="item-name">Mexican Coke</span>
+              <span class="item-dots"></span>
+              <span class="item-price">$4</span>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div class="item-row">
+              <span class="item-name">Sparkling Water</span>
+              <span class="item-dots"></span>
+              <span class="item-price">$3</span>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div class="item-row">
+              <span class="item-name">Coffee / Café de Olla</span>
+              <span class="item-dots"></span>
+              <span class="item-price">$4</span>
+            </div>
+            <p class="item-desc">Traditional spiced Mexican coffee, cinnamon &amp; piloncillo</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="menu-note">
+      <strong>Casa Moreno Kitchen is a fictional demo restaurant.</strong> This page was built by Philip Builds Studio to show what a real restaurant menu page could look like. Consuming 2,000 calories a day is used for general nutrition advice.
+    </div>
+
+    <footer>
+      <p>Restaurant Menu Page demo · Philip Builds Studio</p>
+      <div>
+        <a href="../../index.html">Philip Builds Studio</a>
+        <a href="../../portfolio/index.html">Portfolio</a>
+      </div>
+    </footer>
+
+    <script>
+      // Active nav on scroll
+      const sections = document.querySelectorAll('.menu-section');
+      const navLinks = document.querySelectorAll('.menu-nav a');
+
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            navLinks.forEach(l => l.classList.remove('active'));
+            const link = document.querySelector(`.menu-nav a[href="#${entry.target.id}"]`);
+            if (link) link.classList.add('active');
+          }
+        });
+      }, { rootMargin: '-30% 0px -60% 0px' });
+
+      sections.forEach(s => observer.observe(s));
+    </script>
+  </body>
+</html>

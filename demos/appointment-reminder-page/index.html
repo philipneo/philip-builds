@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Appointment Reminder Page | Philip Builds Studio</title>
+    <meta name="description" content="A demo appointment reminder card page — shows what a confirmation page could look like for a service business." />
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="../../index.html">
+        <span>APT</span>
+        Appointment Page
+      </a>
+      <span style="font-size:0.82rem;color:var(--muted-text)">Demo · Philip Builds Studio</span>
+    </header>
+
+    <main>
+      <div>
+        <p class="demo-eyebrow">Portfolio demo</p>
+        <h1>Appointment confirmation page.</h1>
+        <p class="subtitle">Fill in the details to see how a real confirmation page could look for your business. Demo only — nothing is sent.</p>
+      </div>
+
+      <div class="reminder-layout">
+        <!-- Inputs -->
+        <div class="card" id="inputCard">
+          <p class="card-title">Business details</p>
+          <label>Business name
+            <input type="text" id="bizName" value="Rivera HVAC Services" />
+          </label>
+          <label>Service type
+            <input type="text" id="serviceType" value="AC Tune-Up" />
+          </label>
+          <label>Date
+            <input type="date" id="apptDate" />
+          </label>
+          <label>Time
+            <input type="time" id="apptTime" value="10:00" />
+          </label>
+          <label>Technician / Staff name
+            <input type="text" id="staffName" value="Carlos Rivera" />
+          </label>
+          <label>Address
+            <input type="text" id="apptAddr" value="4821 Oak Ridge Blvd, Unit 3" />
+          </label>
+          <label>Custom message (optional)
+            <textarea id="customMsg" rows="3">Please ensure the unit is accessible 15 minutes before arrival. Have a great day!</textarea>
+          </label>
+        </div>
+
+        <!-- Preview -->
+        <div>
+          <div class="preview-card" id="previewCard" aria-live="polite">
+            <div class="reminder-badge">📅 Appointment Confirmed</div>
+
+            <div>
+              <div class="appt-time" id="prevTime">10:00 AM</div>
+              <div class="appt-label" id="prevDate">Thursday, January 1</div>
+            </div>
+
+            <div class="detail-rows">
+              <div class="detail-row">
+                <span class="detail-icon">🔧</span>
+                <div class="detail-content">
+                  <strong id="prevService">AC Tune-Up</strong>
+                  <span id="prevBiz">Rivera HVAC Services</span>
+                </div>
+              </div>
+              <div class="detail-row">
+                <span class="detail-icon">👤</span>
+                <div class="detail-content">
+                  <strong id="prevStaff">Carlos Rivera</strong>
+                  <span>Your technician</span>
+                </div>
+              </div>
+              <div class="detail-row">
+                <span class="detail-icon">📍</span>
+                <div class="detail-content">
+                  <strong id="prevAddr">4821 Oak Ridge Blvd, Unit 3</strong>
+                  <span>Service location</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="reminder-msg" id="prevMsg">
+              Please ensure the unit is accessible 15 minutes before arrival. Have a great day!
+            </div>
+          </div>
+
+          <div class="preview-actions" style="margin-top:14px">
+            <button class="btn primary" type="button" onclick="window.print()">Print / Save PDF</button>
+            <button class="btn" type="button" id="copyBtn">Copy details</button>
+          </div>
+          <div class="demo-note" style="margin-top:12px">
+            Demo only — no data is sent or stored anywhere.
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>Appointment Reminder Page is a demo by Philip Builds Studio.</p>
+      <div>
+        <a href="../../index.html">Philip Builds Studio</a>
+        <a href="../../portfolio/index.html">Portfolio</a>
+      </div>
+    </footer>
+
+    <script>
+      function fmt12(timeStr) {
+        if (!timeStr) return '';
+        const [h, m] = timeStr.split(':').map(Number);
+        const suffix = h >= 12 ? 'PM' : 'AM';
+        const hour = ((h % 12) || 12);
+        return `${hour}:${String(m).padStart(2, '0')} ${suffix}`;
+      }
+
+      function fmtDate(dateStr) {
+        if (!dateStr) return '';
+        const d = new Date(dateStr + 'T00:00');
+        return d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+      }
+
+      function update() {
+        document.getElementById('prevBiz').textContent = document.getElementById('bizName').value || 'Your Business';
+        document.getElementById('prevService').textContent = document.getElementById('serviceType').value || 'Service';
+        document.getElementById('prevTime').textContent = fmt12(document.getElementById('apptTime').value) || '—';
+        document.getElementById('prevDate').textContent = fmtDate(document.getElementById('apptDate').value) || '—';
+        document.getElementById('prevStaff').textContent = document.getElementById('staffName').value || '—';
+        document.getElementById('prevAddr').textContent = document.getElementById('apptAddr').value || '—';
+        document.getElementById('prevMsg').textContent = document.getElementById('customMsg').value;
+      }
+
+      document.getElementById('inputCard').addEventListener('input', update);
+
+      document.getElementById('copyBtn').addEventListener('click', () => {
+        const t = `Appointment: ${document.getElementById('prevService').textContent}\nDate: ${document.getElementById('prevDate').textContent} at ${document.getElementById('prevTime').textContent}\nWith: ${document.getElementById('prevStaff').textContent}\nAt: ${document.getElementById('prevAddr').textContent}`;
+        navigator.clipboard.writeText(t).then(() => {
+          const btn = document.getElementById('copyBtn');
+          btn.textContent = 'Copied!';
+          setTimeout(() => { btn.textContent = 'Copy details'; }, 2000);
+        });
+      });
+
+      // Set today
+      document.getElementById('apptDate').value = new Date(new Date().getTime() + 86400000 * 2).toISOString().slice(0, 10);
+      update();
+    </script>
+  </body>
+</html>

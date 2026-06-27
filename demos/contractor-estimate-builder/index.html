@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contractor Estimate Builder | Philip Builds Studio</title>
+    <meta name="description" content="Build a simple contractor estimate with line items, labor, materials, and markup. Demo only — nothing sent or stored." />
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="../../index.html">
+        <span>EST</span>
+        Estimate Builder
+      </a>
+      <span style="font-size:0.82rem;color:var(--muted-text)">Demo tool · Philip Builds Studio</span>
+    </header>
+
+    <main>
+      <div>
+        <p class="demo-eyebrow">Portfolio demo</p>
+        <h1>Build a contractor estimate.</h1>
+        <p class="subtitle">Add line items with quantities and unit prices to generate a live estimate. Demo only — nothing is sent or saved.</p>
+      </div>
+
+      <div class="est-layout">
+        <!-- Inputs -->
+        <div class="panel" id="inputPanel">
+          <div>
+            <p class="panel-title">Your business</p>
+            <label>Business name
+              <input type="text" id="bizName" value="Torres General Contracting" />
+            </label>
+            <label style="margin-top:12px">License / Phone (optional)
+              <input type="text" id="bizContact" value="Lic. #C-48291 · (619) 555-0148" />
+            </label>
+          </div>
+
+          <div>
+            <p class="panel-title">Client &amp; project</p>
+            <label>Client name
+              <input type="text" id="clientName" value="Westfield Property Mgmt" />
+            </label>
+            <label style="margin-top:12px">Project description
+              <input type="text" id="projectDesc" value="Kitchen remodel — unit 4B" />
+            </label>
+            <label style="margin-top:12px">Valid until
+              <input type="date" id="validDate" />
+            </label>
+          </div>
+
+          <div>
+            <p class="panel-title">Line items</p>
+            <div class="line-headers">
+              <span class="col-label">Description</span>
+              <span class="col-label" style="text-align:right">Qty</span>
+              <span class="col-label" style="text-align:right">Unit $</span>
+              <span></span>
+            </div>
+            <div class="line-items" id="lineItems">
+              <div class="line-item">
+                <input type="text" class="desc" value="Demo &amp; haul-away" />
+                <input type="number" class="qty" value="1" min="0" step="0.5" />
+                <input type="number" class="unit" value="650" min="0" step="1" />
+                <button class="remove-btn" type="button" aria-label="Remove">×</button>
+              </div>
+              <div class="line-item">
+                <input type="text" class="desc" value="Cabinet installation (labor)" />
+                <input type="number" class="qty" value="8" min="0" step="0.5" />
+                <input type="number" class="unit" value="85" min="0" step="1" />
+                <button class="remove-btn" type="button" aria-label="Remove">×</button>
+              </div>
+              <div class="line-item">
+                <input type="text" class="desc" value="Materials &amp; hardware" />
+                <input type="number" class="qty" value="1" min="0" step="1" />
+                <input type="number" class="unit" value="1240" min="0" step="1" />
+                <button class="remove-btn" type="button" aria-label="Remove">×</button>
+              </div>
+            </div>
+            <button class="add-line-btn" type="button" id="addLine">+ Add line item</button>
+          </div>
+
+          <div>
+            <p class="panel-title">Totals</p>
+            <label>Markup / overhead (%)
+              <input type="number" id="markup" value="10" min="0" max="100" step="1" />
+            </label>
+            <label style="margin-top:12px">Notes
+              <textarea id="estNotes" rows="2">Estimate valid for 30 days. 50% deposit required to begin work. Subject to change if scope expands.</textarea>
+            </label>
+          </div>
+        </div>
+
+        <!-- Preview -->
+        <div>
+          <div class="estimate-preview" id="estPreview" aria-live="polite" aria-label="Estimate preview">
+            <div class="est-header">
+              <div class="est-from">
+                <strong id="prevBiz">Torres General Contracting</strong>
+                <span id="prevContact">Lic. #C-48291 · (619) 555-0148</span>
+              </div>
+              <div class="est-badge">Estimate</div>
+            </div>
+
+            <div class="est-to">
+              <div class="lbl">Prepared for</div>
+              <strong id="prevClient">Westfield Property Mgmt</strong>
+            </div>
+
+            <div class="est-job">
+              <strong id="prevProject">Kitchen remodel — unit 4B</strong>
+              <span id="prevValid"></span>
+            </div>
+
+            <div class="est-lines-header">
+              <span>Description</span>
+              <span style="text-align:right">Qty</span>
+              <span style="text-align:right">Amount</span>
+            </div>
+
+            <div class="est-lines" id="prevLines"></div>
+
+            <div class="est-totals">
+              <div class="est-total-row">
+                <span>Subtotal</span>
+                <span id="prevSub">$0.00</span>
+              </div>
+              <div class="est-total-row" id="markupRow">
+                <span id="markupLabel">Markup (10%)</span>
+                <span id="prevMarkup">$0.00</span>
+              </div>
+              <div class="est-total-row final">
+                <span>Total estimate</span>
+                <span id="prevTotal">$0.00</span>
+              </div>
+            </div>
+
+            <div class="est-note" id="prevNotes">Estimate valid for 30 days. 50% deposit required to begin work. Subject to change if scope expands.</div>
+          </div>
+
+          <div class="preview-actions" style="margin-top:14px">
+            <button class="btn primary" type="button" onclick="window.print()">Print / Save PDF</button>
+            <button class="btn" type="button" id="copyBtn">Copy summary</button>
+          </div>
+          <div class="demo-note" style="margin-top:12px">Demo only — no data is saved or sent anywhere.</div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>Contractor Estimate Builder is a demo tool by Philip Builds Studio.</p>
+      <div>
+        <a href="../../index.html">Philip Builds Studio</a>
+        <a href="../../portfolio/index.html">Portfolio</a>
+      </div>
+    </footer>
+
+    <script>
+      function fmt(n) { return '$' + Math.max(0, n).toFixed(2); }
+
+      function update() {
+        document.getElementById('prevBiz').textContent = document.getElementById('bizName').value || 'Your Business';
+        document.getElementById('prevContact').textContent = document.getElementById('bizContact').value;
+        document.getElementById('prevClient').textContent = document.getElementById('clientName').value || 'Client';
+        document.getElementById('prevProject').textContent = document.getElementById('projectDesc').value || 'Project';
+        document.getElementById('prevNotes').textContent = document.getElementById('estNotes').value;
+
+        const vd = document.getElementById('validDate').value;
+        document.getElementById('prevValid').textContent = vd ? 'Valid until ' + new Date(vd + 'T00:00').toLocaleDateString() : '';
+
+        const markup = Math.max(0, parseFloat(document.getElementById('markup').value) || 0);
+        const lines = document.querySelectorAll('.line-item');
+        const prevLines = document.getElementById('prevLines');
+        prevLines.innerHTML = '';
+        let subtotal = 0;
+
+        lines.forEach(line => {
+          const desc = line.querySelector('.desc').value || 'Item';
+          const qty = Math.max(0, parseFloat(line.querySelector('.qty').value) || 0);
+          const unit = Math.max(0, parseFloat(line.querySelector('.unit').value) || 0);
+          const amt = qty * unit;
+          subtotal += amt;
+          const row = document.createElement('div');
+          row.className = 'est-line-row';
+          row.innerHTML = `<span class="desc">${desc}</span><span class="qty">×${qty % 1 === 0 ? qty : qty.toFixed(1)}</span><span class="amt">${fmt(amt)}</span>`;
+          prevLines.appendChild(row);
+        });
+
+        const markupAmt = subtotal * (markup / 100);
+        const total = subtotal + markupAmt;
+
+        document.getElementById('prevSub').textContent = fmt(subtotal);
+        document.getElementById('markupLabel').textContent = `Markup (${markup}%)`;
+        document.getElementById('prevMarkup').textContent = fmt(markupAmt);
+        document.getElementById('markupRow').style.display = markup > 0 ? 'flex' : 'none';
+        document.getElementById('prevTotal').textContent = fmt(total);
+      }
+
+      document.getElementById('addLine').addEventListener('click', () => {
+        const div = document.createElement('div');
+        div.className = 'line-item';
+        div.innerHTML = `<input type="text" class="desc" placeholder="Description" />
+          <input type="number" class="qty" value="1" min="0" step="0.5" />
+          <input type="number" class="unit" placeholder="0" min="0" step="1" />
+          <button class="remove-btn" type="button" aria-label="Remove">×</button>`;
+        div.querySelector('.remove-btn').addEventListener('click', () => { div.remove(); update(); });
+        div.querySelectorAll('input').forEach(i => i.addEventListener('input', update));
+        document.getElementById('lineItems').appendChild(div);
+        div.querySelector('.desc').focus();
+        update();
+      });
+
+      document.querySelectorAll('.remove-btn').forEach(btn => {
+        btn.addEventListener('click', () => { btn.closest('.line-item').remove(); update(); });
+      });
+
+      document.getElementById('inputPanel').addEventListener('input', update);
+
+      document.getElementById('copyBtn').addEventListener('click', () => {
+        const t = `Estimate\n${document.getElementById('prevBiz').textContent}\n\nFor: ${document.getElementById('prevClient').textContent}\nProject: ${document.getElementById('prevProject').textContent}\n\nTotal: ${document.getElementById('prevTotal').textContent}`;
+        navigator.clipboard.writeText(t).then(() => {
+          const btn = document.getElementById('copyBtn');
+          btn.textContent = 'Copied!';
+          setTimeout(() => { btn.textContent = 'Copy summary'; }, 2000);
+        });
+      });
+
+      document.getElementById('validDate').value = new Date(new Date().getTime() + 86400000 * 30).toISOString().slice(0, 10);
+      update();
+    </script>
+  </body>
+</html>

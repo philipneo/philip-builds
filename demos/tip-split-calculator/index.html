@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tip Split Calculator | Philip Builds Studio</title>
+    <meta name="description" content="A simple browser tool for splitting a restaurant bill and tip between friends." />
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="../../index.html" aria-label="Philip Builds Studio home">
+        <span>💰</span>
+        Tip Split
+      </a>
+      <span style="font-size:0.82rem;color:var(--muted)">Portfolio demo · Philip Builds Studio</span>
+    </header>
+
+    <main>
+      <p class="demo-eyebrow">Free calculator demo</p>
+      <h1>Split the bill. Skip the math.</h1>
+      <p class="subtitle">Enter the bill total, pick a tip percentage, and choose how many people to split between.</p>
+
+      <div class="calc-card">
+        <div class="field">
+          <label for="billAmount">Bill total</label>
+          <div class="input-row">
+            <span class="input-prefix">$</span>
+            <input type="number" id="billAmount" min="0" step="0.01" placeholder="0.00" value="85.00" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Tip percentage</label>
+          <div class="tip-row">
+            <button class="tip-btn" type="button" data-tip="10">10%</button>
+            <button class="tip-btn active" type="button" data-tip="15">15%</button>
+            <button class="tip-btn" type="button" data-tip="18">18%</button>
+            <button class="tip-btn" type="button" data-tip="20">20%</button>
+            <button class="tip-btn" type="button" data-tip="25">25%</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="numPeople">Number of people</label>
+          <div class="input-row">
+            <span class="input-prefix">👤</span>
+            <input type="number" id="numPeople" min="1" max="50" step="1" value="3" />
+          </div>
+        </div>
+
+        <hr class="divider" />
+
+        <div class="results" aria-live="polite" aria-label="Split results">
+          <div class="result-row">
+            <span class="result-label">Tip amount</span>
+            <span class="result-value" id="tipAmount">$12.75</span>
+          </div>
+          <div class="result-row">
+            <span class="result-label">Total with tip</span>
+            <span class="result-value" id="totalAmount">$97.75</span>
+          </div>
+          <div class="result-row primary">
+            <span class="result-label">Each person pays</span>
+            <span class="result-value" id="perPerson">$32.58</span>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>Demo tool by Philip Builds Studio. No data is saved or sent.</p>
+      <div>
+        <a href="../../index.html">Philip Builds Studio</a>
+        <a href="../../portfolio/index.html">Portfolio</a>
+      </div>
+    </footer>
+
+    <script>
+      const bill = document.getElementById('billAmount');
+      const people = document.getElementById('numPeople');
+      const tipBtns = document.querySelectorAll('.tip-btn');
+      let tipPct = 15;
+
+      function calc() {
+        const b = Math.max(0, parseFloat(bill.value) || 0);
+        const n = Math.max(1, parseInt(people.value) || 1);
+        const tip = b * (tipPct / 100);
+        const total = b + tip;
+        const per = total / n;
+        document.getElementById('tipAmount').textContent = '$' + tip.toFixed(2);
+        document.getElementById('totalAmount').textContent = '$' + total.toFixed(2);
+        document.getElementById('perPerson').textContent = '$' + per.toFixed(2);
+      }
+
+      tipBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          tipBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          tipPct = parseInt(btn.dataset.tip);
+          calc();
+        });
+      });
+
+      bill.addEventListener('input', calc);
+      people.addEventListener('input', calc);
+      calc();
+    </script>
+  </body>
+</html>
