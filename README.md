@@ -14,6 +14,7 @@ Public assets:
 
 - `portfolio/index.html` - a simple portfolio page for Philip.
 - `demos/mobile-detailing-landing-page/index.html` - GlossLane business landing page demo.
+- `demos/barber-booking-landing-page/index.html` - Crown & Fade barber booking landing page demo.
 - `demos/shift-downtime-calculator/index.html` - a clickable operations tool demo.
 - `demos/cashflow-lab/index.html` - archived internal planning tool.
 

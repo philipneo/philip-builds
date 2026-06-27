@@ -6,7 +6,7 @@
     <title>GlossLane Mobile Detailing | Demo Landing Page</title>
     <meta
       name="description"
-      content="A fictional mobile-detailing landing page demo with pricing, quote form, reviews, and booking calls to action."
+      content="A fictional mobile-detailing landing page demo with pricing, quote capture, service proof sections, and booking calls to action."
     />
     <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="styles.css" />
@@ -85,42 +85,57 @@
 
       <section id="proof" class="section proof-section">
         <div class="section-head">
-          <p class="eyebrow">Before / after placeholders</p>
-          <h2>Show the work fast.</h2>
+          <p class="eyebrow">Demo transformation</p>
+          <h2>From hard-to-scan to ready to quote.</h2>
           <p>
-            These blocks are placeholders for a real client’s before and after
-            photos. They are intentionally labeled as demo content.
+            Fictional demo concept — not a live business result. This section
+            shows how a service page can turn scattered details into a clear
+            mobile-first path.
           </p>
         </div>
-        <div class="before-after">
-          <figure>
-            <div class="photo-placeholder before">Before photo</div>
-            <figcaption>Demo placeholder: interior cleanup before image</figcaption>
-          </figure>
-          <figure>
-            <div class="photo-placeholder after">After photo</div>
-            <figcaption>Demo placeholder: finished interior after image</figcaption>
-          </figure>
+        <div class="before-after" aria-label="Fictional before and after website concept">
+          <article class="concept-card before-concept">
+            <span>Before: Basic Online Presence</span>
+            <h3>Unclear services</h3>
+            <p>Generic text, buried pricing, and no obvious quote path for mobile visitors.</p>
+            <div class="mini-site messy-site" aria-hidden="true">
+              <i></i>
+              <i></i>
+              <i></i>
+              <b></b>
+            </div>
+          </article>
+          <article class="concept-card after-concept">
+            <span>After: Clean Service Website</span>
+            <h3>Clear menu and CTA</h3>
+            <p>Packages, starting prices, service notes, and a quote button that is easy to tap.</p>
+            <div class="mini-site clean-site" aria-hidden="true">
+              <strong>Interior Reset</strong>
+              <em>$149</em>
+              <i></i>
+              <span class="mock-button">Request a Quote</span>
+            </div>
+          </article>
         </div>
       </section>
 
       <section class="section reviews" aria-labelledby="reviews-title">
         <div class="section-head">
-          <p class="eyebrow">Demo review placeholders</p>
-          <h2 id="reviews-title">Trust signals a real site would include.</h2>
+          <p class="eyebrow">Page proof</p>
+          <h2 id="reviews-title">Trust signals without made-up reviews.</h2>
         </div>
         <div class="review-grid">
           <article>
-            <p>“Demo review placeholder. The car looked clean and the booking process was easy.”</p>
-            <strong>Sample Customer A</strong>
+            <span>Service clarity</span>
+            <p>Each package explains what is included so a customer can choose quickly.</p>
           </article>
           <article>
-            <p>“Demo review placeholder. Clear pricing and fast mobile service made it simple.”</p>
-            <strong>Sample Customer B</strong>
+            <span>Quote path</span>
+            <p>The form asks for the useful basics before a call or text follow-up.</p>
           </article>
           <article>
-            <p>“Demo review placeholder. Great communication before arrival and after the detail.”</p>
-            <strong>Sample Customer C</strong>
+            <span>Mobile layout</span>
+            <p>Buttons, pricing, and service cards are built to be readable on a phone.</p>
           </article>
         </div>
       </section>

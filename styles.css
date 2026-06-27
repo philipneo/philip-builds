@@ -298,14 +298,14 @@ nav a:focus-visible {
   width: 72%;
 }
 
-.mockup-card button,
-.phone-screen button {
+.mock-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   min-height: 42px;
-  border: 0;
   border-radius: 8px;
   background: #fff;
   color: var(--ink);
-  font: inherit;
   font-weight: 900;
 }
 
@@ -459,7 +459,7 @@ ul {
 
 .work-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
 }
 

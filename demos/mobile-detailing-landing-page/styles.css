@@ -303,37 +303,105 @@ article strong {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-figure {
-  margin: 0;
+.concept-card {
+  gap: 14px;
   overflow: hidden;
 }
 
-.photo-placeholder {
-  display: grid;
-  place-items: center;
-  min-height: 260px;
-  color: #fff;
-  font-size: 1.5rem;
+.concept-card span,
+.review-grid span {
+  color: var(--gold);
+  font-size: 0.78rem;
   font-weight: 900;
+  text-transform: uppercase;
 }
 
-.before {
+.mini-site {
+  display: grid;
+  gap: 10px;
+  min-height: 230px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.messy-site {
+  align-content: center;
   background:
-    linear-gradient(135deg, rgba(23, 32, 42, 0.85), rgba(23, 32, 42, 0.55)),
+    linear-gradient(135deg, rgba(23, 32, 42, 0.86), rgba(23, 32, 42, 0.66)),
     repeating-linear-gradient(45deg, #6b7280 0 12px, #4b5563 12px 24px);
 }
 
-.after {
-  background:
-    linear-gradient(135deg, rgba(15, 118, 110, 0.84), rgba(29, 78, 216, 0.6)),
-    repeating-linear-gradient(45deg, #0f766e 0 12px, #1d4ed8 12px 24px);
+.messy-site i,
+.messy-site b,
+.clean-site i {
+  display: block;
+  border-radius: 999px;
 }
 
-figcaption {
-  padding: 12px 14px;
-  color: var(--muted);
-  font-size: 0.9rem;
-  font-weight: 760;
+.messy-site i {
+  height: 14px;
+  background: rgba(255, 255, 255, 0.34);
+}
+
+.messy-site i:nth-child(1) {
+  width: 94%;
+}
+
+.messy-site i:nth-child(2) {
+  width: 68%;
+}
+
+.messy-site i:nth-child(3) {
+  width: 84%;
+}
+
+.messy-site b {
+  width: 42%;
+  height: 36px;
+  margin-top: 16px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.clean-site {
+  align-content: start;
+  background:
+    radial-gradient(circle at 84% 18%, rgba(183, 121, 31, 0.18), transparent 9rem),
+    #f8fafc;
+}
+
+.clean-site strong {
+  color: var(--ink);
+  font-size: 1.55rem;
+  line-height: 1.05;
+}
+
+.clean-site em {
+  width: fit-content;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: #e8f6f2;
+  color: var(--accent-dark);
+  font-style: normal;
+  font-weight: 900;
+}
+
+.clean-site i {
+  width: 76%;
+  height: 54px;
+  border: 1px solid var(--line);
+  background: #fff;
+}
+
+.mock-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 900;
 }
 
 .quote-section {
