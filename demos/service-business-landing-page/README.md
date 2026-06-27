@@ -1,6 +1,6 @@
-# BrightSide Home Services — Demo Landing Page
+# Service Business Demo — Philip Builds Studio
 
-A fictional one-page demo for a local home-services business built by Philip Builds Studio.
+A fictional one-page demo for a local service business, built by Philip Builds Studio.
 
 ## What this demo shows
 
@@ -14,7 +14,7 @@ A fictional one-page demo for a local home-services business built by Philip Bui
 
 ## Fictional brand
 
-BrightSide Home Services is a fictional demo brand. No real business content, customer data, or client results are used.
+Example Service Co. is the fictional demo brand used on this page. No real business content, customer data, or client results are used.
 
 ## Files
 
