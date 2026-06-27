@@ -10,8 +10,9 @@
     />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
   </head>
-  <body>
+  <body class="no-js">
     <header class="site-header">
       <a class="brand" href="#top" aria-label="Philip Builds Studio home">
         <span>PBS</span>
@@ -28,7 +29,7 @@
 
     <main id="top">
       <section id="hero" class="hero" aria-labelledby="hero-title">
-        <div class="hero-copy">
+        <div class="hero-copy reveal reveal-up">
           <p class="eyebrow">Websites for local service businesses</p>
           <h1 id="hero-title">Your Business Deserves a Real Website</h1>
           <p>
@@ -40,10 +41,24 @@
             <a class="button" href="mailto:philipbuildsstudio@gmail.com?subject=Project%20Inquiry">Start a Project</a>
           </div>
         </div>
+        <div class="hero-showcase reveal reveal-scale" aria-hidden="true">
+          <div class="mockup-card mockup-card-large">
+            <span></span>
+            <strong>Services</strong>
+            <p>Detailing, pressure washing, repairs</p>
+            <div></div>
+            <div></div>
+            <button>Request a quote</button>
+          </div>
+          <div class="mockup-card mockup-card-small">
+            <strong>Open on mobile</strong>
+            <p>Clear prices, photos, and contact.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="problem" class="section problem-section" aria-labelledby="problem-title">
-        <div class="section-head">
+      <section id="problem" class="section problem-section reveal" aria-labelledby="problem-title">
+        <div class="section-head reveal reveal-up">
           <p class="eyebrow">Problem</p>
           <h2 id="problem-title">A confusing website makes good businesses look harder to trust.</h2>
           <p>
@@ -52,24 +67,24 @@
             move on.
           </p>
         </div>
-        <div class="problem-grid">
-          <article>
+        <div class="problem-grid stagger">
+          <article class="reveal reveal-up">
             <h3>Hard to scan</h3>
             <p>Too much clutter makes it hard for customers to understand what you offer.</p>
           </article>
-          <article>
+          <article class="reveal reveal-up">
             <h3>Weak contact path</h3>
             <p>A hidden phone, quote, or email button costs attention at the exact moment it matters.</p>
           </article>
-          <article>
+          <article class="reveal reveal-up">
             <h3>Not built for phones</h3>
             <p>Small text, awkward spacing, and cramped buttons make the business feel less ready.</p>
           </article>
         </div>
       </section>
 
-      <section id="demo" class="section demo-section" aria-labelledby="demo-title">
-        <div class="section-head">
+      <section id="demo" class="section demo-section reveal" aria-labelledby="demo-title">
+        <div class="section-head reveal reveal-up">
           <p class="eyebrow">Demo / GlossLane</p>
           <h2 id="demo-title">See a one-page service business demo.</h2>
           <p>
@@ -77,7 +92,7 @@
             of service menu, pricing, quote path, and mobile layout I build.
           </p>
         </div>
-        <article class="demo-feature">
+        <article class="demo-feature reveal reveal-scale">
           <div>
             <span>Landing page demo</span>
             <h3>GlossLane Mobile Detailing</h3>
@@ -90,8 +105,45 @@
         </article>
       </section>
 
-      <section id="services" class="section intro-grid" aria-labelledby="services-title">
-        <div class="section-head">
+      <section id="showcase" class="section scroll-showcase" aria-labelledby="showcase-title">
+        <div class="showcase-copy reveal reveal-up">
+          <p class="eyebrow">What your customer sees first</p>
+          <h2 id="showcase-title">A site that works on the first tap.</h2>
+          <p>
+            The goal is simple: help someone understand the service, trust the
+            page, and find the right next step without digging.
+          </p>
+        </div>
+        <div class="showcase-stage" aria-hidden="true">
+          <div class="before-panel reveal reveal-up">
+            <span>Before</span>
+            <strong>Buried details</strong>
+            <p>Long paragraphs, unclear pricing, and a contact link below the fold.</p>
+          </div>
+          <div class="phone-mockup reveal reveal-scale">
+            <div class="phone-speaker"></div>
+            <div class="phone-screen">
+              <span>Clean service page</span>
+              <strong>Book mobile detailing</strong>
+              <p>Packages, photos, and quote button in view.</p>
+              <div class="screen-lines">
+                <i></i>
+                <i></i>
+                <i></i>
+              </div>
+              <button>Get a quote</button>
+            </div>
+          </div>
+          <div class="after-panel reveal reveal-up">
+            <span>After</span>
+            <strong>Clear next step</strong>
+            <p>Readable service menu, simple pricing, and a contact button that is easy to tap.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="services" class="section intro-grid reveal" aria-labelledby="services-title">
+        <div class="section-head reveal reveal-up">
           <p class="eyebrow">What I Build</p>
           <h2 id="services-title">Clean pages that help customers understand and contact you.</h2>
           <p>
@@ -100,29 +152,29 @@
             headaches.
           </p>
         </div>
-        <div class="value-list" aria-label="Website features">
-          <div>
+        <div class="value-list stagger" aria-label="Website features">
+          <div class="reveal reveal-up">
             <strong>Services and pricing</strong>
             <span>Show what you do, who it is for, and what it costs.</span>
           </div>
-          <div>
+          <div class="reveal reveal-up">
             <strong>Clear contact buttons</strong>
             <span>Make calling, emailing, or requesting a quote easy.</span>
           </div>
-          <div>
+          <div class="reveal reveal-up">
             <strong>Mobile-ready layout</strong>
             <span>Built to look clean on the phone your customers actually use.</span>
           </div>
         </div>
       </section>
 
-      <section id="packages" class="section package-section" aria-labelledby="packages-title">
-        <div class="section-head">
+      <section id="packages" class="section package-section reveal" aria-labelledby="packages-title">
+        <div class="section-head reveal reveal-up">
           <p class="eyebrow">Packages</p>
           <h2 id="packages-title">Fixed-price website help without the maze.</h2>
         </div>
-        <div class="package-grid">
-          <article class="package-card">
+        <div class="package-grid stagger">
+          <article class="package-card reveal reveal-up">
             <span class="price">$150</span>
             <h3>Starter Site</h3>
             <p>
@@ -136,7 +188,7 @@
             </ul>
           </article>
 
-          <article class="package-card featured">
+          <article class="package-card featured reveal reveal-up">
             <span class="price">$300</span>
             <h3>Business Site</h3>
             <p>
@@ -150,7 +202,7 @@
             </ul>
           </article>
 
-          <article class="package-card">
+          <article class="package-card reveal reveal-up">
             <span class="price">$50/month</span>
             <h3>Site Care</h3>
             <p>
@@ -166,23 +218,23 @@
         </div>
       </section>
 
-      <section id="process" class="section process-section" aria-labelledby="process-title">
-        <div class="section-head">
+      <section id="process" class="section process-section reveal" aria-labelledby="process-title">
+        <div class="section-head reveal reveal-up">
           <p class="eyebrow">Process</p>
           <h2 id="process-title">Simple scope, then a focused build.</h2>
         </div>
-        <div class="process-grid">
-          <article>
+        <div class="process-grid stagger">
+          <article class="reveal reveal-up">
             <span>01</span>
             <h3>Send the basics</h3>
             <p>Business name, current link if you have one, services, photos, and the best contact path.</p>
           </article>
-          <article>
+          <article class="reveal reveal-up">
             <span>02</span>
             <h3>Confirm the scope</h3>
             <p>We keep the page focused: what to build, what it costs, and what counts as done.</p>
           </article>
-          <article>
+          <article class="reveal reveal-up">
             <span>03</span>
             <h3>Review and launch</h3>
             <p>You review the page, request the included revision, and get a cleaner public link.</p>
@@ -190,8 +242,8 @@
         </div>
       </section>
 
-      <section id="work" class="section work-section" aria-labelledby="work-title">
-        <div class="section-head">
+      <section id="work" class="section work-section reveal" aria-labelledby="work-title">
+        <div class="section-head reveal reveal-up">
           <p class="eyebrow">More Work</p>
           <h2 id="work-title">More demos you can click through.</h2>
           <p>
@@ -199,8 +251,8 @@
             the kind of layout, structure, and small tools I can build.
           </p>
         </div>
-        <div class="work-grid">
-          <article class="work-card">
+        <div class="work-grid stagger">
+          <article class="work-card reveal reveal-up">
             <span>Studio page</span>
             <h3>Portfolio</h3>
             <p>
@@ -210,7 +262,7 @@
             <a href="portfolio/index.html">Open portfolio</a>
           </article>
 
-          <article class="work-card">
+          <article class="work-card reveal reveal-up">
             <span>Tool demo</span>
             <h3>Shift Downtime Calculator</h3>
             <p>
@@ -220,7 +272,7 @@
             <a href="demos/shift-downtime-calculator/index.html">Open calculator</a>
           </article>
 
-          <article class="work-card">
+          <article class="work-card reveal reveal-up">
             <span>Internal tool</span>
             <h3>Cashflow Lab</h3>
             <p>
@@ -232,29 +284,29 @@
         </div>
       </section>
 
-      <section id="faq" class="section faq-section" aria-labelledby="faq-title">
-        <div class="section-head">
+      <section id="faq" class="section faq-section reveal" aria-labelledby="faq-title">
+        <div class="section-head reveal reveal-up">
           <p class="eyebrow">FAQ</p>
           <h2 id="faq-title">Straight answers before the project starts.</h2>
         </div>
-        <div class="faq-grid">
-          <article>
+        <div class="faq-grid stagger">
+          <article class="reveal reveal-up">
             <h3>What do you need from me?</h3>
             <p>Your business name, services, prices if you have them, photos, and the best contact button.</p>
           </article>
-          <article>
+          <article class="reveal reveal-up">
             <h3>Is this a huge website project?</h3>
             <p>No. The goal is a clean, useful site with a simple scope and fixed price.</p>
           </article>
-          <article>
+          <article class="reveal reveal-up">
             <h3>Can you update it later?</h3>
             <p>Yes. Site Care covers small updates like new photos, price edits, promos, and quick fixes.</p>
           </article>
         </div>
       </section>
 
-      <section id="contact" class="section contact-section" aria-labelledby="contact-title">
-        <div>
+      <section id="contact" class="section contact-section reveal" aria-labelledby="contact-title">
+        <div class="reveal reveal-up">
           <p class="eyebrow">Final CTA</p>
           <h2 id="contact-title">Need a cleaner website for your business?</h2>
           <p>
@@ -263,7 +315,7 @@
           </p>
         </div>
         <a
-          class="button primary"
+          class="button primary reveal reveal-scale"
           href="mailto:philipbuildsstudio@gmail.com?subject=Project%20Inquiry"
         >
           Start a Project

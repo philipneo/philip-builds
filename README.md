@@ -19,7 +19,7 @@ Public assets:
 
 ## Folder Map
 
-- `index.html`, `styles.css` - the public Philip Builds Studio homepage.
+- `index.html`, `styles.css`, `script.js` - the public Philip Builds Studio homepage.
 - `portfolio/` - Philip's public portfolio page.
 - `demos/` - clickable public demo apps, including the archived Cashflow Lab.
 - `docs/` - setup and publishing instructions.
