@@ -466,6 +466,285 @@ article strong {
   border-color: rgba(37, 99, 235, 0.35);
 }
 
+/* ─── PRACTICAL TOOLS LAB ───────────────────────────────── */
+.tools-lab {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 14% 10%, rgba(37, 99, 235, 0.14), transparent 30%),
+    radial-gradient(circle at 86% 12%, rgba(15, 118, 110, 0.14), transparent 34%),
+    #f7f9fc;
+}
+
+.tools-lab::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(24, 33, 47, 0.05) 1px, transparent 1px),
+    linear-gradient(rgba(24, 33, 47, 0.05) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: linear-gradient(180deg, rgba(0,0,0,0.75), transparent 72%);
+}
+
+.tools-hero,
+.tool-principles,
+.tools-grid {
+  position: relative;
+  z-index: 1;
+}
+
+.tools-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(360px, 1.08fr);
+  gap: clamp(24px, 5vw, 56px);
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+.tools-hero .section-head {
+  margin-bottom: 0;
+}
+
+.tools-hero .section-head p:last-child {
+  margin-bottom: 0;
+  font-size: 1.04rem;
+}
+
+.tools-showcase {
+  overflow: hidden;
+  border: 1px solid rgba(24, 33, 47, 0.14);
+  border-radius: 18px;
+  background: #0f172a;
+  box-shadow: 0 28px 80px rgba(15, 23, 42, 0.22);
+}
+
+.tools-window-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  color: #94a3b8;
+}
+
+.tools-window-bar span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ef4444;
+}
+
+.tools-window-bar span:nth-child(2) {
+  background: #f59e0b;
+}
+
+.tools-window-bar span:nth-child(3) {
+  background: #10b981;
+}
+
+.tools-window-bar strong {
+  margin-left: 8px;
+  font-size: 0.78rem;
+}
+
+.tools-window-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 210px;
+  gap: 14px;
+  padding: clamp(16px, 3vw, 28px);
+}
+
+.tools-screen-main,
+.tools-screen-side div {
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.tools-screen-main {
+  display: grid;
+  gap: 14px;
+  min-height: 310px;
+  padding: 22px;
+}
+
+.tools-screen-main p,
+.tools-screen-side span {
+  margin: 0;
+  color: #60a5fa;
+  font-size: 0.74rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.tools-screen-main h3 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(2.1rem, 5vw, 4.2rem);
+  line-height: 0.95;
+}
+
+.tool-meter {
+  height: 10px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.tool-meter i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #60a5fa, #10b981);
+  animation: tool-meter-pulse 4s ease-in-out infinite;
+}
+
+.tool-line {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 12px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+  font-size: 0.88rem;
+}
+
+.tool-line strong {
+  color: #e2e8f0;
+  text-align: right;
+}
+
+.tools-screen-side {
+  display: grid;
+  gap: 12px;
+}
+
+.tools-screen-side div {
+  display: grid;
+  align-content: center;
+  gap: 8px;
+  min-height: 90px;
+  padding: 16px;
+}
+
+.tools-screen-side strong {
+  color: #fff;
+  font-size: 1.05rem;
+}
+
+.tool-principles {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 24px 0;
+}
+
+.tool-principles div {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 10px 28px rgba(24, 33, 47, 0.06);
+}
+
+.tool-principles span,
+.tool-card-top span {
+  color: var(--gold);
+  font-size: 0.74rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.tool-principles strong {
+  color: var(--ink);
+}
+
+.tool-principles p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 22px;
+}
+
+.tool-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 100%;
+  box-shadow: 0 16px 44px rgba(24, 33, 47, 0.09);
+}
+
+.tool-card::after {
+  content: "";
+  position: absolute;
+  inset: auto 18px 0;
+  height: 3px;
+  border-radius: 999px 999px 0 0;
+  background: linear-gradient(90deg, #2563eb, #0f766e);
+  opacity: 0.34;
+}
+
+.tool-card-featured {
+  border-color: rgba(37, 99, 235, 0.32);
+  background: linear-gradient(180deg, #ffffff, #f8fbff);
+}
+
+.tool-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.tool-card-top strong {
+  min-height: 28px;
+  padding: 0 9px;
+  border-radius: 999px;
+  background: #eff6ff;
+  color: var(--accent-dark);
+  font-size: 0.76rem;
+}
+
+.tool-card ul {
+  padding-left: 18px;
+  margin: 0;
+}
+
+.tool-card li {
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.tool-card a {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  min-height: 44px;
+  color: var(--accent-dark);
+  font-weight: 850;
+  text-decoration: none;
+  align-self: end;
+}
+
+.tool-card a:hover,
+.tool-card a:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+@keyframes tool-meter-pulse {
+  50% { opacity: 0.58; transform: scaleX(0.88); transform-origin: left; }
+}
+
 .contact {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
@@ -528,6 +807,16 @@ article strong {
   .projects-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .tools-hero,
+  .tools-window-body,
+  .tools-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tool-principles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 800px) {
@@ -558,6 +847,28 @@ article strong {
 @media (max-width: 520px) {
   .projects-grid {
     grid-template-columns: 1fr;
+  }
+
+  .tool-principles,
+  .tools-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tools-showcase {
+    border-radius: 14px;
+  }
+
+  .tools-screen-main {
+    min-height: 260px;
+    padding: 16px;
+  }
+
+  .tool-line {
+    display: grid;
+  }
+
+  .tool-line strong {
+    text-align: left;
   }
 }
 
