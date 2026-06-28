@@ -15,12 +15,22 @@
     invoice: "demos/invoice-builder/index.html",
     portfolio: "portfolio/index.html",
     start: "start-project/index.html",
+    matcher: "project-matcher/index.html",
+    studio: "studio-os/index.html",
     home: "index.html"
   };
 
   const MAILTO =
     "mailto:philipbuildsstudio@gmail.com?subject=" +
     encodeURIComponent("Project inquiry — Philip Builds Studio");
+
+  // Safe local device memory (no personal data). Set by the Project Matcher.
+  function memGet() {
+    try { return JSON.parse(localStorage.getItem("pbs.lastMatch") || "null"); } catch (e) { return null; }
+  }
+  function memClear() {
+    try { localStorage.removeItem("pbs.lastMatch"); } catch (e) {}
+  }
 
   const contextCopy = {
     home: {
@@ -84,6 +94,22 @@
 
   function recommendationsFor(text) {
     const value = text.toLowerCase();
+    if (value.includes("reset") || value.includes("forget")) {
+      memClear();
+      return {
+        text: "Done — I cleared the last match remembered on this device. Nothing else was ever stored.",
+        links: [["Open the matcher", routes.matcher]]
+      };
+    }
+    if (
+      value.includes("match me") || value.includes("recommend") || value.includes("matcher") ||
+      value.includes("what should i build") || value.includes("not sure") || value.includes("help me choose")
+    ) {
+      return {
+        text: "Use the Project Matcher — pick your business type, goal, and build, and it points you to the closest demo. It runs in your browser and remembers your last pick on this device only.",
+        links: [["Open Project Matcher", routes.matcher], ["Studio roadmap", routes.studio]]
+      };
+    }
     if (
       value.includes("hire") || value.includes("contact") || value.includes("project") ||
       value.includes("build me") || value.includes("work with") || value.includes("start a") ||
@@ -212,9 +238,17 @@
     const close = panel.querySelector(".pbs-assistant-close");
 
     addMessage(body, copy.intro, {
-      links: [["View flagship", routes.command], ["Open portfolio", routes.portfolio]],
+      links: [["Match me to a demo", routes.matcher], ["Open portfolio", routes.portfolio]],
       small: "Try a quick prompt below."
     });
+
+    const saved = memGet();
+    if (saved && saved.label && saved.href) {
+      addMessage(body, "Welcome back — on this device you last matched with " + saved.label + ".", {
+        links: [["Continue: " + saved.label, saved.href], ["New match", routes.matcher]],
+        small: "Type \"reset\" to forget this."
+      });
+    }
 
     quickPrompts.forEach((prompt) => {
       const chip = createElement("button", "pbs-assistant-chip", prompt);

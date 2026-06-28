@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Project Matcher | Philip Builds Studio</title>
+    <meta name="description" content="A guided front-end matcher: pick your business type, goal, and build, and get pointed to the demo that's closest. No data collected — runs entirely in your browser." />
+    <link rel="canonical" href="https://philipneo.github.io/philip-builds/project-matcher/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Philip Builds Studio" />
+    <meta property="og:title" content="Project Matcher | Philip Builds Studio" />
+    <meta property="og:description" content="Pick a business type, goal, and build — get the closest demo match. Front-end only, no data collected." />
+    <meta property="og:url" content="https://philipneo.github.io/philip-builds/project-matcher/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Project Matcher | Philip Builds Studio" />
+    <meta name="twitter:description" content="Pick a business type, goal, and build — get the closest demo match." />
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../shared/site.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../shared/assistant.css" />
+    <script src="../shared/assistant.js" defer data-assistant-root="../" data-assistant-context="portfolio"></script>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header class="site-head">
+      <a class="site-brand" href="../index.html"><span>PBS</span> Philip Builds Studio</a>
+      <nav aria-label="Site">
+        <a href="../index.html">Home</a>
+        <a href="../portfolio/index.html">Portfolio</a>
+        <a href="../start-project/index.html">Start a project</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="section hero">
+        <span class="badge">Guided front-end matcher · no data collected</span>
+        <p class="eyebrow">Project matcher</p>
+        <h1>Find the demo that fits your business.</h1>
+        <p>Answer three quick questions and I'll point you to the closest demo and the build type that matches. It runs entirely in your browser — nothing is sent or stored anywhere but your own device.</p>
+      </section>
+
+      <section class="section" aria-labelledby="q1">
+        <div class="section-head"><p class="eyebrow">Step 1</p><h2 id="q1">What kind of business is it?</h2></div>
+        <div class="chip-group" id="bizGroup" role="group" aria-labelledby="q1">
+          <button class="chip" type="button" data-q="biz" data-val="service">Service business</button>
+          <button class="chip" type="button" data-q="biz" data-val="restaurant">Restaurant / food</button>
+          <button class="chip" type="button" data-q="biz" data-val="auto">Auto / detailing</button>
+          <button class="chip" type="button" data-q="biz" data-val="cleaning">Cleaning</button>
+          <button class="chip" type="button" data-q="biz" data-val="contractor">Contractor / trades</button>
+          <button class="chip" type="button" data-q="biz" data-val="operations">Personal workflow / operations</button>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="q2">
+        <div class="section-head"><p class="eyebrow">Step 2</p><h2 id="q2">What's the main goal?</h2></div>
+        <div class="chip-group" id="goalGroup" role="group" aria-labelledby="q2">
+          <button class="chip" type="button" data-q="goal" data-val="inquiries">Get more inquiries</button>
+          <button class="chip" type="button" data-q="goal" data-val="pricing">Show pricing faster</button>
+          <button class="chip" type="button" data-q="goal" data-val="choose">Let customers choose services</button>
+          <button class="chip" type="button" data-q="goal" data-val="organize">Organize jobs / operations</button>
+          <button class="chip" type="button" data-q="goal" data-val="invoice">Send invoices / client handoff</button>
+          <button class="chip" type="button" data-q="goal" data-val="mobile">Improve mobile experience</button>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="q3">
+        <div class="section-head"><p class="eyebrow">Step 3</p><h2 id="q3">What do you want built?</h2></div>
+        <div class="chip-group" id="buildGroup" role="group" aria-labelledby="q3">
+          <button class="chip" type="button" data-q="build" data-val="site">Simple site</button>
+          <button class="chip" type="button" data-q="build" data-val="quote">Interactive quote tool</button>
+          <button class="chip" type="button" data-q="build" data-val="booking">Booking / intake flow</button>
+          <button class="chip" type="button" data-q="build" data-val="menu">Menu / order flow</button>
+          <button class="chip" type="button" data-q="build" data-val="dashboard">Dashboard / command center</button>
+          <button class="chip" type="button" data-q="build" data-val="invoice">Invoice / client portal</button>
+        </div>
+        <div class="actions">
+          <button class="btn primary" type="button" id="matchBtn">See my match</button>
+          <button class="btn" type="button" id="resetBtn">Reset</button>
+        </div>
+      </section>
+
+      <section class="section" aria-live="polite">
+        <div class="match-result" id="result" hidden>
+          <p class="tag" id="resultTag">Best match</p>
+          <h2 id="resultDemo">—</h2>
+          <p id="resultWhy">—</p>
+          <p class="match-build" id="resultBuild">—</p>
+          <div class="actions">
+            <a class="btn primary" id="resultOpen" href="#">Open the demo</a>
+            <a class="btn" id="resultStart" href="../start-project/index.html">Start a project with this</a>
+          </div>
+        </div>
+        <p class="match-hint" id="matchHint">Pick at least a business type, then press “See my match.”</p>
+        <p class="match-memory" id="memoryLine" hidden></p>
+      </section>
+    </main>
+
+    <footer>
+      <span>Philip Builds Studio — guided matcher. Front-end only, no data leaves your device.</span>
+      <span><a href="../index.html">Home</a> · <a href="../portfolio/index.html">Portfolio</a></span>
+    </footer>
+  </body>
+</html>

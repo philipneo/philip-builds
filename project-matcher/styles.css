@@ -1,0 +1,40 @@
+/* Project Matcher — page-specific bits (chrome comes from ../shared/site.css) */
+.match-result {
+  border: 1px solid rgba(94, 234, 212, 0.32);
+  border-radius: 20px;
+  padding: clamp(24px, 4vw, 40px);
+  background:
+    radial-gradient(circle at 92% 0%, rgba(94, 234, 212, 0.16), transparent 42%),
+    var(--panel);
+  box-shadow: var(--shadow);
+}
+.match-result h2 { color: #fff; margin-bottom: 8px; }
+.match-build {
+  margin-top: 10px;
+  color: #cdd8e6;
+  font-weight: 700;
+}
+.match-hint { margin-top: 14px; color: #7c8aa0; font-size: 0.9rem; }
+.match-memory {
+  margin-top: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--mint);
+  font-weight: 700;
+  font-size: 0.92rem;
+}
+.match-memory a { text-decoration: underline; }
+.match-memory button {
+  min-height: 32px;
+  padding: 0 12px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--soft);
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.match-memory button:hover { color: var(--ink); }

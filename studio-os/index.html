@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Studio OS — Site Health &amp; Roadmap | Philip Builds Studio</title>
+    <meta name="description" content="A public improvement map for Philip Builds Studio: what's shipped, what's next, a self-audit checklist, and handoff notes for future build passes. Front-end only." />
+    <link rel="canonical" href="https://philipneo.github.io/philip-builds/studio-os/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Philip Builds Studio" />
+    <meta property="og:title" content="Studio OS — Site Health & Roadmap" />
+    <meta property="og:description" content="What's shipped, what's next, and a self-audit map for Philip Builds Studio. Front-end only." />
+    <meta property="og:url" content="https://philipneo.github.io/philip-builds/studio-os/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Studio OS — Site Health & Roadmap" />
+    <meta name="twitter:description" content="What's shipped, what's next, and a self-audit map." />
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../shared/site.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../shared/assistant.css" />
+    <script src="../shared/assistant.js" defer data-assistant-root="../" data-assistant-context="portfolio"></script>
+  </head>
+  <body>
+    <header class="site-head">
+      <a class="site-brand" href="../index.html"><span>PBS</span> Philip Builds Studio</a>
+      <nav aria-label="Site">
+        <a href="../index.html">Home</a>
+        <a href="../portfolio/index.html">Portfolio</a>
+        <a href="../start-project/index.html">Start a project</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="section hero">
+        <span class="badge">Public improvement map · front-end only</span>
+        <p class="eyebrow">Studio OS</p>
+        <h1>Site health &amp; roadmap.</h1>
+        <p>This static site can't deploy changes by itself — there's no backend or automation. What it keeps instead is an honest, public improvement map and a front-end checklist, so every future build pass starts with a clear picture of what's done and what's next.</p>
+      </section>
+
+      <section class="section" aria-labelledby="stage">
+        <div class="section-head"><p class="eyebrow">Current stage</p><h2 id="stage">Where the site is right now.</h2></div>
+        <div class="grid-3">
+          <div class="card"><span class="tag">Stage</span><h3>Premium demo system</h3><p>Tier-1 demos are deepened into working mini-products; Tier-2 demos are consistent and assistant-wired.</p></div>
+          <div class="card"><span class="tag">Funnel</span><h3>Guided, not pushy</h3><p>Demo Assistant, Project Matcher, and a Start Project page route visitors without forms or tracking.</p></div>
+          <div class="card"><span class="tag">Infra</span><h3>Static &amp; honest</h3><p>GitHub Pages, no dependencies, no analytics, no backend. Everything runs in the browser.</p></div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="shipped">
+        <div class="section-head"><p class="eyebrow">Shipped</p><h2 id="shipped">What's live.</h2></div>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Experience</h3>
+            <ul class="clean">
+              <li>6 deepened Tier-1 demos with real interaction + state</li>
+              <li>7 Tier-2 demos, consistent and assistant-wired</li>
+              <li>Front-end Demo Assistant across the whole site</li>
+              <li>Project Matcher with local device memory</li>
+              <li>Start Project page with pre-filled email (no backend)</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Foundations</h3>
+            <ul class="clean">
+              <li>robots.txt, sitemap.xml, styled 404</li>
+              <li>Open Graph / Twitter / canonical meta</li>
+              <li>Reduced-motion + focus states</li>
+              <li>No external assets, fonts, or trackers</li>
+              <li>Local-only memory for harmless preferences</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="next">
+        <div class="section-head"><p class="eyebrow">Next up</p><h2 id="next">Recommended upgrades.</h2></div>
+        <div class="grid-3">
+          <div class="card"><span class="tag">Depth</span><h3>Per-demo case studies</h3><p>Problem / Build / Best-for framing on every demo card and page.</p></div>
+          <div class="card"><span class="tag">Reach</span><h3>OG image asset</h3><p>A local, generated share image (no external assets) for richer link previews.</p></div>
+          <div class="card"><span class="tag">Quality</span><h3>Formal a11y pass</h3><p>Contrast audit, full keyboard run, and a Lighthouse snapshot to track scores.</p></div>
+          <div class="card"><span class="tag">Future</span><h3>Optional backend lane</h3><p>If real booking/payment/invoicing is ever needed, scope it as a separate, opt-in layer.</p></div>
+          <div class="card"><span class="tag">Content</span><h3>Honest proof over time</h3><p>Swap demo-only framing for real (still honest) project notes as work ships.</p></div>
+          <div class="card"><span class="tag">Polish</span><h3>Shared design tokens</h3><p>Unify spacing, cards, and buttons site-wide into one token set.</p></div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="audit">
+        <div class="section-head"><p class="eyebrow">Self-audit</p><h2 id="audit">Front-end checklist.</h2></div>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Ship checklist</h3>
+            <ul class="clean">
+              <li>All pages return 200 locally</li>
+              <li>No external requests / no trackers</li>
+              <li>Non-submit buttons use type="button"</li>
+              <li>Demo forms preventDefault (no real submission)</li>
+              <li>Demos clearly labeled fictional / demo-only</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Known gaps</h3>
+            <ul class="clean">
+              <li>Case-study framing is light, not yet per-card</li>
+              <li>Demo pages lack a shared OG image</li>
+              <li>No formal Lighthouse score recorded yet</li>
+              <li>Design tokens not fully centralized</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="handoff">
+        <div class="section-head"><p class="eyebrow">AI handoff</p><h2 id="handoff">Notes for the next build pass.</h2><p>A public-safe starting prompt for a future Claude/Codex run. No private data, no secrets — just direction.</p></div>
+        <pre class="handoff-block" aria-label="Handoff prompt">Repo: static GitHub Pages site (no backend, no deps, no trackers).
+Keep: fictional/demo-only framing, type="button", forms preventDefault,
+relative paths, no external assets/fonts/analytics, reduced-motion support.
+Do next (highest value first):
+1) Per-demo case-study framing (Problem / Build / Best for) on cards + pages.
+2) Local OG share image (generated, no external asset) + OG on any new pages.
+3) Formal accessibility + Lighthouse pass; record the baseline here.
+4) Centralize design tokens (spacing, cards, buttons) into one shared set.
+Never add: outreach/email automation, invented clients or results, paid/booking
+backends, or anything that sends data, unless explicitly scoped as a new lane.</pre>
+      </section>
+    </main>
+
+    <footer>
+      <span>Studio OS — a public improvement map. This page is informational; the site does not edit or deploy itself.</span>
+      <span><a href="../index.html">Home</a> · <a href="../portfolio/index.html">Portfolio</a></span>
+    </footer>
+  </body>
+</html>

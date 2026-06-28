@@ -1,0 +1,14 @@
+/* Studio OS — page-specific bits (chrome from ../shared/site.css) */
+.handoff-block {
+  margin: 0;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(3, 7, 18, 0.55);
+  color: #cdd8e6;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.86rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  overflow-x: auto;
+}

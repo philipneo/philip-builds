@@ -919,3 +919,11 @@ article strong {
     width: 100%;
   }
 }
+
+/* mini case-study line */
+.best-for {
+  margin-top: 6px;
+  font-size: 0.86rem;
+  color: var(--muted, #667085);
+}
+.best-for strong { color: inherit; }
