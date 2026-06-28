@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="../shared/site.css" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="../shared/assistant.css" />
+    <script src="../shared/ai-config.js" defer></script>
     <script src="../shared/assistant.js" defer data-assistant-root="../" data-assistant-context="portfolio"></script>
   </head>
   <body>
@@ -107,6 +108,32 @@
           <div class="card">
             <h3>Enable it later</h3>
             <p>Deploy the frontend + <code>api/chat.js</code> on Vercel or Netlify, set <code>AI_PROVIDER_API_KEY</code> in the host dashboard, and point <code>PBS_AI_ENDPOINT</code> at the function. Full steps live in <code>docs/AI_SETUP.md</code>.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="aitest">
+        <div class="section-head"><p class="eyebrow">AI readiness test</p><h2 id="aitest">Try the assistant — here's what should happen.</h2><p>Open the assistant (bottom-right) and try these. Today every answer is the guided, rule-based response; model answers only appear after a backend is deployed and connected.</p></div>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Test prompts</h3>
+            <ul class="clean">
+              <li>"What can you build?" → a plain-English list of build types</li>
+              <li>"Which demo should I open first?" → a recommendation + matcher link</li>
+              <li>"I run a cleaning business" → routes to the Cleaning Quote Calculator</li>
+              <li>"Match me" → opens the Project Matcher</li>
+              <li>"Are you real AI?" → an honest answer about the current mode</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Modes &amp; safety</h3>
+            <ul class="clean">
+              <li>Live mode now: <strong>Guided demo mode</strong> (badge in the chat header)</li>
+              <li>Model mode: needs serverless deploy + env key + endpoint config</li>
+              <li>GitHub Pages is static — it cannot execute <code>api/chat.js</code></li>
+              <li>No secret is ever in the browser; the endpoint is empty by default</li>
+              <li>No personal data is collected and no emails are sent automatically</li>
+            </ul>
           </div>
         </div>
       </section>

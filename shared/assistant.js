@@ -32,6 +32,22 @@
     try { localStorage.removeItem("pbs.lastMatch"); } catch (e) {}
   }
 
+  // Public AI config (no secrets). Resolves the endpoint with safe fallbacks.
+  // Order: window.PBS_AI_CONFIG.endpoint -> window.PBS_AI_ENDPOINT -> "".
+  function aiEndpoint() {
+    try {
+      const cfg = (typeof window !== "undefined" && window.PBS_AI_CONFIG) ? window.PBS_AI_CONFIG : null;
+      if (cfg && typeof cfg === "object") {
+        if (cfg.allowModelMode === false) return "";
+        if (cfg.endpoint) return String(cfg.endpoint).trim();
+      }
+      if (typeof window !== "undefined" && window.PBS_AI_ENDPOINT) {
+        return String(window.PBS_AI_ENDPOINT).trim();
+      }
+    } catch (e) { /* private mode */ }
+    return "";
+  }
+
   const contextCopy = {
     home: {
       label: "Studio Assistant",
@@ -107,7 +123,9 @@
       value.includes("robot") || value.includes("are you a")
     ) {
       return {
-        text: "Honest answer: I'm this site's assistant — rule-based by default, and model-powered only if a backend has been connected. I'm not a human and don't pretend to be. I can point you to the right demo or the Start Project page.",
+        text: aiEndpoint()
+          ? "Honest answer: model-powered mode is available through this site's backend, so some replies may come from a model. I'm still not a human, and I won't claim fake results. I can point you to the right demo or the Start Project page."
+          : "Honest answer: I'm currently running as a guided front-end assistant. The site is wired for model mode, but real AI needs a serverless backend with a private API key — it isn't active on GitHub Pages. I'm not a human and don't pretend to be.",
         links: [["Match me to a demo", routes.matcher], ["Start a project", routes.start]]
       };
     }
@@ -138,6 +156,15 @@
       return {
         text: "Easiest path: open the Start a Project page, pick the closest project type, and it builds a pre-filled email you can review and send yourself. Nothing is sent automatically and nothing is stored.",
         links: [["Start a project", routes.start], ["Open project email", MAILTO]]
+      };
+    }
+    if (
+      value.includes("cleaning") || value.includes("cleaner") || value.includes("maid") ||
+      value.includes("house cleaning") || value.includes("janitorial")
+    ) {
+      return {
+        text: "The Cleaning Quote Calculator is the closest fit — a fictional, front-end quote/pricing demo where customers pick rooms, add-ons, and timing for an instant estimate. It also shows the owner-side view.",
+        links: [["Open Cleaning Quote", routes.cleaning], ["Match me to a demo", routes.matcher]]
       };
     }
     if (value.includes("restaurant") || value.includes("menu") || value.includes("order")) {
@@ -231,7 +258,7 @@
           <span class="pbs-assistant-mark">PB</span>
           <div>
             <strong>${copy.label}</strong>
-            <span>Demo mode · front-end only</span>
+            <span class="pbs-assistant-badge" aria-live="polite">Guided mode</span>
           </div>
         </div>
         <button class="pbs-assistant-close" type="button" aria-label="Close assistant">×</button>
@@ -255,6 +282,21 @@
     const form = panel.querySelector(".pbs-assistant-form");
     const send = panel.querySelector(".pbs-assistant-send");
     const close = panel.querySelector(".pbs-assistant-close");
+    const badge = panel.querySelector(".pbs-assistant-badge");
+
+    const BADGE_TEXT = {
+      guided: "Guided mode",
+      ready: "Model-ready",
+      model: "Model mode",
+      fallback: "Guided fallback"
+    };
+    function setBadge(state) {
+      if (!badge) return;
+      badge.textContent = BADGE_TEXT[state] || BADGE_TEXT.guided;
+      badge.setAttribute("data-state", state || "guided");
+    }
+    // Initial state: model-ready only if an endpoint is actually configured.
+    setBadge(aiEndpoint() ? "ready" : "guided");
 
     addMessage(body, copy.intro, {
       links: [["Match me to a demo", routes.matcher], ["Open portfolio", routes.portfolio]],
@@ -290,17 +332,11 @@
 
     function localReply(text, options) {
       const result = recommendationsFor(text);
+      if (options && options.degraded) setBadge("fallback");
       addMessage(body, result.text, {
         links: result.links,
         small: options && options.degraded ? "AI mode unavailable — using guided demo mode." : undefined
       });
-    }
-
-    function aiEndpoint() {
-      try {
-        return (typeof window !== "undefined" && window.PBS_AI_ENDPOINT)
-          ? String(window.PBS_AI_ENDPOINT).trim() : "";
-      } catch (e) { return ""; }
     }
 
     function askBackend(endpoint, text) {
@@ -334,6 +370,7 @@
           pending.remove();
           const reply = data && typeof data.reply === "string" ? data.reply.trim() : "";
           if (!reply) { localReply(text, { degraded: true }); return; }
+          setBadge("model");
           const links = Array.isArray(data.links) && data.links.length
             ? data.links
             : [["Start a project", routes.start]];

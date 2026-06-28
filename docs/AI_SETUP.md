@@ -19,10 +19,24 @@ If a deployed backend endpoint is set via a **public** global, the assistant
 POSTs the message there and renders the reply, falling back to Mode 1 on any
 error or timeout.
 
-```html
-<!-- Set ONLY a public URL here. Never a key. -->
-<script>window.PBS_AI_ENDPOINT = "https://your-deployment.example.com/api/chat";</script>
+The switch lives in **`shared/ai-config.js`** (a public file, no secrets). It is
+loaded before `shared/assistant.js` on every page. Default = off:
+
+```js
+window.PBS_AI_CONFIG = window.PBS_AI_CONFIG || {
+  endpoint: "",            // "" → Guided demo mode (no network calls)
+  modeLabel: "Guided demo mode",
+  allowModelMode: false    // must be true AND endpoint set to call the backend
+};
 ```
+
+To turn it on after deploying the function, edit that one file:
+`endpoint: "/api/chat"` and `allowModelMode: true`. (A legacy
+`window.PBS_AI_ENDPOINT = "…"` global is also still honored as a fallback.)
+
+The chat header shows a live badge: **Guided mode** (off) → **Model-ready**
+(endpoint set) → **Model mode** (after a successful reply) → **Guided fallback**
+(if the backend errors).
 
 The frontend sends only non-sensitive context:
 `{ message, page (pathname), lastMatch (a demo label) }` — no names, emails,
@@ -89,10 +103,57 @@ back gracefully without breaking the page.
 
 ---
 
+## Enable model mode on Vercel — exact steps
+1. Push this repo to GitHub (already done) and **Import** it into Vercel
+   (vercel.com → Add New → Project → pick the repo).
+2. In Vercel → **Settings → Environment Variables**, add:
+   - `AI_PROVIDER_API_KEY` = your key (required)
+   - `AI_BASE_URL` (optional, default `https://api.openai.com/v1`)
+   - `AI_MODEL` (optional, default `gpt-4o-mini`)
+3. In `shared/ai-config.js` set `endpoint: "/api/chat"` and
+   `allowModelMode: true`, then commit/push.
+4. **Deploy** (Vercel builds automatically on push).
+5. Open the Vercel URL, open the assistant, and send a prompt — the badge
+   should move to **Model mode** on the first successful reply.
+6. Confirm fallback: temporarily set a bad `endpoint`, send a prompt, and verify
+   it degrades to **Guided fallback** without breaking the page.
+7. **Roll back** anytime by setting `endpoint: ""` (and/or
+   `allowModelMode: false`) and pushing — instantly back to guided mode.
+
+> GitHub Pages keeps working throughout as the static, guided-mode version.
+> Model mode only exists on the Vercel deployment.
+
+### Why there is no `vercel.json`
+Vercel zero-config already does the right thing for this repo: it serves the
+static files as-is and auto-detects `api/chat.js` as a serverless function at
+`/api/chat`. Adding a `vercel.json` would only risk overriding that sensible
+default (and could break static routing), so it is intentionally omitted. Add
+one later only if you need custom headers, regions, or rewrites.
+
+---
+
+## Troubleshooting
+| Symptom | Cause | Fix |
+| --- | --- | --- |
+| Assistant always guided, badge "Guided mode" | `endpoint` empty / `allowModelMode` false | Set both in `shared/ai-config.js` |
+| Backend returns **503** | No `AI_PROVIDER_API_KEY` in env | Add the env var in the host dashboard |
+| Backend returns **405** | Non-POST request | Frontend uses POST; check any manual test |
+| Reply hangs then "Guided fallback" | Upstream slow / down (12s timeout) | Expected safety net; retry later |
+| CORS error in console | Calling a cross-origin endpoint | Deploy frontend + function on the same origin (e.g. both on Vercel) so `/api/chat` is same-origin |
+| No network call at all | `endpoint` is empty | That's correct for GitHub Pages |
+
+## Cost control
+- Replies are capped (`max_tokens` ~320) and kept concise by the system prompt.
+- Requests are limited to 2000 characters; oversized ones are rejected (413).
+- No personal info is sent or logged.
+- If it ever gets real traffic, add simple per-IP rate limiting at the function.
+
+---
+
 ## Rollback plan
-The frontend is safe with or without a backend. To disable Mode 2 entirely,
-unset `window.PBS_AI_ENDPOINT` (or never set it) — the assistant reverts to
-rule-based mode with no code changes. To remove the scaffold, delete `api/`,
+The frontend is safe with or without a backend. To disable Mode 2 entirely, set
+`endpoint: ""` in `shared/ai-config.js` (or never set it) — the assistant reverts
+to rule-based mode with no other changes. To remove the scaffold, delete `api/`,
 `package.json`, and `.env.example`; nothing else depends on them.
 
 ---
