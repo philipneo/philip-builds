@@ -290,6 +290,202 @@
         </div>
       </section>
 
+      <section id="builder" class="section builder-section" aria-labelledby="builder-title">
+        <div class="section-head reveal">
+          <p class="eyebrow">Appointment builder</p>
+          <h2 id="builder-title">Build the whole appointment, not just a price.</h2>
+          <p>Pick a vehicle, a package, and any add-ons. The summary on the right behaves like a real work order — copy it, print it, or reset and start over.</p>
+        </div>
+
+        <div class="builder-layout reveal">
+          <div class="builder-panel">
+            <div class="builder-block">
+              <p class="builder-label">1 · Vehicle type</p>
+              <div class="chip-row" id="vehicleRow" role="group" aria-label="Vehicle type">
+                <button class="chip is-on" type="button" data-vehicle="Sedan" data-vfee="0">Sedan</button>
+                <button class="chip" type="button" data-vehicle="SUV / Crossover" data-vfee="20">SUV / Crossover</button>
+                <button class="chip" type="button" data-vehicle="Truck" data-vfee="30">Truck</button>
+                <button class="chip" type="button" data-vehicle="Minivan" data-vfee="25">Minivan</button>
+              </div>
+              <p class="builder-hint" id="vehicleHint">Sedan — no size surcharge.</p>
+            </div>
+
+            <div class="builder-block">
+              <p class="builder-label">2 · Package</p>
+              <div class="chip-row" id="builderPkgRow" role="group" aria-label="Package">
+                <button class="chip" type="button" data-bpkg="Quick Shine" data-price="79">Quick Shine · $79</button>
+                <button class="chip is-on" type="button" data-bpkg="Interior Reset" data-price="149">Interior Reset · $149</button>
+                <button class="chip" type="button" data-bpkg="Gloss Package" data-price="249">Gloss Package · $249</button>
+              </div>
+            </div>
+
+            <div class="builder-block">
+              <p class="builder-label">3 · Add-ons</p>
+              <div class="builder-addons" id="builderAddons" role="group" aria-label="Add-ons">
+                <button class="badd" type="button" data-badd="Pet hair reset" data-price="35"><span>Pet hair reset</span><strong>+$35</strong></button>
+                <button class="badd" type="button" data-badd="Headlight restore" data-price="40"><span>Headlight restore</span><strong>+$40</strong></button>
+                <button class="badd" type="button" data-badd="Engine bay clean" data-price="45"><span>Engine bay clean</span><strong>+$45</strong></button>
+                <button class="badd" type="button" data-badd="Leather conditioning" data-price="30"><span>Leather conditioning</span><strong>+$30</strong></button>
+                <button class="badd" type="button" data-badd="Clay bar treatment" data-price="55"><span>Clay bar treatment</span><strong>+$55</strong></button>
+                <button class="badd" type="button" data-badd="Tar &amp; sap removal" data-price="25"><span>Tar &amp; sap removal</span><strong>+$25</strong></button>
+                <button class="badd" type="button" data-badd="Ceramic spray seal" data-price="60"><span>Ceramic spray seal</span><strong>+$60</strong></button>
+                <button class="badd" type="button" data-badd="Ozone odor treatment" data-price="50"><span>Ozone odor treatment</span><strong>+$50</strong></button>
+              </div>
+            </div>
+
+            <div class="builder-block">
+              <p class="builder-label">4 · Preferred window</p>
+              <div class="chip-row" id="slotRow" role="group" aria-label="Preferred window">
+                <button class="chip is-on" type="button" data-slot="Today · 2:00 PM">Today · 2:00 PM</button>
+                <button class="chip" type="button" data-slot="Tomorrow · 9:00 AM">Tomorrow · 9:00 AM</button>
+                <button class="chip" type="button" data-slot="Tomorrow · 1:30 PM">Tomorrow · 1:30 PM</button>
+                <button class="chip" type="button" data-slot="Sat · 11:00 AM">Sat · 11:00 AM</button>
+              </div>
+            </div>
+          </div>
+
+          <aside class="workorder" aria-live="polite" aria-label="Appointment summary">
+            <div class="workorder-head">
+              <div>
+                <span class="wo-kicker">Demo work order</span>
+                <strong class="wo-ref" id="woRef">GL-0000</strong>
+              </div>
+              <span class="wo-badge">Draft</span>
+            </div>
+            <div class="wo-body">
+              <div class="wo-line"><span>Vehicle</span><strong id="woVehicle">Sedan</strong></div>
+              <div class="wo-line"><span>Package</span><strong id="woPackage">Interior Reset</strong></div>
+              <div class="wo-line"><span>Window</span><strong id="woSlot">Today · 2:00 PM</strong></div>
+              <div class="wo-line"><span>Est. time</span><strong id="woTime">90 min</strong></div>
+              <div class="wo-divider"></div>
+              <p class="wo-subhead">Line items</p>
+              <div class="wo-items" id="woItems"></div>
+              <div class="wo-divider"></div>
+              <div class="wo-total"><span>Demo total</span><strong id="woTotal">$149</strong></div>
+            </div>
+            <div class="wo-actions">
+              <button class="button primary" type="button" id="woCopyBtn">Copy work order</button>
+              <button class="button" type="button" id="woPrintBtn">Print</button>
+              <button class="button ghost" type="button" id="woResetBtn">Reset</button>
+            </div>
+            <p class="demo-note" id="woStatus">Build an appointment above — the summary updates live. Nothing is sent.</p>
+          </aside>
+        </div>
+      </section>
+
+      <section id="checklist" class="section checklist-section" aria-labelledby="checklist-title">
+        <div class="section-head reveal">
+          <p class="eyebrow">On-site checklist</p>
+          <h2 id="checklist-title">The crew works a real before / after checklist.</h2>
+          <p>Tap each item as it's done. The progress ring fills, the count climbs, and a "ready for handoff" state unlocks when every item is checked. Demo only.</p>
+        </div>
+
+        <div class="checklist-layout reveal">
+          <div class="checklist-card">
+            <div class="checklist-tabs" role="group" aria-label="Checklist view">
+              <button class="ctab is-on" type="button" data-ctab="interior">Interior</button>
+              <button class="ctab" type="button" data-ctab="exterior">Exterior</button>
+            </div>
+
+            <ul class="check-list" id="checkInterior" data-group="interior">
+              <li><button class="check-item" type="button"><span class="cbox"></span><span class="ctext">Vacuum seats, carpet &amp; trunk</span></button></li>
+              <li><button class="check-item" type="button"><span class="cbox"></span><span class="ctext">Wipe dash, console &amp; vents</span></button></li>
+              <li><button class="check-item" type="button"><span class="cbox"></span><span class="ctext">Clean cupholders &amp; door pockets</span></button></li>
+              <li><button class="check-item" type="button"><span class="cbox"></span><span class="ctext">Treat &amp; shine interior glass</span></button></li>
+              <li><button class="check-item" type="button"><span class="cbox"></span><span class="ctext">Mats washed &amp; reset</span></button></li>
+            </ul>
+
+            <ul class="check-list is-hidden" id="checkExterior" data-group="exterior">
+              <li><button class="check-item" type="button"><span class="cbox"></span><span class="ctext">Foam wash &amp; two-bucket rinse</span></button></li>
+              <li><button class="check-item" type="button"><span class="cbox"></span><span class="ctext">Wheels, tires &amp; wells</span></button></li>
+              <li><button class="check-item" type="button"><span class="cbox"></span><span class="ctext">Dry &amp; clay decontamination</span></button></li>
+              <li><button class="check-item" type="button"><span class="cbox"></span><span class="ctext">Wax / sealant pass</span></button></li>
+              <li><button class="check-item" type="button"><span class="cbox"></span><span class="ctext">Exterior glass &amp; trim dress</span></button></li>
+            </ul>
+
+            <button class="button ghost" type="button" id="checkClearBtn">Clear all checks</button>
+          </div>
+
+          <aside class="progress-card">
+            <div class="ring-wrap">
+              <svg class="ring" viewBox="0 0 120 120" aria-hidden="true">
+                <circle class="ring-track" cx="60" cy="60" r="52"></circle>
+                <circle class="ring-fill" id="ringFill" cx="60" cy="60" r="52"></circle>
+              </svg>
+              <div class="ring-center">
+                <strong id="ringPct">0%</strong>
+                <span id="ringCount">0 / 10</span>
+              </div>
+            </div>
+            <p class="progress-status" id="checkStatus">Nothing checked yet — tap items as the crew works.</p>
+            <div class="handoff is-locked" id="handoffBanner">
+              <span class="handoff-dot"></span>
+              <span id="handoffText">Handoff locked — finish every item to unlock.</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="condition" class="section" aria-labelledby="condition-title">
+        <div class="section-head reveal">
+          <p class="eyebrow">Vehicle condition</p>
+          <h2 id="condition-title">Log condition notes before the work starts.</h2>
+          <p>Pick the flags that apply, add a quick note, and the intake card builds itself — the kind of record a crew keeps so there are no "it was already like that" surprises.</p>
+        </div>
+
+        <div class="condition-layout reveal">
+          <div class="condition-panel">
+            <p class="builder-label">Condition flags</p>
+            <div class="flag-row" id="flagRow" role="group" aria-label="Condition flags">
+              <button class="flag" type="button" data-flag="Heavy pet hair">Heavy pet hair</button>
+              <button class="flag" type="button" data-flag="Coffee / drink stains">Coffee / drink stains</button>
+              <button class="flag" type="button" data-flag="Sand / dirt buildup">Sand / dirt buildup</button>
+              <button class="flag" type="button" data-flag="Smoke odor">Smoke odor</button>
+              <button class="flag" type="button" data-flag="Tree sap on paint">Tree sap on paint</button>
+              <button class="flag" type="button" data-flag="Existing scratches">Existing scratches</button>
+              <button class="flag" type="button" data-flag="Water spots">Water spots</button>
+            </div>
+
+            <label class="note-label" for="conditionNote">Crew note (optional)</label>
+            <textarea id="conditionNote" class="note-field" rows="3" maxlength="160" placeholder="e.g. Back seat had a spilled latte last week, focus there."></textarea>
+            <p class="note-count"><span id="noteCount">0</span>/160</p>
+
+            <div class="condition-actions">
+              <button class="button primary" type="button" id="logConditionBtn">Log condition</button>
+              <button class="button ghost" type="button" id="clearConditionBtn">Clear</button>
+            </div>
+          </div>
+
+          <aside class="intake-card" aria-live="polite" aria-label="Intake record">
+            <div class="intake-head">
+              <span>Demo intake record</span>
+              <span class="intake-time" id="intakeTime">Not logged yet</span>
+            </div>
+            <div class="intake-body" id="intakeBody">
+              <p class="intake-empty">No condition flags yet. Pick flags on the left and log them to build the intake card.</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="board" class="section board-section" aria-labelledby="board-title">
+        <div class="section-head reveal">
+          <p class="eyebrow">Owner view</p>
+          <h2 id="board-title">The other side: an owner's schedule board.</h2>
+          <p>This is what the crew lead would see. Advance a job through the day, watch the day's revenue and "on the road" count move. Demo data, fully interactive.</p>
+        </div>
+
+        <div class="board-stats reveal" id="boardStats">
+          <div class="bstat"><span>Jobs today</span><strong id="statJobs">5</strong></div>
+          <div class="bstat"><span>Completed</span><strong id="statDone">1</strong></div>
+          <div class="bstat"><span>On the road</span><strong id="statActive">1</strong></div>
+          <div class="bstat"><span>Booked revenue</span><strong id="statRev">$0</strong></div>
+        </div>
+
+        <div class="board reveal" id="scheduleBoard" aria-label="Schedule board"></div>
+        <p class="demo-note" id="boardStatus" aria-live="polite">Use a job's button to move it forward. Demo only — no real jobs.</p>
+      </section>
+
       <section class="cta-section" aria-labelledby="cta-title">
         <p class="eyebrow">Want a detailing page like this?</p>
         <h2 id="cta-title">Philip Builds Studio builds cinematic one-page sites for local crews.</h2>

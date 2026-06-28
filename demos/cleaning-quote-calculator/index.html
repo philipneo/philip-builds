@@ -24,6 +24,7 @@
       <nav aria-label="Page sections">
         <a href="#dashboard">Dashboard</a>
         <a href="#calculator">Calculator</a>
+        <a href="#prep">Prep list</a>
         <a href="#how">How it works</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -168,17 +169,19 @@
           </div>
           <div class="browser-viewport owner-dashboard">
             <div class="owner-main">
-              <span>Estimate review</span>
-              <h3>3 bed / 2 bath deep clean</h3>
+              <span>Estimate review <em class="owner-sync" id="ownerSync">live from calculator</em></span>
+              <h3 id="ownerHeadline">1 bed / 1 bath standard clean</h3>
               <div class="owner-rows">
-                <div><span>Rooms</span><strong>$165</strong></div>
-                <div><span>Add-ons</span><strong>$65</strong></div>
-                <div><span>Timing</span><strong>$30</strong></div>
-                <div class="owner-total"><span>Total</span><strong>$260</strong></div>
+                <div><span>Rooms</span><strong id="ownerRooms">$50</strong></div>
+                <div><span>Add-ons</span><strong id="ownerAddons">$0</strong></div>
+                <div><span>Timing</span><strong id="ownerTiming">$0</strong></div>
+                <div><span>Condition / frequency</span><strong id="ownerAdjust">×1.0</strong></div>
+                <div class="owner-total"><span>Total</span><strong id="ownerTotal">$50</strong></div>
               </div>
             </div>
             <aside class="owner-side">
-              <div><span>Status</span><strong>Ready to review</strong></div>
+              <div><span>Status</span><strong id="ownerStatus">Ready to review</strong></div>
+              <div><span>Est. visit time</span><strong id="ownerTime">~2 hr</strong></div>
               <div><span>Follow-up note</span><p>Ask about pets, parking, and preferred arrival window.</p></div>
               <button type="button" id="dashboardPreviewBtn">Preview confirmation</button>
               <p id="dashboardPreviewStatus">No message is sent.</p>
@@ -198,6 +201,36 @@
 
       <div class="calc-layout reveal">
         <div class="calc-inputs">
+
+          <div class="calc-section">
+            <div class="calc-section-label">Home size</div>
+            <div class="size-btns" role="group" aria-label="Home size">
+              <button class="size-btn" type="button" data-size="0.9" data-size-label="Apartment">Apartment<span>under 900 sq ft</span></button>
+              <button class="size-btn is-active" type="button" data-size="1" data-size-label="Standard home">Standard<span>900–2,000 sq ft</span></button>
+              <button class="size-btn" type="button" data-size="1.25" data-size-label="Large home">Large<span>2,000+ sq ft</span></button>
+            </div>
+          </div>
+
+          <div class="calc-section">
+            <div class="calc-section-label">Cleaning condition</div>
+            <div class="condition-btns" role="group" aria-label="Cleaning condition">
+              <button class="condition-btn" type="button" data-condition="0.85" data-condition-label="Light tidy">
+                <span class="cond-name">Light tidy</span>
+                <span class="cond-desc">Maintained, light upkeep</span>
+                <span class="cond-mult">×0.85</span>
+              </button>
+              <button class="condition-btn is-active" type="button" data-condition="1" data-condition-label="Standard clean">
+                <span class="cond-name">Standard</span>
+                <span class="cond-desc">Normal lived-in home</span>
+                <span class="cond-mult">×1.0</span>
+              </button>
+              <button class="condition-btn" type="button" data-condition="1.4" data-condition-label="Deep clean">
+                <span class="cond-name">Deep clean</span>
+                <span class="cond-desc">Heavy buildup, move-out</span>
+                <span class="cond-mult">×1.4</span>
+              </button>
+            </div>
+          </div>
 
           <div class="calc-section">
             <div class="calc-section-label">Bedrooms</div>
@@ -248,13 +281,30 @@
             </div>
           </div>
 
+          <div class="calc-section">
+            <div class="calc-section-label">Cleaning frequency</div>
+            <div class="freq-btns" role="group" aria-label="Cleaning frequency">
+              <button class="freq-btn is-active" type="button" data-freq="1" data-freq-label="One-time">One-time</button>
+              <button class="freq-btn" type="button" data-freq="0.95" data-freq-label="Monthly">Monthly<span>−5%</span></button>
+              <button class="freq-btn" type="button" data-freq="0.9" data-freq-label="Bi-weekly">Bi-weekly<span>−10%</span></button>
+              <button class="freq-btn" type="button" data-freq="0.85" data-freq-label="Weekly">Weekly<span>−15%</span></button>
+            </div>
+          </div>
+
+          <div class="calc-actions-row">
+            <button class="calc-reset-all" type="button" id="calcResetAll">Reset selections</button>
+            <span class="calc-est-time" id="calcEstTime">Est. visit time: ~2 hr</span>
+          </div>
+
         </div>
 
         <div class="calc-result">
           <div class="result-card">
             <div class="result-label">Estimated Total</div>
             <div class="result-total" id="calcTotal">$50</div>
+            <div class="result-meta" id="calcMeta">Standard home · Standard clean · One-time</div>
             <div class="result-breakdown" id="calcBreakdown" aria-live="polite"></div>
+            <div class="result-range" id="calcRange">Typical range: $48–$53</div>
             <div class="result-disc">Demo estimate — not a real quote. No data is saved or sent.</div>
             <div class="result-copy-row">
               <button class="result-copy-btn" type="button" data-copy="calcSummary" data-copy-status="#calcCopyStatus">Copy estimate</button>
@@ -268,6 +318,61 @@
               <button class="rs-reset" type="button" id="calcReset">Start over</button>
             </div>
           </div>
+
+          <!-- LIVE MOBILE PREVIEW -->
+          <div class="calc-mobile-preview" aria-label="Mobile estimate preview">
+            <div class="cmp-label">How it looks on the customer's phone</div>
+            <div class="phone-shell phone-shell-sm cmp-phone">
+              <div class="phone-notch"></div>
+              <div class="phone-screen">
+                <div class="cmp-header"><span>CleanQuote</span><span class="cmp-live">● live</span></div>
+                <div class="cmp-body">
+                  <div class="cmp-scope" id="cmpScope">Standard home · Standard clean</div>
+                  <div class="cmp-rows" id="cmpRows" aria-live="polite"></div>
+                  <div class="cmp-total-row">
+                    <span>Estimate</span>
+                    <strong id="cmpTotal">$50</strong>
+                  </div>
+                  <div class="cmp-note">Demo preview — no booking is made</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PREP & SCHEDULE CHECKLIST -->
+    <section id="prep" class="s-prep">
+      <div class="section-header">
+        <p class="eyebrow reveal">Visit prep</p>
+        <h2 class="reveal">A prep checklist that updates with the quote.</h2>
+        <p class="section-sub reveal">When the scope changes, the prep list changes. Customers know exactly what to do before the crew arrives — and the checklist is printable. Demo only.</p>
+      </div>
+
+      <div class="prep-layout reveal">
+        <div class="prep-card">
+          <div class="prep-head">
+            <div>
+              <div class="prep-title" id="prepTitle">Standard home — Standard clean</div>
+              <div class="prep-sub" id="prepSub">1 bedroom · 1 bathroom · one-time visit</div>
+            </div>
+            <div class="prep-progress">
+              <span id="prepCount">0 / 0</span> ready
+            </div>
+          </div>
+
+          <ul class="prep-list" id="prepList" aria-live="polite"></ul>
+
+          <div class="prep-empty" id="prepEmpty" hidden>
+            Add rooms or add-ons in the calculator to build a prep list.
+          </div>
+
+          <div class="prep-actions">
+            <button class="prep-print-btn" type="button" id="prepPrintBtn">Print checklist</button>
+            <button class="prep-clear-btn" type="button" id="prepClearBtn">Uncheck all</button>
+          </div>
+          <p class="prep-disc">Demo only — nothing is saved, sent, or scheduled.</p>
         </div>
       </div>
     </section>

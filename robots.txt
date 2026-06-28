@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://philipneo.github.io/philip-builds/sitemap.xml

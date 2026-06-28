@@ -117,22 +117,23 @@
             <div class="phone-screen invoice-phone">
               <div class="phone-pane is-active">
                 <span>Invoice preview</span>
-                <h3>INV-1042</h3>
-                <p>Bill to: Sample Property Group</p>
-                <strong>$412.72</strong>
+                <span class="phone-status status-badge status-draft" id="phoneStatus">Draft</span>
+                <h3 id="phoneNumber">INV-1042</h3>
+                <p>Bill to: <span id="phoneTo">Sample Property Group</span></p>
+                <strong id="phoneTotal">$412.72</strong>
                 <button type="button" data-phone-next>View lines</button>
               </div>
               <div class="phone-pane">
                 <span>Line items</span>
-                <h3>3 rows</h3>
-                <p>Labor, materials, and trip fee with tax and discount applied.</p>
+                <h3><span id="phoneLineCount">3</span> rows</h3>
+                <div id="phoneLines" class="phone-lines"></div>
                 <button type="button" data-phone-next>View notes</button>
                 <button type="button" data-phone-back>Back</button>
               </div>
               <div class="phone-pane">
-                <span>Demo note</span>
-                <h3>No payment link</h3>
-                <p>This demo only previews, copies, and prints from the browser.</p>
+                <span>Notes</span>
+                <p id="phoneNotes">Payment due within 14 days. Browser-only demo.</p>
+                <p class="phone-demo-line">Demo only. This preview copies and prints from the browser. No payment link.</p>
                 <button type="button" data-phone-back>Edit</button>
               </div>
             </div>
@@ -149,28 +150,40 @@
         <div class="section-head reveal">
           <p class="eyebrow">Interactive builder</p>
           <h2 id="builder-title">Edit the invoice and watch the preview update live.</h2>
-          <p>Add line items, adjust quantity and rate, choose tax, add a discount, and copy the summary.</p>
+          <p>Add line items, adjust quantity and rate, choose tax, add a discount, set a demo status, and copy or print the summary.</p>
         </div>
 
         <div class="builder-layout">
-          <div class="builder-panel reveal">
+          <form class="builder-panel reveal" id="invoiceForm" onsubmit="event.preventDefault()" novalidate>
             <div class="panel-head">
               <span>Invoice setup</span>
-              <button type="button" id="resetInvoice">Reset demo</button>
+              <div class="panel-head-actions">
+                <button type="button" id="loadSample" class="mini-btn">Load sample</button>
+                <button type="button" id="resetInvoice" class="mini-btn">Reset demo</button>
+              </div>
+            </div>
+
+            <div class="status-picker" role="group" aria-label="Invoice status (demo label)">
+              <span class="status-picker-label">Status</span>
+              <div class="status-options">
+                <button type="button" class="status-chip is-active" data-status="draft">Draft</button>
+                <button type="button" class="status-chip" data-status="sent">Sent</button>
+                <button type="button" class="status-chip" data-status="paid">Paid</button>
+              </div>
             </div>
 
             <div class="field-grid">
               <label>
                 From
-                <input id="fromName" type="text" value="North Star Services" />
+                <input id="fromName" type="text" value="North Star Services" autocomplete="off" />
               </label>
               <label>
                 Bill to
-                <input id="toName" type="text" value="Sample Property Group" />
+                <input id="toName" type="text" value="Sample Property Group" autocomplete="off" />
               </label>
               <label>
                 Invoice number
-                <input id="invoiceNumber" type="text" value="INV-1042" />
+                <input id="invoiceNumber" type="text" value="INV-1042" autocomplete="off" />
               </label>
               <label>
                 Date
@@ -181,9 +194,17 @@
             <div class="line-builder">
               <div class="line-head">
                 <span>Line items</span>
-                <button type="button" id="addLine">Add line</button>
+                <div class="line-head-meta">
+                  <span id="lineCount" class="line-count">0 lines</span>
+                  <button type="button" id="addLine">Add line</button>
+                </div>
               </div>
               <div id="lineItems" class="line-items"></div>
+              <div id="lineEmpty" class="line-empty" hidden>
+                <strong>No line items yet.</strong>
+                <p>Add a service, materials, or a trip fee to start the invoice.</p>
+                <button type="button" id="addFirstLine" class="button primary">Add first line</button>
+              </div>
             </div>
 
             <div class="field-grid compact">
@@ -198,15 +219,17 @@
               </label>
               <label>
                 Discount
-                <input id="discount" type="number" min="0" step="1" value="20" />
+                <input id="discount" type="number" min="0" step="1" value="20" inputmode="decimal" />
               </label>
             </div>
+            <p id="discountWarn" class="field-warn" hidden>Discount is larger than the subtotal, so it is capped at the subtotal.</p>
 
             <label>
               Notes
-              <textarea id="invoiceNotes" rows="3">Payment due within 14 days. Browser-only demo.</textarea>
+              <textarea id="invoiceNotes" rows="3" maxlength="240">Payment due within 14 days. Browser-only demo.</textarea>
             </label>
-          </div>
+            <p class="char-hint"><span id="notesCount">0</span>/240 characters</p>
+          </form>
 
           <aside id="preview" class="invoice-preview reveal reveal-delay-2" aria-live="polite">
             <div class="preview-top">
@@ -214,13 +237,17 @@
                 <span>Invoice</span>
                 <h3 id="previewNumber">INV-1042</h3>
               </div>
-              <strong id="previewDate"></strong>
+              <div class="preview-top-right">
+                <span class="status-badge status-draft" id="previewStatus">Draft</span>
+                <strong id="previewDate"></strong>
+              </div>
             </div>
             <div class="preview-parties">
               <div><span>From</span><strong id="previewFrom">North Star Services</strong></div>
               <div><span>Bill to</span><strong id="previewTo">Sample Property Group</strong></div>
             </div>
             <div id="previewLines" class="preview-lines"></div>
+            <div id="previewEmpty" class="preview-empty" hidden>Add a line item to see it appear here.</div>
             <div class="totals">
               <div><span>Subtotal</span><strong id="subtotal">$0.00</strong></div>
               <div><span>Discount</span><strong id="discountTotal">-$0.00</strong></div>
@@ -232,9 +259,11 @@
               <button type="button" class="button primary" id="copyInvoice">Copy summary</button>
               <button type="button" class="button ghost" id="printInvoice">Print demo</button>
             </div>
-            <p id="copyStatus" class="copy-status">Nothing leaves the browser.</p>
+            <p id="copyStatus" class="copy-status" role="status">Nothing leaves the browser.</p>
           </aside>
         </div>
+
+        <p class="builder-foot demo-note">Demo only. Status labels, totals, and copy/print all run in this browser tab. No invoice is sent, saved, or charged.</p>
       </section>
 
       <section class="section replace-section" aria-labelledby="replace-title">
@@ -296,10 +325,10 @@
       </section>
 
       <section class="cta-section reveal">
-        <h2>Want a practical billing tool for your service workflow?</h2>
-        <p>Philip Builds Studio builds lightweight tools that make quotes, invoices, and job handoffs easier to run.</p>
+        <h2>That's the whole demo — a billing surface that runs in the browser.</h2>
+        <p>Everything above is a working product demo: live totals, status labels, validation, copy, and print. No accounts, no payment, no server.</p>
         <div class="actions">
-          <a class="button primary" href="../../index.html#contact">Contact Philip</a>
+          <a class="button primary" href="#builder">Back to the builder</a>
           <a class="button ghost" href="../../portfolio/index.html">View portfolio</a>
         </div>
       </section>

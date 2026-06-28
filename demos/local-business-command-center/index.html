@@ -26,6 +26,7 @@
         <a href="#overview">Dashboard</a>
         <a href="#operator">Phone</a>
         <a href="#quote">Quote</a>
+        <a href="#route">Route</a>
         <a href="#workflow">Workflow</a>
         <a href="#summary">Summary</a>
       </nav>
@@ -379,6 +380,81 @@
       </div>
     </section>
 
+    <!-- ── JOB ROUTE QUEUE ── -->
+    <section id="route">
+      <p class="section-eyebrow reveal">Live operations</p>
+      <h2 class="section-h2 reveal">Run the route, one job at a time.</h2>
+      <p class="section-sub reveal">Move jobs through their real stages — queued, en route, on site, done. Flag a problem and it lands in the escalation panel. Demo only — nothing is saved or sent.</p>
+
+      <div class="route-layout">
+        <!-- Job queue -->
+        <div class="route-main reveal">
+          <div class="route-card">
+            <div class="route-card-head">
+              <div>
+                <span class="route-card-title">Today's Route</span>
+                <span class="route-card-sub" id="routeSub">Thursday · 4 stops</span>
+              </div>
+              <div class="route-toolbar">
+                <button class="route-mini-btn" type="button" id="routeAdvance">Advance next job</button>
+                <button class="route-mini-btn route-mini-ghost" type="button" id="routeReset">Reset day</button>
+              </div>
+            </div>
+
+            <div class="route-list" id="routeList" role="list" aria-label="Job queue">
+              <!-- Populated by JS -->
+            </div>
+
+            <div class="route-empty" id="routeEmpty" hidden>
+              <div class="route-empty-mark" aria-hidden="true">✓</div>
+              <strong>Route cleared.</strong>
+              <span>Every stop is closed out. Reset the day to run the demo again.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right rail: status meter + escalation -->
+        <div class="route-rail">
+          <div class="route-meter reveal">
+            <div class="route-meter-head">Route status</div>
+            <div class="route-meter-grid">
+              <div class="route-meter-stat">
+                <div class="rms-v" id="rmDone">0</div>
+                <div class="rms-l">Done</div>
+              </div>
+              <div class="route-meter-stat">
+                <div class="rms-v" id="rmActive">1</div>
+                <div class="rms-l">Active</div>
+              </div>
+              <div class="route-meter-stat">
+                <div class="rms-v" id="rmQueued">3</div>
+                <div class="rms-l">Queued</div>
+              </div>
+            </div>
+            <div class="progress-bar-outer">
+              <div class="progress-bar-fill" id="routeBar" style="width:0%"></div>
+            </div>
+            <div class="route-meter-foot">
+              <span id="routeRevenue">$0 collected</span>
+              <span id="routePct">0% of route</span>
+            </div>
+          </div>
+
+          <div class="escalation-card reveal">
+            <div class="escalation-head">
+              <span class="escalation-title">Escalations</span>
+              <span class="escalation-count" id="escCount">0 open</span>
+            </div>
+            <div class="escalation-list" id="escList">
+              <div class="escalation-empty" id="escEmpty">
+                <span aria-hidden="true">●</span> No open issues. Flag a job to raise one.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ── WORKFLOW CHECKLIST ── -->
     <section id="workflow">
       <p class="section-eyebrow reveal">Daily workflow</p>
@@ -389,7 +465,10 @@
         <div class="checklist-card reveal">
           <div class="checklist-header">
             <span class="checklist-title">Daily Checklist</span>
-            <span class="checklist-count" id="checklistCount">0 / 7 done</span>
+            <div class="checklist-tools">
+              <span class="checklist-count" id="checklistCount">0 / 7 done</span>
+              <button class="route-mini-btn route-mini-ghost checklist-reset" type="button" id="checklistReset">Reset</button>
+            </div>
           </div>
           <div class="checklist-progress">
             <div class="progress-bar-outer">
@@ -400,39 +479,40 @@
               <span id="progressEta">Est. finish: —</span>
             </div>
           </div>
+          <p class="checklist-hint" id="checklistHint">Steps unlock in order — finish a stage to open the next.</p>
           <div class="checklist-items" role="group" aria-label="Daily checklist items">
-            <label class="checklist-item">
-              <input type="checkbox" class="cl-item" data-category="Morning" />
+            <label class="checklist-item" data-step="1">
+              <input type="checkbox" class="cl-item" data-category="Morning" data-needs="" />
               <span class="checklist-item-text">Review all incoming quote requests</span>
               <span class="checklist-item-category">Morning</span>
             </label>
-            <label class="checklist-item">
-              <input type="checkbox" class="cl-item" data-category="Morning" />
+            <label class="checklist-item" data-step="2">
+              <input type="checkbox" class="cl-item" data-category="Morning" data-needs="1" />
               <span class="checklist-item-text">Confirm first appointment</span>
               <span class="checklist-item-category">Morning</span>
             </label>
-            <label class="checklist-item">
-              <input type="checkbox" class="cl-item" data-category="Prep" />
+            <label class="checklist-item" data-step="3">
+              <input type="checkbox" class="cl-item" data-category="Prep" data-needs="2" />
               <span class="checklist-item-text">Pack supplies and restock chemicals</span>
               <span class="checklist-item-category">Prep</span>
             </label>
-            <label class="checklist-item">
-              <input type="checkbox" class="cl-item" data-category="Field" />
+            <label class="checklist-item" data-step="4">
+              <input type="checkbox" class="cl-item" data-category="Field" data-needs="3" />
               <span class="checklist-item-text">Complete and note each service</span>
               <span class="checklist-item-category">Field</span>
             </label>
-            <label class="checklist-item">
-              <input type="checkbox" class="cl-item" data-category="Field" />
+            <label class="checklist-item" data-step="5">
+              <input type="checkbox" class="cl-item" data-category="Field" data-needs="4" />
               <span class="checklist-item-text">Mark payment received per job</span>
               <span class="checklist-item-category">Field</span>
             </label>
-            <label class="checklist-item">
-              <input type="checkbox" class="cl-item" data-category="Close" />
+            <label class="checklist-item" data-step="6">
+              <input type="checkbox" class="cl-item" data-category="Close" data-needs="5" />
               <span class="checklist-item-text">Send follow-up message to customers</span>
               <span class="checklist-item-category">Close</span>
             </label>
-            <label class="checklist-item">
-              <input type="checkbox" class="cl-item" data-category="Close" />
+            <label class="checklist-item" data-step="7">
+              <input type="checkbox" class="cl-item" data-category="Close" data-needs="6" />
               <span class="checklist-item-text">Review daily total and open requests</span>
               <span class="checklist-item-category">Close</span>
             </label>
@@ -488,28 +568,41 @@
               <div class="eod-stat-value" id="eodDone">0 / 7</div>
             </div>
             <div class="eod-stat">
-              <div class="eod-stat-label">Est. Revenue</div>
-              <div class="eod-stat-value" id="eodRevenue">$840</div>
+              <div class="eod-stat-label">Jobs Closed</div>
+              <div class="eod-stat-value" id="eodJobs">0 / 4</div>
+            </div>
+            <div class="eod-stat">
+              <div class="eod-stat-label">Collected</div>
+              <div class="eod-stat-value" id="eodRevenue">$0</div>
             </div>
           </div>
           <div class="eod-list">
             <div class="eod-list-row">
               <span>Jobs scheduled</span>
-              <span>3</span>
+              <span>4</span>
             </div>
             <div class="eod-list-row">
               <span>Open quote requests</span>
               <span id="eodQuotes">2 pending</span>
             </div>
             <div class="eod-list-row">
+              <span>Escalations raised</span>
+              <span id="eodEscalations">0</span>
+            </div>
+            <div class="eod-list-row">
               <span>Follow-ups needed</span>
-              <span id="eodFollowup">1</span>
+              <span id="eodFollowup">2</span>
             </div>
           </div>
-          <p class="eod-note" id="eodNote">Update the checklist above to see this summary reflect your progress. Demo only — no data is saved.</p>
+          <p class="eod-note" id="eodNote">Run the route and checklist above to see this summary fill in. Demo only — no data is saved.</p>
+          <div class="eod-preview-wrap">
+            <div class="eod-preview-label">Plain-text export preview</div>
+            <pre class="eod-preview" id="eodPreview" aria-live="polite">—</pre>
+          </div>
         </div>
         <div class="eod-actions">
           <button class="btn-primary" type="button" id="copyBtn" style="min-height:40px;padding:0 16px;font-size:0.9rem">Copy summary</button>
+          <button class="btn-ghost eod-print-btn" type="button" id="printBtn">Print recap</button>
           <span class="copy-status" id="copyStatus" aria-live="polite">✓ Copied to clipboard</span>
         </div>
       </div>

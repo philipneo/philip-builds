@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>The Kettle House | Restaurant Menu Demo</title>
-    <meta name="description" content="A fictional restaurant menu page demo with hero plate visual, phone ordering mockup, category tabs, featured items, and live order preview. Philip Builds Studio." />
+    <meta name="description" content="A fictional restaurant menu page demo with hero plate visual, phone ordering mockup, category tabs, dietary filters, item modifiers, pickup-time selector, live order preview, and a kitchen queue. Philip Builds Studio." />
     <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="../_shared/motion.css" />
     <link rel="stylesheet" href="styles.css" />
@@ -28,6 +28,7 @@
         <a href="#board">Menu board</a>
         <a href="#menu">Full menu</a>
         <a href="#order">Order</a>
+        <a href="#kitchen">Kitchen</a>
         <a href="#why">Why this page</a>
       </nav>
       <a class="header-cta" href="#order">Order preview · <span id="orderCount">0</span></a>
@@ -102,7 +103,7 @@
         <div>
           <p class="eyebrow">Phone ordering</p>
           <h2 id="phone-title">Built for the device the customer is holding.</h2>
-          <p>Tap a category, tap an item, watch the cart update. No menu PDF, no pinch-to-zoom, no separate ordering app.</p>
+          <p>Tap a category, filter for what you can eat, choose how it's made, then watch the cart update. No menu PDF, no pinch-to-zoom, no separate ordering app.</p>
         </div>
       </section>
 
@@ -159,14 +160,14 @@
         </div>
       </section>
 
-      <!-- FULL MENU WITH TABS + ORDER PREVIEW -->
+      <!-- FULL MENU WITH TABS + FILTERS + ORDER PREVIEW -->
       <section id="menu" class="section menu-section" aria-labelledby="menu-title">
         <div class="section-head reveal">
           <p class="eyebrow">Full menu</p>
           <h2 id="menu-title">Pick a category, build a demo order.</h2>
         </div>
 
-        <div class="menu-tabs" role="tablist">
+        <div class="menu-tabs" role="tablist" aria-label="Menu categories">
           <button type="button" class="is-active" data-menu-tab="starters" role="tab">Starters</button>
           <button type="button" data-menu-tab="mains" role="tab">Mains</button>
           <button type="button" data-menu-tab="sides" role="tab">Sides</button>
@@ -174,72 +175,107 @@
           <button type="button" data-menu-tab="drinks" role="tab">Drinks</button>
         </div>
 
+        <div class="diet-filters" role="group" aria-label="Dietary filters">
+          <span class="diet-label">Filter:</span>
+          <button type="button" class="diet-chip is-active" data-diet="all">All</button>
+          <button type="button" class="diet-chip" data-diet="veg">🌱 Vegetarian</button>
+          <button type="button" class="diet-chip" data-diet="gf">GF Gluten-free</button>
+          <button type="button" class="diet-chip" data-diet="spicy">🌶 Spicy</button>
+        </div>
+
         <div class="menu-layout">
           <div>
             <div class="menu-panel is-active" data-menu-panel="starters" role="tabpanel">
-              <article><strong>Guacamole &amp; Chips</strong><span>$9</span><button type="button" data-add-item="Guacamole &amp; Chips" data-price="9">+ Add</button></article>
-              <article><strong>Elote Dip</strong><span>$10</span><button type="button" data-add-item="Elote Dip" data-price="10">+ Add</button></article>
-              <article><strong>Queso Fundido</strong><span>$12</span><button type="button" data-add-item="Queso Fundido" data-price="12">+ Add</button></article>
+              <article data-diet="veg gf"><div class="mi-main"><strong>Guacamole &amp; Chips</strong><small class="mi-tags">🌱 GF</small></div><span>$9</span><button type="button" data-add-item="Guacamole &amp; Chips" data-price="9" data-modifiers="size,spice">+ Add</button></article>
+              <article data-diet="veg"><div class="mi-main"><strong>Elote Dip</strong><small class="mi-tags">🌱</small></div><span>$10</span><button type="button" data-add-item="Elote Dip" data-price="10" data-modifiers="spice">+ Add</button></article>
+              <article data-diet="veg gf"><div class="mi-main"><strong>Queso Fundido</strong><small class="mi-tags">🌱 GF</small></div><span>$12</span><button type="button" data-add-item="Queso Fundido" data-price="12" data-modifiers="addon">+ Add</button></article>
             </div>
 
             <div class="menu-panel" data-menu-panel="mains" role="tabpanel" hidden>
-              <article><strong>Tacos al Pastor</strong><span>$11</span><button type="button" data-add-item="Tacos al Pastor" data-price="11">+ Add</button></article>
-              <article><strong>Pozole Bowl</strong><span>$13</span><button type="button" data-add-item="Pozole Bowl" data-price="13">+ Add</button></article>
-              <article><strong>Carnitas Plate</strong><span>$15</span><button type="button" data-add-item="Carnitas Plate" data-price="15">+ Add</button></article>
-              <article><strong>Veggie Burrito</strong><span>$12</span><button type="button" data-add-item="Veggie Burrito" data-price="12">+ Add</button></article>
+              <article data-diet="spicy"><div class="mi-main"><strong>Tacos al Pastor</strong><small class="mi-tags">🌶</small></div><span>$11</span><button type="button" data-add-item="Tacos al Pastor" data-price="11" data-modifiers="protein,spice,addon">+ Add</button></article>
+              <article data-diet="gf spicy"><div class="mi-main"><strong>Pozole Bowl</strong><small class="mi-tags">GF 🌶</small></div><span>$13</span><button type="button" data-add-item="Pozole Bowl" data-price="13" data-modifiers="size,spice">+ Add</button></article>
+              <article data-diet="gf"><div class="mi-main"><strong>Carnitas Plate</strong><small class="mi-tags">GF</small></div><span>$15</span><button type="button" data-add-item="Carnitas Plate" data-price="15" data-modifiers="addon">+ Add</button></article>
+              <article data-diet="veg"><div class="mi-main"><strong>Veggie Burrito</strong><small class="mi-tags">🌱</small></div><span>$12</span><button type="button" data-add-item="Veggie Burrito" data-price="12" data-modifiers="size,addon">+ Add</button></article>
             </div>
 
             <div class="menu-panel" data-menu-panel="sides" role="tabpanel" hidden>
-              <article><strong>Mexican Rice</strong><span>$4</span><button type="button" data-add-item="Mexican Rice" data-price="4">+ Add</button></article>
-              <article><strong>Refried Beans</strong><span>$4</span><button type="button" data-add-item="Refried Beans" data-price="4">+ Add</button></article>
-              <article><strong>Street Corn</strong><span>$5</span><button type="button" data-add-item="Street Corn" data-price="5">+ Add</button></article>
+              <article data-diet="veg gf"><div class="mi-main"><strong>Mexican Rice</strong><small class="mi-tags">🌱 GF</small></div><span>$4</span><button type="button" data-add-item="Mexican Rice" data-price="4">+ Add</button></article>
+              <article data-diet="veg gf"><div class="mi-main"><strong>Refried Beans</strong><small class="mi-tags">🌱 GF</small></div><span>$4</span><button type="button" data-add-item="Refried Beans" data-price="4">+ Add</button></article>
+              <article data-diet="veg gf spicy"><div class="mi-main"><strong>Street Corn</strong><small class="mi-tags">🌱 GF 🌶</small></div><span>$5</span><button type="button" data-add-item="Street Corn" data-price="5" data-modifiers="spice">+ Add</button></article>
             </div>
 
             <div class="menu-panel" data-menu-panel="desserts" role="tabpanel" hidden>
-              <article><strong>Churros (4)</strong><span>$7</span><button type="button" data-add-item="Churros" data-price="7">+ Add</button></article>
-              <article><strong>Flan de Casa</strong><span>$7</span><button type="button" data-add-item="Flan de Casa" data-price="7">+ Add</button></article>
-              <article><strong>Tres Leches Slice</strong><span>$8</span><button type="button" data-add-item="Tres Leches Slice" data-price="8">+ Add</button></article>
+              <article data-diet="veg"><div class="mi-main"><strong>Churros (4)</strong><small class="mi-tags">🌱</small></div><span>$7</span><button type="button" data-add-item="Churros" data-price="7">+ Add</button></article>
+              <article data-diet="veg gf"><div class="mi-main"><strong>Flan de Casa</strong><small class="mi-tags">🌱 GF</small></div><span>$7</span><button type="button" data-add-item="Flan de Casa" data-price="7">+ Add</button></article>
+              <article data-diet="veg"><div class="mi-main"><strong>Tres Leches Slice</strong><small class="mi-tags">🌱</small></div><span>$8</span><button type="button" data-add-item="Tres Leches Slice" data-price="8">+ Add</button></article>
             </div>
 
             <div class="menu-panel" data-menu-panel="drinks" role="tabpanel" hidden>
-              <article><strong>Agua Fresca</strong><span>$4</span><button type="button" data-add-item="Agua Fresca" data-price="4">+ Add</button></article>
-              <article><strong>Mexican Coke</strong><span>$4</span><button type="button" data-add-item="Mexican Coke" data-price="4">+ Add</button></article>
-              <article><strong>Café de Olla</strong><span>$4</span><button type="button" data-add-item="Café de Olla" data-price="4">+ Add</button></article>
+              <article data-diet="veg gf"><div class="mi-main"><strong>Agua Fresca</strong><small class="mi-tags">🌱 GF</small></div><span>$4</span><button type="button" data-add-item="Agua Fresca" data-price="4" data-modifiers="size">+ Add</button></article>
+              <article data-diet="veg gf"><div class="mi-main"><strong>Mexican Coke</strong><small class="mi-tags">🌱 GF</small></div><span>$4</span><button type="button" data-add-item="Mexican Coke" data-price="4">+ Add</button></article>
+              <article data-diet="veg gf"><div class="mi-main"><strong>Café de Olla</strong><small class="mi-tags">🌱 GF</small></div><span>$4</span><button type="button" data-add-item="Café de Olla" data-price="4" data-modifiers="size">+ Add</button></article>
             </div>
+
+            <p class="menu-empty" id="menuEmpty" hidden>No items in this category match that filter. Try a different filter.</p>
           </div>
 
           <aside id="order" class="order-preview" aria-live="polite">
             <span>Demo order preview</span>
             <h3>Your cart</h3>
             <div class="order-rows" id="orderRows"></div>
+
+            <div class="pickup-block" id="pickupBlock">
+              <label class="pickup-label" for="pickupTime">Pickup time</label>
+              <div class="pickup-times" id="pickupTimes" role="group" aria-label="Pickup time">
+                <button type="button" class="pickup-chip is-active" data-pickup="ASAP (~20 min)">ASAP<small>~20 min</small></button>
+                <button type="button" class="pickup-chip" data-pickup="6:30 PM">6:30<small>PM</small></button>
+                <button type="button" class="pickup-chip" data-pickup="7:00 PM">7:00<small>PM</small></button>
+                <button type="button" class="pickup-chip" data-pickup="7:30 PM">7:30<small>PM</small></button>
+              </div>
+              <input type="hidden" id="pickupTime" value="ASAP (~20 min)" />
+            </div>
+
             <div class="order-total">
               <span>Demo total</span>
               <strong id="orderTotal">$0</strong>
             </div>
             <button class="button primary" type="button" id="confirmOrder">Preview demo order →</button>
+            <button class="button ghost order-clear" type="button" id="clearOrder" hidden>Clear cart</button>
             <p class="demo-note" id="orderStatus">Add items from the menu. No data leaves this page.</p>
+
+            <!-- CONFIRMATION STATE -->
+            <div class="order-confirm" id="orderConfirm" hidden>
+              <div class="confirm-check" aria-hidden="true">✓</div>
+              <span class="confirm-eyebrow">Demo order placed</span>
+              <h3 class="confirm-num" id="confirmNum">Order #143</h3>
+              <p class="confirm-pickup">Pickup: <strong id="confirmPickup">ASAP (~20 min)</strong></p>
+              <div class="confirm-receipt" id="confirmReceipt"></div>
+              <div class="confirm-actions">
+                <button class="button primary" type="button" id="copyReceipt">Copy receipt</button>
+                <button class="button ghost" type="button" id="newOrder">Start new demo order</button>
+              </div>
+              <p class="demo-note">Demo only — nothing was sent to a kitchen and no payment was taken.</p>
+            </div>
           </aside>
         </div>
       </section>
 
       <!-- OWNER KITCHEN VIEW -->
-      <section class="section board-section" aria-labelledby="kitchen-title">
+      <section id="kitchen" class="section board-section" aria-labelledby="kitchen-title">
         <div class="section-head reveal">
           <p class="eyebrow">Owner / kitchen view</p>
           <h2 id="kitchen-title">The same order, seen from behind the counter.</h2>
-          <p>Customers tap to order; the kitchen sees a clean ticket queue. One page, two perspectives — the way the Command Center demo pairs an owner screen with a phone.</p>
+          <p>Customers tap to order; the kitchen sees a clean ticket queue. Place a demo order above and watch a fresh ticket drop into the queue. One page, two perspectives.</p>
         </div>
-        <div class="menu-board reveal">
-          <div class="board-copy">
-            <span>Live demo tickets</span>
-            <h3>Tickets land in order, priced and timed.</h3>
-            <p>No shouted orders, no lost slips — every demo order becomes a structured ticket the kitchen can work top to bottom.</p>
+
+        <div class="kitchen-board reveal">
+          <div class="kitchen-bar">
+            <div class="kitchen-stat"><strong id="kdsActive">3</strong><span>tickets working</span></div>
+            <div class="kitchen-stat"><strong id="kdsReady">1</strong><span>ready for pickup</span></div>
+            <div class="kitchen-stat"><strong id="kdsAvg">8m</strong><span>avg ticket age</span></div>
           </div>
-          <div class="board-grid">
-            <div><strong>#142 · 2× Tacos al Pastor</strong><span>New</span></div>
-            <div><strong>#141 · Pozole Bowl</strong><span>Firing</span></div>
-            <div><strong>#140 · Carnitas Plate</strong><span>Plating</span></div>
-            <div><strong>#139 · Churros</strong><span>Ready</span></div>
+          <div class="kitchen-queue" id="kitchenQueue" aria-live="polite">
+            <!-- tickets injected/seeded by JS -->
           </div>
         </div>
       </section>
@@ -259,7 +295,7 @@
           <article class="reveal reveal-delay-1">
             <span>Mobile-first</span>
             <h3>One-tap items</h3>
-            <p>Each item has a clear price and a single + Add button — no menu PDF, no app install.</p>
+            <p>Each item has a clear price, dietary tags, and a single + Add button — no menu PDF, no app install.</p>
           </article>
           <article class="reveal reveal-delay-2">
             <span>Owner-friendly</span>
@@ -281,6 +317,34 @@
       </section>
 
     </main>
+
+    <!-- MOBILE STICKY CART BAR -->
+    <div class="mobile-cart-bar" id="mobileCartBar" hidden>
+      <div class="mcb-info">
+        <strong id="mcbCount">0 items</strong>
+        <span id="mcbTotal">$0</span>
+      </div>
+      <a class="button primary mcb-go" href="#order">View cart →</a>
+    </div>
+
+    <!-- MODIFIER SHEET -->
+    <div class="modifier-overlay" id="modifierOverlay" hidden>
+      <div class="modifier-sheet" role="dialog" aria-modal="true" aria-labelledby="modTitle">
+        <div class="mod-head">
+          <div>
+            <span class="mod-eyebrow">Customize</span>
+            <h3 id="modTitle">Item</h3>
+          </div>
+          <button type="button" class="mod-close" id="modClose" aria-label="Close customization">✕</button>
+        </div>
+        <div class="mod-body" id="modBody"></div>
+        <div class="mod-foot">
+          <span class="mod-price" id="modPrice">$0</span>
+          <button type="button" class="button primary" id="modAdd">Add to order</button>
+        </div>
+        <p class="demo-note mod-note">Demo only — modifiers are illustrative and add no real charge.</p>
+      </div>
+    </div>
 
     <footer>
       <p>The Kettle House is a fictional brand created by Philip Builds Studio for a portfolio demo. No real restaurant, customers, reviews, or transactions are represented. No data is collected or transmitted.</p>

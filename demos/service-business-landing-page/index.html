@@ -27,7 +27,8 @@
       <nav aria-label="Page navigation">
         <a href="#services">Services</a>
         <a href="#workflow">Workflow</a>
-        <a href="#quote">Quote</a>
+        <a href="#quote">Book</a>
+        <a href="#owner">Owner view</a>
         <a href="#area">Area</a>
         <a href="#faq">FAQ</a>
       </nav>
@@ -102,6 +103,62 @@
             <p>Pressure wash, gutters, windows, yard, and a closing walkthrough. Full-day visit.</p>
             <strong>$249</strong>
           </article>
+        </div>
+
+        <div class="compare-wrap reveal reveal-delay-1">
+          <div class="compare-head">
+            <span class="eyebrow">Side-by-side</span>
+            <h3>Compare what each package includes.</h3>
+            <p>Tap a column to highlight it — the same scope a customer would scan before choosing.</p>
+          </div>
+          <div class="compare-table" role="table" aria-label="Package comparison">
+            <div class="compare-row compare-row-head" role="row">
+              <div class="compare-cell compare-feature" role="columnheader">Included</div>
+              <button class="compare-cell compare-col" type="button" data-compare-col="Quick Visit" role="columnheader">
+                <span class="compare-col-name">Quick Visit</span>
+                <span class="compare-col-price">$79</span>
+              </button>
+              <button class="compare-cell compare-col is-compare-active" type="button" data-compare-col="Standard Service" role="columnheader">
+                <span class="compare-tag">Most picked</span>
+                <span class="compare-col-name">Standard</span>
+                <span class="compare-col-price">$149</span>
+              </button>
+              <button class="compare-cell compare-col" type="button" data-compare-col="Full Service" role="columnheader">
+                <span class="compare-col-name">Full Service</span>
+                <span class="compare-col-price">$249</span>
+              </button>
+            </div>
+            <div class="compare-row" role="row">
+              <div class="compare-cell compare-feature" role="cell">Visit length</div>
+              <div class="compare-cell" role="cell" data-col="Quick Visit">~2 hrs</div>
+              <div class="compare-cell" role="cell" data-col="Standard Service">Half day</div>
+              <div class="compare-cell" role="cell" data-col="Full Service">Full day</div>
+            </div>
+            <div class="compare-row" role="row">
+              <div class="compare-cell compare-feature" role="cell">Tasks covered</div>
+              <div class="compare-cell" role="cell" data-col="Quick Visit">1 focused</div>
+              <div class="compare-cell" role="cell" data-col="Standard Service">2–3</div>
+              <div class="compare-cell" role="cell" data-col="Full Service">Whole exterior</div>
+            </div>
+            <div class="compare-row" role="row">
+              <div class="compare-cell compare-feature" role="cell">Gutter check</div>
+              <div class="compare-cell" role="cell" data-col="Quick Visit"><span class="ck ck-no">—</span></div>
+              <div class="compare-cell" role="cell" data-col="Standard Service"><span class="ck ck-yes">✓</span></div>
+              <div class="compare-cell" role="cell" data-col="Full Service"><span class="ck ck-yes">✓</span></div>
+            </div>
+            <div class="compare-row" role="row">
+              <div class="compare-cell compare-feature" role="cell">Closing walkthrough</div>
+              <div class="compare-cell" role="cell" data-col="Quick Visit"><span class="ck ck-no">—</span></div>
+              <div class="compare-cell" role="cell" data-col="Standard Service"><span class="ck ck-no">—</span></div>
+              <div class="compare-cell" role="cell" data-col="Full Service"><span class="ck ck-yes">✓</span></div>
+            </div>
+            <div class="compare-row" role="row">
+              <div class="compare-cell compare-feature" role="cell">Best for</div>
+              <div class="compare-cell" role="cell" data-col="Quick Visit">One nagging job</div>
+              <div class="compare-cell" role="cell" data-col="Standard Service">Seasonal refresh</div>
+              <div class="compare-cell" role="cell" data-col="Full Service">Pre-sale / event</div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -179,18 +236,25 @@
 
       <section id="quote" class="section" aria-labelledby="quote-title">
         <div class="section-head reveal">
-          <p class="eyebrow">Quote flow</p>
-          <h2 id="quote-title">A short, honest form customers will actually finish.</h2>
+          <p class="eyebrow">Quote → booking flow</p>
+          <h2 id="quote-title">A short, honest flow that ends in a real appointment.</h2>
+          <p>Pick a service, a window, then a day and time. The customer leaves with a confirmation, not a "we'll get back to you."</p>
         </div>
         <div class="quote-layout">
 
-          <form id="serviceQuoteForm" class="quote-flow reveal" data-step="1" aria-label="Demo quote flow" onsubmit="event.preventDefault()">
+          <form id="serviceQuoteForm" class="quote-flow reveal" data-step="1" aria-label="Demo quote and booking flow" onsubmit="event.preventDefault()">
             <div class="step-progress" aria-hidden="true">
               <span id="stepBar"></span>
             </div>
+            <div class="step-dots" aria-hidden="true">
+              <span class="step-dot is-on" data-dot="1">Service</span>
+              <span class="step-dot" data-dot="2">Timing</span>
+              <span class="step-dot" data-dot="3">Details</span>
+              <span class="step-dot" data-dot="4">Book</span>
+            </div>
 
             <div class="quote-step" data-step-panel="1">
-              <div class="step-label">Step 1 of 3</div>
+              <div class="step-label">Step 1 of 4</div>
               <h3>What service do you need?</h3>
               <div class="choice-grid" data-choice-group="service" role="radiogroup" aria-label="Service">
                 <button class="choice" type="button" data-value="Quick Visit">Quick Visit — $79</button>
@@ -204,7 +268,7 @@
             </div>
 
             <div class="quote-step" data-step-panel="2" hidden>
-              <div class="step-label">Step 2 of 3</div>
+              <div class="step-label">Step 2 of 4</div>
               <h3>When do you need this?</h3>
               <div class="choice-grid" data-choice-group="timing" role="radiogroup" aria-label="Timing">
                 <button class="choice is-selected" type="button" data-value="This week">This week</button>
@@ -219,26 +283,74 @@
             </div>
 
             <div class="quote-step" data-step-panel="3" hidden>
-              <div class="step-label">Step 3 of 3</div>
+              <div class="step-label">Step 3 of 4</div>
               <h3>Anything we should know?</h3>
               <label>
                 Job notes
-                <textarea id="requestNote" rows="4" placeholder="Two-story home, north side gutters, dog in yard."></textarea>
+                <textarea id="requestNote" rows="3" placeholder="Two-story home, north side gutters, dog in yard."></textarea>
+              </label>
+              <label>
+                Your name
+                <input id="requestName" type="text" autocomplete="off" placeholder="Sample Customer" value="Sample Customer" />
+              </label>
+              <label>
+                Best contact (demo only — not sent)
+                <input id="requestContact" type="text" autocomplete="off" placeholder="555-0100 or you@example.com" value="555-0100" />
               </label>
               <div class="step-actions">
                 <button class="button ghost prev-step" type="button">← Back</button>
-                <button class="button primary" id="previewRequestBtn" type="button">Preview demo request →</button>
+                <button class="button primary next-step" type="button">Pick a time →</button>
+              </div>
+            </div>
+
+            <div class="quote-step" data-step-panel="4" hidden>
+              <div class="step-label">Step 4 of 4</div>
+              <h3>Pick a day &amp; arrival window.</h3>
+              <p class="step-sub">Sample availability for a fictional calendar. Greyed slots are shown as booked.</p>
+              <div class="day-grid" id="dayGrid" role="radiogroup" aria-label="Day">
+                <button class="day-chip" type="button" data-day="Mon Jul 6"><span>Mon</span><strong>Jul 6</strong></button>
+                <button class="day-chip is-selected" type="button" data-day="Tue Jul 7"><span>Tue</span><strong>Jul 7</strong></button>
+                <button class="day-chip" type="button" data-day="Wed Jul 8"><span>Wed</span><strong>Jul 8</strong></button>
+                <button class="day-chip" type="button" data-day="Thu Jul 9"><span>Thu</span><strong>Jul 9</strong></button>
+                <button class="day-chip" type="button" data-day="Fri Jul 10"><span>Fri</span><strong>Jul 10</strong></button>
+              </div>
+              <div class="slot-grid" id="slotGrid" role="radiogroup" aria-label="Arrival window">
+                <button class="slot-chip is-selected" type="button" data-slot="8–10 AM">8–10 AM</button>
+                <button class="slot-chip" type="button" data-slot="10–12 PM">10–12 PM</button>
+                <button class="slot-chip is-booked" type="button" data-slot="12–2 PM" disabled aria-disabled="true">12–2 PM · booked</button>
+                <button class="slot-chip" type="button" data-slot="2–4 PM">2–4 PM</button>
+              </div>
+              <div class="step-actions">
+                <button class="button ghost prev-step" type="button">← Back</button>
+                <button class="button primary" id="confirmBookingBtn" type="button">Confirm demo booking →</button>
               </div>
             </div>
           </form>
 
-          <aside class="request-card reveal reveal-delay-2" aria-live="polite">
+          <aside class="request-card reveal reveal-delay-2" id="requestCard" aria-live="polite">
             <span class="eyebrow">Demo summary</span>
             <h3>Your request</h3>
             <p><strong>Service:</strong> <span id="requestService">Standard Service</span></p>
             <p><strong>Timing:</strong> <span id="requestTiming">This week</span></p>
+            <p><strong>Appointment:</strong> <span id="requestSlot">Tue Jul 7 · 8–10 AM</span></p>
+            <p><strong>Name:</strong> <span id="requestNamePreview">Sample Customer</span></p>
             <p><strong>Notes:</strong> <span id="requestNotePreview">Two-story home, north side gutters, dog in yard.</span></p>
-            <div id="requestStatus">Form summary updates live. No data leaves this page.</div>
+            <p class="request-total"><strong>Starting price:</strong> <span id="requestPrice">$149</span></p>
+
+            <div id="requestStatus">Summary updates live as you move through the flow. No data leaves this page.</div>
+
+            <div class="confirm-card" id="confirmCard" hidden>
+              <div class="confirm-check" aria-hidden="true">✓</div>
+              <h4>Demo booking confirmed</h4>
+              <p class="confirm-id">Ref <strong id="confirmRef">DEMO-0000</strong></p>
+              <p class="confirm-line" id="confirmLine">Standard Service · Tue Jul 7 · 8–10 AM</p>
+              <p class="confirm-sub">In a live site this would email the customer and drop a card on the owner's board below. Here it just shows the confirmed state.</p>
+              <div class="confirm-actions">
+                <button class="button primary" type="button" id="copySummaryBtn">Copy summary</button>
+                <button class="button ghost" type="button" id="resetBookingBtn">Start over</button>
+              </div>
+              <span class="copy-flash" id="copyFlash" role="status" aria-live="polite"></span>
+            </div>
           </aside>
         </div>
       </section>
@@ -276,6 +388,96 @@
         </div>
       </section>
 
+      <section id="owner" class="section" aria-labelledby="owner-title">
+        <div class="section-head reveal">
+          <p class="eyebrow">Owner side</p>
+          <h2 id="owner-title">What the owner sees when a booking lands.</h2>
+          <p>The other half of the page: a fictional dashboard mockup so an operator can picture managing the leads, not just collecting them.</p>
+        </div>
+        <div class="owner-dash reveal reveal-delay-1">
+          <div class="dash-bar">
+            <div class="dash-id">
+              <span class="dash-dot"></span>
+              Example Service Co. · Bookings
+            </div>
+            <div class="dash-day">Week of Jul 6 — demo data</div>
+          </div>
+
+          <div class="dash-stats">
+            <div class="dash-stat">
+              <span class="dash-stat-num" id="dashNew">3</span>
+              <span class="dash-stat-label">New requests</span>
+            </div>
+            <div class="dash-stat">
+              <span class="dash-stat-num" id="dashBooked">5</span>
+              <span class="dash-stat-label">Booked this week</span>
+            </div>
+            <div class="dash-stat">
+              <span class="dash-stat-num">$1,043</span>
+              <span class="dash-stat-label">Pipeline (sample)</span>
+            </div>
+            <div class="dash-stat">
+              <span class="dash-stat-num">Same day</span>
+              <span class="dash-stat-label">Avg reply target</span>
+            </div>
+          </div>
+
+          <div class="dash-board" id="dashBoard">
+            <div class="dash-col" data-stage="New">
+              <div class="dash-col-head">New <span id="dashNewCount">3</span></div>
+              <div class="dash-col-body" id="dashColNew">
+                <article class="lead-card" data-lead>
+                  <div class="lead-top"><strong>Standard Service</strong><span class="lead-price">$149</span></div>
+                  <p class="lead-meta">Tue Jul 7 · 8–10 AM</p>
+                  <p class="lead-note">2-story, north gutters, dog in yard</p>
+                  <button class="lead-move button ghost" type="button" data-move="Confirmed">Move to Confirmed →</button>
+                </article>
+                <article class="lead-card" data-lead>
+                  <div class="lead-top"><strong>Quick Visit</strong><span class="lead-price">$79</span></div>
+                  <p class="lead-meta">Wed Jul 8 · 10–12 PM</p>
+                  <p class="lead-note">Window cleaning, ground floor only</p>
+                  <button class="lead-move button ghost" type="button" data-move="Confirmed">Move to Confirmed →</button>
+                </article>
+                <article class="lead-card" data-lead>
+                  <div class="lead-top"><strong>Full Service</strong><span class="lead-price">$249</span></div>
+                  <p class="lead-meta">Fri Jul 10 · 8–10 AM</p>
+                  <p class="lead-note">Pre-sale reset, full exterior</p>
+                  <button class="lead-move button ghost" type="button" data-move="Confirmed">Move to Confirmed →</button>
+                </article>
+              </div>
+            </div>
+            <div class="dash-col" data-stage="Confirmed">
+              <div class="dash-col-head">Confirmed <span id="dashConfirmedCount">2</span></div>
+              <div class="dash-col-body" id="dashColConfirmed">
+                <article class="lead-card" data-lead>
+                  <div class="lead-top"><strong>Standard Service</strong><span class="lead-price">$149</span></div>
+                  <p class="lead-meta">Mon Jul 6 · 2–4 PM</p>
+                  <p class="lead-note">Pressure wash driveway + gutters</p>
+                  <button class="lead-move button ghost" type="button" data-move="Done">Mark done ✓</button>
+                </article>
+                <article class="lead-card" data-lead>
+                  <div class="lead-top"><strong>Quick Visit</strong><span class="lead-price">$79</span></div>
+                  <p class="lead-meta">Thu Jul 9 · 10–12 PM</p>
+                  <p class="lead-note">Gutter check, one-story</p>
+                  <button class="lead-move button ghost" type="button" data-move="Done">Mark done ✓</button>
+                </article>
+              </div>
+            </div>
+            <div class="dash-col" data-stage="Done">
+              <div class="dash-col-head">Done <span id="dashDoneCount">1</span></div>
+              <div class="dash-col-body" id="dashColDone">
+                <article class="lead-card lead-done" data-lead>
+                  <div class="lead-top"><strong>Full Service</strong><span class="lead-price">$249</span></div>
+                  <p class="lead-meta">Fri Jul 3 · finished</p>
+                  <p class="lead-note">Closing walkthrough sent</p>
+                </article>
+              </div>
+            </div>
+          </div>
+          <p class="dash-foot">Sample board with fictional jobs. Buttons rearrange the cards on this page only — nothing is stored or sent.</p>
+        </div>
+      </section>
+
       <section class="section phone-section" aria-labelledby="phone-title">
         <div class="phone-copy reveal">
           <span class="eyebrow">Phone view</span>
@@ -288,10 +490,22 @@
             <div class="phone-screen service-phone">
               <span class="eyebrow">Example Service Co.</span>
               <h3 id="phonePackageLabel">Standard Service from $149</h3>
-              <button class="phone-choice" type="button" data-phone-package="Quick Visit" data-phone-price="79">Quick Visit · $79</button>
-              <button class="phone-choice is-selected" type="button" data-phone-package="Standard Service" data-phone-price="149">Standard · $149</button>
-              <button class="phone-choice" type="button" data-phone-package="Full Service" data-phone-price="249">Full Service · $249</button>
-              <div id="phonePackageHint">Tap a package to preview the price</div>
+
+              <div class="phone-stage" id="phoneStagePick">
+                <button class="phone-choice" type="button" data-phone-package="Quick Visit" data-phone-price="79">Quick Visit · $79</button>
+                <button class="phone-choice is-selected" type="button" data-phone-package="Standard Service" data-phone-price="149">Standard · $149</button>
+                <button class="phone-choice" type="button" data-phone-package="Full Service" data-phone-price="249">Full Service · $249</button>
+                <div id="phonePackageHint">Tap a package, then book a window</div>
+                <button class="phone-cta" type="button" id="phoneBookBtn">Book this service</button>
+              </div>
+
+              <div class="phone-stage" id="phoneStageConfirm" hidden>
+                <div class="phone-confirm-check" aria-hidden="true">✓</div>
+                <p class="phone-confirm-title">Requested</p>
+                <p class="phone-confirm-line" id="phoneConfirmLine">Standard Service · earliest window</p>
+                <p class="phone-confirm-sub">Demo only — same thumb-friendly flow as the form above, nothing sent.</p>
+                <button class="phone-cta ghost" type="button" id="phoneResetBtn">Start over</button>
+              </div>
             </div>
           </div>
         </div>
@@ -323,12 +537,12 @@
       </section>
 
       <section class="cta-section" aria-labelledby="cta-title">
-        <p class="eyebrow">Want a page like this?</p>
-        <h2 id="cta-title">Philip Builds Studio builds focused service pages for local operators.</h2>
-        <p>Fixed scope, one revision, hands you a clean public link.</p>
+        <p class="eyebrow">End of the demo</p>
+        <h2 id="cta-title">That's the full loop: browse, compare, book, and manage.</h2>
+        <p>A fictional service page that carries a customer from packages to a confirmed appointment, plus the owner-side board behind it. Built by Philip Builds Studio to show structure, not to sell anything here.</p>
         <div class="actions">
-          <a class="button primary" href="../../index.html#contact">Start a project</a>
-          <a class="button ghost" href="../../portfolio/index.html">See the portfolio</a>
+          <a class="button primary" href="#quote">Replay the booking flow</a>
+          <a class="button ghost" href="../../portfolio/index.html">Back to portfolio</a>
         </div>
       </section>
 

@@ -174,7 +174,7 @@
         <div class="pbs-assistant-chips" aria-label="Quick prompts"></div>
         <form class="pbs-assistant-form" onsubmit="event.preventDefault()">
           <input class="pbs-assistant-input" type="text" autocomplete="off" placeholder="Ask about quotes, demos, tools..." aria-label="Assistant message" />
-          <button class="pbs-assistant-send" type="submit">Send</button>
+          <button class="pbs-assistant-send" type="button">Send</button>
         </form>
         <p class="pbs-assistant-note">Fictional guided chat demo. It does not use a backend, save messages, or contact anyone.</p>
       </div>
@@ -186,6 +186,7 @@
     const chips = panel.querySelector(".pbs-assistant-chips");
     const input = panel.querySelector(".pbs-assistant-input");
     const form = panel.querySelector(".pbs-assistant-form");
+    const send = panel.querySelector(".pbs-assistant-send");
     const close = panel.querySelector(".pbs-assistant-close");
 
     addMessage(body, copy.intro, {
@@ -220,16 +221,27 @@
       window.setTimeout(() => addMessage(body, result.text, { links: result.links }), 120);
     }
 
+    function handleSend() {
+      const value = input.value.trim();
+      if (!value) return;
+      input.value = "";
+      respond(value);
+    }
+
     launcher.addEventListener("click", () => {
       if (panel.classList.contains("is-open")) closePanel();
       else openPanel();
     });
     close.addEventListener("click", closePanel);
-    form.addEventListener("submit", () => {
-      const value = input.value.trim();
-      if (!value) return;
-      input.value = "";
-      respond(value);
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      handleSend();
+    });
+    send.addEventListener("click", handleSend);
+    input.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" || event.shiftKey) return;
+      event.preventDefault();
+      handleSend();
     });
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape" && panel.classList.contains("is-open")) closePanel();
