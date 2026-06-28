@@ -139,6 +139,16 @@
       };
     }
     if (
+      value.includes("this demo") || value.includes("what is this") || value.includes("can you build this") ||
+      value.includes("build this") || value.includes("make me one") || value.includes("one like this") ||
+      value.includes("is this real") || value.includes("how do i use this") || value.includes("how does this work")
+    ) {
+      return {
+        text: "This is a fictional, front-end demo — it shows the interface and flow, but nothing real happens (no payment, booking, or submission). Yes, a real version can be built and adapted to your business. Use the Project Matcher to find the closest concept, or Start a project to send the idea.",
+        links: [["Match this to my project", routes.matcher], ["Start a project", routes.start]]
+      };
+    }
+    if (
       value.includes("match me") || value.includes("recommend") || value.includes("matcher") ||
       value.includes("what should i build") || value.includes("not sure") || value.includes("help me choose")
     ) {

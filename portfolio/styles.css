@@ -927,3 +927,11 @@ article strong {
   color: var(--muted, #667085);
 }
 .best-for strong { color: inherit; }
+
+/* secondary "match this" CTA on demo cards */
+.project-match {
+  margin-left: 14px;
+  font-weight: 700;
+  opacity: 0.75;
+}
+.project-match:hover { opacity: 1; }
