@@ -10,7 +10,9 @@
     />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="shared/assistant.css" />
     <script src="script.js" defer></script>
+    <script src="shared/assistant.js" defer data-assistant-root="" data-assistant-context="home"></script>
   </head>
   <body class="no-js">
     <header class="site-header">
@@ -21,6 +23,7 @@
       <nav aria-label="Primary navigation">
         <a href="#problem">Problem</a>
         <a href="#demo">Demo</a>
+        <a href="#assistant">Assistant</a>
         <a href="#packages">Packages</a>
         <a href="#faq">FAQ</a>
         <a href="#contact">Contact</a>
@@ -34,12 +37,12 @@
           <p class="eyebrow">Philip Builds Studio</p>
           <h1 id="hero-title">Websites and tools that work for local operators.</h1>
           <p>
-            Clean, mobile-first pages and simple tools for service businesses.
+            Clean, mobile-first pages, guided demos, and simple tools for service businesses.
             Starting at $150. Fixed scope. One revision. Clean public link.
           </p>
           <div class="actions">
             <a class="button primary" href="demos/local-business-command-center/index.html">View Flagship Demo</a>
-            <a class="button" href="#demo">See How It Looks</a>
+            <button class="button" type="button" data-assistant-open="Which demo should I look at?">Ask the Demo Assistant</button>
           </div>
         </div>
         <div class="hero-showcase reveal reveal-scale" aria-hidden="true">
@@ -72,6 +75,36 @@
           <div class="hero-chip">
             <span>Live interactive demo</span>
             <strong>Built with no libraries</strong>
+          </div>
+        </div>
+      </section>
+
+      <section id="assistant" class="section assistant-feature-section reveal" aria-labelledby="assistant-title">
+        <div class="assistant-feature-copy reveal reveal-up">
+          <p class="eyebrow">Guided chat demo</p>
+          <h2 id="assistant-title">A front-end assistant concept for routing visitors faster.</h2>
+          <p>
+            This demo assistant does not use a backend or save messages. It shows
+            how a small business site could guide visitors toward the right page,
+            quote flow, menu flow, or client handoff tool.
+          </p>
+          <div class="actions">
+            <button class="button primary" type="button" data-assistant-open="Help me choose a starting point">Try the assistant</button>
+            <a class="button" href="portfolio/index.html">Browse the showroom</a>
+          </div>
+        </div>
+        <div class="assistant-feature-card reveal reveal-scale" aria-hidden="true">
+          <div class="af-status">
+            <span>Demo mode</span>
+            <strong>Front-end only</strong>
+          </div>
+          <div class="af-chat">
+            <p class="af-user">I need help with pricing.</p>
+            <p class="af-bot">Start with Cleaning Quote or the Service Business demo.</p>
+            <div>
+              <span>Cleaning Quote</span>
+              <span>Service Demo</span>
+            </div>
           </div>
         </div>
       </section>

@@ -10,6 +10,8 @@
     />
     <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../shared/assistant.css" />
+    <script src="../shared/assistant.js" defer data-assistant-root="../" data-assistant-context="portfolio"></script>
   </head>
   <body>
     <main>
@@ -30,6 +32,32 @@
             <li>Mobile-first pages</li>
             <li>Simple scope before work starts</li>
           </ul>
+        </div>
+      </section>
+
+      <section class="band assistant-showroom" aria-labelledby="assistant-title">
+        <div class="section-head">
+          <p class="eyebrow">Guided demo finder</p>
+          <h2 id="assistant-title">Not sure where to start? Use the demo assistant.</h2>
+          <p>The assistant is a front-end-only concept that routes visitors to the right demo. It does not save messages, send data, or connect to any service.</p>
+        </div>
+        <div class="assistant-showroom-grid">
+          <article class="assistant-showroom-card">
+            <span>Front-end assistant concept</span>
+            <h3>Find the right demo by intent.</h3>
+            <p>Try a guided prompt for pricing, booking, menu flow, operations, or invoice handoff.</p>
+            <button class="button primary" type="button" data-assistant-open="Help me choose a starting point">Open assistant</button>
+          </article>
+          <article>
+            <span>Pricing path</span>
+            <h3>Quotes and estimates</h3>
+            <p>Routes to Cleaning Quote, Service Business, or Contractor Estimate Builder.</p>
+          </article>
+          <article>
+            <span>Workflow path</span>
+            <h3>Operations and handoff</h3>
+            <p>Routes to Command Center, Invoice Builder, or downtime reporting tools.</p>
+          </article>
         </div>
       </section>
 

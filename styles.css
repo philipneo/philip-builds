@@ -204,8 +204,10 @@ p {
   border-radius: 8px;
   background: #fff;
   color: var(--ink);
+  font: inherit;
   font-weight: 850;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .button.primary {
@@ -447,6 +449,94 @@ nav a:focus-visible {
 
 .hero-chip span { color: #fbbf24; font-size: 0.68rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.04em; }
 .hero-chip strong { color: #fff; font-size: 0.95rem; }
+
+.assistant-feature-section {
+  display: grid;
+  grid-template-columns: minmax(0, 0.86fr) minmax(320px, 0.74fr);
+  gap: 24px;
+  align-items: center;
+  background:
+    radial-gradient(circle at 90% 12%, rgba(37, 99, 235, 0.14), transparent 22rem),
+    #ffffff;
+}
+
+.assistant-feature-copy {
+  max-width: 760px;
+}
+
+.assistant-feature-card {
+  display: grid;
+  gap: 16px;
+  min-height: 390px;
+  padding: 20px;
+  border: 1px solid rgba(37, 99, 235, 0.18);
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 10% 0%, rgba(94, 234, 212, 0.18), transparent 14rem),
+    linear-gradient(145deg, #0c1423, #17202a);
+  box-shadow: var(--shadow-deep);
+}
+
+.af-status {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.af-status span,
+.af-chat span {
+  color: #93c5fd;
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.af-status strong {
+  color: #fff;
+}
+
+.af-chat {
+  display: grid;
+  align-content: end;
+  gap: 12px;
+}
+
+.af-chat p {
+  max-width: 82%;
+  margin: 0;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 14px;
+  color: #eef4ff;
+}
+
+.af-user {
+  justify-self: end;
+  background: rgba(96, 165, 250, 0.18);
+}
+
+.af-bot {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.af-chat div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.af-chat span {
+  min-height: 30px;
+  padding: 7px 10px;
+  border: 1px solid rgba(96, 165, 250, 0.35);
+  border-radius: 999px;
+  background: rgba(96, 165, 250, 0.12);
+  color: #dbeafe;
+}
 
 .intro-grid {
   display: grid;
@@ -1066,6 +1156,7 @@ ul {
 
   .intro-grid,
   .demo-feature,
+  .assistant-feature-section,
   .contact-section,
   .scroll-showcase,
   .tools-preview-layout,
