@@ -3,20 +3,20 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Philip Builds Studio — Small Websites for Local Businesses</title>
+    <title>Philip Builds Studio — AI-Ready Websites &amp; Tools for Local Businesses</title>
     <meta
       name="description"
-      content="Clean, mobile-ready one-page websites for local service businesses. Starting at $150. Fixed price. Fast turnaround."
+      content="An AI-ready front-end studio: mobile-first websites, interactive demo tools, a guided assistant, and a project matcher for local businesses. Guided today, model-ready later. Starting at $150."
     />
     <link rel="canonical" href="https://philipneo.github.io/philip-builds/" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Philip Builds Studio" />
-    <meta property="og:title" content="Philip Builds Studio — Small Websites for Local Businesses" />
-    <meta property="og:description" content="Clean, mobile-ready one-page websites and interactive front-end tool demos for local service businesses." />
+    <meta property="og:title" content="Philip Builds Studio — AI-Ready Websites & Tools" />
+    <meta property="og:description" content="Mobile-first websites, interactive demo tools, a guided assistant, and a project matcher. Guided today, model-ready later." />
     <meta property="og:url" content="https://philipneo.github.io/philip-builds/" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Philip Builds Studio" />
-    <meta name="twitter:description" content="Mobile-first websites and interactive front-end tool demos for local service businesses." />
+    <meta name="twitter:title" content="Philip Builds Studio — AI-Ready Websites & Tools" />
+    <meta name="twitter:description" content="Mobile-first websites, interactive demo tools, a guided assistant, and a project matcher. Guided today, model-ready later." />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="shared/assistant.css" />
@@ -34,7 +34,7 @@
         <a href="#problem">Problem</a>
         <a href="#demo">Demo</a>
         <a href="#assistant">Assistant</a>
-        <a href="#packages">Packages</a>
+        <a href="#ai-experience">AI</a>
         <a href="#about">About</a>
         <a href="portfolio/index.html">Portfolio</a>
         <a href="project-matcher/index.html">Matcher</a>
@@ -45,15 +45,18 @@
     <main id="top">
       <section id="hero" class="hero" aria-labelledby="hero-title">
         <div class="hero-copy reveal reveal-up">
-          <p class="eyebrow">Philip Builds Studio</p>
-          <h1 id="hero-title">Websites and tools that work for local operators.</h1>
+          <p class="eyebrow">AI-ready front-end studio</p>
+          <h1 id="hero-title">Websites, guided demos, and customer tools for local operators.</h1>
           <p>
-            Clean, mobile-first pages, guided demos, and simple tools for service businesses.
-            Starting at $150. Fixed scope. One revision. Clean public link.
+            Clean, mobile-first pages and interactive tools — with a guided
+            assistant and project matcher built in. Guided mode works today on a
+            static site; the same assistant is model-ready for later. Starting at
+            $150, fixed scope.
           </p>
           <div class="actions">
-            <a class="button primary" href="demos/local-business-command-center/index.html">View Flagship Demo</a>
-            <button class="button" type="button" data-assistant-open="Which demo should I look at?">Ask the Demo Assistant</button>
+            <a class="button primary" href="project-matcher/index.html">Try the Project Matcher</a>
+            <a class="button" href="start-project/index.html">Start a project</a>
+            <button class="button" type="button" data-assistant-open="Can you build an AI assistant?">Ask the assistant</button>
           </div>
         </div>
         <div class="hero-showcase reveal reveal-scale" aria-hidden="true">
@@ -117,6 +120,50 @@
               <span>Service Demo</span>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section id="ai-experience" class="section reveal" aria-labelledby="aix-title">
+        <div class="section-head reveal reveal-up">
+          <p class="eyebrow">AI experience</p>
+          <h2 id="aix-title">Guided now. Model-ready later. Honest the whole way.</h2>
+          <p>
+            The assistant and matcher run as fast, rule-based guidance today —
+            live on a static site with no backend and no tracking. The same UI is
+            wired to switch to a real model later without leaking keys.
+          </p>
+        </div>
+        <div class="problem-grid stagger">
+          <article class="reveal reveal-up">
+            <h3>Working today (guided)</h3>
+            <p>Find the right demo, choose a project type, see what to send, and pick up from your last recommendation on this device.</p>
+          </article>
+          <article class="reveal reveal-up">
+            <h3>Model-ready (later)</h3>
+            <p>A serverless function + a private key (on Vercel/Netlify) flips the assistant to model mode — with a graceful fallback to guided mode.</p>
+          </article>
+          <article class="reveal reveal-up">
+            <h3>Safe by design</h3>
+            <p>Keys never live in browser code. On GitHub Pages the endpoint is empty, so nothing is sent anywhere.</p>
+          </article>
+        </div>
+        <div class="value-list stagger" aria-label="AI-ready offerings">
+          <div class="reveal reveal-up">
+            <strong>Guided website assistant</strong>
+            <span>Rule-based front-end assistant with demo routing and FAQ-style guidance. No backend needed.</span>
+          </div>
+          <div class="reveal reveal-up">
+            <strong>Project matcher / smart intake</strong>
+            <span>Guided recommender with local device memory and a pre-filled email handoff.</span>
+          </div>
+          <div class="reveal reveal-up">
+            <strong>Model-ready assistant scaffold</strong>
+            <span>Front-end UI plus an env-key-only serverless scaffold, deployable later on Vercel/Netlify.</span>
+          </div>
+        </div>
+        <div class="actions reveal reveal-up">
+          <a class="button primary" href="project-matcher/index.html">Try the Project Matcher</a>
+          <a class="button" href="studio-os/index.html">View AI readiness</a>
         </div>
       </section>
 

@@ -17,6 +17,8 @@
       "Current website or social link:",
       "What I want built: " + (selectedType || ""),
       "Best demo match: " + (selectedDemo || ""),
+      "AI/helper feature wanted (optional):",
+      "Backend/model needed now or later (optional):",
       "Timeline:",
       "Budget range:",
       "Notes:",

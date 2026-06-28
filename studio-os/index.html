@@ -138,6 +138,44 @@
         </div>
       </section>
 
+      <section class="section" aria-labelledby="control">
+        <div class="section-head"><p class="eyebrow">AI control center</p><h2 id="control">Memory, limits, and the activation path.</h2></div>
+        <div class="grid-3">
+          <div class="card">
+            <h3>Remembers (this device only)</h3>
+            <ul class="clean">
+              <li>Your last matched demo + build</li>
+              <li>Nothing else — and you can clear it anytime</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Never stores</h3>
+            <ul class="clean">
+              <li>Names, emails, or phone numbers</li>
+              <li>Cookies, tracking IDs, or chat history on a server</li>
+              <li>Any API key (those live only in deployment env)</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Can't do on GitHub Pages</h3>
+            <ul class="clean">
+              <li>Run the serverless function</li>
+              <li>Call a model or hold a key</li>
+              <li>Edit or deploy itself</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card" style="margin-top:16px">
+          <h3>Next AI activation checklist</h3>
+          <ul class="clean">
+            <li>Deploy the repo + <code>api/chat.js</code> to Vercel (or Netlify)</li>
+            <li>Set <code>AI_PROVIDER_API_KEY</code> in the host's environment</li>
+            <li>Set <code>shared/ai-config.js</code> → <code>endpoint: "/api/chat"</code>, <code>allowModelMode: true</code></li>
+            <li>Test the assistant; confirm graceful fallback if the backend errors</li>
+          </ul>
+        </div>
+      </section>
+
       <section class="section" aria-labelledby="audit">
         <div class="section-head"><p class="eyebrow">Self-audit</p><h2 id="audit">Front-end checklist.</h2></div>
         <div class="grid-2">

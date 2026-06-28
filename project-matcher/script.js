@@ -89,6 +89,16 @@
     document.getElementById("resultBuild").textContent = "Suggested build: " + build + ". Next: open the demo, then start a project when it feels right.";
     document.getElementById("resultOpen").setAttribute("href", "../" + demo.href);
 
+    // Qualitative fit label based on how complete the picture is (front-end only).
+    const answered = [selections.biz, selections.goal, selections.build].filter(Boolean).length;
+    const fitEl = document.getElementById("resultFit");
+    if (fitEl) {
+      const label = answered >= 3 ? "Strong fit" : (answered === 2 ? "Good starting point" : "Useful concept match");
+      fitEl.textContent = label;
+      fitEl.setAttribute("data-fit", answered >= 3 ? "strong" : (answered === 2 ? "good" : "concept"));
+      fitEl.hidden = false;
+    }
+
     var result = document.getElementById("result");
     result.hidden = false;
     var hint = document.getElementById("matchHint");

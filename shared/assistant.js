@@ -97,11 +97,11 @@
   };
 
   const quickPrompts = [
-    "I need a site for my service business",
+    "Match me to a demo",
+    "Can you build an AI assistant?",
     "Show me tools that help with pricing",
-    "I want a cleaner booking flow",
-    "Which demo should I look at?",
-    "Help me choose a starting point"
+    "How do I make this real AI?",
+    "Which demo should I look at?"
   ];
 
   function route(path) {
@@ -201,6 +201,43 @@
       return {
         text: "The Local Business Command Center is the flagship workflow demo: quote queue, job schedule, checklist, notes, and end-of-day summary in one page.",
         links: [["Open Command Center", routes.command], ["Open Portfolio", routes.portfolio]]
+      };
+    }
+    if (
+      value.includes("how") && (value.includes("real ai") || value.includes("make this ai") || value.includes("model"))
+    ) {
+      return {
+        text: "To make model mode real: deploy the site + the api/chat.js function on Vercel (or Netlify), set AI_PROVIDER_API_KEY in the host's environment, then flip shared/ai-config.js to point at /api/chat. The key stays server-side — never in the browser. Studio OS and docs/AI_SETUP.md have the exact steps.",
+        links: [["Open Studio OS", routes.studio], ["Start a project", routes.start]]
+      };
+    }
+    if (
+      value.includes("openai") || value.includes("api key") || value.includes("anthropic") || value.includes("key")
+    ) {
+      return {
+        text: "Honest + safe: API keys never go in front-end JavaScript — anything shipped to the browser is public. The key lives only in a server's environment variables, behind the api/chat.js function. On GitHub Pages there's no server, so the assistant stays in guided mode.",
+        links: [["AI readiness in Studio OS", routes.studio]]
+      };
+    }
+    if (
+      value.includes("vercel") || value.includes("netlify") || value.includes("backend") ||
+      value.includes("serverless") || value.includes("deploy")
+    ) {
+      return {
+        text: "Model mode runs on a serverless host (Vercel/Netlify), not GitHub Pages. The api/chat.js scaffold is ready; deploying it with a private env key and switching the endpoint turns on real model replies — with a graceful fallback to this guided mode if it ever errors.",
+        links: [["Open Studio OS", routes.studio], ["Read the path", routes.start]]
+      };
+    }
+    if (
+      value.includes("chatbot") || value.includes("assistant") || value.includes("automation") ||
+      value.includes("ai website") || value.includes("ai tool") || value.includes("smart site") ||
+      value.includes("ai ") || value === "ai" || value.includes("model")
+    ) {
+      return {
+        text: aiEndpoint()
+          ? "This assistant is model-ready and an endpoint is configured, so replies can come from a model — with a guided fallback if it errors. Philip builds the front-end assistant UI plus an env-key-only serverless scaffold you can deploy when you want real model mode."
+          : "Right now this is a guided front-end assistant — fast, rule-based, and live on a static site with no backend. The same UI is wired for real model mode later: deploy the serverless scaffold with a private key and flip one config value. Keys never touch the browser.",
+        links: [["See AI readiness", routes.studio], ["Match me to a demo", routes.matcher], ["Start a project", routes.start]]
       };
     }
     if (value.includes("website") || value.includes("site") || value.includes("landing")) {

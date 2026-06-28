@@ -304,3 +304,9 @@ footer a:hover { color: var(--ink); }
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
+
+.demo-note {
+  color: #7c8aa0;
+  font-size: 0.86rem;
+  line-height: 1.6;
+}
