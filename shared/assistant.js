@@ -14,8 +14,13 @@
     cleaning: "demos/cleaning-quote-calculator/index.html",
     invoice: "demos/invoice-builder/index.html",
     portfolio: "portfolio/index.html",
+    start: "start-project/index.html",
     home: "index.html"
   };
+
+  const MAILTO =
+    "mailto:philipbuildsstudio@gmail.com?subject=" +
+    encodeURIComponent("Project inquiry — Philip Builds Studio");
 
   const contextCopy = {
     home: {
@@ -57,6 +62,11 @@
       label: "Handoff Guide",
       intro: "This invoice demo turns line items, tax, discounts, and notes into a cleaner handoff.",
       prompt: "I need help with client handoff"
+    },
+    start: {
+      label: "Project Guide",
+      intro: "Tell me what you want built and I'll point you to the closest demo, or to the project email. Front-end demo only — nothing sends automatically.",
+      prompt: "Help me start a project"
     }
   };
 
@@ -74,6 +84,17 @@
 
   function recommendationsFor(text) {
     const value = text.toLowerCase();
+    if (
+      value.includes("hire") || value.includes("contact") || value.includes("project") ||
+      value.includes("build me") || value.includes("work with") || value.includes("start a") ||
+      value.includes("get started") || value.includes("help me start") || value.includes("how much") ||
+      value.includes("email")
+    ) {
+      return {
+        text: "Easiest path: open the Start a Project page, pick the closest project type, and it builds a pre-filled email you can review and send yourself. Nothing is sent automatically and nothing is stored.",
+        links: [["Start a project", routes.start], ["Open project email", MAILTO]]
+      };
+    }
     if (value.includes("restaurant") || value.includes("menu") || value.includes("order")) {
       return {
         text: "The Kettle House restaurant demo is the best fit. It shows menu browsing, category tabs, cart-style behavior, and a lightweight order preview with no payment or real submission.",
@@ -117,8 +138,8 @@
       };
     }
     return {
-      text: "A good starting point is the portfolio showroom. If you want a page, open Service Business or GlossLane. If you want a tool, open Cleaning Quote or Invoice Builder.",
-      links: [["Open Portfolio", routes.portfolio], ["Open Cleaning Quote", routes.cleaning], ["Open Invoice Builder", routes.invoice]]
+      text: "A good starting point is the portfolio showroom. If you want a page, open Service Business or GlossLane. If you want a tool, open Cleaning Quote or Invoice Builder. Ready to build something? Start a project.",
+      links: [["Open Portfolio", routes.portfolio], ["Open Cleaning Quote", routes.cleaning], ["Start a project", routes.start]]
     };
   }
 
@@ -137,7 +158,8 @@
       const links = createElement("div", "pbs-assistant-links");
       options.links.forEach(([label, href]) => {
         const link = createElement("a", "", label);
-        link.href = route(href).replace(rootPath + rootPath, rootPath);
+        const isAbsolute = /^(mailto:|https?:|#)/.test(href);
+        link.href = isAbsolute ? href : route(href).replace(rootPath + rootPath, rootPath);
         links.appendChild(link);
       });
       message.appendChild(links);

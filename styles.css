@@ -1345,3 +1345,15 @@ ul {
     transform: none;
   }
 }
+
+/* ── ABOUT BODY ── */
+.about-body {
+  display: grid;
+  gap: 16px;
+  max-width: 760px;
+}
+
+.about-body p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
