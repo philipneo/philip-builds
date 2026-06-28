@@ -85,6 +85,32 @@
         </div>
       </section>
 
+      <section class="section" aria-labelledby="ai">
+        <div class="section-head"><p class="eyebrow">Real AI readiness</p><h2 id="ai">Model-powered, without leaking keys.</h2><p>The assistant is built to run two ways. Live now is the safe one; the model-powered mode is wired but dormant until a backend is deployed.</p></div>
+        <div class="grid-3">
+          <div class="card"><span class="tag">Live now</span><h3>Rule-based guide</h3><p>Routes visitors to demos, the matcher, and Start Project. No backend, no key, works on GitHub Pages.</p></div>
+          <div class="card"><span class="tag">Wired</span><h3>Model-powered mode</h3><p>If <code>window.PBS_AI_ENDPOINT</code> is set to a deployed function, the chat calls it and falls back gracefully on any error.</p></div>
+          <div class="card"><span class="tag">Needs deploy</span><h3>Serverless function</h3><p><code>api/chat.js</code> reads the key from an env variable only. GitHub Pages can't run it — Vercel/Netlify can.</p></div>
+        </div>
+        <div class="grid-2" style="margin-top:16px">
+          <div class="card">
+            <h3>AI safety checklist</h3>
+            <ul class="clean">
+              <li>No secret in any browser-served file — keys live in env only</li>
+              <li>Frontend sends no personal data (message + page + last-match label)</li>
+              <li>System prompt forbids invented clients/results and promises</li>
+              <li>No automatic emails or bookings</li>
+              <li>Backend returns 503 (disabled) until a key is configured</li>
+              <li>API failure never breaks the site — it falls back to the guide</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Enable it later</h3>
+            <p>Deploy the frontend + <code>api/chat.js</code> on Vercel or Netlify, set <code>AI_PROVIDER_API_KEY</code> in the host dashboard, and point <code>PBS_AI_ENDPOINT</code> at the function. Full steps live in <code>docs/AI_SETUP.md</code>.</p>
+          </div>
+        </div>
+      </section>
+
       <section class="section" aria-labelledby="audit">
         <div class="section-head"><p class="eyebrow">Self-audit</p><h2 id="audit">Front-end checklist.</h2></div>
         <div class="grid-2">

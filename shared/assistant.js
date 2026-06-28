@@ -102,6 +102,25 @@
       };
     }
     if (
+      (value.includes("real") && value.includes("ai")) || value.includes("are you ai") ||
+      value.includes("human") || value.includes("chatgpt") || value.includes("a bot") ||
+      value.includes("robot") || value.includes("are you a")
+    ) {
+      return {
+        text: "Honest answer: I'm this site's assistant — rule-based by default, and model-powered only if a backend has been connected. I'm not a human and don't pretend to be. I can point you to the right demo or the Start Project page.",
+        links: [["Match me to a demo", routes.matcher], ["Start a project", routes.start]]
+      };
+    }
+    if (
+      value.includes("what can you build") || value.includes("what do you build") ||
+      value.includes("what can you do") || value.includes("services") || value.includes("what can philip")
+    ) {
+      return {
+        text: "Philip builds front-end websites and interactive tools: service pages, quote calculators, booking and menu flows, invoice tools, and operations dashboards. Every demo here is a working, fictional concept. Open the matcher and I'll point you to the closest one.",
+        links: [["Open Project Matcher", routes.matcher], ["Browse portfolio", routes.portfolio]]
+      };
+    }
+    if (
       value.includes("match me") || value.includes("recommend") || value.includes("matcher") ||
       value.includes("what should i build") || value.includes("not sure") || value.includes("help me choose")
     ) {
@@ -269,12 +288,75 @@
       launcher.focus({ preventScroll: true });
     }
 
+    function localReply(text, options) {
+      const result = recommendationsFor(text);
+      addMessage(body, result.text, {
+        links: result.links,
+        small: options && options.degraded ? "AI mode unavailable — using guided demo mode." : undefined
+      });
+    }
+
+    function aiEndpoint() {
+      try {
+        return (typeof window !== "undefined" && window.PBS_AI_ENDPOINT)
+          ? String(window.PBS_AI_ENDPOINT).trim() : "";
+      } catch (e) { return ""; }
+    }
+
+    function askBackend(endpoint, text) {
+      // Loading state
+      const pending = createElement("div", "pbs-assistant-message pbs-assistant-pending");
+      pending.appendChild(createElement("p", "", "Thinking…"));
+      body.appendChild(pending);
+      body.scrollTop = body.scrollHeight;
+
+      let done = false;
+      const controller = ("AbortController" in window) ? new AbortController() : null;
+      const timer = window.setTimeout(() => { if (!done && controller) controller.abort(); }, 12000);
+
+      // Only non-sensitive context leaves the page. No personal data.
+      const payload = {
+        message: text.slice(0, 2000),
+        page: (typeof location !== "undefined" ? location.pathname : ""),
+        lastMatch: (memGet() || {}).label || ""
+      };
+
+      fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+        signal: controller ? controller.signal : undefined
+      })
+        .then((r) => (r.ok ? r.json() : Promise.reject(new Error("bad status"))))
+        .then((data) => {
+          done = true;
+          window.clearTimeout(timer);
+          pending.remove();
+          const reply = data && typeof data.reply === "string" ? data.reply.trim() : "";
+          if (!reply) { localReply(text, { degraded: true }); return; }
+          const links = Array.isArray(data.links) && data.links.length
+            ? data.links
+            : [["Start a project", routes.start]];
+          addMessage(body, reply, { links: links });
+        })
+        .catch(() => {
+          done = true;
+          window.clearTimeout(timer);
+          pending.remove();
+          localReply(text, { degraded: true });
+        });
+    }
+
     function respond(text) {
       const trimmed = text.trim();
       if (!trimmed) return;
       addMessage(body, trimmed, { user: true });
-      const result = recommendationsFor(trimmed);
-      window.setTimeout(() => addMessage(body, result.text, { links: result.links }), 120);
+      const endpoint = aiEndpoint();
+      if (endpoint) {
+        askBackend(endpoint, trimmed);
+      } else {
+        window.setTimeout(() => localReply(trimmed), 120);
+      }
     }
 
     function handleSend() {

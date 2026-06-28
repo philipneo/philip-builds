@@ -31,3 +31,9 @@ dtla_medspa_prospects.csv
 .DS_Store
 
 .claude/
+
+# Secrets & dependencies — never commit
+.env
+.env.*
+!.env.example
+node_modules/

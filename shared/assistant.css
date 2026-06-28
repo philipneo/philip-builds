@@ -313,6 +313,16 @@
   cursor: pointer;
 }
 
+.pbs-assistant-pending p {
+  color: var(--assistant-muted);
+  animation: pbs-assistant-pulse 1.1s ease-in-out infinite;
+}
+
+@keyframes pbs-assistant-pulse {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 1; }
+}
+
 @media (max-width: 640px) {
   .pbs-assistant-launcher {
     right: 12px;
