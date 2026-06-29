@@ -19,15 +19,66 @@
 // If no key is configured, it responds 503 so the frontend cleanly uses its
 // built-in rule-based fallback and never claims live AI.
 
-const SYSTEM_PROMPT = [
-  "You are the Philip Builds Studio website assistant.",
-  "Help visitors understand the studio, its demos, the project matcher, and the Start Project path.",
-  "Be honest that every demo is a fictional, front-end concept — not a real business, and with no real payments, bookings, or form submissions.",
-  "Never invent clients, testimonials, awards, results, statistics, or agency scale. Never promise or guarantee outcomes.",
-  "Never claim to be human. Do not collect sensitive personal information. Do not send emails or book appointments.",
-  "If a visitor wants to start a project, point them to /start-project/. If they are unsure what fits, point them to /project-matcher/.",
-  "Keep answers concise, practical, and friendly. Prefer suggesting the single best next page.",
-].join(" ");
+const SYSTEM_PROMPT = `You are the Philip Builds Studio website assistant. Philip Builds Studio builds websites and browser tools for local businesses.
+
+Services and prices (use ONLY these — never invent other prices, tiers, or conditions):
+- Starter Site: $150 — a clean, fast landing page.
+- Business Site: $300 — multi-section site with contact, services, and proof.
+- Site Care: $50/month — ongoing updates, fixes, and monitoring.
+
+Every demo on this site is a fictional, front-end concept — NOT a real business. No real payments, bookings, or form submissions occur in any demo.
+
+Rules you must always follow:
+- Never invent clients, testimonials, case studies, awards, statistics, guarantees, or services not listed above.
+- Never include URLs, domain names, markdown links [text](url), angle brackets, or placeholder # links. Your reply must be plain conversational text only.
+- Keep your reply to 2–3 sentences. Be direct and friendly.
+- After your plain-text reply, on its own line, write exactly: NEXT: <key>
+
+Valid NEXT keys and when to use each:
+- cleaning — cleaning business, janitorial, quote calculator
+- command — operations dashboard, multi-tool, flagship demo
+- service — service business landing page, booking flow
+- invoice — invoice builder, billing, client handoff
+- glosslane — mobile detailing, auto, car wash, field service
+- contractor — contractor estimate builder, trades, construction
+- kettle — restaurant, café, menu, food business
+- portfolio — visitor wants to browse all demos
+- matcher — visitor is unsure what to build or needs help choosing
+- start — visitor is ready to start a project or contact Philip
+
+If the visitor asks about AI assistants, explain that the assistant is optional, Philip can add a similar assistant to any site, and they can ask on the Start a Project page. Then use NEXT: start.
+If you are unsure which key fits, use NEXT: matcher.`;
+
+// Map of safe NEXT keys to validated relative hrefs (matching the routes in shared/assistant.js).
+const ROUTE_MAP = {
+  cleaning:   { href: "demos/cleaning-quote-calculator/index.html",       label: "Open cleaning demo" },
+  command:    { href: "demos/local-business-command-center/index.html",   label: "Open flagship demo" },
+  service:    { href: "demos/service-business-landing-page/index.html",   label: "Open service demo" },
+  invoice:    { href: "demos/invoice-builder/index.html",                 label: "Open invoice builder" },
+  glosslane:  { href: "demos/mobile-detailing-landing-page/index.html",   label: "Open detailing demo" },
+  contractor: { href: "demos/contractor-estimate-builder/index.html",     label: "Open estimate builder" },
+  kettle:     { href: "demos/restaurant-menu-page/index.html",            label: "Open café menu demo" },
+  portfolio:  { href: "portfolio/index.html",                             label: "Browse portfolio" },
+  matcher:    { href: "project-matcher/index.html",                       label: "Find your fit" },
+  start:      { href: "start-project/index.html",                         label: "Start a project" },
+};
+
+function extractRoute(text) {
+  const match = text.match(/\bNEXT:\s*(\w+)/i);
+  if (!match) return null;
+  return ROUTE_MAP[match[1].toLowerCase()] || null;
+}
+
+function sanitizeReply(text) {
+  // Strip the NEXT: directive line wherever it appears.
+  let clean = text.replace(/\bNEXT:\s*\w+[^\n]*/gi, "").trim();
+  // Strip markdown links [label](url) → keep label text only.
+  clean = clean.replace(/\[([^\]]+)\]\([^)]*\)/g, "$1");
+  // Strip bare http/https URLs.
+  clean = clean.replace(/https?:\/\/[^\s]+/g, "");
+  // Collapse any extra whitespace left behind.
+  return clean.replace(/[ \t]{2,}/g, " ").replace(/\n{3,}/g, "\n\n").trim();
+}
 
 const MAX_MESSAGE_CHARS = 2000;
 const DEFAULT_OPENAI_BASE_URL = "https://api.openai.com/v1";
@@ -157,10 +208,17 @@ export default async function handler(req, res) {
       return;
     }
 
-    // Always offer a safe next step the frontend can render.
+    const route = extractRoute(reply);
+    const cleanReply = sanitizeReply(reply);
+
+    // Primary link from AI's NEXT key (validated against whitelist); fall back to matcher.
+    const primary = route || ROUTE_MAP.matcher;
+    // Secondary: always offer start-project unless that's already the primary.
+    const secondary = primary.href === ROUTE_MAP.start.href ? ROUTE_MAP.matcher : ROUTE_MAP.start;
+
     res.status(200).json({
-      reply: reply,
-      links: [["Find your fit", "project-matcher/index.html"], ["Start a project", "start-project/index.html"]],
+      reply: cleanReply,
+      links: [[primary.label, primary.href], [secondary.label, secondary.href]],
     });
   } catch (e) {
     // Log the error type without leaking message contents or secrets.
