@@ -1357,3 +1357,70 @@ ul {
   font-size: 1.05rem;
   line-height: 1.7;
 }
+
+/* ── START HERE journey cards ── */
+.starthere-card {
+  display: grid;
+  gap: 8px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--panel);
+  color: var(--ink);
+  text-decoration: none;
+  box-shadow: var(--shadow);
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+.starthere-card:hover { transform: translateY(-3px); border-color: var(--accent); box-shadow: var(--shadow-deep); }
+.starthere-step {
+  font-size: 0.72rem; font-weight: 900; letter-spacing: 0.08em;
+  color: var(--accent); text-transform: uppercase;
+}
+.starthere-card h3 { margin: 0; font-size: 1.12rem; }
+.starthere-card p { margin: 0; color: var(--muted); font-size: 0.94rem; }
+.starthere-go { margin-top: 4px; font-weight: 800; color: var(--accent-dark); }
+
+/* ── BEST PLACES TO START ranking ── */
+.rank-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.rank-card {
+  display: grid;
+  gap: 6px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--panel);
+  color: var(--ink);
+  text-decoration: none;
+  box-shadow: var(--shadow);
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+.rank-card:hover { transform: translateY(-3px); border-color: var(--accent); box-shadow: var(--shadow-deep); }
+.rank-tag {
+  font-size: 0.7rem; font-weight: 900; letter-spacing: 0.05em; text-transform: uppercase;
+  color: var(--gold);
+}
+.rank-card h3 { margin: 0; font-size: 1.08rem; }
+.rank-card p { margin: 0; color: var(--muted); font-size: 0.92rem; line-height: 1.5; }
+
+@media (max-width: 860px) {
+  .rank-grid { grid-template-columns: 1fr; }
+}
+
+/* ── HERO MOTION ── */
+.hero-browser { animation: pbs-home-float 7s ease-in-out infinite; }
+.hero-chip { animation: pbs-home-float 7s ease-in-out infinite reverse; }
+@keyframes pbs-home-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-9px); }
+}
+.hb-progress span { animation: pbs-home-fill 1.6s cubic-bezier(0.22, 1, 0.36, 1) both; }
+@keyframes pbs-home-fill { from { width: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-browser, .hero-chip, .hb-progress span { animation: none !important; }
+  .starthere-card, .rank-card { transition: none !important; }
+}
