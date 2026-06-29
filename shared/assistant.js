@@ -401,7 +401,7 @@
     function checkBackend(endpoint) {
       let settled = false;
       const controller = ("AbortController" in window) ? new AbortController() : null;
-      const timer = window.setTimeout(() => { if (!settled && controller) controller.abort(); }, 6000);
+      const timer = window.setTimeout(() => { if (!settled && controller) controller.abort(); }, 12000);
       fetch(endpoint, {
         method: "GET",
         headers: { Accept: "application/json" },
@@ -448,6 +448,10 @@
       panel.classList.add("is-open");
       launcher.setAttribute("aria-expanded", "true");
       input.focus({ preventScroll: true });
+      if (configuredEndpoint && aiBackendState === "unavailable") {
+        setAssistantState("checking");
+        checkBackend(configuredEndpoint);
+      }
     }
 
     function closePanel() {
