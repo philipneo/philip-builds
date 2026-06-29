@@ -38,10 +38,10 @@
 
     <main>
       <section class="section hero">
-        <span class="badge">Public improvement map · front-end only</span>
+        <span class="badge">Public improvement map · safe AI fallback</span>
         <p class="eyebrow">Studio OS</p>
         <h1>Site health &amp; roadmap.</h1>
-        <p>This static site can't deploy changes by itself — there's no backend or automation. What it keeps instead is an honest, public improvement map and a front-end checklist, so every future build pass starts with a clear picture of what's done and what's next.</p>
+        <p>This site keeps an honest, public improvement map and a front-end checklist, so every future build pass starts with a clear picture of what's done and what's next. GitHub Pages stays static; Vercel can run the optional AI backend.</p>
       </section>
 
       <section class="section" aria-labelledby="stage">
@@ -49,7 +49,7 @@
         <div class="grid-3">
           <div class="card"><span class="tag">Stage</span><h3>Premium demo system</h3><p>Tier-1 demos are deepened into working mini-products; Tier-2 demos are consistent and assistant-wired.</p></div>
           <div class="card"><span class="tag">Funnel</span><h3>Guided, not pushy</h3><p>Demo Assistant, Project Matcher, and a Start Project page route visitors without forms or tracking.</p></div>
-          <div class="card"><span class="tag">Infra</span><h3>Static &amp; honest</h3><p>GitHub Pages, no dependencies, no analytics, no backend. Everything runs in the browser.</p></div>
+          <div class="card"><span class="tag">Infra</span><h3>Static fallback, optional backend</h3><p>GitHub Pages runs the static fallback. Vercel can run <code>/api/chat</code> with a private environment key.</p></div>
         </div>
       </section>
 
@@ -92,11 +92,11 @@
       </section>
 
       <section class="section" aria-labelledby="ai">
-        <div class="section-head"><p class="eyebrow">Real AI readiness</p><h2 id="ai">Model-powered, without leaking keys.</h2><p>The assistant is built to run two ways. Live now is the safe one; the model-powered mode is wired but dormant until a backend is deployed.</p></div>
+        <div class="section-head"><p class="eyebrow">Real AI readiness</p><h2 id="ai">Model-powered, without leaking keys.</h2><p>The assistant is built to run two ways: rule-based fallback everywhere, and model replies only when the same-origin Vercel backend confirms it is connected.</p></div>
         <div class="grid-3">
-          <div class="card"><span class="tag">Live now</span><h3>Rule-based guide</h3><p>Routes visitors to demos, the matcher, and Start Project. No backend, no key, works on GitHub Pages.</p></div>
-          <div class="card"><span class="tag">Wired</span><h3>Model-powered mode</h3><p>If <code>window.PBS_AI_ENDPOINT</code> is set to a deployed function, the chat calls it and falls back gracefully on any error.</p></div>
-          <div class="card"><span class="tag">Needs deploy</span><h3>Serverless function</h3><p><code>api/chat.js</code> reads the key from an env variable only. GitHub Pages can't run it — Vercel/Netlify can.</p></div>
+          <div class="card"><span class="tag">Fallback</span><h3>Rule-based guide</h3><p>Routes visitors to demos, the matcher, and Start Project. No key required; works on GitHub Pages.</p></div>
+          <div class="card"><span class="tag">Connected</span><h3>Vercel AI backend</h3><p>If <code>/api/chat</code> responds successfully, the chat can render real model replies through the server.</p></div>
+          <div class="card"><span class="tag">Guarded</span><h3>Serverless function</h3><p><code>api/chat.js</code> reads the key from an env variable only. Browser code never receives a key.</p></div>
         </div>
         <div class="grid-2" style="margin-top:16px">
           <div class="card">
@@ -111,8 +111,8 @@
             </ul>
           </div>
           <div class="card">
-            <h3>Enable it later</h3>
-            <p>Deploy the frontend + <code>api/chat.js</code> on Vercel or Netlify, set <code>AI_PROVIDER_API_KEY</code> in the host dashboard, and point <code>PBS_AI_ENDPOINT</code> at the function. Full steps live in <code>docs/AI_SETUP.md</code>.</p>
+            <h3>Enable it on Vercel</h3>
+            <p>Deploy the frontend + <code>api/chat.js</code> on Vercel, set <code>OPENAI_API_KEY</code> in the Vercel dashboard, and keep <code>shared/ai-config.js</code> pointed at <code>/api/chat</code>. Full steps live in <code>docs/AI_SETUP.md</code>.</p>
           </div>
         </div>
       </section>
@@ -133,10 +133,10 @@
           <div class="card">
             <h3>Modes &amp; safety</h3>
             <ul class="clean">
-              <li>Live mode now: <strong>Guided demo mode</strong> (badge in the chat header)</li>
-              <li>Model mode: needs serverless deploy + env key + endpoint config</li>
+              <li>Fallback mode: <strong>Rule-based fallback</strong> (badge in the chat header)</li>
+              <li>Connected mode: needs Vercel deploy + env key + working <code>/api/chat</code></li>
               <li>GitHub Pages is static — it cannot execute <code>api/chat.js</code></li>
-              <li>No secret is ever in the browser; the endpoint is empty by default</li>
+              <li>No secret is ever in the browser; <code>/api/chat</code> runs only on the server host</li>
               <li>No personal data is collected and no emails are sent automatically</li>
             </ul>
           </div>
@@ -173,9 +173,9 @@
         <div class="card" style="margin-top:16px">
           <h3>Next AI activation checklist</h3>
           <ul class="clean">
-            <li>Deploy the repo + <code>api/chat.js</code> to Vercel (or Netlify)</li>
-            <li>Set <code>AI_PROVIDER_API_KEY</code> in the host's environment</li>
-            <li>Set <code>shared/ai-config.js</code> → <code>endpoint: "/api/chat"</code>, <code>allowModelMode: true</code></li>
+            <li>Deploy the repo + <code>api/chat.js</code> to Vercel</li>
+            <li>Set <code>OPENAI_API_KEY</code> in Vercel environment variables</li>
+            <li>Keep <code>shared/ai-config.js</code> set to <code>endpoint: "/api/chat"</code>, <code>allowModelMode: true</code></li>
             <li>Test the assistant; confirm graceful fallback if the backend errors</li>
           </ul>
         </div>
@@ -185,7 +185,7 @@
         <div class="section-head"><p class="eyebrow">Proof &amp; site health</p><h2 id="proof">What's actually true about this site.</h2><p>Real, checkable facts — no scores, badges, or client claims invented.</p></div>
         <div class="grid-3">
           <div class="card"><span class="tag">Live</span><h3>Static build on GitHub Pages</h3><p>13 front-end demos, 6 guided flagship walkthroughs, all clickable — no mock screenshots.</p></div>
-          <div class="card"><span class="tag">Guided</span><h3>Assistant + matcher live now</h3><p>Rule-based assistant and project matcher run in the browser. Model mode is wired but dormant until deployed.</p></div>
+          <div class="card"><span class="tag">Guided</span><h3>Assistant + matcher live now</h3><p>Rule-based fallback and project matcher run in the browser. Vercel model mode only appears after the backend confirms it works.</p></div>
           <div class="card"><span class="tag">Private</span><h3>No keys, no trackers</h3><p>No API key in any browser file, no analytics, no external dependencies for the core experience.</p></div>
           <div class="card"><span class="tag">Honest</span><h3>Fictional / demo-only</h3><p>Every demo is labeled fictional. No real payments, bookings, or form submissions anywhere.</p></div>
           <div class="card"><span class="tag">Responsive</span><h3>Mobile-first UI</h3><p>Built for phones first, with focus-visible states and reduced-motion support.</p></div>
@@ -200,7 +200,7 @@
             <h3>Verified each build pass</h3>
             <ul class="clean">
               <li>All routes return 200 locally</li>
-              <li>AI endpoint empty — no network calls in guided mode</li>
+              <li>AI endpoint uses <code>/api/chat</code> and falls back if unavailable</li>
               <li>Repo secret scan finds no keys</li>
               <li>No external frontend dependencies beyond allowed URLs</li>
               <li>No unguarded forms; buttons use explicit types</li>
@@ -255,7 +255,7 @@
 
       <section class="section" aria-labelledby="handoff">
         <div class="section-head"><p class="eyebrow">AI handoff</p><h2 id="handoff">Notes for the next build pass.</h2><p>A public-safe starting prompt for a future Claude/Codex run. No private data, no secrets — just direction.</p></div>
-        <pre class="handoff-block" aria-label="Handoff prompt">Repo: static GitHub Pages site (no backend, no deps, no trackers).
+        <pre class="handoff-block" aria-label="Handoff prompt">Repo: GitHub Pages static fallback + optional Vercel /api/chat backend (no frontend keys, no trackers).
 Keep: fictional/demo-only framing, type="button", forms preventDefault,
 relative paths, no external assets/fonts/analytics, reduced-motion support.
 Do next (highest value first):

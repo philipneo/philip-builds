@@ -5,7 +5,7 @@ Philip Builds Studio uses a safe two-mode assistant:
 1. **Rule-based fallback** - runs in the browser with no API key, no backend dependency, and no automatic outreach.
 2. **AI backend connected** - only on a serverless host such as Vercel, through the same-origin `/api/chat` endpoint.
 
-GitHub Pages never receives an API key. Browser JavaScript never receives an API key. If the backend is missing, misconfigured, slow, or failing, the assistant shows **AI backend unavailable** and falls back to local rules.
+GitHub Pages never receives an API key. Browser JavaScript never receives an API key. On GitHub Pages, the assistant stays in **Rule-based fallback** without probing a missing server. On Vercel, if the backend is misconfigured, slow, or failing, the assistant shows **AI backend unavailable** and falls back to local rules.
 
 ## Current Frontend Switch
 
@@ -43,7 +43,7 @@ The endpoint is a Vercel-style serverless function. It supports:
 - `GET /api/chat` - health check used by the frontend.
 - `POST /api/chat` - model request used only after the frontend is configured for the same-origin endpoint.
 
-If no key is configured, the endpoint returns `503`, and the frontend stays honest by using fallback mode.
+If no key is configured, the health check returns `200` with `ok: false`, and the frontend stays honest by using fallback mode. A real chat `POST` still returns `503` if no key is configured.
 
 ## Vercel Environment Variables
 
@@ -88,7 +88,7 @@ curl -i https://YOUR-VERCEL-DOMAIN/api/chat
 Expected:
 
 - `200` with `{"ok":true,"mode":"ai","configured":true}` when the env key is present.
-- `503` with fallback/configuration JSON when the key is missing.
+- `200` with `{"ok":false,"mode":"fallback","configured":false}` when the key is missing.
 
 POST check:
 

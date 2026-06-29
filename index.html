@@ -6,17 +6,17 @@
     <title>Philip Builds Studio — AI-Ready Websites &amp; Tools for Local Businesses</title>
     <meta
       name="description"
-      content="An AI-ready front-end studio: mobile-first websites, interactive demo tools, a guided assistant, and a project matcher for local businesses. Guided today, model-ready later. Starting at $150."
+      content="An AI-ready front-end studio: mobile-first websites, interactive demo tools, a guided assistant, and a project matcher for local businesses. Rule-based fallback with Vercel AI backend support. Starting at $150."
     />
     <link rel="canonical" href="https://philipneo.github.io/philip-builds/" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Philip Builds Studio" />
     <meta property="og:title" content="Philip Builds Studio — AI-Ready Websites & Tools" />
-    <meta property="og:description" content="Mobile-first websites, interactive demo tools, a guided assistant, and a project matcher. Guided today, model-ready later." />
+    <meta property="og:description" content="Mobile-first websites, interactive demo tools, a guided assistant, and a project matcher. Rule-based fallback with Vercel AI backend support." />
     <meta property="og:url" content="https://philipneo.github.io/philip-builds/" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Philip Builds Studio — AI-Ready Websites & Tools" />
-    <meta name="twitter:description" content="Mobile-first websites, interactive demo tools, a guided assistant, and a project matcher. Guided today, model-ready later." />
+    <meta name="twitter:description" content="Mobile-first websites, interactive demo tools, a guided assistant, and a project matcher. Rule-based fallback with Vercel AI backend support." />
     <meta property="og:image" content="https://philipneo.github.io/philip-builds/assets/og/philip-builds-studio-og.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -30,7 +30,7 @@
   </head>
   <body class="no-js">
     <header class="site-header">
-      <a class="brand" href="#top" aria-label="Philip Builds Studio home">
+      <a class="brand" href="#top">
         <span>PBS</span>
         Philip Builds Studio
       </a>
@@ -53,9 +53,9 @@
           <h1 id="hero-title">Websites, guided demos, and customer tools for local operators.</h1>
           <p>
             Clean, mobile-first pages and interactive tools — with a guided
-            assistant and project matcher built in. Guided mode works today on a
-            static site; the same assistant is model-ready for later. Starting at
-            $150, fixed scope.
+            assistant and project matcher built in. Static pages use the
+            rule-based fallback; Vercel can connect the same UI to a server-side
+            AI backend. Starting at $150, fixed scope.
           </p>
           <div class="actions">
             <a class="button primary" href="project-matcher/index.html">Try the Project Matcher</a>
@@ -125,7 +125,7 @@
           <a class="starthere-card reveal reveal-up" href="studio-os/index.html">
             <span class="starthere-step">04</span>
             <h3>Curious about AI mode?</h3>
-            <p>See what's guided today and what turns on real model mode later — safely.</p>
+            <p>See how fallback mode and the Vercel AI backend work safely.</p>
             <span class="starthere-go">View AI readiness →</span>
           </a>
         </div>
@@ -133,12 +133,13 @@
 
       <section id="assistant" class="section assistant-feature-section reveal" aria-labelledby="assistant-title">
         <div class="assistant-feature-copy reveal reveal-up">
-          <p class="eyebrow">Guided chat demo</p>
-          <h2 id="assistant-title">A front-end assistant concept for routing visitors faster.</h2>
+          <p class="eyebrow">Guided assistant</p>
+          <h2 id="assistant-title">A safe assistant flow for routing visitors faster.</h2>
           <p>
-            This demo assistant does not use a backend or save messages. It shows
-            how a small business site could guide visitors toward the right page,
-            quote flow, menu flow, or client handoff tool.
+            The assistant always has a rule-based fallback. On Vercel, it can
+            call the server-side AI endpoint; on static hosting, it stays local
+            and routes visitors toward the right page, quote flow, menu flow, or
+            client handoff tool.
           </p>
           <div class="actions">
             <button class="button primary" type="button" data-assistant-open="Help me choose a starting point">Try the assistant</button>
@@ -147,8 +148,8 @@
         </div>
         <div class="assistant-feature-card reveal reveal-scale" aria-hidden="true">
           <div class="af-status">
-            <span>Demo mode</span>
-            <strong>Front-end only</strong>
+            <span>Safe mode</span>
+            <strong>Fallback ready</strong>
           </div>
           <div class="af-chat">
             <p class="af-user">I need help with pricing.</p>
@@ -164,11 +165,11 @@
       <section id="ai-experience" class="section reveal" aria-labelledby="aix-title">
         <div class="section-head reveal reveal-up">
           <p class="eyebrow">AI experience</p>
-          <h2 id="aix-title">Guided now. Model-ready later. Honest the whole way.</h2>
+          <h2 id="aix-title">Fallback first. Server-side AI when connected. Honest the whole way.</h2>
           <p>
-            The assistant and matcher run as fast, rule-based guidance today —
-            live on a static site with no backend and no tracking. The same UI is
-            wired to switch to a real model later without leaking keys.
+            The assistant and matcher run with fast, rule-based guidance by
+            default. On Vercel, the same assistant can call <code>/api/chat</code>
+            for model replies without exposing keys in browser code.
           </p>
         </div>
         <div class="problem-grid stagger">
@@ -177,12 +178,12 @@
             <p>Find the right demo, choose a project type, see what to send, and pick up from your last recommendation on this device.</p>
           </article>
           <article class="reveal reveal-up">
-            <h3>Model-ready (later)</h3>
-            <p>A serverless function + a private key (on Vercel/Netlify) flips the assistant to model mode — with a graceful fallback to guided mode.</p>
+            <h3>Server-side AI</h3>
+            <p>A Vercel function plus a private environment key powers model replies, with a graceful fallback if it errors.</p>
           </article>
           <article class="reveal reveal-up">
             <h3>Safe by design</h3>
-            <p>Keys never live in browser code. On GitHub Pages the endpoint is empty, so nothing is sent anywhere.</p>
+            <p>Keys never live in browser code. GitHub Pages cannot run the backend, so it falls back instead of pretending AI is connected.</p>
           </article>
         </div>
         <div class="value-list stagger" aria-label="AI-ready offerings">
@@ -196,7 +197,7 @@
           </div>
           <div class="reveal reveal-up">
             <strong>Model-ready assistant scaffold</strong>
-            <span>Front-end UI plus an env-key-only serverless scaffold, deployable later on Vercel/Netlify.</span>
+            <span>Front-end UI plus an env-key-only Vercel serverless endpoint, with fallback when unavailable.</span>
           </div>
         </div>
         <div class="actions reveal reveal-up">
@@ -588,7 +589,7 @@
           </article>
           <article class="reveal reveal-up">
             <h3>Light and private</h3>
-            <p>Static build, no backend, no analytics, no trackers, no external fonts or images. Any memory stays on your device.</p>
+            <p>Static demos, optional Vercel AI endpoint, no analytics, no trackers, no external fonts or images. The matcher memory stays on your device.</p>
           </article>
           <article class="reveal reveal-up">
             <h3>Built with care</h3>

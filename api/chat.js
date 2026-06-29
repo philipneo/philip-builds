@@ -65,7 +65,7 @@ export default async function handler(req, res) {
 
   if (req.method === "GET" || req.method === "HEAD") {
     const configured = Boolean(provider.key);
-    res.status(configured ? 200 : 503).json({
+    res.status(200).json({
       ok: configured,
       mode: configured ? "ai" : "fallback",
       configured,

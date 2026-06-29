@@ -2,7 +2,7 @@
   "name": "philip-builds-studio",
   "version": "1.0.0",
   "private": true,
-  "description": "Static front-end studio site with an optional, provider-agnostic AI chat function (api/chat.js). GitHub Pages serves the frontend; the function is dormant until deployed with an env key.",
+  "description": "Static front-end studio site with a safe provider-agnostic AI chat function for Vercel and rule-based fallback for static hosting.",
   "type": "module",
   "scripts": {
     "serve": "python3 -m http.server 8080",

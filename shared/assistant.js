@@ -42,6 +42,7 @@
     const endpoint = String(value || "").trim();
     if (!endpoint) return "";
     try {
+      if (window.location.protocol === "file:" || /(^|\.)github\.io$/i.test(window.location.hostname)) return "";
       const resolved = new URL(endpoint, window.location.origin);
       const sameOrigin = resolved.origin === window.location.origin;
       if (!sameOrigin || !resolved.pathname.startsWith("/api/")) return "";
