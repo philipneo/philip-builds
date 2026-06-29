@@ -70,21 +70,21 @@
             </div>
             <div class="line-items" id="lineItems">
               <div class="line-item">
-                <input type="text" class="desc" value="Demo &amp; haul-away" />
-                <input type="number" class="qty" value="1" min="0" step="0.5" />
-                <input type="number" class="unit" value="650" min="0" step="1" />
+                <input type="text" class="desc" value="Demo &amp; haul-away" aria-label="Line item description" />
+                <input type="number" class="qty" value="1" min="0" step="0.5" aria-label="Line item quantity" />
+                <input type="number" class="unit" value="650" min="0" step="1" aria-label="Line item unit price" />
                 <button class="remove-btn" type="button" aria-label="Remove">×</button>
               </div>
               <div class="line-item">
-                <input type="text" class="desc" value="Cabinet installation (labor)" />
-                <input type="number" class="qty" value="8" min="0" step="0.5" />
-                <input type="number" class="unit" value="85" min="0" step="1" />
+                <input type="text" class="desc" value="Cabinet installation (labor)" aria-label="Line item description" />
+                <input type="number" class="qty" value="8" min="0" step="0.5" aria-label="Line item quantity" />
+                <input type="number" class="unit" value="85" min="0" step="1" aria-label="Line item unit price" />
                 <button class="remove-btn" type="button" aria-label="Remove">×</button>
               </div>
               <div class="line-item">
-                <input type="text" class="desc" value="Materials &amp; hardware" />
-                <input type="number" class="qty" value="1" min="0" step="1" />
-                <input type="number" class="unit" value="1240" min="0" step="1" />
+                <input type="text" class="desc" value="Materials &amp; hardware" aria-label="Line item description" />
+                <input type="number" class="qty" value="1" min="0" step="1" aria-label="Line item quantity" />
+                <input type="number" class="unit" value="1240" min="0" step="1" aria-label="Line item unit price" />
                 <button class="remove-btn" type="button" aria-label="Remove">×</button>
               </div>
             </div>
@@ -210,9 +210,9 @@
       document.getElementById('addLine').addEventListener('click', () => {
         const div = document.createElement('div');
         div.className = 'line-item';
-        div.innerHTML = `<input type="text" class="desc" placeholder="Description" />
-          <input type="number" class="qty" value="1" min="0" step="0.5" />
-          <input type="number" class="unit" placeholder="0" min="0" step="1" />
+        div.innerHTML = `<input type="text" class="desc" placeholder="Description" aria-label="Line item description" />
+          <input type="number" class="qty" value="1" min="0" step="0.5" aria-label="Line item quantity" />
+          <input type="number" class="unit" placeholder="0" min="0" step="1" aria-label="Line item unit price" />
           <button class="remove-btn" type="button" aria-label="Remove">×</button>`;
         div.querySelector('.remove-btn').addEventListener('click', () => { div.remove(); update(); });
         div.querySelectorAll('input').forEach(i => i.addEventListener('input', update));

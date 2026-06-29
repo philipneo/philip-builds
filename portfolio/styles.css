@@ -251,6 +251,10 @@ article strong {
   text-transform: uppercase;
 }
 
+.assistant-showroom article:not(.assistant-showroom-card) span {
+  color: #8a5207;
+}
+
 .offer-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -284,7 +288,7 @@ article strong {
 .project span {
   display: inline-block;
   margin-bottom: 12px;
-  color: var(--gold);
+  color: #8a5207;
   font-size: 0.78rem;
   font-weight: 850;
   text-transform: uppercase;
@@ -489,8 +493,8 @@ article strong {
 }
 
 /* ─── GROUP SECTION LABELS ──────────────────────────────── */
-.section-head p.eyebrow {
-  color: var(--gold);
+.band p.eyebrow {
+  color: #8a5207;
 }
 
 /* ─── PROJECT CARDS ─────────────────────────────────────── */
@@ -924,14 +928,20 @@ article strong {
 .best-for {
   margin-top: 6px;
   font-size: 0.86rem;
-  color: var(--muted, #667085);
+  color: #475467;
 }
-.best-for strong { color: inherit; }
+.best-for strong {
+  min-height: auto;
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  font-size: inherit;
+}
 
 /* secondary "match this" CTA on demo cards */
 .project-match {
   margin-left: 14px;
   font-weight: 700;
-  opacity: 0.75;
+  opacity: 1;
 }
 .project-match:hover { opacity: 1; }

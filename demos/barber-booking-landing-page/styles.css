@@ -1,7 +1,7 @@
 :root {
   color-scheme: light;
   --ink: #161b22;
-  --muted: #667085;
+  --muted: #475467;
   --paper: #f6f8fb;
   --panel: #ffffff;
   --line: #d8dee8;
@@ -106,7 +106,7 @@ footer {
 
 .eyebrow {
   margin: 0 0 9px;
-  color: var(--gold);
+  color: #8a5207;
   font-size: 0.78rem;
   font-weight: 900;
   letter-spacing: 0;
