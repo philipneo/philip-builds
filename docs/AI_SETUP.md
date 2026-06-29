@@ -120,6 +120,23 @@ Badge states:
 
 The assistant should never claim a model answered unless `/api/chat` returns a successful model reply.
 
+## Troubleshooting POST Failures
+
+If the health check badge shows **AI backend connected** but messages fall back to rule-based:
+
+1. Open Vercel → Project → Functions → `api/chat` → Logs.
+2. Look for lines beginning `[api/chat]`. The log shows the upstream HTTP status and OpenAI error type without leaking the key.
+
+| Upstream status | Cause | Fix |
+| --- | --- | --- |
+| `401` | API key invalid or missing in runtime | Verify `OPENAI_API_KEY` is set in Vercel → Settings → Environment Variables → Production |
+| `402` | Account has no credits | Add a payment method and credits to the OpenAI account |
+| `429` | Rate limit or quota exceeded | Upgrade the OpenAI plan or wait for the window to reset |
+| `5xx` | OpenAI service error | Transient — retry in a few minutes |
+| `fetch is not defined` | Node.js < 18 in Vercel runtime | Set `"engines": { "node": ">=18" }` in `package.json` (already present) and redeploy |
+
+The assistant panel also shows `"AI backend unavailable — billing or quota issue."` in the small attribution line when the server returns a `401`, `402`, or `429`.
+
 ## Fallback Behavior
 
 Fallback mode uses `shared/assistant.js` rule-based routing. It can recommend demos, explain the studio, route to Start Project, and answer AI/key questions honestly.

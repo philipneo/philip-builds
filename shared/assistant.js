@@ -465,7 +465,9 @@
       if (options && options.degraded) setAssistantState("unavailable");
       addMessage(body, result.text, {
         links: result.links,
-        small: options && options.degraded ? "AI backend unavailable — using rule-based fallback." : undefined
+        small: options && options.degraded
+          ? (options.hint || "AI backend unavailable — using rule-based fallback.")
+          : undefined
       });
     }
 
@@ -497,7 +499,14 @@
         body: JSON.stringify(payload),
         signal: controller ? controller.signal : undefined
       })
-        .then((r) => (r.ok ? r.json() : Promise.reject(new Error("bad status"))))
+        .then((r) => {
+          if (r.ok) return r.json();
+          // Try to surface a safe hint from the error body (no secrets in response).
+          return r.json().then(
+            function(errData) { return Promise.reject(errData); },
+            function() { return Promise.reject({ error: "bad status" }); }
+          );
+        })
         .then((data) => {
           done = true;
           window.clearTimeout(timer);
@@ -513,11 +522,16 @@
             small: "AI backend connected through /api/chat."
           });
         })
-        .catch(() => {
+        .catch((errData) => {
           done = true;
           window.clearTimeout(timer);
           pending.remove();
-          localReply(text, { degraded: true });
+          // upstream 401/402/429 = billing or quota — hint to check Vercel env vars.
+          const upstreamStatus = errData && typeof errData.upstream === "number" ? errData.upstream : 0;
+          const hint = upstreamStatus === 401 || upstreamStatus === 402 || upstreamStatus === 429
+            ? "AI backend unavailable — billing or quota issue."
+            : undefined;
+          localReply(text, { degraded: true, hint: hint });
         });
     }
 

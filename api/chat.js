@@ -128,7 +128,16 @@ export default async function handler(req, res) {
     });
 
     if (!upstream.ok) {
-      res.status(502).json({ error: "Upstream error" });
+      // Log safe diagnostic info to Vercel function logs (no key, no message content).
+      let errType = "";
+      try {
+        const errJson = await upstream.json();
+        if (errJson && errJson.error && typeof errJson.error.type === "string") {
+          errType = errJson.error.type;
+        }
+      } catch (_) {}
+      console.error("[api/chat] upstream", upstream.status, errType || upstream.statusText || "");
+      res.status(502).json({ error: "Upstream error", upstream: upstream.status });
       return;
     }
 
@@ -143,6 +152,7 @@ export default async function handler(req, res) {
         : "";
 
     if (!reply) {
+      console.error("[api/chat] empty reply from upstream");
       res.status(502).json({ error: "Empty reply" });
       return;
     }
@@ -153,7 +163,9 @@ export default async function handler(req, res) {
       links: [["Find your fit", "project-matcher/index.html"], ["Start a project", "start-project/index.html"]],
     });
   } catch (e) {
-    // Never log message contents or secrets.
+    // Log the error type without leaking message contents or secrets.
+    const msg = e instanceof Error ? e.message.slice(0, 120) : String(e).slice(0, 120);
+    console.error("[api/chat] handler error:", msg);
     res.status(502).json({ error: "Request failed" });
   }
 }
