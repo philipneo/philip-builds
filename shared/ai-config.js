@@ -3,16 +3,16 @@
  * This file is safe to ship to the browser. It contains NO API key and NO
  * token — only a public endpoint URL that is EMPTY by default.
  *
- * Default (GitHub Pages): endpoint = "" → the assistant runs in rule-based
- * "Guided demo mode" and makes NO network calls.
+ * Default activation target: "/api/chat". On Vercel this points to the
+ * serverless backend. On GitHub Pages that backend does not exist, so the
+ * assistant shows "AI backend unavailable" and falls back to local rules.
  *
- * To enable model-powered mode after deploying the serverless function
- * (e.g. on Vercel), set:
- *     endpoint: "/api/chat"
  * The API key stays in the server's environment variables — never here.
+ * Keep endpoint same-origin so browser code only talks to Philip's backend.
  */
 window.PBS_AI_CONFIG = window.PBS_AI_CONFIG || {
-  endpoint: "",
-  modeLabel: "Guided demo mode",
-  allowModelMode: false
+  endpoint: "/api/chat",
+  modeLabel: "Vercel AI backend",
+  allowModelMode: true,
+  sameOriginOnly: true
 };

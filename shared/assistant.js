@@ -32,6 +32,25 @@
     try { localStorage.removeItem("pbs.lastMatch"); } catch (e) {}
   }
 
+  let aiBackendState = "fallback";
+
+  function setBackendState(state) {
+    aiBackendState = state || "fallback";
+  }
+
+  function safeEndpoint(value) {
+    const endpoint = String(value || "").trim();
+    if (!endpoint) return "";
+    try {
+      const resolved = new URL(endpoint, window.location.origin);
+      const sameOrigin = resolved.origin === window.location.origin;
+      if (!sameOrigin || !resolved.pathname.startsWith("/api/")) return "";
+      return endpoint.startsWith("/") ? resolved.pathname + resolved.search : resolved.href;
+    } catch (e) {
+      return "";
+    }
+  }
+
   // Public AI config (no secrets). Resolves the endpoint with safe fallbacks.
   // Order: window.PBS_AI_CONFIG.endpoint -> window.PBS_AI_ENDPOINT -> "".
   function aiEndpoint() {
@@ -39,19 +58,32 @@
       const cfg = (typeof window !== "undefined" && window.PBS_AI_CONFIG) ? window.PBS_AI_CONFIG : null;
       if (cfg && typeof cfg === "object") {
         if (cfg.allowModelMode === false) return "";
-        if (cfg.endpoint) return String(cfg.endpoint).trim();
+        if (cfg.endpoint) return safeEndpoint(cfg.endpoint);
       }
       if (typeof window !== "undefined" && window.PBS_AI_ENDPOINT) {
-        return String(window.PBS_AI_ENDPOINT).trim();
+        return safeEndpoint(window.PBS_AI_ENDPOINT);
       }
     } catch (e) { /* private mode */ }
     return "";
   }
 
+  function connectedCopy() {
+    if (aiBackendState === "connected") {
+      return "AI backend connected through this site's server endpoint. I am still not human, and I won't invent clients, results, or promises.";
+    }
+    if (aiBackendState === "unavailable") {
+      return "This page is configured for the Vercel AI backend, but the backend is unavailable right now. I am using the rule-based fallback and will not pretend a model answered.";
+    }
+    if (aiBackendState === "checking") {
+      return "This page is checking the Vercel AI backend. Until it confirms a working model response path, I use the rule-based fallback.";
+    }
+    return "I am currently running as a rule-based assistant. Real AI requires the server-side /api/chat endpoint with a private environment key. No key ever belongs in browser code.";
+  }
+
   const contextCopy = {
     home: {
       label: "Studio Assistant",
-      intro: "I can point you to the right demo, tool, or starting package. Front-end demo only.",
+      intro: "I can point you to the right demo, tool, or starting package. I use rule-based fallback unless the Vercel AI backend is connected.",
       prompt: "Which demo should I look at?"
     },
     portfolio: {
@@ -91,7 +123,7 @@
     },
     start: {
       label: "Project Guide",
-      intro: "Tell me what you want built and I'll point you to the closest demo, or to the project email. Front-end demo only — nothing sends automatically.",
+      intro: "Tell me what you want built and I'll point you to the closest demo, or to the project email. Nothing sends automatically.",
       prompt: "Help me start a project"
     }
   };
@@ -123,9 +155,7 @@
       value.includes("robot") || value.includes("are you a")
     ) {
       return {
-        text: aiEndpoint()
-          ? "Honest answer: model-powered mode is available through this site's backend, so some replies may come from a model. I'm still not a human, and I won't claim fake results. I can point you to the right demo or the Start Project page."
-          : "Honest answer: I'm currently running as a guided front-end assistant. The site is wired for model mode, but real AI needs a serverless backend with a private API key — it isn't active on GitHub Pages. I'm not a human and don't pretend to be.",
+        text: "Honest answer: " + connectedCopy() + " I can point you to the right demo or the Start Project page.",
         links: [["Match me to a demo", routes.matcher], ["Start a project", routes.start]]
       };
     }
@@ -231,7 +261,7 @@
       value.includes("how") && (value.includes("real ai") || value.includes("make this ai") || value.includes("model"))
     ) {
       return {
-        text: "To make model mode real: deploy the site + the api/chat.js function on Vercel (or Netlify), set AI_PROVIDER_API_KEY in the host's environment, then flip shared/ai-config.js to point at /api/chat. The key stays server-side — never in the browser. Studio OS and docs/AI_SETUP.md have the exact steps.",
+        text: "To make model mode real: deploy the site plus api/chat.js on Vercel, set OPENAI_API_KEY in Vercel environment variables, and keep shared/ai-config.js pointed at /api/chat. The key stays server-side — never in the browser. Studio OS and docs/AI_SETUP.md have the exact steps.",
         links: [["Open Studio OS", routes.studio], ["Start a project", routes.start]]
       };
     }
@@ -239,7 +269,7 @@
       value.includes("openai") || value.includes("api key") || value.includes("anthropic") || value.includes("key")
     ) {
       return {
-        text: "Honest + safe: API keys never go in front-end JavaScript — anything shipped to the browser is public. The key lives only in a server's environment variables, behind the api/chat.js function. On GitHub Pages there's no server, so the assistant stays in guided mode.",
+        text: "Honest + safe: API keys never go in front-end JavaScript — anything shipped to the browser is public. The key lives only in Vercel environment variables behind api/chat.js. GitHub Pages cannot run that backend, so it falls back to the rule-based guide.",
         links: [["AI readiness in Studio OS", routes.studio]]
       };
     }
@@ -248,7 +278,7 @@
       value.includes("serverless") || value.includes("deploy")
     ) {
       return {
-        text: "Model mode runs on a serverless host (Vercel/Netlify), not GitHub Pages. The api/chat.js scaffold is ready; deploying it with a private env key and switching the endpoint turns on real model replies — with a graceful fallback to this guided mode if it ever errors.",
+        text: "Model mode runs on a serverless host like Vercel, not GitHub Pages. This frontend calls only the same-origin /api/chat endpoint. If that backend has no private env key or returns an error, the assistant falls back to this rule-based guide.",
         links: [["Open Studio OS", routes.studio], ["Read the path", routes.start]]
       };
     }
@@ -258,9 +288,7 @@
       value.includes("ai ") || value === "ai" || value.includes("model")
     ) {
       return {
-        text: aiEndpoint()
-          ? "This assistant is model-ready and an endpoint is configured, so replies can come from a model — with a guided fallback if it errors. Philip builds the front-end assistant UI plus an env-key-only serverless scaffold you can deploy when you want real model mode."
-          : "Right now this is a guided front-end assistant — fast, rule-based, and live on a static site with no backend. The same UI is wired for real model mode later: deploy the serverless scaffold with a private key and flip one config value. Keys never touch the browser.",
+        text: connectedCopy() + " Philip Builds Studio can show a front-end assistant UI with a private-key-only serverless backend and a safe fallback.",
         links: [["See AI readiness", routes.studio], ["Match me to a demo", routes.matcher], ["Start a project", routes.start]]
       };
     }
@@ -309,7 +337,7 @@
     const launcher = createElement("button", "pbs-assistant-launcher");
     launcher.type = "button";
     launcher.setAttribute("aria-expanded", "false");
-    launcher.innerHTML = '<span class="pbs-assistant-mark">PB</span><span class="pbs-assistant-launcher-text"><strong>Demo Assistant</strong><span>Front-end guide</span></span>';
+    launcher.innerHTML = '<span class="pbs-assistant-mark">PB</span><span class="pbs-assistant-launcher-text"><strong>Demo Assistant</strong><span>Safe guide</span></span>';
 
     const panel = createElement("section", "pbs-assistant-panel");
     panel.setAttribute("aria-label", "Demo Assistant chat panel");
@@ -319,7 +347,7 @@
           <span class="pbs-assistant-mark">PB</span>
           <div>
             <strong>${copy.label}</strong>
-            <span class="pbs-assistant-badge" aria-live="polite">Guided mode</span>
+            <span class="pbs-assistant-badge" aria-live="polite">Rule-based fallback</span>
           </div>
         </div>
         <button class="pbs-assistant-close" type="button" aria-label="Close assistant">×</button>
@@ -331,7 +359,7 @@
           <input class="pbs-assistant-input" type="text" autocomplete="off" placeholder="Ask about quotes, demos, tools..." aria-label="Assistant message" />
           <button class="pbs-assistant-send" type="button">Send</button>
         </form>
-        <p class="pbs-assistant-note">Fictional guided chat demo. It does not use a backend, save messages, or contact anyone.</p>
+        <p class="pbs-assistant-note">Rule-based fallback. No model call is made until the server-side backend confirms it is available.</p>
       </div>
     `;
 
@@ -344,20 +372,56 @@
     const send = panel.querySelector(".pbs-assistant-send");
     const close = panel.querySelector(".pbs-assistant-close");
     const badge = panel.querySelector(".pbs-assistant-badge");
+    const note = panel.querySelector(".pbs-assistant-note");
 
     const BADGE_TEXT = {
-      guided: "Guided mode",
-      ready: "Model-ready",
-      model: "Model mode",
-      fallback: "Guided fallback"
+      fallback: "Rule-based fallback",
+      checking: "Checking AI backend",
+      connected: "AI backend connected",
+      unavailable: "AI backend unavailable"
     };
-    function setBadge(state) {
+    const STATUS_NOTE = {
+      fallback: "Rule-based fallback. No backend call, no messages saved, and no one is contacted.",
+      checking: "Checking the same-origin AI backend. Fallback stays ready if it is unavailable.",
+      connected: "AI backend connected through /api/chat. The API key stays server-side in Vercel.",
+      unavailable: "AI backend unavailable. Using rule-based fallback and not claiming a model replied."
+    };
+    function setAssistantState(state) {
+      const next = state || "fallback";
+      setBackendState(next);
       if (!badge) return;
-      badge.textContent = BADGE_TEXT[state] || BADGE_TEXT.guided;
-      badge.setAttribute("data-state", state || "guided");
+      badge.textContent = BADGE_TEXT[next] || BADGE_TEXT.fallback;
+      badge.setAttribute("data-state", next);
+      if (note) note.textContent = STATUS_NOTE[next] || STATUS_NOTE.fallback;
     }
-    // Initial state: model-ready only if an endpoint is actually configured.
-    setBadge(aiEndpoint() ? "ready" : "guided");
+    const configuredEndpoint = aiEndpoint();
+    setAssistantState(configuredEndpoint ? "checking" : "fallback");
+
+    function checkBackend(endpoint) {
+      let settled = false;
+      const controller = ("AbortController" in window) ? new AbortController() : null;
+      const timer = window.setTimeout(() => { if (!settled && controller) controller.abort(); }, 6000);
+      fetch(endpoint, {
+        method: "GET",
+        headers: { Accept: "application/json" },
+        cache: "no-store",
+        signal: controller ? controller.signal : undefined
+      })
+        .then((r) => (r.ok ? r.json() : Promise.reject(new Error("backend unavailable"))))
+        .then((data) => {
+          settled = true;
+          window.clearTimeout(timer);
+          if (data && data.ok === true && data.mode === "ai") setAssistantState("connected");
+          else setAssistantState("unavailable");
+        })
+        .catch(() => {
+          settled = true;
+          window.clearTimeout(timer);
+          setAssistantState("unavailable");
+        });
+    }
+
+    if (configuredEndpoint) checkBackend(configuredEndpoint);
 
     addMessage(body, copy.intro, {
       links: [["Match me to a demo", routes.matcher], ["Open portfolio", routes.portfolio]],
@@ -393,14 +457,18 @@
 
     function localReply(text, options) {
       const result = recommendationsFor(text);
-      if (options && options.degraded) setBadge("fallback");
+      if (options && options.degraded) setAssistantState("unavailable");
       addMessage(body, result.text, {
         links: result.links,
-        small: options && options.degraded ? "AI mode unavailable — using guided demo mode." : undefined
+        small: options && options.degraded ? "AI backend unavailable — using rule-based fallback." : undefined
       });
     }
 
     function askBackend(endpoint, text) {
+      if (aiBackendState === "unavailable") {
+        localReply(text, { degraded: true });
+        return;
+      }
       // Loading state
       const pending = createElement("div", "pbs-assistant-message pbs-assistant-pending");
       pending.appendChild(createElement("p", "", "Thinking…"));
@@ -431,11 +499,14 @@
           pending.remove();
           const reply = data && typeof data.reply === "string" ? data.reply.trim() : "";
           if (!reply) { localReply(text, { degraded: true }); return; }
-          setBadge("model");
+          setAssistantState("connected");
           const links = Array.isArray(data.links) && data.links.length
             ? data.links
             : [["Start a project", routes.start]];
-          addMessage(body, reply, { links: links });
+          addMessage(body, reply, {
+            links: links,
+            small: "AI backend connected through /api/chat."
+          });
         })
         .catch(() => {
           done = true;

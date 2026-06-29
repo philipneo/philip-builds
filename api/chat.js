@@ -1,20 +1,23 @@
 // Philip Builds Studio — optional AI chat backend (provider-agnostic).
 //
 // IMPORTANT:
-// - This file is NOT used by the static GitHub Pages site. The frontend only
-//   calls it if window.PBS_AI_ENDPOINT is set to a deployed URL.
+// - This file is NOT executed by GitHub Pages. It only runs on a serverless
+//   host such as Vercel, where /api/chat is available server-side.
 // - It reads the API key from an environment variable ONLY. Never hardcode a
 //   key here and never expose one in the browser.
 // - Designed for a Vercel-style serverless handler (export default function),
 //   but the core logic is portable to Netlify/other runtimes.
 //
 // Provider-agnostic: works with any OpenAI-compatible Chat Completions API.
-//   AI_PROVIDER_API_KEY  (required to enable real responses)
+//   OPENAI_API_KEY       (preferred for OpenAI)
+//   AI_API_KEY           (generic OpenAI-compatible provider)
+//   OPENROUTER_API_KEY   (OpenRouter-compatible provider)
+//   AI_PROVIDER_API_KEY  (legacy fallback)
 //   AI_BASE_URL          (default: https://api.openai.com/v1)
 //   AI_MODEL             (default: gpt-4o-mini)
 //
-// If no key is configured, it responds 503 so the frontend cleanly falls back
-// to its built-in rule-based guide.
+// If no key is configured, it responds 503 so the frontend cleanly uses its
+// built-in rule-based fallback and never claims live AI.
 
 const SYSTEM_PROMPT = [
   "You are the Philip Builds Studio website assistant.",
@@ -27,6 +30,29 @@ const SYSTEM_PROMPT = [
 ].join(" ");
 
 const MAX_MESSAGE_CHARS = 2000;
+const DEFAULT_OPENAI_BASE_URL = "https://api.openai.com/v1";
+const DEFAULT_OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1";
+const DEFAULT_MODEL = "gpt-4o-mini";
+
+function getProviderConfig() {
+  const key =
+    process.env.OPENAI_API_KEY ||
+    process.env.AI_API_KEY ||
+    process.env.OPENROUTER_API_KEY ||
+    process.env.AI_PROVIDER_API_KEY ||
+    "";
+
+  const usesOpenRouter =
+    !process.env.OPENAI_API_KEY &&
+    !process.env.AI_API_KEY &&
+    Boolean(process.env.OPENROUTER_API_KEY);
+
+  return {
+    key,
+    baseUrl: (process.env.AI_BASE_URL || (usesOpenRouter ? DEFAULT_OPENROUTER_BASE_URL : DEFAULT_OPENAI_BASE_URL)).replace(/\/$/, ""),
+    model: process.env.AI_MODEL || DEFAULT_MODEL,
+  };
+}
 
 function sanitizePage(page) {
   if (typeof page !== "string") return "";
@@ -35,13 +61,24 @@ function sanitizePage(page) {
 }
 
 export default async function handler(req, res) {
+  const provider = getProviderConfig();
+
+  if (req.method === "GET" || req.method === "HEAD") {
+    const configured = Boolean(provider.key);
+    res.status(configured ? 200 : 503).json({
+      ok: configured,
+      mode: configured ? "ai" : "fallback",
+      configured,
+    });
+    return;
+  }
+
   if (req.method !== "POST") {
     res.status(405).json({ error: "Method not allowed" });
     return;
   }
 
-  const key = process.env.AI_PROVIDER_API_KEY || process.env.OPENAI_API_KEY;
-  if (!key) {
+  if (!provider.key) {
     // No key configured → tell the frontend to use its local fallback.
     res.status(503).json({ error: "AI backend not configured" });
     return;
@@ -66,9 +103,6 @@ export default async function handler(req, res) {
   const page = sanitizePage(body.page);
   const lastMatch = typeof body.lastMatch === "string" ? body.lastMatch.slice(0, 80) : "";
 
-  const baseUrl = (process.env.AI_BASE_URL || "https://api.openai.com/v1").replace(/\/$/, "");
-  const model = process.env.AI_MODEL || "gpt-4o-mini";
-
   const userContext = [
     "Visitor message: " + message,
     page ? "Current page: " + page : "",
@@ -76,14 +110,14 @@ export default async function handler(req, res) {
   ].filter(Boolean).join("\n");
 
   try {
-    const upstream = await fetch(baseUrl + "/chat/completions", {
+    const upstream = await fetch(provider.baseUrl + "/chat/completions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Bearer " + key,
+        Authorization: "Bearer " + provider.key,
       },
       body: JSON.stringify({
-        model: model,
+        model: provider.model,
         max_tokens: 320,
         temperature: 0.4,
         messages: [

@@ -336,9 +336,10 @@
   background: currentColor;
   opacity: 0.85;
 }
-.pbs-assistant-badge[data-state="ready"] { color: var(--assistant-blue); border-color: rgba(96, 165, 250, 0.4); }
-.pbs-assistant-badge[data-state="model"] { color: var(--assistant-mint); border-color: rgba(94, 234, 212, 0.4); }
+.pbs-assistant-badge[data-state="checking"] { color: var(--assistant-blue); border-color: rgba(96, 165, 250, 0.4); }
+.pbs-assistant-badge[data-state="connected"] { color: var(--assistant-mint); border-color: rgba(94, 234, 212, 0.4); }
 .pbs-assistant-badge[data-state="fallback"] { color: var(--assistant-gold); border-color: rgba(248, 193, 95, 0.4); }
+.pbs-assistant-badge[data-state="unavailable"] { color: #fca5a5; border-color: rgba(252, 165, 165, 0.42); }
 
 .pbs-assistant-pending p {
   color: var(--assistant-muted);
