@@ -141,10 +141,14 @@
     if (
       value.includes("this demo") || value.includes("what is this") || value.includes("can you build this") ||
       value.includes("build this") || value.includes("make me one") || value.includes("one like this") ||
-      value.includes("is this real") || value.includes("how do i use this") || value.includes("how does this work")
+      value.includes("is this real") || value.includes("real business") || value.includes("how do i use this") ||
+      value.includes("how does this work") || value.includes("walk me through") || value.includes("walkthrough") ||
+      value.includes("what should i click") || value.includes("what does this prove") ||
+      value.includes("take payment") || value.includes("real payment") || value.includes("book client") ||
+      value.includes("can this book") || value.includes("can this take")
     ) {
       return {
-        text: "This is a fictional, front-end demo — it shows the interface and flow, but nothing real happens (no payment, booking, or submission). Yes, a real version can be built and adapted to your business. Use the Project Matcher to find the closest concept, or Start a project to send the idea.",
+        text: "This is a fictional, front-end demo — it shows the interface and flow, but nothing real happens (no payment, booking, or submission). Each flagship demo has a demo brief at the top, a step-by-step walkthrough, and a \"what this proves\" section. A real version can be built and adapted to your business — use the Project Matcher to find the closest concept, or Start a project to send the idea.",
         links: [["Match this to my project", routes.matcher], ["Start a project", routes.start]]
       };
     }
