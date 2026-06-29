@@ -139,6 +139,16 @@
       };
     }
     if (
+      value.includes("proof") || value.includes("site health") || value.includes("lighthouse") ||
+      value.includes("qa") || value.includes("og image") || value.includes("share image") ||
+      value.includes("is this live") || value.includes("fake")
+    ) {
+      return {
+        text: "Honest proof lives on the Studio OS page: a live static build, 13 front-end demos with 6 guided walkthroughs, no API keys in the browser, no trackers, and fictional/demo-only labels. No scores or client results are claimed — measured numbers (like a Lighthouse report) only get posted once they're actually recorded.",
+        links: [["Open Studio OS", routes.studio], ["See the portfolio", routes.portfolio]]
+      };
+    }
+    if (
       value.includes("this demo") || value.includes("what is this") || value.includes("can you build this") ||
       value.includes("build this") || value.includes("make me one") || value.includes("one like this") ||
       value.includes("is this real") || value.includes("real business") || value.includes("how do i use this") ||

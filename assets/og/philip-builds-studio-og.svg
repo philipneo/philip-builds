@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#070d18"/>
+      <stop offset="1" stop-color="#0a1326"/>
+    </linearGradient>
+    <radialGradient id="glowBlue" cx="0.12" cy="0.1" r="0.5">
+      <stop offset="0" stop-color="#60a5fa" stop-opacity="0.32"/>
+      <stop offset="1" stop-color="#60a5fa" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowMint" cx="0.92" cy="0.95" r="0.55">
+      <stop offset="0" stop-color="#5eead4" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#5eead4" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="mark" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#60a5fa"/>
+      <stop offset="1" stop-color="#5eead4"/>
+    </linearGradient>
+    <linearGradient id="bar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#60a5fa"/>
+      <stop offset="1" stop-color="#5eead4"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glowBlue)"/>
+  <rect width="1200" height="630" fill="url(#glowMint)"/>
+  <rect x="1" y="1" width="1198" height="628" rx="0" fill="none" stroke="#ffffff" stroke-opacity="0.06"/>
+
+  <!-- Left: brand + copy -->
+  <g font-family="Helvetica, Arial, sans-serif">
+    <rect x="80" y="92" width="58" height="58" rx="14" fill="url(#mark)"/>
+    <text x="96" y="129" font-size="22" font-weight="700" fill="#07111f">PB</text>
+    <text x="156" y="130" font-size="26" font-weight="700" fill="#e8eef9">Philip Builds Studio</text>
+
+    <text x="80" y="250" font-size="78" font-weight="700" fill="#ffffff">AI-ready</text>
+    <text x="80" y="332" font-size="78" font-weight="700" fill="#ffffff">front-end studio</text>
+
+    <text x="82" y="392" font-size="27" fill="#aab7c8">Guided demos  •  Project tools  •  Model-ready paths</text>
+
+    <!-- Guided mode badge -->
+    <rect x="80" y="430" width="214" height="44" rx="22" fill="#60a5fa" fill-opacity="0.12" stroke="#60a5fa" stroke-opacity="0.5"/>
+    <circle cx="104" cy="452" r="6" fill="#5eead4"/>
+    <text x="120" y="459" font-size="19" font-weight="700" fill="#dbeafe">Guided mode · model-ready</text>
+
+    <text x="82" y="556" font-size="20" fill="#7c8aa0">philipneo.github.io/philip-builds  ·  fictional front-end demos</text>
+  </g>
+
+  <!-- Right: dashboard mock card -->
+  <g font-family="Helvetica, Arial, sans-serif">
+    <rect x="724" y="120" width="396" height="300" rx="20" fill="#0c1423" stroke="#ffffff" stroke-opacity="0.14"/>
+    <!-- bar -->
+    <circle cx="752" cy="150" r="6" fill="#fb7185"/>
+    <circle cx="772" cy="150" r="6" fill="#fbbf24"/>
+    <circle cx="792" cy="150" r="6" fill="#34d399"/>
+    <text x="1096" y="155" font-size="14" fill="#7c8aa0" text-anchor="end">command-center.demo</text>
+    <line x1="724" y1="172" x2="1120" y2="172" stroke="#ffffff" stroke-opacity="0.1"/>
+
+    <!-- stat tiles -->
+    <g>
+      <rect x="748" y="190" width="106" height="64" rx="12" fill="#ffffff" fill-opacity="0.04" stroke="#ffffff" stroke-opacity="0.08"/>
+      <text x="764" y="222" font-size="26" font-weight="700" fill="#ffffff">3</text>
+      <text x="764" y="242" font-size="13" fill="#8ea0b6">Jobs</text>
+      <rect x="868" y="190" width="106" height="64" rx="12" fill="#ffffff" fill-opacity="0.04" stroke="#ffffff" stroke-opacity="0.08"/>
+      <text x="884" y="222" font-size="26" font-weight="700" fill="#ffffff">$840</text>
+      <text x="884" y="242" font-size="13" fill="#8ea0b6">Revenue</text>
+      <rect x="988" y="190" width="106" height="64" rx="12" fill="#ffffff" fill-opacity="0.04" stroke="#ffffff" stroke-opacity="0.08"/>
+      <text x="1004" y="222" font-size="26" font-weight="700" fill="#ffffff">2</text>
+      <text x="1004" y="242" font-size="13" fill="#8ea0b6">Quotes</text>
+    </g>
+
+    <!-- rows -->
+    <rect x="748" y="270" width="346" height="34" rx="9" fill="#ffffff" fill-opacity="0.03" stroke="#ffffff" stroke-opacity="0.07"/>
+    <text x="762" y="292" font-size="14" fill="#c7d2e0">Santos — Full Detail</text>
+    <rect x="1040" y="278" width="42" height="18" rx="9" fill="#34d399" fill-opacity="0.18"/>
+    <text x="1061" y="291" font-size="11" font-weight="700" fill="#34d399" text-anchor="middle">Done</text>
+
+    <rect x="748" y="312" width="346" height="34" rx="9" fill="#ffffff" fill-opacity="0.03" stroke="#ffffff" stroke-opacity="0.07"/>
+    <text x="762" y="334" font-size="14" fill="#c7d2e0">Morales — Interior</text>
+    <rect x="1034" y="320" width="48" height="18" rx="9" fill="#fbbf24" fill-opacity="0.18"/>
+    <text x="1058" y="333" font-size="11" font-weight="700" fill="#fbbf24" text-anchor="middle">Active</text>
+
+    <!-- progress -->
+    <rect x="748" y="366" width="346" height="10" rx="5" fill="#ffffff" fill-opacity="0.1"/>
+    <rect x="748" y="366" width="197" height="10" rx="5" fill="url(#bar)"/>
+    <text x="748" y="398" font-size="13" fill="#8ea0b6">4 of 7 tasks complete</text>
+
+    <!-- assistant badge + matcher chip -->
+    <rect x="724" y="440" width="190" height="40" rx="20" fill="#0c1423" stroke="#5eead4" stroke-opacity="0.4"/>
+    <circle cx="748" cy="460" r="6" fill="#5eead4"/>
+    <text x="764" y="466" font-size="15" font-weight="700" fill="#d7f7ef">Studio Assistant</text>
+
+    <rect x="930" y="440" width="190" height="40" rx="20" fill="#0c1423" stroke="#60a5fa" stroke-opacity="0.4"/>
+    <circle cx="954" cy="460" r="6" fill="#60a5fa"/>
+    <text x="970" y="466" font-size="15" font-weight="700" fill="#dbeafe">Project Matcher</text>
+  </g>
+</svg>

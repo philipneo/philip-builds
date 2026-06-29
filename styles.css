@@ -1424,3 +1424,22 @@ ul {
   .hero-browser, .hero-chip, .hb-progress span { animation: none !important; }
   .starthere-card, .rank-card { transition: none !important; }
 }
+
+/* ── PROOF STRIP (honest, countable) ── */
+.proof-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 22px;
+}
+.proof-strip > div {
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--panel);
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+.proof-strip strong { display: block; font-size: 2rem; line-height: 1; color: var(--accent-dark); }
+.proof-strip span { display: block; margin-top: 6px; color: var(--muted); font-size: 0.86rem; font-weight: 700; }
+@media (max-width: 640px) { .proof-strip { grid-template-columns: 1fr 1fr; } }

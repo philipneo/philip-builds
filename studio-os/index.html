@@ -11,9 +11,13 @@
     <meta property="og:title" content="Studio OS — Site Health & Roadmap" />
     <meta property="og:description" content="What's shipped, what's next, and a self-audit map for Philip Builds Studio. Front-end only." />
     <meta property="og:url" content="https://philipneo.github.io/philip-builds/studio-os/" />
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Studio OS — Site Health & Roadmap" />
     <meta name="twitter:description" content="What's shipped, what's next, and a self-audit map." />
+    <meta property="og:image" content="https://philipneo.github.io/philip-builds/assets/og/philip-builds-studio-og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:image" content="https://philipneo.github.io/philip-builds/assets/og/philip-builds-studio-og.png" />
     <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="../shared/site.css" />
     <link rel="stylesheet" href="styles.css" />
@@ -79,7 +83,7 @@
         <div class="section-head"><p class="eyebrow">Next up</p><h2 id="next">Recommended upgrades.</h2></div>
         <div class="grid-3">
           <div class="card"><span class="tag">Depth</span><h3>Per-demo case studies</h3><p>Problem / Build / Best-for framing on every demo card and page.</p></div>
-          <div class="card"><span class="tag">Reach</span><h3>OG image asset</h3><p>A local, generated share image (no external assets) for richer link previews.</p></div>
+          <div class="card"><span class="tag">Measure</span><h3>Lighthouse baseline</h3><p>Record a real Lighthouse + accessibility report so scores are measured, not claimed.</p></div>
           <div class="card"><span class="tag">Quality</span><h3>Formal a11y pass</h3><p>Contrast audit, full keyboard run, and a Lighthouse snapshot to track scores.</p></div>
           <div class="card"><span class="tag">Future</span><h3>Optional backend lane</h3><p>If real booking/payment/invoicing is ever needed, scope it as a separate, opt-in layer.</p></div>
           <div class="card"><span class="tag">Content</span><h3>Honest proof over time</h3><p>Swap demo-only framing for real (still honest) project notes as work ships.</p></div>
@@ -174,6 +178,53 @@
             <li>Set <code>shared/ai-config.js</code> → <code>endpoint: "/api/chat"</code>, <code>allowModelMode: true</code></li>
             <li>Test the assistant; confirm graceful fallback if the backend errors</li>
           </ul>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="proof">
+        <div class="section-head"><p class="eyebrow">Proof &amp; site health</p><h2 id="proof">What's actually true about this site.</h2><p>Real, checkable facts — no scores, badges, or client claims invented.</p></div>
+        <div class="grid-3">
+          <div class="card"><span class="tag">Live</span><h3>Static build on GitHub Pages</h3><p>13 front-end demos, 6 guided flagship walkthroughs, all clickable — no mock screenshots.</p></div>
+          <div class="card"><span class="tag">Guided</span><h3>Assistant + matcher live now</h3><p>Rule-based assistant and project matcher run in the browser. Model mode is wired but dormant until deployed.</p></div>
+          <div class="card"><span class="tag">Private</span><h3>No keys, no trackers</h3><p>No API key in any browser file, no analytics, no external dependencies for the core experience.</p></div>
+          <div class="card"><span class="tag">Honest</span><h3>Fictional / demo-only</h3><p>Every demo is labeled fictional. No real payments, bookings, or form submissions anywhere.</p></div>
+          <div class="card"><span class="tag">Responsive</span><h3>Mobile-first UI</h3><p>Built for phones first, with focus-visible states and reduced-motion support.</p></div>
+          <div class="card"><span class="tag">Shareable</span><h3>Local OG share image</h3><p>A locally generated 1200×630 share card — no external image, no stock photo.</p></div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="qa">
+        <div class="section-head"><p class="eyebrow">QA baseline</p><h2 id="qa">Checked vs. still to measure.</h2><p>An honest split — verified items, and the things that still need a real recorded report.</p></div>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Verified each build pass</h3>
+            <ul class="clean">
+              <li>All routes return 200 locally</li>
+              <li>AI endpoint empty — no network calls in guided mode</li>
+              <li>Repo secret scan finds no keys</li>
+              <li>No external frontend dependencies beyond allowed URLs</li>
+              <li>No unguarded forms; buttons use explicit types</li>
+              <li>Reduced-motion supported site-wide</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Still to measure (not claimed yet)</h3>
+            <ul class="clean">
+              <li>A recorded Lighthouse report</li>
+              <li>A full manual keyboard pass</li>
+              <li>Visual-regression screenshots</li>
+              <li>Real-device viewport notes</li>
+              <li>Social share-preview validation</li>
+            </ul>
+          </div>
+        </div>
+        <p class="badge" style="margin-top:14px">No fake scores · no audit badge · measured numbers go here only when real</p>
+      </section>
+
+      <section class="section" aria-labelledby="walkcap">
+        <div class="section-head"><p class="eyebrow">Future walkthrough captures</p><h2 id="walkcap">Short demo tours, later.</h2></div>
+        <div class="card">
+          <p>Later, short screen recordings can walk through each flagship demo's flow and explain what it demonstrates. Nothing is embedded now — no fake videos, no external media. Any future captures would be added as local assets only.</p>
         </div>
       </section>
 
