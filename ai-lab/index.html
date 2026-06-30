@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Engineering Lab — Applied AI, safely deployed | Philip Builds Studio</title>
+    <meta name="description" content="How Philip Builds Studio connects front-end product UX to a secure serverless AI backend: server-side keys, rule-based fallback, route guardrails, and production QA. Plus an honest applied-AI / ML learning roadmap." />
+    <link rel="canonical" href="https://philipneo.github.io/philip-builds/ai-lab/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Philip Builds Studio" />
+    <meta property="og:title" content="AI Engineering Lab — Applied AI, safely deployed" />
+    <meta property="og:description" content="A secure serverless AI integration case study and an honest applied-AI / ML engineering roadmap. Front-end product engineering meets a server-side /api/chat backend." />
+    <meta property="og:url" content="https://philipneo.github.io/philip-builds/ai-lab/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="AI Engineering Lab — Applied AI, safely deployed" />
+    <meta name="twitter:description" content="Secure serverless AI integration case study + honest applied-AI / ML roadmap." />
+    <meta property="og:image" content="https://philipneo.github.io/philip-builds/assets/og/philip-builds-studio-og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:image" content="https://philipneo.github.io/philip-builds/assets/og/philip-builds-studio-og.png" />
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../shared/site.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../shared/assistant.css" />
+    <script src="../shared/ai-config.js" defer></script>
+    <script src="../shared/reveal.js" defer></script>
+    <script src="../shared/assistant.js" defer data-assistant-root="../" data-assistant-context="portfolio"></script>
+  </head>
+  <body>
+    <header class="site-head">
+      <a class="site-brand" href="../index.html"><span>PBS</span> Philip Builds Studio</a>
+      <nav aria-label="Site">
+        <a href="../index.html">Home</a>
+        <a href="../portfolio/index.html">Portfolio</a>
+        <a href="../start-project/index.html">Start a project</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="section hero">
+        <span class="badge">Applied AI engineering · built and deployed on this site</span>
+        <p class="eyebrow">AI Engineering Lab</p>
+        <h1>Applied AI features, safely deployed.</h1>
+        <p class="lab-lead">
+          The studio is growing from <strong>"I build websites"</strong> into
+          <strong>"I build practical AI-enabled products, deploy them safely, test them,
+          and document the engineering decisions."</strong> This page is the working
+          proof — starting with the assistant that runs on this very site.
+        </p>
+        <p class="lab-note">
+          Honest scope: this is <strong>applied AI / AI product engineering</strong>, not a
+          claim of ML research expertise. The machine-learning track below is a
+          learning-in-public roadmap — items are labeled by what is already shipped
+          versus what is in progress or planned.
+        </p>
+        <div class="actions">
+          <a class="btn primary" href="../start-project/index.html">Start a project</a>
+          <a class="btn" href="../portfolio/index.html">See the portfolio</a>
+        </div>
+      </section>
+
+      <!-- CASE STUDY -->
+      <section class="section" aria-labelledby="cs-title">
+        <div class="section-head">
+          <p class="eyebrow">Case study · real site feature</p>
+          <h2 id="cs-title">AI Portfolio Assistant — secure serverless AI integration</h2>
+          <p>
+            The chat assistant in the corner of this site is the case study. It is a
+            real, deployed feature — not a client project and not a fictional demo.
+            Here is how it was built and why each decision was made.
+          </p>
+        </div>
+
+        <div class="case-grid">
+          <div class="card case-block">
+            <span class="tag">Problem</span>
+            <p>
+              A static portfolio needed a genuinely helpful AI assistant — without
+              exposing an API key in browser code, and without ever making fake claims
+              about clients, prices, or results.
+            </p>
+          </div>
+          <div class="card case-block">
+            <span class="tag">Solution</span>
+            <p>
+              A Vercel serverless <code>/api/chat</code> endpoint that reads the key from
+              server-side environment variables, with a rule-based browser fallback,
+              backend health checks, and a validated routing layer for every link the
+              assistant offers.
+            </p>
+          </div>
+        </div>
+
+        <div class="section-head" style="margin-top:30px;">
+          <p class="eyebrow">Request flow</p>
+          <h2>One same-origin path. The key never reaches the browser.</h2>
+        </div>
+        <div class="lab-flow" aria-label="Request flow from browser to model provider">
+          <div class="flow-node">
+            <span class="fn-k">Browser UI</span>
+            <span class="fn-v">Assistant widget</span>
+            <span class="fn-s">Sends only the message + page path. No key, no personal data.</span>
+          </div>
+          <div class="flow-arrow" aria-hidden="true">→</div>
+          <div class="flow-node">
+            <span class="fn-k">Same-origin</span>
+            <span class="fn-v"><code>/api/chat</code> on Vercel</span>
+            <span class="fn-s">Serverless function. Reads the key from an env var, validates input, calls the provider.</span>
+          </div>
+          <div class="flow-arrow" aria-hidden="true">→</div>
+          <div class="flow-node">
+            <span class="fn-k">Provider</span>
+            <span class="fn-v">Model API</span>
+            <span class="fn-s">Server-side request with the key in an Authorization header only.</span>
+          </div>
+          <div class="flow-arrow" aria-hidden="true">→</div>
+          <div class="flow-node is-fallback">
+            <span class="fn-k">No backend</span>
+            <span class="fn-v">Rule-based fallback</span>
+            <span class="fn-s">On GitHub Pages or any failure, the assistant routes with local rules instead of faking AI.</span>
+          </div>
+        </div>
+
+        <div class="section-head" style="margin-top:30px;">
+          <p class="eyebrow">Engineering decisions</p>
+          <h2>The tradeoffs, made on purpose.</h2>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <span class="tag" style="color:var(--blue)">Security &amp; integration</span>
+            <ul class="clean">
+              <li>API key in <strong>server-side environment variables</strong> only — never in HTML, CSS, or JS.</li>
+              <li>Browser talks to a <strong>same-origin <code>/api/chat</code></strong>; it never calls a provider URL directly.</li>
+              <li><strong>GitHub Pages stays fallback-only</strong> — it cannot run the backend, so it degrades honestly.</li>
+              <li><strong>Vercel backend</strong> powers real model mode behind the private key.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <span class="tag" style="color:var(--blue)">Guardrails &amp; honesty</span>
+            <ul class="clean">
+              <li><strong>Route whitelist</strong> — assistant buttons can only link to known internal pages.</li>
+              <li><strong>Prompt constraints</strong> fix prices ($150 / $300 / $50&nbsp;mo), forbid invented claims, and keep demos labeled fictional.</li>
+              <li><strong>Reply sanitizer</strong> strips placeholder <code>#</code> links and any invented external URLs.</li>
+              <li>The UI never claims a model answered unless a real reply actually returned.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section-head" style="margin-top:30px;">
+          <p class="eyebrow">Health check &amp; states</p>
+          <h2>It tells the truth about its own backend.</h2>
+        </div>
+        <div class="terminal" aria-label="Backend health check example">
+          <div class="term-bar"><i></i><i></i><i></i><span>GET /api/chat</span></div>
+<pre><span class="c-mut"># frontend health check on load — no key involved</span>
+GET /api/chat  <span class="c-ok">200</span>
+{ "ok": <span class="c-ok">true</span>, "mode": <span class="c-key">"ai"</span>, "configured": <span class="c-ok">true</span> }
+
+<span class="c-mut"># on failure the function logs a safe, non-secret hint:</span>
+[api/chat] upstream <span class="c-key">429</span> insufficient_quota
+<span class="c-mut"># → UI shows "billing/quota" fallback, never the key</span></pre>
+        </div>
+        <div class="state-row" style="margin-top:16px;">
+          <span class="state-pill s-fallback">Rule-based fallback</span>
+          <span class="state-pill s-checking">Checking AI backend</span>
+          <span class="state-pill s-ok">AI backend reachable</span>
+          <span class="state-pill s-down">AI backend unavailable</span>
+        </div>
+
+        <div class="section-head" style="margin-top:30px;">
+          <p class="eyebrow">What this proves</p>
+          <h2>Frontend product UX wired to a backend AI service — safely, and explained.</h2>
+        </div>
+        <ul class="checklist">
+          <li>I can connect a real product UI to a backend AI service without leaking secrets.</li>
+          <li>I can design graceful degradation so the feature never lies about its state.</li>
+          <li>I can add guardrails (route whitelist, prompt rules, sanitizer) to keep output safe.</li>
+          <li>I can debug a live deployment from server logs and explain the tradeoffs in plain English.</li>
+        </ul>
+      </section>
+
+      <!-- ROADMAP -->
+      <section class="section" aria-labelledby="rm-title">
+        <div class="section-head">
+          <p class="eyebrow">Applied AI / ML roadmap</p>
+          <h2 id="rm-title">Honest about what's shipped, what's being learned, and what's next.</h2>
+          <p>No exaggerated titles. This is the actual state of the work.</p>
+        </div>
+        <div class="roadmap">
+          <div class="road-col">
+            <h3>Current proof <span class="status-pill now">Shipped</span></h3>
+            <ul class="road-tiles">
+              <li>Front-end product engineering</li>
+              <li>Serverless backend integration</li>
+              <li>AI assistant deployment</li>
+              <li>Secure API key handling</li>
+              <li>Lighthouse / accessibility QA</li>
+              <li>Production debugging with Vercel logs</li>
+              <li>MLOps foundations: logs, fallbacks, and model-state checks</li>
+            </ul>
+          </div>
+          <div class="road-col">
+            <h3>In progress <span class="status-pill learning">Learning</span></h3>
+            <ul class="road-tiles">
+              <li>Python for ML</li>
+              <li>NumPy</li>
+              <li>pandas</li>
+              <li>scikit-learn</li>
+              <li>SQL / data workflows</li>
+              <li>PyTorch fundamentals</li>
+              <li>Model evaluation</li>
+            </ul>
+          </div>
+          <div class="road-col">
+            <h3>Next demos <span class="status-pill next">Planned</span></h3>
+            <ul class="road-tiles">
+              <li>AI Lead Scorer for local businesses</li>
+              <li>Review Sentiment Analyzer</li>
+              <li>Project Matcher / recommendation engine</li>
+              <li>RAG / search assistant prototype</li>
+              <li>ML model deployment demo</li>
+              <li>MLOps / production AI monitoring layer</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- LEARNING PATH -->
+      <section class="section" aria-labelledby="lp-title">
+        <div class="section-head">
+          <p class="eyebrow">Learning path</p>
+          <h2 id="lp-title">Targeted credentials — planned, not completed.</h2>
+          <p>
+            These are the certifications on the roadmap. They are listed as
+            <strong>planned / targeted</strong> goals. None are claimed as completed,
+            and none are required to use anything already shipped above.
+          </p>
+        </div>
+        <ul class="learn-list">
+          <li>
+            <span class="ln-name">DeepLearning.AI — Machine Learning Specialization</span>
+            <span class="ln-tag">Planned</span>
+          </li>
+          <li>
+            <span class="ln-name">AWS Certified Machine Learning Engineer — Associate</span>
+            <span class="ln-tag">Targeted</span>
+          </li>
+          <li>
+            <span class="ln-name">NVIDIA DLI — AI / deep learning certificates</span>
+            <span class="ln-tag">Planned</span>
+          </li>
+          <li>
+            <span class="ln-name">Google Cloud Professional ML Engineer</span>
+            <span class="ln-tag">Later goal</span>
+          </li>
+        </ul>
+        <div class="actions">
+          <a class="btn primary" href="../start-project/index.html">Start a project</a>
+          <a class="btn" href="../portfolio/index.html">Browse the portfolio</a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Built with Filipino pride 🇵🇭 -->
+    <footer>
+      <span>AI Engineering Lab — applied AI built and deployed on this site. The ML roadmap is learning-in-public; no credential is claimed as completed.</span>
+      <span><a href="../index.html">Home</a> · <a href="../portfolio/index.html">Portfolio</a></span>
+    </footer>
+  </body>
+</html>

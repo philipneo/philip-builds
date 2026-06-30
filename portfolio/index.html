@@ -119,6 +119,50 @@
         </div>
       </section>
 
+      <!-- AI PORTFOLIO ASSISTANT (real site feature) -->
+      <section class="band flagship-band" aria-labelledby="ai-assistant-title">
+        <div class="flagship-label">Applied AI · real site feature</div>
+        <div class="flagship-card">
+          <div class="flagship-copy">
+            <h2 id="ai-assistant-title">AI Portfolio Assistant</h2>
+            <p>A real, deployed feature of this site — <strong>not a client project</strong> and not a fictional demo. It demonstrates secure AI integration: a serverless backend, fallback logic, prompt guardrails, validated routing, and a Vercel deployment.</p>
+            <ul class="flagship-features">
+              <li>Secure AI integration — API key in server-side env vars, never in the browser</li>
+              <li>Same-origin <code>/api/chat</code> serverless backend on Vercel</li>
+              <li>Fallback logic — rule-based guidance when the backend is unavailable</li>
+              <li>Prompt guardrails — fixed prices, no invented claims, demos stay fictional</li>
+              <li>Validated routing — assistant buttons can only link to known internal pages</li>
+              <li>Production QA — health checks, secret scans, accessibility passes</li>
+            </ul>
+            <a class="button primary flagship-cta" href="../ai-lab/index.html">Open the AI Engineering Lab →</a>
+          </div>
+          <div class="flagship-visual" aria-hidden="true">
+            <div class="fv-card">
+              <div class="fv-bar">
+                <span class="fv-dot fv-dot-red"></span>
+                <span class="fv-dot fv-dot-yellow"></span>
+                <span class="fv-dot fv-dot-green"></span>
+                <span class="fv-title">AI Portfolio Assistant</span>
+              </div>
+              <div class="fv-stats">
+                <div class="fv-stat"><div class="fv-stat-l">Backend</div><div class="fv-stat-v">AI</div></div>
+                <div class="fv-stat"><div class="fv-stat-l">Key</div><div class="fv-stat-v">Env</div></div>
+                <div class="fv-stat"><div class="fv-stat-l">Fallback</div><div class="fv-stat-v">Ready</div></div>
+              </div>
+              <div class="fv-rows">
+                <div class="fv-row"><span class="fv-time">GET</span><span class="fv-name">/api/chat health</span><span class="fv-pill fv-green">200</span></div>
+                <div class="fv-row"><span class="fv-time">ENV</span><span class="fv-name">Key server-side only</span><span class="fv-pill fv-blue">safe</span></div>
+                <div class="fv-row"><span class="fv-time">GUARD</span><span class="fv-name">Route whitelist</span><span class="fv-pill fv-green">on</span></div>
+              </div>
+              <div class="fv-progress">
+                <div class="fv-progress-label">Secure integration</div>
+                <div class="fv-bar-outer"><div class="fv-bar-fill"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- SERVICES -->
       <section class="band" aria-labelledby="services-title">
         <div class="section-head">
