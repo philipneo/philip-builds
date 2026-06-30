@@ -3,7 +3,7 @@
 Philip Builds Studio uses a safe two-mode assistant:
 
 1. **Rule-based fallback** - runs in the browser with no API key, no backend dependency, and no automatic outreach.
-2. **AI backend connected** - only on a serverless host such as Vercel, through the same-origin `/api/chat` endpoint.
+2. **AI backend reachable** - only on a serverless host such as Vercel, through the same-origin `/api/chat` endpoint.
 
 GitHub Pages never receives an API key. Browser JavaScript never receives an API key. On GitHub Pages, the assistant stays in **Rule-based fallback** without probing a missing server. On Vercel, if the backend is misconfigured, slow, or failing, the assistant shows **AI backend unavailable** and falls back to local rules.
 
@@ -115,14 +115,14 @@ Badge states:
 
 - **Rule-based fallback** - no usable backend endpoint or fallback-only mode.
 - **Checking AI backend** - frontend is probing `/api/chat`.
-- **AI backend connected** - `GET /api/chat` confirmed the server-side key is configured, or a model reply succeeded.
+- **AI backend reachable** - `GET /api/chat` confirmed the server-side key is configured. A model reply still requires a successful `POST`.
 - **AI backend unavailable** - backend missing, key missing, upstream failed, or request timed out.
 
 The assistant should never claim a model answered unless `/api/chat` returns a successful model reply.
 
 ## Troubleshooting POST Failures
 
-If the health check badge shows **AI backend connected** but messages fall back to rule-based:
+If the health check badge shows **AI backend reachable** but messages fall back to rule-based:
 
 1. Open Vercel → Project → Functions → `api/chat` → Logs.
 2. Look for lines beginning `[api/chat]`. The log shows the upstream HTTP status and OpenAI error type without leaking the key.
@@ -131,11 +131,22 @@ If the health check badge shows **AI backend connected** but messages fall back 
 | --- | --- | --- |
 | `401` | API key invalid or missing in runtime | Verify `OPENAI_API_KEY` is set in Vercel → Settings → Environment Variables → Production |
 | `402` | Account has no credits | Add a payment method and credits to the OpenAI account |
-| `429` | Rate limit or quota exceeded | Upgrade the OpenAI plan or wait for the window to reset |
+| `429` with `insufficient_quota` | OpenAI account quota/billing is exhausted or billing is not active | Add billing/credits in OpenAI, confirm the key belongs to that funded project, then redeploy or retest |
+| `429` without `insufficient_quota` | Rate limit window exceeded | Wait for the rate-limit window to reset or lower traffic |
 | `5xx` | OpenAI service error | Transient — retry in a few minutes |
 | `fetch is not defined` | Node.js < 18 in Vercel runtime | Set `"engines": { "node": ">=18" }` in `package.json` (already present) and redeploy |
 
-The assistant panel also shows `"AI backend unavailable — billing or quota issue."` in the small attribution line when the server returns a `401`, `402`, or `429`.
+The assistant panel shows `"AI backend unavailable — OpenAI billing or quota issue."` when the server reports `402`, `429`, or `insufficient_quota`. A `401` is shown separately as an API key/auth issue.
+
+After fixing OpenAI billing or quota, retest with:
+
+```bash
+curl -s https://YOUR-VERCEL-DOMAIN/api/chat \
+  -H "Content-Type: application/json" \
+  -d '{"message":"Which demo should I open first?","page":"/","lastMatch":""}'
+```
+
+Expected: HTTP `200`, a non-empty `reply`, and two safe relative links.
 
 ## Fallback Behavior
 

@@ -188,7 +188,7 @@ export default async function handler(req, res) {
         }
       } catch (_) {}
       console.error("[api/chat] upstream", upstream.status, errType || upstream.statusText || "");
-      res.status(502).json({ error: "Upstream error", upstream: upstream.status });
+      res.status(502).json({ error: "Upstream error", upstream: upstream.status, upstreamType: errType || undefined });
       return;
     }
 

@@ -1,7 +1,7 @@
 /* Philip Builds Studio — public AI config (NO SECRETS).
  *
  * This file is safe to ship to the browser. It contains NO API key and NO
- * token — only a public endpoint URL that is EMPTY by default.
+ * token — only a same-origin public endpoint path.
  *
  * Default activation target: "/api/chat". On Vercel this points to the
  * serverless backend. On GitHub Pages that backend does not exist, so the

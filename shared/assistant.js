@@ -70,7 +70,7 @@
 
   function connectedCopy() {
     if (aiBackendState === "connected") {
-      return "AI backend connected through this site's server endpoint. I am still not human, and I won't invent clients, results, or promises.";
+      return "AI backend reachable through this site's server endpoint. I am still not human, and I won't invent clients, results, or promises.";
     }
     if (aiBackendState === "unavailable") {
       return "This page is configured for the Vercel AI backend, but the backend is unavailable right now. I am using the rule-based fallback and will not pretend a model answered.";
@@ -378,13 +378,13 @@
     const BADGE_TEXT = {
       fallback: "Rule-based fallback",
       checking: "Checking AI backend",
-      connected: "AI backend connected",
+      connected: "AI backend reachable",
       unavailable: "AI backend unavailable"
     };
     const STATUS_NOTE = {
       fallback: "Rule-based fallback. No backend call, no messages saved, and no one is contacted.",
       checking: "Checking the same-origin AI backend. Fallback stays ready if it is unavailable.",
-      connected: "AI backend connected through /api/chat. The API key stays server-side in Vercel.",
+      connected: "AI backend reachable through /api/chat. Model replies still require a successful POST.",
       unavailable: "AI backend unavailable. Using rule-based fallback and not claiming a model replied."
     };
     function setAssistantState(state) {
@@ -519,18 +519,21 @@
             : [["Start a project", routes.start]];
           addMessage(body, reply, {
             links: links,
-            small: "AI backend connected through /api/chat."
+            small: "Model reply returned through /api/chat."
           });
         })
         .catch((errData) => {
           done = true;
           window.clearTimeout(timer);
           pending.remove();
-          // upstream 401/402/429 = billing or quota — hint to check Vercel env vars.
+          // Keep fallback hints safe and specific; no secrets or message contents.
           const upstreamStatus = errData && typeof errData.upstream === "number" ? errData.upstream : 0;
-          const hint = upstreamStatus === 401 || upstreamStatus === 402 || upstreamStatus === 429
-            ? "AI backend unavailable — billing or quota issue."
-            : undefined;
+          const upstreamType = errData && typeof errData.upstreamType === "string" ? errData.upstreamType : "";
+          let hint;
+          if (upstreamStatus === 401) hint = "AI backend unavailable — API key/auth issue.";
+          else if (upstreamStatus === 402 || upstreamStatus === 429 || upstreamType === "insufficient_quota") {
+            hint = "AI backend unavailable — OpenAI billing or quota issue.";
+          }
           localReply(text, { degraded: true, hint: hint });
         });
     }
