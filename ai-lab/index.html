@@ -3,17 +3,17 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>AI Engineering Lab — Applied AI, safely deployed | Philip Builds Studio</title>
-    <meta name="description" content="How Philip Builds Studio connects front-end product UX to a secure serverless AI backend: server-side keys, rule-based fallback, route guardrails, and production QA. Plus an honest applied-AI / ML learning roadmap." />
+    <title>Neo Labs — AI/ML Engineering Lab | Philip Builds Studio</title>
+    <meta name="description" content="Neo Labs is the applied AI/ML engineering lab inside Philip Builds Studio: live assistant proof, secure cloud deployment, no browser-exposed keys, fallback behavior, and an honest MLOps learning roadmap." />
     <link rel="canonical" href="https://philipneo.github.io/philip-builds/ai-lab/" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Philip Builds Studio" />
-    <meta property="og:title" content="AI Engineering Lab — Applied AI, safely deployed" />
-    <meta property="og:description" content="A secure serverless AI integration case study and an honest applied-AI / ML engineering roadmap. Front-end product engineering meets a server-side /api/chat backend." />
+    <meta property="og:title" content="Neo Labs — AI/ML Engineering Lab" />
+    <meta property="og:description" content="Applied AI systems with secure cloud deployment: live assistant proof, /api/chat, server-side keys, fallback behavior, and an honest MLOps roadmap." />
     <meta property="og:url" content="https://philipneo.github.io/philip-builds/ai-lab/" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="AI Engineering Lab — Applied AI, safely deployed" />
-    <meta name="twitter:description" content="Secure serverless AI integration case study + honest applied-AI / ML roadmap." />
+    <meta name="twitter:title" content="Neo Labs — AI/ML Engineering Lab" />
+    <meta name="twitter:description" content="Applied AI systems, secure cloud deployment, and an honest AI/ML + MLOps learning roadmap." />
     <meta property="og:image" content="https://philipneo.github.io/philip-builds/assets/og/philip-builds-studio-og.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -37,37 +37,62 @@
     </header>
 
     <main>
-      <section class="section hero">
-        <span class="badge">Applied AI engineering · built and deployed on this site</span>
-        <p class="eyebrow">AI Engineering Lab</p>
-        <h1>Applied AI features, safely deployed.</h1>
-        <p class="lab-lead">
-          The studio is growing from <strong>"I build websites"</strong> into
-          <strong>"I build practical AI-enabled products, deploy them safely, test them,
-          and document the engineering decisions."</strong> This page is the working
-          proof — starting with the assistant that runs on this very site.
-        </p>
-        <p class="lab-note">
-          Honest scope: this is <strong>applied AI / AI product engineering</strong>, not a
-          claim of ML research expertise. The machine-learning track below is a
-          learning-in-public roadmap — items are labeled by what is already shipped
-          versus what is in progress or planned.
-        </p>
-        <div class="actions">
-          <a class="btn primary" href="../start-project/index.html">Start a project</a>
-          <a class="btn" href="../portfolio/index.html">See the portfolio</a>
+      <section class="section hero lab-hero">
+        <div class="lab-hero-grid">
+          <div class="lab-hero-copy">
+            <span class="badge">Neo Labs · AI/ML engineering lab for real-world systems</span>
+            <p class="eyebrow">Applied AI systems with secure cloud deployment</p>
+            <h1>Building AI systems in public, with proof.</h1>
+            <p class="lab-lead">
+              Neo Labs is the technical lab inside Philip Builds Studio: live assistant
+              work, cloud/serverless deployment practice, security-aware design, and a
+              learning-in-public AI/ML roadmap.
+            </p>
+            <p class="lab-note">
+              Honest scope: this is <strong>applied AI product engineering</strong> and
+              systems practice, not a claim of senior ML, security, or cloud architect
+              status. Each item below is labeled as live, learning, planned, or future.
+            </p>
+            <div class="actions">
+              <a class="btn primary" href="#live-system">View live system</a>
+              <a class="btn" href="#roadmap">See the AI roadmap</a>
+            </div>
+            <div class="lab-status-grid" aria-label="Neo Labs status summary">
+              <span><strong>Live</strong> AI Portfolio Assistant</span>
+              <span><strong>Secure</strong> no browser-exposed API keys</span>
+              <span><strong>Learning</strong> Python, ML, SQL, PyTorch</span>
+              <span><strong>Planned</strong> MLOps checks and model evals</span>
+            </div>
+          </div>
+          <aside class="lab-system-card" aria-label="Live AI system summary">
+            <span class="system-label">Live system map</span>
+            <h2>Portfolio Assistant</h2>
+            <p>Browser UI calls a same-origin serverless route. The key stays in Vercel env vars. Fallback mode stays ready.</p>
+            <div class="system-stack" aria-hidden="true">
+              <span>Browser assistant</span>
+              <span>/api/chat</span>
+              <span>Provider API</span>
+              <span>Rule fallback</span>
+            </div>
+            <dl class="system-metrics">
+              <div><dt>Status</dt><dd>Live on this site</dd></div>
+              <div><dt>Cloud</dt><dd>Vercel serverless</dd></div>
+              <div><dt>Guardrails</dt><dd>Prompt + route whitelist</dd></div>
+            </dl>
+          </aside>
         </div>
       </section>
 
       <!-- CASE STUDY -->
-      <section class="section" aria-labelledby="cs-title">
+      <section class="section" id="live-system" aria-labelledby="cs-title">
         <div class="section-head">
-          <p class="eyebrow">Case study · real site feature</p>
-          <h2 id="cs-title">AI Portfolio Assistant — secure serverless AI integration</h2>
+          <p class="eyebrow">Live system · real site feature</p>
+          <h2 id="cs-title">AI Portfolio Assistant — the first Neo Labs proof.</h2>
           <p>
             The chat assistant in the corner of this site is the case study. It is a
-            real, deployed feature — not a client project and not a fictional demo.
-            Here is how it was built and why each decision was made.
+            real deployed feature — not a client project, not an enterprise product,
+            and not a fictional demo. It proves the first layer: useful AI UX connected
+            to a secure server-side backend with honest fallback behavior.
           </p>
         </div>
 
@@ -75,9 +100,9 @@
           <div class="card case-block">
             <span class="tag">Problem</span>
             <p>
-              A static portfolio needed a genuinely helpful AI assistant — without
-              exposing an API key in browser code, and without ever making fake claims
-              about clients, prices, or results.
+              A static portfolio needed a genuinely helpful assistant without exposing
+              an API key in browser code, saving visitor messages in the frontend, or
+              making fake claims about clients, prices, credentials, or results.
             </p>
           </div>
           <div class="card case-block">
@@ -89,6 +114,24 @@
               assistant offers.
             </p>
           </div>
+        </div>
+
+        <div class="lab-layer-grid" aria-label="Neo Labs system layers">
+          <article>
+            <span class="tag">Cloud deployment layer</span>
+            <h3>Vercel serverless route</h3>
+            <p>Same-origin browser calls, deployment previews, and function logs make the backend testable without putting keys in GitHub Pages.</p>
+          </article>
+          <article>
+            <span class="tag">Security &amp; trust layer</span>
+            <h3>No browser-exposed keys</h3>
+            <p>Environment variables stay server-side. Replies are sanitized, routes are whitelisted, and errors return safe fallback hints.</p>
+          </article>
+          <article>
+            <span class="tag">MLOps roadmap layer</span>
+            <h3>Planned model discipline</h3>
+            <p>Next proof targets include prompt regression tests, model evaluation, cost/latency tracking, and monitoring for fallback behavior.</p>
+          </article>
         </div>
 
         <div class="section-head" style="margin-top:30px;">
@@ -123,7 +166,7 @@
 
         <div class="section-head" style="margin-top:30px;">
           <p class="eyebrow">Engineering decisions</p>
-          <h2>The tradeoffs, made on purpose.</h2>
+          <h2>Security-aware design, not AI theater.</h2>
         </div>
         <div class="grid-2">
           <div class="card">
@@ -142,6 +185,7 @@
               <li><strong>Prompt constraints</strong> fix prices ($150 / $300 / $50&nbsp;mo), forbid invented claims, and keep demos labeled fictional.</li>
               <li><strong>Reply sanitizer</strong> strips placeholder <code>#</code> links and any invented external URLs.</li>
               <li>The UI never claims a model answered unless a real reply actually returned.</li>
+              <li><strong>Secret scans</strong> are part of the release checklist before AI changes ship.</li>
             </ul>
           </div>
         </div>
@@ -175,28 +219,30 @@ GET /api/chat  <span class="c-ok">200</span>
           <li>I can connect a real product UI to a backend AI service without leaking secrets.</li>
           <li>I can design graceful degradation so the feature never lies about its state.</li>
           <li>I can add guardrails (route whitelist, prompt rules, sanitizer) to keep output safe.</li>
-          <li>I can debug a live deployment from server logs and explain the tradeoffs in plain English.</li>
+          <li>I can debug a live deployment from Vercel logs and explain the tradeoffs in plain English.</li>
+          <li>I can separate shipped proof from planned ML/MLOps work without pretending the roadmap is already complete.</li>
         </ul>
       </section>
 
       <!-- ROADMAP -->
-      <section class="section" aria-labelledby="rm-title">
+      <section class="section" id="roadmap" aria-labelledby="rm-title">
         <div class="section-head">
-          <p class="eyebrow">Applied AI / ML roadmap</p>
-          <h2 id="rm-title">Honest about what's shipped, what's being learned, and what's next.</h2>
-          <p>No exaggerated titles. This is the actual state of the work.</p>
+          <p class="eyebrow">AI/ML + cloud + security roadmap</p>
+          <h2 id="rm-title">Neo Labs is a build path, not a fake credential wall.</h2>
+          <p>Shipped proof comes first. Deeper AI/ML, cloud, security, and MLOps work is labeled as learning, planned, or future build.</p>
         </div>
         <div class="roadmap">
           <div class="road-col">
             <h3>Current proof <span class="status-pill now">Shipped</span></h3>
             <ul class="road-tiles">
-              <li>Front-end product engineering</li>
-              <li>Serverless backend integration</li>
-              <li>AI assistant deployment</li>
-              <li>Secure API key handling</li>
+              <li>Live AI Portfolio Assistant</li>
+              <li>Same-origin /api/chat integration</li>
+              <li>Vercel serverless deployment</li>
+              <li>Server-side API key handling</li>
+              <li>Fallback and backend state UI</li>
+              <li>Prompt and route guardrails</li>
               <li>Lighthouse / accessibility QA</li>
-              <li>Production debugging with Vercel logs</li>
-              <li>MLOps foundations: logs, fallbacks, and model-state checks</li>
+              <li>Secret scan release checks</li>
             </ul>
           </div>
           <div class="road-col">
@@ -205,23 +251,50 @@ GET /api/chat  <span class="c-ok">200</span>
               <li>Python for ML</li>
               <li>NumPy</li>
               <li>pandas</li>
-              <li>scikit-learn</li>
               <li>SQL / data workflows</li>
+              <li>scikit-learn</li>
               <li>PyTorch fundamentals</li>
               <li>Model evaluation</li>
+              <li>Cloud deployment patterns</li>
             </ul>
           </div>
           <div class="road-col">
             <h3>Next demos <span class="status-pill next">Planned</span></h3>
             <ul class="road-tiles">
-              <li>AI Lead Scorer for local businesses</li>
-              <li>Review Sentiment Analyzer</li>
-              <li>Project Matcher / recommendation engine</li>
-              <li>RAG / search assistant prototype</li>
-              <li>ML model deployment demo</li>
-              <li>MLOps / production AI monitoring layer</li>
+              <li>Secure RAG / search assistant</li>
+              <li>AI lead scorer prototype</li>
+              <li>Review sentiment analyzer</li>
+              <li>Cloud ML inference API</li>
+              <li>Model evaluation dashboard</li>
+              <li>Security-aware assistant demo</li>
+              <li>Cloud cost monitor</li>
             </ul>
           </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="ops-title">
+        <div class="section-head">
+          <p class="eyebrow">Production AI roadmap</p>
+          <h2 id="ops-title">The next layer is operational discipline.</h2>
+          <p>These are planned engineering practices, not claims that the lab already operates a full production ML platform.</p>
+        </div>
+        <div class="ops-grid">
+          <article>
+            <span class="tag">Evaluation</span>
+            <h3>Model and prompt tests</h3>
+            <p>Planned regression prompts, response checks, and route validation so assistant changes can be tested before shipping.</p>
+          </article>
+          <article>
+            <span class="tag">Observability</span>
+            <h3>Cost, latency, and fallback tracking</h3>
+            <p>Future dashboard work for latency, failure states, quota errors, and cost-aware model choices.</p>
+          </article>
+          <article>
+            <span class="tag">Security-aware UX</span>
+            <h3>Privacy-conscious defaults</h3>
+            <p>Keep sensitive context out of browser code, limit what reaches the model, and keep user-facing copy honest about AI state.</p>
+          </article>
         </div>
       </section>
 
@@ -232,7 +305,7 @@ GET /api/chat  <span class="c-ok">200</span>
           <h2 id="lp-title">Targeted credentials — planned, not completed.</h2>
           <p>
             These are the certifications on the roadmap. They are listed as
-            <strong>planned / targeted</strong> goals. None are claimed as completed,
+            <strong>planned / targeted / future</strong> goals. None are claimed as completed,
             and none are required to use anything already shipped above.
           </p>
         </div>
@@ -263,7 +336,7 @@ GET /api/chat  <span class="c-ok">200</span>
 
     <!-- Built with Filipino pride 🇵🇭 -->
     <footer>
-      <span>AI Engineering Lab — applied AI built and deployed on this site. The ML roadmap is learning-in-public; no credential is claimed as completed.</span>
+      <span>Neo Labs — applied AI/ML systems built in public. The ML roadmap is learning-in-public; no credential is claimed as completed.</span>
       <span><a href="../index.html">Home</a> · <a href="../portfolio/index.html">Portfolio</a></span>
     </footer>
   </body>
