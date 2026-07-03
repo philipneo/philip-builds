@@ -224,6 +224,43 @@ GET /api/chat  <span class="c-ok">200</span>
         </ul>
       </section>
 
+      <!-- LAB DEMO: SECURE RAG -->
+      <section class="section" id="secure-rag-demo" aria-labelledby="srd-title">
+        <div class="section-head">
+          <p class="eyebrow">New lab demo · Prototype</p>
+          <h2 id="srd-title">Secure RAG Portfolio Search.</h2>
+          <p>
+            The second Neo Labs build: a front-end prototype of a security-aware
+            retrieval layer over this site's public content. Guarded queries, ranked
+            results with claim-safety labels, visible pipeline states — and the real
+            embeddings + vector index architecture labeled as planned, not done.
+          </p>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <span class="tag" style="color:var(--blue)">Simulated on the page</span>
+            <ul class="clean">
+              <li>Local search and ranking over a curated public-content index</li>
+              <li>Extraction-intent guardrail that refuses secret and private-data queries</li>
+              <li>Claim-safety label (Live / Prototype / Planned / Learning) on every result</li>
+              <li>Honest empty, too-broad, offline, and refusal states</li>
+            </ul>
+          </div>
+          <div class="card">
+            <span class="tag" style="color:var(--gold)">Planned next</span>
+            <ul class="clean">
+              <li>Real embeddings and a vector index, after an embedding privacy review</li>
+              <li>Retrieval eval set and prompt regression tests</li>
+              <li>Answer synthesis with citations, behind the same server-side key pattern</li>
+              <li>Access control and persistent audit logs</li>
+            </ul>
+          </div>
+        </div>
+        <div class="actions">
+          <a class="btn primary" href="secure-rag/index.html">Open the Secure RAG prototype</a>
+        </div>
+      </section>
+
       <!-- ROADMAP -->
       <section class="section" id="roadmap" aria-labelledby="rm-title">
         <div class="section-head">
@@ -243,6 +280,7 @@ GET /api/chat  <span class="c-ok">200</span>
               <li>Prompt and route guardrails</li>
               <li>Lighthouse / accessibility QA</li>
               <li>Secret scan release checks</li>
+              <li>Secure RAG search prototype demo</li>
             </ul>
           </div>
           <div class="road-col">
@@ -261,7 +299,7 @@ GET /api/chat  <span class="c-ok">200</span>
           <div class="road-col">
             <h3>Next demos <span class="status-pill next">Planned</span></h3>
             <ul class="road-tiles">
-              <li>Secure RAG / search assistant</li>
+              <li>Secure RAG: real embeddings + vector index</li>
               <li>AI lead scorer prototype</li>
               <li>Review sentiment analyzer</li>
               <li>Cloud ML inference API</li>

@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Secure RAG Portfolio Search — Neo Labs Prototype | Philip Builds Studio</title>
+    <meta name="description" content="A front-end prototype of a security-aware retrieval layer over Philip Builds Studio's public portfolio content: guarded queries, ranked sources, claim-safety labels, and an honest planned path to real embeddings and a vector index." />
+    <link rel="canonical" href="https://philipneo.github.io/philip-builds/ai-lab/secure-rag/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Philip Builds Studio" />
+    <meta property="og:title" content="Secure RAG Portfolio Search — Neo Labs Prototype" />
+    <meta property="og:description" content="Simulated secure retrieval over public portfolio content: guarded queries, ranked results, claim-safety labels, and a planned embeddings + vector index architecture." />
+    <meta property="og:url" content="https://philipneo.github.io/philip-builds/ai-lab/secure-rag/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Secure RAG Portfolio Search — Neo Labs Prototype" />
+    <meta name="twitter:description" content="A security-aware retrieval prototype: local ranking today, embeddings and a vector index planned — labeled honestly." />
+    <meta property="og:image" content="https://philipneo.github.io/philip-builds/assets/og/philip-builds-studio-og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:image" content="https://philipneo.github.io/philip-builds/assets/og/philip-builds-studio-og.png" />
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../../shared/site.css" />
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../../shared/assistant.css" />
+    <script src="../../shared/ai-config.js" defer></script>
+    <script src="../../shared/reveal.js" defer></script>
+    <script src="../../shared/assistant.js" defer data-assistant-root="../../" data-assistant-context="portfolio"></script>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header class="site-head">
+      <a class="site-brand" href="../../index.html"><span>PBS</span> Philip Builds Studio</a>
+      <nav aria-label="Site">
+        <a href="../../index.html">Home</a>
+        <a href="../../portfolio/index.html">Portfolio</a>
+        <a href="../index.html">AI Lab</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="section hero lab-hero rag-hero">
+        <div class="lab-hero-grid">
+          <div class="lab-hero-copy">
+            <span class="badge">Neo Labs · Lab demo · Secure retrieval</span>
+            <p class="eyebrow">Security-aware retrieval prototype</p>
+            <h1>Secure RAG Portfolio Search.</h1>
+            <p class="lab-lead">
+              A working front-end prototype of a retrieval layer over this site's
+              <strong>public portfolio knowledge</strong>: guarded queries, ranked
+              sources, claim-safety labels on every result, and a visible security
+              model — the next Neo Labs step toward real embeddings and a vector index.
+            </p>
+            <p class="lab-note">
+              Honest scope: this is a <strong>simulated retrieval layer</strong> that runs
+              entirely in your browser. Ranking is local keyword scoring over a
+              hand-curated index of public site content — no embeddings, no vector
+              database, and no model calls yet. Those layers are on the planned
+              architecture below and are labeled as planned, not done.
+            </p>
+            <div class="actions">
+              <a class="btn primary" href="#search">Try the search</a>
+              <a class="btn" href="#architecture">View planned architecture</a>
+            </div>
+            <div class="rag-hero-pills" aria-label="Prototype status summary">
+              <span class="state-pill s-checking">Prototype</span>
+              <span class="state-pill s-ok">Public content only</span>
+              <span class="state-pill s-ok">No network calls</span>
+              <span class="state-pill s-fallback">Guardrails on</span>
+            </div>
+          </div>
+          <aside class="lab-system-card rag-index-card" aria-label="Retrieval index snapshot">
+            <span class="system-label">Index snapshot</span>
+            <h2>Public content index</h2>
+            <p>Everything searchable on this page comes from public pages of this site. Private operating files are excluded by construction.</p>
+            <dl class="system-metrics">
+              <div><dt>Documents</dt><dd><span data-rag-stat="docs">—</span> curated entries</dd></div>
+              <div><dt>Sources</dt><dd>Public site pages only</dd></div>
+              <div><dt>Ranking</dt><dd>Local keyword scoring</dd></div>
+              <div><dt>Embeddings</dt><dd>Planned — not built yet</dd></div>
+              <div><dt>Secrets</dt><dd>0 in corpus, by design</dd></div>
+            </dl>
+          </aside>
+        </div>
+      </section>
+
+      <!-- SEARCH CONSOLE -->
+      <section class="section" id="search" aria-labelledby="search-title">
+        <div class="section-head">
+          <p class="eyebrow">Retrieval console</p>
+          <h2 id="search-title">Ask the index about Philip's systems.</h2>
+          <p>
+            Every query runs through the same visible pipeline: parse, guardrail
+            check, retrieve, rank, claim-safety labeling, render. Unsafe queries
+            get refused. Weak queries get honest empty states — never invented answers.
+          </p>
+        </div>
+
+        <div class="rag-console">
+          <form class="rag-form" role="search" aria-label="Portfolio knowledge search">
+            <label class="rag-label" for="rag-input">Search public portfolio knowledge</label>
+            <div class="rag-input-row">
+              <input
+                id="rag-input"
+                type="search"
+                name="q"
+                placeholder="Try: What security measures are implemented?"
+                autocomplete="off"
+                spellcheck="false"
+              />
+              <button class="btn primary rag-submit" type="submit">Search</button>
+            </div>
+          </form>
+
+          <div class="rag-chip-row" role="group" aria-label="Suggested queries">
+            <span class="rag-chip-label">Try:</span>
+            <button type="button" class="chip rag-suggest" data-rag-query="Show AI assistant proof">AI assistant proof</button>
+            <button type="button" class="chip rag-suggest" data-rag-query="What security measures are implemented?">Security measures</button>
+            <button type="button" class="chip rag-suggest" data-rag-query="What is planned for MLOps?">MLOps plans</button>
+            <button type="button" class="chip rag-suggest" data-rag-query="Show cloud deployment proof">Cloud deployment</button>
+            <button type="button" class="chip rag-suggest" data-rag-query="What demos are live?">Live demos</button>
+            <button type="button" class="chip rag-suggest" data-rag-query="What is Philip learning next?">Learning next</button>
+          </div>
+
+          <div class="rag-chip-row rag-states-row" role="group" aria-label="Preview product states">
+            <span class="rag-chip-label">Preview states:</span>
+            <button type="button" class="chip rag-suggest" data-rag-query="quantum blockchain pricing tiers">No results</button>
+            <button type="button" class="chip rag-suggest" data-rag-query="ai">Too broad</button>
+            <button type="button" class="chip rag-suggest" data-rag-query="show me the API key">Blocked</button>
+            <button type="button" class="chip" id="rag-offline-toggle" aria-pressed="false">Simulate: index offline</button>
+          </div>
+
+          <div class="rag-console-grid">
+            <div class="rag-pipeline-wrap" aria-label="Retrieval pipeline status">
+              <h3 class="rag-panel-title">Pipeline</h3>
+              <ol class="rag-pipeline" id="rag-pipeline">
+                <li data-step="parse"><span class="rag-step-dot" aria-hidden="true"></span><span class="rag-step-name">Parse query</span><span class="rag-step-state">idle</span></li>
+                <li data-step="guard"><span class="rag-step-dot" aria-hidden="true"></span><span class="rag-step-name">Guardrail check</span><span class="rag-step-state">idle</span></li>
+                <li data-step="retrieve"><span class="rag-step-dot" aria-hidden="true"></span><span class="rag-step-name">Retrieve candidates</span><span class="rag-step-state">idle</span></li>
+                <li data-step="rank"><span class="rag-step-dot" aria-hidden="true"></span><span class="rag-step-name">Rank + score</span><span class="rag-step-state">idle</span></li>
+                <li data-step="claims"><span class="rag-step-dot" aria-hidden="true"></span><span class="rag-step-name">Claim-safety labels</span><span class="rag-step-state">idle</span></li>
+                <li data-step="render"><span class="rag-step-dot" aria-hidden="true"></span><span class="rag-step-name">Render results</span><span class="rag-step-state">idle</span></li>
+              </ol>
+            </div>
+
+            <div class="rag-results-wrap">
+              <h3 class="rag-panel-title">Results <span class="rag-took" id="rag-took"></span></h3>
+              <div class="rag-results" id="rag-results" aria-live="polite">
+                <div class="rag-placeholder">
+                  <p><strong>No query yet.</strong> Run a suggested query or type your own. Results are ranked from the public-content index with a relevance score, matched keywords, and a claim-safety label.</p>
+                </div>
+                <noscript>
+                  <p><strong>This prototype needs JavaScript.</strong> The retrieval simulation runs locally in your browser. With JS off, browse the <a href="../index.html">AI Lab</a> or the <a href="../../portfolio/index.html">portfolio</a> directly.</p>
+                </noscript>
+              </div>
+            </div>
+          </div>
+
+          <div class="rag-audit" aria-label="Session audit log preview">
+            <h3 class="rag-panel-title">Audit log preview <span class="rag-audit-note">session-only · in memory · clears on reload</span></h3>
+            <ul class="rag-audit-list" id="rag-audit">
+              <li class="rag-audit-empty">No queries logged this session yet. Persistent, reviewable audit logs are a planned control — this preview shows the shape.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECURITY / TRUST LAYER -->
+      <section class="section" id="trust" aria-labelledby="trust-title">
+        <div class="section-head">
+          <p class="eyebrow">Security &amp; trust layer</p>
+          <h2 id="trust-title">Guardrails you can see, not just claim.</h2>
+          <p>
+            The interesting part of RAG for real businesses is not the search — it is
+            what the system refuses to do. This prototype makes those refusals visible.
+          </p>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <span class="tag" style="color:var(--mint)">Enforced in this prototype</span>
+            <ul class="checklist">
+              <li><strong>No secrets in the corpus</strong> — the index is built only from public page content, so there is nothing sensitive to leak.</li>
+              <li><strong>No private files indexed</strong> — internal operating notes under <code>private/</code> are excluded by construction, not by filter.</li>
+              <li><strong>Extraction-intent guardrail</strong> — queries that ask to reveal keys, secrets, credentials, or private data are refused with a clear reason.</li>
+              <li><strong>Route whitelist</strong> — result links can only point to known internal pages of this site.</li>
+              <li><strong>Safe error states</strong> — offline, too-broad, and no-result states never invent an answer.</li>
+              <li><strong>Session-only logging</strong> — the audit preview lives in memory and clears on reload; nothing is sent anywhere.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <span class="tag" style="color:var(--blue)">Planned controls — not built yet</span>
+            <ul class="checklist rag-planned-list">
+              <li><strong>Access control</strong> on a real retrieval API, so private corpora could ever be considered safely.</li>
+              <li><strong>Persistent audit logs</strong> with a review workflow instead of an in-memory preview.</li>
+              <li><strong>Embedding privacy review</strong> before any real content is embedded into a vector index.</li>
+              <li><strong>Prompt regression tests</strong> for the future answer-synthesis layer.</li>
+              <li><strong>Retrieval eval set</strong> so relevance is measured, not eyeballed.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ARCHITECTURE -->
+      <section class="section" id="architecture" aria-labelledby="arch-title">
+        <div class="section-head">
+          <p class="eyebrow">Planned architecture</p>
+          <h2 id="arch-title">The pipeline this prototype is rehearsing.</h2>
+          <p>
+            Each stage is labeled with what is true today. Two stages are live on this
+            site, three are simulated on this page, and the rest are planned build steps.
+          </p>
+        </div>
+        <div class="lab-flow rag-arch-flow" aria-label="Planned retrieval pipeline stages">
+          <div class="flow-node">
+            <span class="fn-k">Live</span>
+            <span class="fn-v">Public content</span>
+            <span class="fn-s">Portfolio pages, AI Lab docs, and demo descriptions already published on this site.</span>
+          </div>
+          <div class="flow-arrow" aria-hidden="true">→</div>
+          <div class="flow-node is-proto">
+            <span class="fn-k">Prototype</span>
+            <span class="fn-v">Chunking</span>
+            <span class="fn-s">Hand-curated summary entries today; automated chunking comes with the real pipeline.</span>
+          </div>
+          <div class="flow-arrow" aria-hidden="true">→</div>
+          <div class="flow-node is-planned">
+            <span class="fn-k">Planned</span>
+            <span class="fn-v">Embeddings</span>
+            <span class="fn-s">Semantic vectors for each chunk, after an embedding privacy review.</span>
+          </div>
+          <div class="flow-arrow" aria-hidden="true">→</div>
+          <div class="flow-node is-planned">
+            <span class="fn-k">Planned</span>
+            <span class="fn-v">Vector index</span>
+            <span class="fn-s">A real vector database with access control in front of it.</span>
+          </div>
+          <div class="flow-arrow" aria-hidden="true">→</div>
+          <div class="flow-node is-proto">
+            <span class="fn-k">Prototype</span>
+            <span class="fn-v">Retrieval + ranking</span>
+            <span class="fn-s">Simulated here with local keyword scoring and relevance thresholds.</span>
+          </div>
+          <div class="flow-arrow" aria-hidden="true">→</div>
+          <div class="flow-node is-planned">
+            <span class="fn-k">Planned</span>
+            <span class="fn-v">Answer synthesis</span>
+            <span class="fn-s">Model-written answers with citations, behind the same server-side key pattern as <code>/api/chat</code>.</span>
+          </div>
+          <div class="flow-arrow" aria-hidden="true">→</div>
+          <div class="flow-node is-proto">
+            <span class="fn-k">Prototype</span>
+            <span class="fn-v">Claim-safety check</span>
+            <span class="fn-s">Enforced in code today: every result carries a Live / Prototype / Planned / Learning label.</span>
+          </div>
+          <div class="flow-arrow" aria-hidden="true">→</div>
+          <div class="flow-node is-planned">
+            <span class="fn-k">Planned</span>
+            <span class="fn-v">Logged evaluation</span>
+            <span class="fn-s">Relevance evals, prompt regression tests, and cost/latency tracking.</span>
+          </div>
+        </div>
+
+        <div class="roadmap rag-real-vs-planned" style="margin-top:26px;">
+          <div class="road-col">
+            <h3>Live on this site <span class="status-pill now">Shipped</span></h3>
+            <ul class="road-tiles">
+              <li>Public portfolio + AI Lab content</li>
+              <li>AI Portfolio Assistant backend (<code>/api/chat</code>)</li>
+              <li>Server-side keys — none in browser code</li>
+              <li>Fallback + safe error patterns</li>
+            </ul>
+          </div>
+          <div class="road-col">
+            <h3>Simulated on this page <span class="status-pill proto">Prototype</span></h3>
+            <ul class="road-tiles">
+              <li>Local search + ranking over a curated index</li>
+              <li>Extraction-intent guardrail with refusals</li>
+              <li>Claim-safety labels on every result</li>
+              <li>Session-only audit log preview</li>
+            </ul>
+          </div>
+          <div class="road-col">
+            <h3>Planned build steps <span class="status-pill next">Planned</span></h3>
+            <ul class="road-tiles">
+              <li>Real embeddings + vector index</li>
+              <li>Retrieval eval set + prompt regression tests</li>
+              <li>Answer synthesis with citations</li>
+              <li>Access control + persistent audit logs</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- EVALUATION PANEL -->
+      <section class="section" id="eval" aria-labelledby="eval-title">
+        <div class="section-head">
+          <p class="eyebrow">Evaluation panel</p>
+          <h2 id="eval-title">Measured where possible. Planned where not. Never faked.</h2>
+          <p>
+            Session tiles below are real numbers measured in your browser right now.
+            Everything a real vector pipeline would need is listed as planned — with
+            no invented benchmark scores.
+          </p>
+        </div>
+        <div class="rag-eval-grid">
+          <article class="rag-eval-tile">
+            <span class="rag-eval-chip is-measured">Measured</span>
+            <h3>Ranking latency</h3>
+            <p class="rag-eval-value" id="rag-eval-latency">—</p>
+            <p>Local scoring time for your last query, measured in this browser session.</p>
+          </article>
+          <article class="rag-eval-tile">
+            <span class="rag-eval-chip is-measured">Measured</span>
+            <h3>Queries this session</h3>
+            <p class="rag-eval-value" id="rag-eval-queries">0</p>
+            <p>Total searches run since this page loaded. Nothing leaves the browser.</p>
+          </article>
+          <article class="rag-eval-tile">
+            <span class="rag-eval-chip is-measured">Measured</span>
+            <h3>Guardrail refusals</h3>
+            <p class="rag-eval-value" id="rag-eval-blocks">0</p>
+            <p>Queries refused this session for secret- or private-data extraction intent.</p>
+          </article>
+          <article class="rag-eval-tile">
+            <span class="rag-eval-chip is-design">By design</span>
+            <h3>Hallucination risk</h3>
+            <p class="rag-eval-value">Low</p>
+            <p>Results only quote indexed public summaries. There is no generative answer layer to hallucinate — yet.</p>
+          </article>
+          <article class="rag-eval-tile">
+            <span class="rag-eval-chip is-design">By design</span>
+            <h3>Claim safety</h3>
+            <p class="rag-eval-value">Enforced</p>
+            <p>Every result must carry a Live / Prototype / Planned / Learning label before it renders.</p>
+          </article>
+          <article class="rag-eval-tile">
+            <span class="rag-eval-chip is-design">By design</span>
+            <h3>Cost this session</h3>
+            <p class="rag-eval-value">$0.00</p>
+            <p>Retrieval is simulated locally. No API calls, no tokens, no external requests.</p>
+          </article>
+          <article class="rag-eval-tile is-planned-tile">
+            <span class="rag-eval-chip is-planned">Planned</span>
+            <h3>Retrieval relevance</h3>
+            <p class="rag-eval-value">—</p>
+            <p>A scored eval set (hit@k over known-good query→source pairs) lands with real embeddings. No score is claimed until it is measured.</p>
+          </article>
+          <article class="rag-eval-tile is-planned-tile">
+            <span class="rag-eval-chip is-planned">Planned</span>
+            <h3>Prompt regression tests</h3>
+            <p class="rag-eval-value">—</p>
+            <p>Automated checks that guardrails and answer quality survive prompt changes, before anything ships.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- HONEST SCOPE + CTA -->
+      <section class="section" id="scope" aria-labelledby="scope-title">
+        <div class="section-head">
+          <p class="eyebrow">What this proves</p>
+          <h2 id="scope-title">A rehearsal for the real system — labeled as one.</h2>
+        </div>
+        <ul class="checklist">
+          <li>I can design a retrieval product UX with honest states: ranked results, refusals, empty states, and fallbacks.</li>
+          <li>I can put security thinking in front of the feature — guardrails, whitelists, and a no-secrets corpus — before any real data is involved.</li>
+          <li>I can separate what is live, what is simulated, and what is planned without blending them.</li>
+          <li>I can stage a real RAG build (embeddings → vector index → synthesis → evals) as labeled future work instead of pretending it exists.</li>
+        </ul>
+        <div class="actions">
+          <a class="btn primary" href="../index.html">Back to the AI Lab</a>
+          <a class="btn" href="../../portfolio/index.html">Browse the portfolio</a>
+          <a class="btn" href="../../start-project/index.html">Start a project</a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Built with Filipino pride 🇵🇭 -->
+    <footer>
+      <span>Secure RAG Portfolio Search is a Neo Labs prototype: simulated retrieval over public content, with the real pipeline labeled as planned.</span>
+      <span><a href="../index.html">AI Lab</a> · <a href="../../portfolio/index.html">Portfolio</a> · <a href="../../index.html">Home</a></span>
+    </footer>
+  </body>
+</html>
