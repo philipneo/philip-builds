@@ -110,7 +110,7 @@
           <h2 id="wb-title">A retrieval console with the safety story on the surface.</h2>
         </div>
         <div class="cs-feature-grid">
-          <article><h3>Local public-content corpus</h3><p>A 17-entry index curated from public pages only — private operating files are excluded by construction, so there is nothing sensitive to leak.</p></article>
+          <article><h3>Local public-content corpus</h3><p>A 17-entry index curated from public pages only — private operating files are excluded by construction, so sensitive internal notes sit outside the search surface.</p></article>
           <article><h3>Ranked retrieval cards</h3><p>Results ranked by local keyword scoring, capped and thresholded so weak matches are dropped instead of padded.</p></article>
           <article><h3>Relevance scoring</h3><p>Each card shows a normalized relevance percentage with a score bar — visible ranking, not a black box.</p></article>
           <article><h3>Matched keywords + why-this-matched</h3><p>Every result explains which terms matched and where the source lives, in plain language.</p></article>
@@ -221,7 +221,7 @@
           <div class="card">
             <span class="tag" style="color:var(--mint)">Security decisions</span>
             <ul class="checklist">
-              <li><strong>Public content only</strong> — the corpus is built from public pages, so a leak is structurally impossible, not just filtered out.</li>
+              <li><strong>Public content only</strong> — the corpus is built from public pages, so private operating notes stay outside the retrieval boundary instead of relying on a filter.</li>
               <li><strong>No private files indexed</strong> — internal operating notes never enter the index at all.</li>
               <li><strong>No browser API keys</strong> — consistent with the site-wide pattern: keys live in server-side env vars, and this demo needs none.</li>
               <li><strong>Unsafe-query refusal</strong> — sensitive noun + reveal-style verb → refused; private-data asks → refused regardless of verb.</li>
@@ -256,7 +256,7 @@
           <li><span class="cs-qa-badge pass">Pass</span><div><strong>Accessibility</strong> — single H1 per page, zero duplicate IDs, every aria-labelledby reference resolves, no empty links, all buttons named, search fully keyboard-operable.</div></li>
           <li><span class="cs-qa-badge pass">Pass</span><div><strong>Mobile 390px / 430px</strong> — no horizontal overflow, tap targets ≥ 40px, no assistant-launcher overlap with search controls. QA caught a real 17px overflow pre-release; it was fixed before shipping.</div></li>
           <li><span class="cs-qa-badge pass">Pass</span><div><strong>Desktop 1280px</strong> — two-column console verified, 8-stage flow wraps into two clean rows, four-column eval grid, no overflow.</div></li>
-          <li><span class="cs-qa-badge pass">Pass</span><div><strong>Secret scan</strong> — repo-wide grep for key patterns before release; only known CSS <code>mask-image</code> false positives, labeled harmless.</div></li>
+          <li><span class="cs-qa-badge pass">Pass</span><div><strong>Secret scan</strong> — repo-wide grep for key patterns before release; only known CSS image-mask property false positives, labeled harmless.</div></li>
           <li><span class="cs-qa-badge pass">Pass</span><div><strong>Guardrail hardening from review</strong> — a multi-pass review caught a verb gap ("tell me the API key" was not refused) and a claim overcount in the architecture copy; both fixed and re-tested before release.</div></li>
           <li><span class="cs-qa-badge limit">Limitation</span><div><strong>Lighthouse not run</strong> — the QA environment had no Node/npx available, so no Lighthouse score is claimed for this page. The demo is static with no dependencies; a scored run is future work.</div></li>
         </ul>
@@ -306,7 +306,7 @@
         <ul class="cs-talk-list">
           <li><strong>Why claim-safety labels exist.</strong> AI portfolios overclaim by default; forcing every result to carry Live / Prototype / Planned / Learning made honesty a rendering requirement, not a copywriting habit.</li>
           <li><strong>How the guardrail tells intent apart.</strong> "Show me the API key" is refused (sensitive noun + reveal verb) while "How are API keys protected?" is answered from public security docs — and I can explain the regex design and its limits.</li>
-          <li><strong>Security by construction vs. security by filter.</strong> The corpus contains only public content, so the guardrail is defense-in-depth UX on top of a structural guarantee — the stronger control comes first.</li>
+          <li><strong>Security by construction vs. security by filter.</strong> The corpus contains only public content, so the guardrail is defense-in-depth UX on top of a structural boundary — the stronger control comes first.</li>
           <li><strong>What is simulated and why that is stated on-page.</strong> Local keyword scoring stands in for embeddings + a vector index; the demo says so above the fold because a prototype that hides its seams is a liability.</li>
           <li><strong>What changes in the real version, in order.</strong> Structured content → embedding privacy review → embeddings → vector index with access control → retrieval eval set → answer synthesis behind server-side keys → prompt regression tests.</li>
           <li><strong>What QA caught.</strong> A mobile overflow from flex min-content inside a grid, a guardrail verb gap, and an overcounted claim in the architecture copy — concrete examples of review catching real defects.</li>

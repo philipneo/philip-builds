@@ -7,6 +7,12 @@
 .grid-2 > .card { min-width: 0; }
 .checklist li { min-width: 0; flex-wrap: wrap; }
 
+/* Case-study sections should remain readable when users jump between anchors. */
+main .pbs-reveal {
+  opacity: 1;
+  transform: none;
+}
+
 /* ── Snapshot card ── */
 .cs-snapshot .system-metrics div {
   grid-template-columns: 92px 1fr;
