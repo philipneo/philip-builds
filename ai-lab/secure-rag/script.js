@@ -188,8 +188,8 @@
 
   /* Guardrail patterns. Extraction intent = sensitive noun + reveal-style verb.
      Hard blocks cover private-data asks regardless of verb. */
-  var SENSITIVE_RE = /(api[\s_-]?keys?|secret\s?keys?|secrets?|passwords?|credentials?|access\s?tokens?|auth\s?tokens?|\.env\b|env\s?file|private\s?keys?)/i;
-  var EXTRACTION_RE = /\b(show|reveal|print|dump|leak|expose|give|read|output|paste|display|send|share|list|get|fetch|extract|steal)\b|what('|’)?s the|what is the/i;
+  var SENSITIVE_RE = /(\b(api[\s_-]?keys?|secret\s?keys?|secrets?|passwords?|credentials?|access\s?tokens?|auth\s?tokens?|env\s?files?|private\s?keys?)\b|\.env\b)/i;
+  var EXTRACTION_RE = /\b(show|reveal|print|dump|leak|expose|give|read|output|paste|display|send|share|list|get|fetch|extract|steal|tell|retrieve|find|access|grab|copy)\b|what('|’)?s the|what (is|are) (the|your)/i;
   var HARD_BLOCK_RE = /(private\/|private (files?|folders?|notes?|docs?|documents?)|client (emails?|lists?|data|contacts?|names?)|customer (data|lists?|emails?)|personal (data|info|information)|phone numbers?|home address|lead tracker|internal notes?|outreach (list|tracker))/i;
 
   function tokenize(text) {
@@ -471,6 +471,7 @@
 
       var link = el("a", "rag-result-link", "Open source page →");
       link.href = safeHref(doc.href);
+      link.setAttribute("aria-label", "Open source page: " + doc.title);
       card.appendChild(link);
 
       resultsEl.appendChild(card);
@@ -503,7 +504,7 @@
     try {
       outcome = runSearch(query, { offline: offline });
     } catch (err) {
-      outcome = { state: "empty", reason: "Something went wrong locally. Safe error state: no partial answers.", results: [], tookMs: 0, note: "" };
+      outcome = { state: "empty", reason: "Something went wrong locally. Safe error state: no partial answers.", results: [], tokens: [], tookMs: 0, note: "" };
     }
 
     sessionQueries += 1;

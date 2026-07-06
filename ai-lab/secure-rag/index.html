@@ -63,10 +63,10 @@
               <a class="btn primary" href="#search">Try the search</a>
               <a class="btn" href="#architecture">View planned architecture</a>
             </div>
-            <div class="rag-hero-pills" aria-label="Prototype status summary">
+            <div class="rag-hero-pills" role="group" aria-label="Prototype status summary">
               <span class="state-pill s-checking">Prototype</span>
               <span class="state-pill s-ok">Public content only</span>
-              <span class="state-pill s-ok">No network calls</span>
+              <span class="state-pill s-ok">Search runs locally</span>
               <span class="state-pill s-fallback">Guardrails on</span>
             </div>
           </div>
@@ -132,7 +132,7 @@
           </div>
 
           <div class="rag-console-grid">
-            <div class="rag-pipeline-wrap" aria-label="Retrieval pipeline status">
+            <div class="rag-pipeline-wrap">
               <h3 class="rag-panel-title">Pipeline</h3>
               <ol class="rag-pipeline" id="rag-pipeline">
                 <li data-step="parse"><span class="rag-step-dot" aria-hidden="true"></span><span class="rag-step-name">Parse query</span><span class="rag-step-state">idle</span></li>
@@ -157,7 +157,7 @@
             </div>
           </div>
 
-          <div class="rag-audit" aria-label="Session audit log preview">
+          <div class="rag-audit">
             <h3 class="rag-panel-title">Audit log preview <span class="rag-audit-note">session-only · in memory · clears on reload</span></h3>
             <ul class="rag-audit-list" id="rag-audit">
               <li class="rag-audit-empty">No queries logged this session yet. Persistent, reviewable audit logs are a planned control — this preview shows the shape.</li>
@@ -207,11 +207,11 @@
           <p class="eyebrow">Planned architecture</p>
           <h2 id="arch-title">The pipeline this prototype is rehearsing.</h2>
           <p>
-            Each stage is labeled with what is true today. Two stages are live on this
-            site, three are simulated on this page, and the rest are planned build steps.
+            Each stage is labeled with what is true today. One stage is live on this
+            site, three are simulated on this page, and four are planned build steps.
           </p>
         </div>
-        <div class="lab-flow rag-arch-flow" aria-label="Planned retrieval pipeline stages">
+        <div class="lab-flow rag-arch-flow" role="group" aria-label="Planned retrieval pipeline stages">
           <div class="flow-node">
             <span class="fn-k">Live</span>
             <span class="fn-v">Public content</span>
