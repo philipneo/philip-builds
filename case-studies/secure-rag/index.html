@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Secure RAG Portfolio Search — Case Study | Philip Builds Studio</title>
+    <meta name="description" content="Engineering case study of the Secure RAG Portfolio Search prototype: a simulated security-aware retrieval layer over public portfolio content, with guardrails, claim-safety labels, QA evidence, and an honest roadmap." />
+    <link rel="canonical" href="https://philipneo.github.io/philip-builds/case-studies/secure-rag/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Philip Builds Studio" />
+    <meta property="og:title" content="Secure RAG Portfolio Search — Prototype Case Study" />
+    <meta property="og:description" content="How a simulated, security-aware retrieval prototype was designed, guarded, tested, and shipped — with real vs planned components labeled honestly." />
+    <meta property="og:url" content="https://philipneo.github.io/philip-builds/case-studies/secure-rag/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Secure RAG Portfolio Search — Prototype Case Study" />
+    <meta name="twitter:description" content="Retrieval thinking, guardrails, claim-safety, and QA discipline — documented as an engineering case study." />
+    <meta property="og:image" content="https://philipneo.github.io/philip-builds/assets/og/philip-builds-studio-og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:image" content="https://philipneo.github.io/philip-builds/assets/og/philip-builds-studio-og.png" />
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../../shared/site.css" />
+    <link rel="stylesheet" href="../../ai-lab/styles.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../../shared/assistant.css" />
+    <script src="../../shared/ai-config.js" defer></script>
+    <script src="../../shared/reveal.js" defer></script>
+    <script src="../../shared/assistant.js" defer data-assistant-root="../../" data-assistant-context="portfolio"></script>
+  </head>
+  <body>
+    <header class="site-head">
+      <a class="site-brand" href="../../index.html"><span>PBS</span> Philip Builds Studio</a>
+      <nav aria-label="Site">
+        <a href="../../index.html">Home</a>
+        <a href="../../portfolio/index.html">Portfolio</a>
+        <a href="../../ai-lab/index.html">AI Lab</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="section hero lab-hero cs-hero">
+        <div class="lab-hero-grid">
+          <div class="lab-hero-copy">
+            <span class="badge">Neo Labs · Engineering case study</span>
+            <p class="eyebrow">Prototype case study</p>
+            <h1>Secure RAG Portfolio Search.</h1>
+            <p class="lab-lead">
+              How I designed, guarded, tested, and shipped a
+              <strong>simulated security-aware retrieval layer</strong> over this
+              site's public portfolio content — and what separates the parts that
+              are real from the parts that are planned.
+            </p>
+            <p class="lab-note">
+              Honest scope: the demo behind this case study is a front-end
+              prototype. Retrieval is simulated with local keyword ranking over a
+              hand-curated public-content index — it is <strong>not</strong> a
+              production vector database or an enterprise RAG system, and this
+              case study never claims it is.
+            </p>
+            <div class="actions">
+              <a class="btn primary" href="../../ai-lab/secure-rag/index.html">Open the live demo</a>
+              <a class="btn" href="#resume">Skip to resume bullets</a>
+            </div>
+          </div>
+          <aside class="lab-system-card cs-snapshot" aria-label="Project snapshot">
+            <span class="system-label">Project snapshot</span>
+            <h2>At a glance</h2>
+            <dl class="system-metrics">
+              <div><dt>Status</dt><dd>Prototype — shipped &amp; live</dd></div>
+              <div><dt>Category</dt><dd>AI systems · search · security-aware UX</dd></div>
+              <div><dt>Built for</dt><dd>Neo Labs technical portfolio</dd></div>
+              <div><dt>Stack</dt><dd>Static HTML/CSS/JS, no libraries</dd></div>
+              <div><dt>Demo</dt><dd><a class="cs-snap-link" href="../../ai-lab/secure-rag/index.html">/ai-lab/secure-rag/</a></dd></div>
+              <div><dt>Goal</dt><dd>Show retrieval thinking, guardrails, architecture communication, and QA discipline</dd></div>
+            </dl>
+          </aside>
+        </div>
+      </section>
+
+      <!-- PROBLEM -->
+      <section class="section" id="problem" aria-labelledby="pb-title">
+        <div class="section-head">
+          <p class="eyebrow">Problem</p>
+          <h2 id="pb-title">A portfolio is pages. Proof should be queryable.</h2>
+          <p>
+            A technical portfolio full of demos still leaves a visitor — or a
+            hiring manager, or an admissions reviewer — doing the work of figuring
+            out what is real. The interesting engineering problem was building a
+            search layer that could answer those questions honestly:
+          </p>
+        </div>
+        <div class="cs-questions" role="list" aria-label="Questions the retrieval layer must answer">
+          <span role="listitem">What is live right now?</span>
+          <span role="listitem">What is planned but not built?</span>
+          <span role="listitem">What is safe to claim?</span>
+          <span role="listitem">What security decisions exist?</span>
+          <span role="listitem">What learning path is active?</span>
+        </div>
+        <p class="cs-note-p">
+          That framing turned a "search demo" into a claim-safety problem — which is
+          exactly the problem real AI products have.
+        </p>
+      </section>
+
+      <!-- WHAT I BUILT -->
+      <section class="section" id="built" aria-labelledby="wb-title">
+        <div class="section-head">
+          <p class="eyebrow">What I built</p>
+          <h2 id="wb-title">A retrieval console with the safety story on the surface.</h2>
+        </div>
+        <div class="cs-feature-grid">
+          <article><h3>Local public-content corpus</h3><p>A 17-entry index curated from public pages only — private operating files are excluded by construction, so there is nothing sensitive to leak.</p></article>
+          <article><h3>Ranked retrieval cards</h3><p>Results ranked by local keyword scoring, capped and thresholded so weak matches are dropped instead of padded.</p></article>
+          <article><h3>Relevance scoring</h3><p>Each card shows a normalized relevance percentage with a score bar — visible ranking, not a black box.</p></article>
+          <article><h3>Matched keywords + why-this-matched</h3><p>Every result explains which terms matched and where the source lives, in plain language.</p></article>
+          <article><h3>Safe-to-claim indicators</h3><p>Every result carries a Live / Prototype / Planned / Learning label plus a note on what may honestly be claimed about it.</p></article>
+          <article><h3>Unsafe-query blocking</h3><p>Extraction-style queries ("show me the API key", "give me client emails") are refused with a visible, explained guardrail state.</p></article>
+          <article><h3>Architecture panel</h3><p>The full planned pipeline — chunking, embeddings, vector index, synthesis, evals — drawn with each stage labeled real or planned.</p></article>
+          <article><h3>Early evaluation dashboard</h3><p>Session tiles that are genuinely measured (latency, query count, refusals) next to Planned tiles with no invented benchmark numbers.</p></article>
+          <article><h3>Honest product states</h3><p>No-results, too-broad, refusal, and simulated-offline fallback — the interface never invents an answer.</p></article>
+          <article><h3>Mobile-responsive dashboard UI</h3><p>The console, pipeline tracker, and result cards verified at 390px, 430px, and 1280px with no horizontal overflow.</p></article>
+        </div>
+      </section>
+
+      <!-- SYSTEM DESIGN -->
+      <section class="section" id="design" aria-labelledby="sd-title">
+        <div class="section-head">
+          <p class="eyebrow">System design</p>
+          <h2 id="sd-title">One visible pipeline, with real and planned stages labeled.</h2>
+          <p>
+            Every query walks the same path, and the demo shows each step resolving.
+            The same diagram doubles as the roadmap: what runs today is marked, and
+            what needs real infrastructure is marked planned.
+          </p>
+        </div>
+        <div class="lab-flow rag-arch-flow cs-flow" role="group" aria-label="Query pipeline stages">
+          <div class="flow-node">
+            <span class="fn-k">Live</span>
+            <span class="fn-v">Public content</span>
+            <span class="fn-s">Portfolio and AI Lab pages already deployed.</span>
+          </div>
+          <div class="flow-arrow" aria-hidden="true">→</div>
+          <div class="flow-node is-proto">
+            <span class="fn-k">Prototype</span>
+            <span class="fn-v">Query parsing</span>
+            <span class="fn-s">Tokenizing, stopword removal, too-broad detection.</span>
+          </div>
+          <div class="flow-arrow" aria-hidden="true">→</div>
+          <div class="flow-node is-proto">
+            <span class="fn-k">Prototype</span>
+            <span class="fn-v">Guardrail check</span>
+            <span class="fn-s">Extraction-intent detection plus hard blocks for private-data asks.</span>
+          </div>
+          <div class="flow-arrow" aria-hidden="true">→</div>
+          <div class="flow-node is-proto">
+            <span class="fn-k">Prototype</span>
+            <span class="fn-v">Local retrieval + ranking</span>
+            <span class="fn-s">Keyword scoring over the curated index; thresholds drop weak matches.</span>
+          </div>
+          <div class="flow-arrow" aria-hidden="true">→</div>
+          <div class="flow-node is-proto">
+            <span class="fn-k">Prototype</span>
+            <span class="fn-v">Claim-safety labels</span>
+            <span class="fn-s">Status labels enforced in code before anything renders.</span>
+          </div>
+          <div class="flow-arrow" aria-hidden="true">→</div>
+          <div class="flow-node is-proto">
+            <span class="fn-k">Prototype</span>
+            <span class="fn-v">Result rendering</span>
+            <span class="fn-s">Ranked cards, or an honest refusal / empty / fallback state.</span>
+          </div>
+          <div class="flow-arrow" aria-hidden="true">→</div>
+          <div class="flow-node is-proto">
+            <span class="fn-k">Prototype</span>
+            <span class="fn-v">Session eval + audit log</span>
+            <span class="fn-s">In-memory log preview and measured session metrics; clears on reload.</span>
+          </div>
+        </div>
+
+        <div class="roadmap" style="margin-top:26px;">
+          <div class="road-col">
+            <h3>Live <span class="status-pill now">Shipped</span></h3>
+            <ul class="road-tiles">
+              <li>Public portfolio content and pages</li>
+              <li>The deployed demo itself</li>
+              <li>Site-wide pattern: server-side keys, no browser secrets</li>
+            </ul>
+          </div>
+          <div class="road-col">
+            <h3>Simulated <span class="status-pill proto">Prototype</span></h3>
+            <ul class="road-tiles">
+              <li>Local retrieval / ranking simulation</li>
+              <li>Guardrail refusals and honest states</li>
+              <li>Session-only eval + audit preview</li>
+            </ul>
+          </div>
+          <div class="road-col">
+            <h3>Planned <span class="status-pill next">Not built</span></h3>
+            <ul class="road-tiles">
+              <li>Embeddings + vector database</li>
+              <li>Retrieval eval set + prompt regression tests</li>
+              <li>Access logs + embedding privacy review</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECURITY & CLAIM-SAFETY DECISIONS -->
+      <section class="section" id="security" aria-labelledby="sc-title">
+        <div class="section-head">
+          <p class="eyebrow">Security &amp; claim-safety decisions</p>
+          <h2 id="sc-title">The refusals were designed before the features.</h2>
+          <p>
+            The most transferable engineering in this project is what the system
+            declines to do. Each decision below is enforced in the shipped demo,
+            not just described.
+          </p>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <span class="tag" style="color:var(--mint)">Security decisions</span>
+            <ul class="checklist">
+              <li><strong>Public content only</strong> — the corpus is built from public pages, so a leak is structurally impossible, not just filtered out.</li>
+              <li><strong>No private files indexed</strong> — internal operating notes never enter the index at all.</li>
+              <li><strong>No browser API keys</strong> — consistent with the site-wide pattern: keys live in server-side env vars, and this demo needs none.</li>
+              <li><strong>Unsafe-query refusal</strong> — sensitive noun + reveal-style verb → refused; private-data asks → refused regardless of verb.</li>
+              <li><strong>Route whitelist</strong> — result links can only point at known internal pages.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <span class="tag" style="color:var(--blue)">Claim-safety decisions</span>
+            <ul class="checklist">
+              <li><strong>Honest status labels</strong> — every result and every architecture stage is marked Live, Prototype, Planned, or Learning.</li>
+              <li><strong>No fake client or customer claims</strong> — the demo is framed as Philip's own build, and the corpus says so.</li>
+              <li><strong>No fake production claims</strong> — "simulated retrieval layer" appears on the page itself, above the fold.</li>
+              <li><strong>No invented metrics</strong> — the eval panel shows measured session numbers or a Planned placeholder, never a fabricated benchmark.</li>
+              <li><strong>Refusals are explained</strong> — a blocked query gets a reason and safe alternatives, not a silent failure.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- QA EVIDENCE -->
+      <section class="section" id="qa" aria-labelledby="qa-title">
+        <div class="section-head">
+          <p class="eyebrow">QA evidence</p>
+          <h2 id="qa-title">Tested like a release, not a mockup.</h2>
+          <p>
+            The demo shipped behind a structured QA pass. Results below are from the
+            actual pre-release run, including what it caught and what it could not cover.
+          </p>
+        </div>
+        <ul class="cs-qa-list">
+          <li><span class="cs-qa-badge pass">Pass</span><div><strong>Functional query tests</strong> — 16 of 16 browser end-to-end cases: six intended queries ranked correctly, extraction attempts refused, nuanced security questions answered instead of over-blocked, broad/empty states verified.</div></li>
+          <li><span class="cs-qa-badge pass">Pass</span><div><strong>Accessibility</strong> — single H1 per page, zero duplicate IDs, every aria-labelledby reference resolves, no empty links, all buttons named, search fully keyboard-operable.</div></li>
+          <li><span class="cs-qa-badge pass">Pass</span><div><strong>Mobile 390px / 430px</strong> — no horizontal overflow, tap targets ≥ 40px, no assistant-launcher overlap with search controls. QA caught a real 17px overflow pre-release; it was fixed before shipping.</div></li>
+          <li><span class="cs-qa-badge pass">Pass</span><div><strong>Desktop 1280px</strong> — two-column console verified, 8-stage flow wraps into two clean rows, four-column eval grid, no overflow.</div></li>
+          <li><span class="cs-qa-badge pass">Pass</span><div><strong>Secret scan</strong> — repo-wide grep for key patterns before release; only known CSS <code>mask-image</code> false positives, labeled harmless.</div></li>
+          <li><span class="cs-qa-badge pass">Pass</span><div><strong>Guardrail hardening from review</strong> — a multi-pass review caught a verb gap ("tell me the API key" was not refused) and a claim overcount in the architecture copy; both fixed and re-tested before release.</div></li>
+          <li><span class="cs-qa-badge limit">Limitation</span><div><strong>Lighthouse not run</strong> — the QA environment had no Node/npx available, so no Lighthouse score is claimed for this page. The demo is static with no dependencies; a scored run is future work.</div></li>
+        </ul>
+      </section>
+
+      <!-- WHAT I LEARNED -->
+      <section class="section" id="learned" aria-labelledby="wl-title">
+        <div class="section-head">
+          <p class="eyebrow">What I learned</p>
+          <h2 id="wl-title">Lessons that carry into the real build.</h2>
+        </div>
+        <ul class="checklist">
+          <li><strong>Retrieval needs transparency, not just ranking.</strong> Showing matched keywords and "why this matched" turned scores users must trust into evidence users can check.</li>
+          <li><strong>AI demos need claim-safety rules as a first-class feature.</strong> The Live / Prototype / Planned / Learning labels shaped the data model, the UI, and the copy.</li>
+          <li><strong>Security is partly UX and partly architecture.</strong> The strongest control was structural — a public-only corpus — and the guardrail layer exists on top of it as visible, explainable defense.</li>
+          <li><strong>Prototypes earn trust by separating real from planned.</strong> Saying "one stage is live, six are simulated, the rest are planned" is more credible than implying everything works.</li>
+          <li><strong>A QA report makes a project more credible than a claim does.</strong> "16/16 functional tests, one overflow caught and fixed" says more than any adjective.</li>
+        </ul>
+      </section>
+
+      <!-- RESUME BULLETS -->
+      <section class="section" id="resume" aria-labelledby="rb-title">
+        <div class="section-head">
+          <p class="eyebrow">Resume bullets</p>
+          <h2 id="rb-title">Ready to use — and every word is checkable.</h2>
+          <p>
+            Each bullet below is written to survive an interviewer opening the live
+            demo. Copy them as-is or trim to fit.
+          </p>
+        </div>
+        <ol class="cs-resume-list">
+          <li>Designed and shipped a security-aware retrieval (RAG-style) prototype on a live portfolio site: local keyword ranking over a 17-entry public-content index with relevance scores, matched-keyword explanations, and a claim-safety label on every result.</li>
+          <li>Implemented layered query guardrails — extraction-intent detection (sensitive term + reveal-style verb), hard blocks for private-data requests, and a route whitelist — that refuse unsafe queries with visible, explained states.</li>
+          <li>Built honest product states (refusal, too-broad, no-results, simulated-offline fallback) so the interface never invents answers or misrepresents backend status.</li>
+          <li>Documented a staged RAG architecture separating live, simulated, and planned components (embeddings, vector index, eval set, privacy review) and published it as part of the demo itself.</li>
+          <li>Ran a structured pre-release QA pass — 16 functional browser tests, accessibility checks (single H1, resolvable ARIA references, keyboard operability), 390/430/1280px responsive verification, and repo secret scans — and fixed the defects it caught before shipping.</li>
+          <li>Built an evaluation panel that reports only measured session metrics (latency, query count, guardrail refusals) and labels unmeasured metrics as planned instead of inventing benchmark numbers.</li>
+        </ol>
+      </section>
+
+      <!-- INTERVIEW TALKING POINTS -->
+      <section class="section" id="interview" aria-labelledby="it-title">
+        <div class="section-head">
+          <p class="eyebrow">Interview talking points</p>
+          <h2 id="it-title">What I can whiteboard from this project.</h2>
+        </div>
+        <ul class="cs-talk-list">
+          <li><strong>Why claim-safety labels exist.</strong> AI portfolios overclaim by default; forcing every result to carry Live / Prototype / Planned / Learning made honesty a rendering requirement, not a copywriting habit.</li>
+          <li><strong>How the guardrail tells intent apart.</strong> "Show me the API key" is refused (sensitive noun + reveal verb) while "How are API keys protected?" is answered from public security docs — and I can explain the regex design and its limits.</li>
+          <li><strong>Security by construction vs. security by filter.</strong> The corpus contains only public content, so the guardrail is defense-in-depth UX on top of a structural guarantee — the stronger control comes first.</li>
+          <li><strong>What is simulated and why that is stated on-page.</strong> Local keyword scoring stands in for embeddings + a vector index; the demo says so above the fold because a prototype that hides its seams is a liability.</li>
+          <li><strong>What changes in the real version, in order.</strong> Structured content → embedding privacy review → embeddings → vector index with access control → retrieval eval set → answer synthesis behind server-side keys → prompt regression tests.</li>
+          <li><strong>What QA caught.</strong> A mobile overflow from flex min-content inside a grid, a guardrail verb gap, and an overcounted claim in the architecture copy — concrete examples of review catching real defects.</li>
+          <li><strong>The fallback philosophy.</strong> Borrowed from the site's live assistant: when a backend is unavailable, degrade honestly and visibly instead of faking capability.</li>
+        </ul>
+      </section>
+
+      <!-- NEXT VERSION ROADMAP -->
+      <section class="section" id="next" aria-labelledby="nx-title">
+        <div class="section-head">
+          <p class="eyebrow">Next version roadmap</p>
+          <h2 id="nx-title">The path from simulation to system.</h2>
+          <p>Ordered steps, each labeled planned until it ships:</p>
+        </div>
+        <ol class="cs-roadmap-list">
+          <li><strong>Structured content</strong> — convert public site content into structured JSON chunks with stable IDs.</li>
+          <li><strong>Privacy review</strong> — review what is embedded before anything is embedded.</li>
+          <li><strong>Embedding model</strong> — add real embeddings for semantic matching.</li>
+          <li><strong>Vector database</strong> — a real index with access control in front of it.</li>
+          <li><strong>Retrieval eval set</strong> — known-good query→source pairs so relevance is measured, not eyeballed.</li>
+          <li><strong>Prompt regression tests</strong> — automated checks that guardrails survive prompt changes.</li>
+          <li><strong>Logs and monitoring</strong> — persistent audit logs with a review workflow.</li>
+          <li><strong>Real backend, only when safe</strong> — answer synthesis behind the same server-side key pattern as the live assistant, and not before the eval set exists.</li>
+        </ol>
+        <div class="actions">
+          <a class="btn primary" href="../../ai-lab/secure-rag/index.html">Open the live demo</a>
+          <a class="btn" href="../../ai-lab/index.html">Back to the AI Lab</a>
+          <a class="btn" href="../../portfolio/index.html">Browse the portfolio</a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Built with Filipino pride 🇵🇭 -->
+    <footer>
+      <span>Case study of a Neo Labs prototype — simulated retrieval over public content, with real vs planned components labeled honestly.</span>
+      <span><a href="../../ai-lab/secure-rag/index.html">Live demo</a> · <a href="../../ai-lab/index.html">AI Lab</a> · <a href="../../index.html">Home</a></span>
+    </footer>
+  </body>
+</html>
