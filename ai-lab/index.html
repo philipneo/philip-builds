@@ -31,8 +31,8 @@
       <a class="site-brand" href="../index.html"><span>PBS</span> Philip Builds Studio</a>
       <nav aria-label="Site">
         <a href="../index.html">Home</a>
+        <a href="../case-studies/index.html">Case studies</a>
         <a href="../portfolio/index.html">Portfolio</a>
-        <a href="../start-project/index.html">Start a project</a>
       </nav>
     </header>
 
@@ -44,14 +44,14 @@
             <p class="eyebrow">Applied AI systems with secure cloud deployment</p>
             <h1>Building AI systems in public, with proof.</h1>
             <p class="lab-lead">
-              Neo Labs is the technical lab inside Philip Builds Studio: live assistant
-              work, cloud/serverless deployment practice, security-aware design, and a
-              learning-in-public AI/ML roadmap.
+              Neo Labs is Philip Miranda's engineering portfolio — applied AI product
+              work, cloud and serverless deployment, security-aware design, and a
+              learning-in-public roadmap.
             </p>
             <p class="lab-note">
-              Honest scope: this is <strong>applied AI product engineering</strong> and
-              systems practice, not a claim of senior ML, security, or cloud architect
-              status. Each item below is labeled as live, learning, planned, or future.
+              Honest scope: this is <strong>applied engineering practice and documented
+              prototypes</strong>, not a claim of senior ML, security, or cloud-architect
+              status. Every item below is labeled live, prototype, planned, or learning.
             </p>
             <div class="actions">
               <a class="btn primary" href="#live-system">View live system</a>
@@ -80,6 +80,31 @@
               <div><dt>Guardrails</dt><dd>Prompt + route whitelist</dd></div>
             </dl>
           </aside>
+        </div>
+      </section>
+
+      <!-- REVIEWER FAST PATH -->
+      <section class="section" id="reviewers" aria-labelledby="rv-title">
+        <div class="section-head">
+          <p class="eyebrow">For reviewers</p>
+          <h2 id="rv-title">Reviewing my work? Start here.</h2>
+        </div>
+        <div class="lab-layer-grid" role="group" aria-label="Fast review path">
+          <article>
+            <span class="tag">01 · ~2 minutes</span>
+            <h3>Open the Secure RAG demo</h3>
+            <p>Run a query, then try an unsafe one and watch the guardrail refuse it with a reason. <a class="rv-link" href="secure-rag/index.html">Open the demo →</a></p>
+          </article>
+          <article>
+            <span class="tag">02 · ~5 minutes</span>
+            <h3>Read the case study</h3>
+            <p>Architecture, security decisions, QA evidence — including what the review caught. <a class="rv-link" href="../case-studies/secure-rag/index.html">Read it →</a></p>
+          </article>
+          <article>
+            <span class="tag">03 · ~1 minute</span>
+            <h3>Check the labels</h3>
+            <p>Everything on this site is marked Live, Prototype, Planned, or Learning. Nothing is overclaimed — spot-check any claim against its demo.</p>
+          </article>
         </div>
       </section>
 
@@ -227,7 +252,7 @@ GET /api/chat  <span class="c-ok">200</span>
       <!-- LAB DEMO: SECURE RAG -->
       <section class="section" id="secure-rag-demo" aria-labelledby="srd-title">
         <div class="section-head">
-          <p class="eyebrow">New lab demo · Prototype</p>
+          <p class="eyebrow">Lab demo · Prototype · Shipped July 2026</p>
           <h2 id="srd-title">Secure RAG Portfolio Search.</h2>
           <p>
             The second Neo Labs build: a front-end prototype of a security-aware
@@ -281,7 +306,7 @@ GET /api/chat  <span class="c-ok">200</span>
               <li>Prompt and route guardrails</li>
               <li>Lighthouse / accessibility QA</li>
               <li>Secret scan release checks</li>
-              <li>Secure RAG search prototype demo</li>
+              <li><a class="road-tile-link" href="secure-rag/index.html">Secure RAG search prototype demo →</a></li>
             </ul>
           </div>
           <div class="road-col">

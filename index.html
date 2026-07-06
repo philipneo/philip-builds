@@ -3,683 +3,325 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Philip Builds Studio — AI-Ready Websites &amp; Tools for Local Businesses</title>
+    <title>Philip Miranda — Neo Labs | Applied AI, Cloud &amp; Web Systems, Built in Public</title>
     <meta
       name="description"
-      content="An AI-ready front-end studio: mobile-first websites, interactive demo tools, a guided assistant, and a project matcher for local businesses. Rule-based fallback with Vercel AI backend support. Starting at $150."
+      content="The engineering portfolio of Philip Miranda: a live AI assistant on a serverless backend, a security-aware RAG prototype, technical case studies, QA discipline, and an honest learning roadmap. Every claim is labeled Live, Prototype, Planned, or Learning."
     />
     <link rel="canonical" href="https://philipneo.github.io/philip-builds/" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Philip Builds Studio" />
-    <meta property="og:title" content="Philip Builds Studio — AI-Ready Websites & Tools" />
-    <meta property="og:description" content="Mobile-first websites, interactive demo tools, a guided assistant, and a project matcher. Rule-based fallback with Vercel AI backend support." />
+    <meta property="og:title" content="Philip Miranda — Neo Labs | Applied AI, Cloud &amp; Web Systems" />
+    <meta property="og:description" content="Built and shipped in public: a live AI assistant, a security-aware RAG prototype, documented case studies, and an honest learning roadmap. Every claim is labeled Live, Prototype, Planned, or Learning." />
     <meta property="og:url" content="https://philipneo.github.io/philip-builds/" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Philip Builds Studio — AI-Ready Websites & Tools" />
-    <meta name="twitter:description" content="Mobile-first websites, interactive demo tools, a guided assistant, and a project matcher. Rule-based fallback with Vercel AI backend support." />
+    <meta name="twitter:title" content="Philip Miranda — Neo Labs | Applied AI, Cloud &amp; Web Systems" />
+    <meta name="twitter:description" content="Built and shipped in public: a live AI assistant, a security-aware RAG prototype, documented case studies, and an honest learning roadmap." />
     <meta property="og:image" content="https://philipneo.github.io/philip-builds/assets/og/philip-builds-studio-og.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:image" content="https://philipneo.github.io/philip-builds/assets/og/philip-builds-studio-og.png" />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="shared/site.css" />
+    <link rel="stylesheet" href="ai-lab/styles.css" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="shared/assistant.css" />
-    <script src="script.js" defer></script>
     <script src="shared/ai-config.js" defer></script>
+    <script src="shared/reveal.js" defer></script>
     <script src="shared/assistant.js" defer data-assistant-root="" data-assistant-context="home"></script>
   </head>
-  <body class="no-js">
-    <header class="site-header">
-      <a class="brand" href="#top">
-        <span>PBS</span>
-        Philip Builds Studio
-      </a>
-      <nav aria-label="Primary navigation">
-        <a href="#problem">Problem</a>
-        <a href="#demo">Demo</a>
-        <a href="#assistant">Assistant</a>
-        <a href="#ai-experience">AI</a>
-        <a href="#about">About</a>
+  <body>
+    <header class="site-head">
+      <a class="site-brand" href="index.html"><span>PBS</span> Philip Builds Studio</a>
+      <nav aria-label="Site">
+        <a href="ai-lab/index.html">AI Lab</a>
+        <a href="case-studies/index.html">Case studies</a>
         <a href="portfolio/index.html">Portfolio</a>
-        <a href="project-matcher/index.html">Matcher</a>
-        <a href="start-project/index.html">Start a project</a>
       </nav>
     </header>
 
-    <main id="top">
-      <section id="hero" class="hero" aria-labelledby="hero-title">
-        <div class="hero-copy reveal reveal-up">
-          <p class="eyebrow">AI-ready front-end studio</p>
-          <h1 id="hero-title">Websites, guided demos, and customer tools for local operators.</h1>
-          <p>
-            Clean, mobile-first pages and interactive tools — with a guided
-            assistant and project matcher built in. Static pages use the
-            rule-based fallback; Vercel can connect the same UI to a server-side
-            AI backend. Starting at $150, fixed scope.
-          </p>
-          <div class="actions">
-            <a class="button primary" href="project-matcher/index.html">Try the Project Matcher</a>
-            <a class="button" href="start-project/index.html">Start a project</a>
-            <button class="button" type="button" data-assistant-open="Can you build an AI assistant?">Ask the assistant</button>
-          </div>
-        </div>
-        <div class="hero-showcase reveal reveal-scale" aria-hidden="true">
-          <div class="hero-browser">
-            <div class="hb-bar">
-              <span class="hb-dot hb-dot-r"></span>
-              <span class="hb-dot hb-dot-y"></span>
-              <span class="hb-dot hb-dot-g"></span>
-              <span class="hb-url">command-center.demo</span>
-            </div>
-            <div class="hb-body">
-              <div class="hb-head">
-                <span class="hb-title">Today's Overview</span>
-                <span class="hb-date">Today</span>
-              </div>
-              <div class="hb-stats">
-                <div><b>3</b><span>Jobs</span></div>
-                <div><b>$840</b><span>Revenue</span></div>
-                <div><b>2</b><span>Quotes</span></div>
-              </div>
-              <div class="hb-rows">
-                <div class="hb-row"><span class="hb-time">9:30</span><span class="hb-name">Santos — Full Detail</span><i class="hb-pill hb-green">Done</i></div>
-                <div class="hb-row"><span class="hb-time">11:15</span><span class="hb-name">Morales — Interior</span><i class="hb-pill hb-amber">Active</i></div>
-                <div class="hb-row"><span class="hb-time">2:00</span><span class="hb-name">Park — Wash</span><i class="hb-pill hb-blue">Next</i></div>
-              </div>
-              <div class="hb-progress"><span style="width:57%"></span></div>
-              <div class="hb-progress-label">4 of 7 tasks complete</div>
+    <main>
+      <!-- HERO -->
+      <section class="section hero lab-hero home-hero">
+        <div class="lab-hero-grid">
+          <div class="lab-hero-copy">
+            <span class="badge">Neo Labs · Built in public, labeled honestly</span>
+            <p class="eyebrow">Philip Miranda · applied AI, cloud &amp; front-end systems</p>
+            <h1>I build and ship real systems — in public, with proof.</h1>
+            <p class="lab-lead">
+              Neo Labs is my engineering portfolio: a <strong>live AI assistant</strong>
+              running on a serverless backend, a <strong>security-aware retrieval
+              prototype</strong>, documented case studies, and an honest learning
+              roadmap. Every claim on this site is labeled Live, Prototype, Planned,
+              or Learning — open any demo and check it yourself.
+            </p>
+            <div class="actions">
+              <a class="btn primary" href="ai-lab/index.html">Explore Neo Labs</a>
+              <a class="btn" href="case-studies/secure-rag/index.html">Read the Secure RAG case study</a>
+              <a class="btn home-studio-cta" href="portfolio/index.html">Websites for local businesses →</a>
             </div>
           </div>
-          <div class="hero-chip">
-            <span>Live interactive demo</span>
-            <strong>Built with no libraries</strong>
-          </div>
-        </div>
-      </section>
-
-      <section id="start-here" class="section reveal" aria-labelledby="starthere-title">
-        <div class="section-head reveal reveal-up">
-          <p class="eyebrow">Start here</p>
-          <h2 id="starthere-title">Not sure where to begin? Pick a lane.</h2>
-          <p>Four ways in, depending on what you came for.</p>
-        </div>
-        <div class="problem-grid stagger">
-          <a class="starthere-card reveal reveal-up" href="project-matcher/index.html">
-            <span class="starthere-step">01</span>
-            <h3>Not sure what you need?</h3>
-            <p>Answer three quick questions and the matcher points you to the closest demo.</p>
-            <span class="starthere-go">Open the Matcher →</span>
-          </a>
-          <a class="starthere-card reveal reveal-up" href="portfolio/index.html">
-            <span class="starthere-step">02</span>
-            <h3>Want proof of capability?</h3>
-            <p>Click through working, fictional demos — no screenshots, all live front-end.</p>
-            <span class="starthere-go">See the portfolio →</span>
-          </a>
-          <a class="starthere-card reveal reveal-up" href="start-project/index.html">
-            <span class="starthere-step">03</span>
-            <h3>Already have an idea?</h3>
-            <p>Pick a project type and it builds a pre-filled email you review and send.</p>
-            <span class="starthere-go">Start a project →</span>
-          </a>
-          <a class="starthere-card reveal reveal-up" href="studio-os/index.html">
-            <span class="starthere-step">04</span>
-            <h3>Curious about AI mode?</h3>
-            <p>See how fallback mode and the Vercel AI backend work safely.</p>
-            <span class="starthere-go">View AI readiness →</span>
-          </a>
-        </div>
-      </section>
-
-      <section id="assistant" class="section assistant-feature-section reveal" aria-labelledby="assistant-title">
-        <div class="assistant-feature-copy reveal reveal-up">
-          <p class="eyebrow">Guided assistant</p>
-          <h2 id="assistant-title">A safe assistant flow for routing visitors faster.</h2>
-          <p>
-            The assistant always has a rule-based fallback. On Vercel, it can
-            call the server-side AI endpoint; on static hosting, it stays local
-            and routes visitors toward the right page, quote flow, menu flow, or
-            client handoff tool.
-          </p>
-          <div class="actions">
-            <button class="button primary" type="button" data-assistant-open="Help me choose a starting point">Try the assistant</button>
-            <a class="button" href="portfolio/index.html">Browse the showroom</a>
-          </div>
-        </div>
-        <div class="assistant-feature-card reveal reveal-scale" aria-hidden="true">
-          <div class="af-status">
-            <span>Safe mode</span>
-            <strong>Fallback ready</strong>
-          </div>
-          <div class="af-chat">
-            <p class="af-user">I need help with pricing.</p>
-            <p class="af-bot">Start with Cleaning Quote or the Service Business demo.</p>
-            <div>
-              <span>Cleaning Quote</span>
-              <span>Service Demo</span>
+          <aside class="lab-system-card home-latest-card" aria-label="Latest from the lab">
+            <span class="system-label">Latest from the lab</span>
+            <h2>Secure RAG Portfolio Search</h2>
+            <p>A simulated, security-aware retrieval layer over this site's public content — guarded queries, ranked results, claim-safety labels.</p>
+            <dl class="system-metrics">
+              <div><dt>Status</dt><dd>Prototype · shipped July 2026</dd></div>
+              <div><dt>Guardrails</dt><dd>Refuses secret &amp; private-data queries</dd></div>
+              <div><dt>Documented</dt><dd>Full case study with QA evidence</dd></div>
+            </dl>
+            <div class="home-latest-links">
+              <a href="ai-lab/secure-rag/index.html">Open the demo →</a>
+              <a href="case-studies/secure-rag/index.html">Read the case study →</a>
             </div>
-          </div>
+          </aside>
         </div>
       </section>
 
-      <section id="ai-experience" class="section reveal" aria-labelledby="aix-title">
-        <div class="section-head reveal reveal-up">
-          <p class="eyebrow">AI experience</p>
-          <h2 id="aix-title">Fallback first. Server-side AI when connected. Honest the whole way.</h2>
-          <p>
-            The assistant and matcher run with fast, rule-based guidance by
-            default. On Vercel, the same assistant can call <code>/api/chat</code>
-            for model replies without exposing keys in browser code.
-          </p>
-        </div>
-        <div class="problem-grid stagger">
-          <article class="reveal reveal-up">
-            <h3>Working today (guided)</h3>
-            <p>Find the right demo, choose a project type, see what to send, and pick up from your last recommendation on this device.</p>
-          </article>
-          <article class="reveal reveal-up">
-            <h3>Server-side AI</h3>
-            <p>A Vercel function plus a private environment key powers model replies, with a graceful fallback if it errors.</p>
-          </article>
-          <article class="reveal reveal-up">
-            <h3>Safe by design</h3>
-            <p>Keys never live in browser code. GitHub Pages cannot run the backend, so it falls back instead of pretending AI is connected.</p>
-          </article>
-        </div>
-        <div class="value-list stagger" aria-label="AI-ready offerings">
-          <div class="reveal reveal-up">
-            <strong>Guided website assistant</strong>
-            <span>Rule-based front-end assistant with demo routing and FAQ-style guidance. No backend needed.</span>
-          </div>
-          <div class="reveal reveal-up">
-            <strong>Project matcher / smart intake</strong>
-            <span>Guided recommender with local device memory and a pre-filled email handoff.</span>
-          </div>
-          <div class="reveal reveal-up">
-            <strong>Model-ready assistant scaffold</strong>
-            <span>Front-end UI plus an env-key-only Vercel serverless endpoint, with fallback when unavailable.</span>
-          </div>
-        </div>
-        <div class="actions reveal reveal-up">
-          <a class="button primary" href="project-matcher/index.html">Try the Project Matcher</a>
-          <a class="button" href="studio-os/index.html">View AI readiness</a>
+      <!-- PROOF STRIP -->
+      <section class="section home-proof-section" aria-labelledby="proof-title">
+        <h2 id="proof-title" class="visually-hidden">Proof at a glance</h2>
+        <div class="home-proof-strip">
+          <div><strong>1</strong><span>live AI system</span><em>assistant + serverless /api/chat</em></div>
+          <div><strong>1</strong><span>shipped prototype</span><em>Secure RAG Portfolio Search</em></div>
+          <div><strong>1</strong><span>published case study</span><em>with QA evidence and resume bullets</em></div>
+          <div><strong>13</strong><span>clickable demos</span><em>working pages, not screenshots</em></div>
+          <div><strong>0</strong><span>API keys in the browser</span><em>server-side env vars only</em></div>
+          <div><strong>0</strong><span>invented clients</span><em>every claim is checkable</em></div>
         </div>
       </section>
 
-      <section id="ai-lab" class="section reveal" aria-labelledby="ailab-title">
-        <div class="section-head reveal reveal-up">
+      <!-- NEO LABS FEATURED -->
+      <section class="section" id="neo-labs" aria-labelledby="nl-title">
+        <div class="section-head">
           <p class="eyebrow">Neo Labs</p>
-          <h2 id="ailab-title">AI/ML engineering lab for real-world systems.</h2>
+          <h2 id="nl-title">Applied AI, cloud, and security-aware systems.</h2>
           <p>
-            The next direction for Philip Builds Studio: applied AI systems, secure
-            cloud deployment, and honest AI/ML + MLOps practice built in public.
+            The lab is the spine of this site: real deployed systems, honest
+            prototypes, and the roadmap between them — built without pretending
+            any of it is further along than it is.
           </p>
         </div>
-        <article class="work-flagship reveal reveal-up">
-          <div class="work-flagship-copy">
-            <span>Live system + learning roadmap</span>
-            <h3>Neo Labs turns this site into technical proof.</h3>
-            <p>
-              Explore the live AI Portfolio Assistant, the same-origin <code>/api/chat</code>
-              backend, server-side key handling, fallback states, prompt and route
-              guardrails, Vercel logs, and the planned AI/ML + cloud + security roadmap.
-              New in the lab: a Secure RAG Portfolio Search prototype — simulated,
-              security-aware retrieval over public site content.
+        <div class="grid-3 home-featured">
+          <a class="card home-featured-card" href="ai-lab/index.html#live-system">
+            <span class="status-pill now">Live</span>
+            <h3>AI Portfolio Assistant</h3>
+            <p>A real site feature: browser UI → same-origin <code>/api/chat</code> on Vercel → provider, with server-side keys and a rule-based fallback that never fakes AI.</p>
+            <span class="home-featured-go">See the system →</span>
+          </a>
+          <a class="card home-featured-card" href="ai-lab/secure-rag/index.html">
+            <span class="status-pill proto">Prototype</span>
+            <h3>Secure RAG Portfolio Search</h3>
+            <p>A simulated retrieval layer with visible pipeline states, extraction-intent guardrails, relevance scoring, and a claim-safety label on every result.</p>
+            <span class="home-featured-go">Run a query →</span>
+          </a>
+          <a class="card home-featured-card" href="case-studies/secure-rag/index.html">
+            <span class="status-pill now">Shipped</span>
+            <h3>Case Study 01 — Secure RAG</h3>
+            <p>Problem, architecture, security decisions, QA evidence, lessons, resume bullets, and interview talking points — documented like a release.</p>
+            <span class="home-featured-go">Read it →</span>
+          </a>
+        </div>
+        <div class="actions">
+          <a class="btn primary" href="ai-lab/index.html">Explore the AI Lab</a>
+        </div>
+      </section>
+
+      <!-- HOW I WORK -->
+      <section class="section" id="how-i-work" aria-labelledby="hw-title">
+        <div class="section-head">
+          <p class="eyebrow">How I work</p>
+          <h2 id="hw-title">Shipped like releases, not homework.</h2>
+          <p>
+            Every Neo Labs project goes through the same pipeline: build it, deploy
+            it, test it (accessibility, mobile, secret scans, functional tests),
+            document it as a case study, and label every component Live, Prototype,
+            Planned, or Learning. If a QA pass catches a defect, the case study says
+            so — because "16 of 16 tests, one overflow caught and fixed" is worth
+            more than any adjective.
+          </p>
+        </div>
+        <div class="lab-flow" role="group" aria-label="Project pipeline">
+          <div class="flow-node">
+            <span class="fn-k">01</span>
+            <span class="fn-v">Build</span>
+            <span class="fn-s">Static-first, no libraries, security decisions before features.</span>
+          </div>
+          <div class="flow-arrow" aria-hidden="true">→</div>
+          <div class="flow-node">
+            <span class="fn-k">02</span>
+            <span class="fn-v">Ship</span>
+            <span class="fn-s">Deployed to the live site — demos you can open, not screenshots.</span>
+          </div>
+          <div class="flow-arrow" aria-hidden="true">→</div>
+          <div class="flow-node">
+            <span class="fn-k">03</span>
+            <span class="fn-v">Test</span>
+            <span class="fn-s">Functional tests, accessibility checks, mobile passes, secret scans.</span>
+          </div>
+          <div class="flow-arrow" aria-hidden="true">→</div>
+          <div class="flow-node">
+            <span class="fn-k">04</span>
+            <span class="fn-v">Document</span>
+            <span class="fn-s">A case study with architecture, QA evidence, and lessons.</span>
+          </div>
+          <div class="flow-arrow" aria-hidden="true">→</div>
+          <div class="flow-node">
+            <span class="fn-k">05</span>
+            <span class="fn-v">Label</span>
+            <span class="fn-s">Live / Prototype / Planned / Learning — nothing overclaimed.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- CASE STUDIES -->
+      <section class="section" id="case-studies" aria-labelledby="cs-title">
+        <div class="section-head">
+          <p class="eyebrow">Case studies</p>
+          <h2 id="cs-title">Every project ships with its paper trail.</h2>
+          <p>
+            A demo shows what works; the case study shows how it was designed,
+            guarded, and tested — and what may honestly be claimed about it.
+          </p>
+        </div>
+        <div class="grid-2">
+          <a class="card home-featured-card" href="case-studies/secure-rag/index.html">
+            <span class="status-pill now">Shipped · July 2026</span>
+            <h3>Case Study 01 — Secure RAG Portfolio Search</h3>
+            <p>Security-aware retrieval: guarded queries, claim-safety labels, staged architecture, and a QA report that includes what the review caught.</p>
+            <span class="home-featured-go">Read the case study →</span>
+          </a>
+          <div class="card home-cs-slot" aria-label="Next case study placeholder">
+            <span class="status-pill next">Planned</span>
+            <h3>Case Study 02 — next lab build</h3>
+            <p>Every future Neo Labs project ships with its case study. Candidates on the roadmap: AI lead scorer prototype, model evaluation dashboard, cloud ML inference API.</p>
+            <span class="home-featured-go"><a href="case-studies/index.html">About the case-study system →</a></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- LEARNING ROADMAP SNAPSHOT -->
+      <section class="section" id="learning" aria-labelledby="lr-title">
+        <div class="section-head">
+          <p class="eyebrow">Learning roadmap</p>
+          <h2 id="lr-title">Labeled honestly: learning, planned, targeted.</h2>
+          <p>
+            Shipped proof comes first; the rest of the path is labeled as exactly
+            what it is. Nothing below is claimed as completed.
+          </p>
+        </div>
+        <div class="roadmap">
+          <div class="road-col">
+            <h3>Learning now <span class="status-pill learning">In progress</span></h3>
+            <ul class="road-tiles">
+              <li>Python for ML · NumPy · pandas</li>
+              <li>SQL and data workflows</li>
+              <li>scikit-learn · PyTorch fundamentals</li>
+              <li>Model evaluation basics</li>
+            </ul>
+          </div>
+          <div class="road-col">
+            <h3>Planned next <span class="status-pill next">Planned</span></h3>
+            <ul class="road-tiles">
+              <li>Secure RAG: real embeddings + vector index</li>
+              <li>Model evaluation dashboard</li>
+              <li>Cloud ML inference API</li>
+              <li>Public source links for lab projects</li>
+            </ul>
+          </div>
+          <div class="road-col">
+            <h3>Targeted certs <span class="status-pill next">None claimed</span></h3>
+            <ul class="road-tiles">
+              <li>DeepLearning.AI ML Specialization</li>
+              <li>AWS ML Engineer — Associate</li>
+              <li>Google Cloud Professional ML Engineer</li>
+            </ul>
+          </div>
+        </div>
+        <div class="actions">
+          <a class="btn" href="ai-lab/index.html#roadmap">See the full roadmap</a>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section class="section" id="about" aria-labelledby="about-title">
+        <div class="section-head">
+          <p class="eyebrow">About</p>
+          <h2 id="about-title">One person, building a track record in public.</h2>
+        </div>
+        <div class="home-about">
+          <p>
+            I'm Philip Miranda. I'm building my way into AI and software engineering
+            by shipping real systems instead of collecting claims: a live AI
+            assistant with a secure serverless backend, a security-aware retrieval
+            prototype, and documented case studies with QA evidence. I run Philip
+            Builds Studio — small websites and tools for local businesses — as the
+            applied side of the same discipline. I'm currently studying Python, SQL,
+            and machine-learning fundamentals, and everything on the roadmap is
+            labeled honestly: nothing here claims to be more finished than it is.
+          </p>
+        </div>
+      </section>
+
+      <!-- STUDIO LANE -->
+      <section class="section" id="studio" aria-labelledby="studio-title">
+        <div class="section-head">
+          <p class="eyebrow">The applied lane</p>
+          <h2 id="studio-title">Philip Builds Studio</h2>
+        </div>
+        <div class="card home-studio-card">
+          <p>
+            The same engineering discipline, pointed at local businesses:
+            mobile-first sites, quote calculators, and small workflow tools — fixed
+            scope, honest claims, working demos. If you're a business owner rather
+            than a reviewer, start here.
+          </p>
+          <div class="actions">
+            <a class="btn primary" href="portfolio/index.html">Browse services &amp; demos →</a>
+            <a class="btn" href="start-project/index.html">Start a project</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="section" id="contact" aria-labelledby="contact-title">
+        <div class="section-head">
+          <p class="eyebrow">Contact</p>
+          <h2 id="contact-title">Two ways to start a conversation.</h2>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <span class="tag" style="color:var(--mint)">Opportunities &amp; collaboration</span>
+            <p style="margin-top:8px;">
+              Reviewing my work for a role, program, or collaboration? The fastest
+              tour: open the Secure RAG demo, then read the case study. The project
+              starter below builds a pre-filled email — it works for opportunities
+              too.
             </p>
-            <a href="ai-lab/index.html">Explore AI Lab →</a>
-          </div>
-          <div class="work-flagship-tags" aria-hidden="true">
-            <span class="wft">Neo Labs</span>
-            <span class="wft">Live assistant</span>
-            <span class="wft">Secure RAG prototype</span>
-            <span class="wft">Serverless /api/chat</span>
-            <span class="wft">No browser keys</span>
-            <span class="wft">Fallback states</span>
-            <span class="wft">MLOps roadmap</span>
-          </div>
-        </article>
-      </section>
-
-      <section id="best-start" class="section reveal" aria-labelledby="beststart-title">
-        <div class="section-head reveal reveal-up">
-          <p class="eyebrow">Best places to start</p>
-          <h2 id="beststart-title">The best demo to open first, by what you want.</h2>
-          <p>Recommended starting points — every demo is a fictional, front-end concept.</p>
-        </div>
-        <div class="rank-grid stagger">
-          <a class="rank-card reveal reveal-up" href="demos/local-business-command-center/index.html">
-            <span class="rank-tag">Best overall proof</span>
-            <h3>Local Business Command Center</h3>
-            <p>The flagship — a full operations dashboard with live tools.</p>
-          </a>
-          <a class="rank-card reveal reveal-up" href="demos/invoice-builder/index.html">
-            <span class="rank-tag">Best for client handoff</span>
-            <h3>Invoice Builder</h3>
-            <p>Line items, tax, status, and a copy/print-ready invoice.</p>
-          </a>
-          <a class="rank-card reveal reveal-up" href="demos/cleaning-quote-calculator/index.html">
-            <span class="rank-tag">Best for service pricing</span>
-            <h3>Cleaning Quote Calculator</h3>
-            <p>Rooms, add-ons, and timing into an instant itemized estimate.</p>
-          </a>
-          <a class="rank-card reveal reveal-up" href="demos/service-business-landing-page/index.html">
-            <span class="rank-tag">Best for a business site</span>
-            <h3>Service Business Demo</h3>
-            <p>Packages, a quote flow, and an owner-side view.</p>
-          </a>
-          <a class="rank-card reveal reveal-up" href="demos/mobile-detailing-landing-page/index.html">
-            <span class="rank-tag">Best visual local brand</span>
-            <h3>GlossLane Mobile Detailing</h3>
-            <p>A live package + add-on quote and a phone booking flow.</p>
-          </a>
-          <a class="rank-card reveal reveal-up" href="demos/restaurant-menu-page/index.html">
-            <span class="rank-tag">Best for food / menu flow</span>
-            <h3>The Kettle House</h3>
-            <p>Category tabs, modifiers, a cart, and a pickup order preview.</p>
-          </a>
-        </div>
-        <div class="actions reveal reveal-up">
-          <a class="button primary" href="portfolio/index.html">See all demos</a>
-          <a class="button" href="project-matcher/index.html">Match me to one</a>
-        </div>
-      </section>
-
-      <section id="problem" class="section problem-section reveal" aria-labelledby="problem-title">
-        <div class="section-head reveal reveal-up">
-          <p class="eyebrow">Problem</p>
-          <h2 id="problem-title">A confusing website makes good businesses look harder to trust.</h2>
-          <p>
-            Local customers usually check your site from a phone. If they cannot
-            quickly find your services, prices, photos, or contact button, they
-            move on.
-          </p>
-        </div>
-        <div class="problem-grid stagger">
-          <article class="reveal reveal-up">
-            <h3>Hard to scan</h3>
-            <p>Too much clutter makes it hard for customers to understand what you offer.</p>
-          </article>
-          <article class="reveal reveal-up">
-            <h3>Weak contact path</h3>
-            <p>A hidden phone, quote, or email button costs attention at the exact moment it matters.</p>
-          </article>
-          <article class="reveal reveal-up">
-            <h3>Not built for phones</h3>
-            <p>Small text, awkward spacing, and cramped buttons make the business feel less ready.</p>
-          </article>
-        </div>
-      </section>
-
-      <section id="demo" class="section demo-section reveal" aria-labelledby="demo-title">
-        <div class="section-head reveal reveal-up">
-          <p class="eyebrow">Demo / GlossLane</p>
-          <h2 id="demo-title">See a one-page service business demo.</h2>
-          <p>
-            GlossLane is a fictional mobile detailing page that shows the kind
-            of service menu, pricing, quote path, and mobile layout I build.
-          </p>
-        </div>
-        <article class="demo-feature reveal reveal-scale">
-          <div>
-            <span>Landing page demo</span>
-            <h3>GlossLane Mobile Detailing</h3>
-            <p>
-              A clean one-page example with packages, proof placeholders, a
-              quote form, and booking calls to action.
-            </p>
-          </div>
-          <a class="button primary" href="demos/mobile-detailing-landing-page/index.html">Open GlossLane Demo</a>
-        </article>
-      </section>
-
-      <section id="showcase" class="section scroll-showcase" aria-labelledby="showcase-title">
-        <div class="showcase-copy reveal reveal-up">
-          <p class="eyebrow">What your customer sees first</p>
-          <h2 id="showcase-title">A site that works on the first tap.</h2>
-          <p>
-            The goal is simple: help someone understand the service, trust the
-            page, and find the right next step without digging.
-          </p>
-        </div>
-        <div class="showcase-stage" aria-hidden="true">
-          <div class="before-panel reveal reveal-up">
-            <span>Before</span>
-            <strong>Buried details</strong>
-            <p>Long paragraphs, unclear pricing, and a contact link below the fold.</p>
-          </div>
-          <div class="phone-mockup reveal reveal-scale">
-            <div class="phone-speaker"></div>
-            <div class="phone-screen">
-              <span>Clean service page</span>
-              <strong>Book mobile detailing</strong>
-              <p>Packages, photos, and quote button in view.</p>
-              <div class="screen-lines">
-                <i><b>Exterior Wash</b><s>$79</s></i>
-                <i><b>Interior Reset</b><s>$149</s></i>
-                <i><b>Full Detail</b><s>$249</s></i>
-              </div>
-              <span class="mock-button">Get a quote</span>
+            <div class="actions">
+              <a class="btn primary" href="case-studies/secure-rag/index.html">Start with the case study</a>
             </div>
           </div>
-          <div class="after-panel reveal reveal-up">
-            <span>After</span>
-            <strong>Clear next step</strong>
-            <p>Readable service menu, simple pricing, and a contact button that is easy to tap.</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="services" class="section intro-grid reveal" aria-labelledby="services-title">
-        <div class="section-head reveal reveal-up">
-          <p class="eyebrow">What I Build</p>
-          <h2 id="services-title">Clean pages that help customers understand and contact you.</h2>
-          <p>
-            Philip Builds Studio builds clean, mobile-ready one-page websites
-            for local service businesses. Fast turnaround, fixed price, no tech
-            headaches.
-          </p>
-        </div>
-        <div class="value-list stagger" aria-label="Website features">
-          <div class="reveal reveal-up">
-            <strong>Services and pricing</strong>
-            <span>Show what you do, who it is for, and what it costs.</span>
-          </div>
-          <div class="reveal reveal-up">
-            <strong>Clear contact buttons</strong>
-            <span>Make calling, emailing, or requesting a quote easy.</span>
-          </div>
-          <div class="reveal reveal-up">
-            <strong>Mobile-ready layout</strong>
-            <span>Built to look clean on the phone your customers actually use.</span>
-          </div>
-        </div>
-      </section>
-
-      <section id="packages" class="section package-section reveal" aria-labelledby="packages-title">
-        <div class="section-head reveal reveal-up">
-          <p class="eyebrow">Packages</p>
-          <h2 id="packages-title">Fixed-price website help without the maze.</h2>
-        </div>
-        <div class="package-grid stagger">
-          <article class="package-card reveal reveal-up">
-            <span class="price">$150</span>
-            <h3>Starter Site</h3>
-            <p>
-              One-page mobile site with services, pricing, photos, and a
-              contact button.
+          <div class="card">
+            <span class="tag" style="color:var(--blue)">Hire the studio</span>
+            <p style="margin-top:8px;">
+              Need a small site or tool for a local business? Pick a project type
+              and it builds a short, pre-filled email you review and send yourself.
+              No forms, no backend, nothing stored.
             </p>
-            <ul>
-              <li>3-5 day turnaround</li>
-              <li>One revision</li>
-              <li>Best for a simple first site</li>
-            </ul>
-          </article>
-
-          <article class="package-card featured reveal reveal-up">
-            <span class="price">$300</span>
-            <h3>Business Site</h3>
-            <p>
-              Everything in Starter plus a second page, stronger copywriting,
-              and basic SEO setup.
-            </p>
-            <ul>
-              <li>Two-page site structure</li>
-              <li>Clearer service copy</li>
-              <li>Basic search-friendly page setup</li>
-            </ul>
-          </article>
-
-          <article class="package-card reveal reveal-up">
-            <span class="price">$50/month</span>
-            <h3>Site Care</h3>
-            <p>
-              Simple updates after launch so your site stays useful without
-              becoming another chore.
-            </p>
-            <ul>
-              <li>Price updates</li>
-              <li>New photos and promo changes</li>
-              <li>Small fixes</li>
-            </ul>
-          </article>
-        </div>
-      </section>
-
-      <section id="process" class="section process-section reveal" aria-labelledby="process-title">
-        <div class="section-head reveal reveal-up">
-          <p class="eyebrow">Process</p>
-          <h2 id="process-title">Simple scope, then a focused build.</h2>
-        </div>
-        <div class="process-grid stagger">
-          <article class="reveal reveal-up">
-            <span>01</span>
-            <h3>Send the basics</h3>
-            <p>Business name, current link if you have one, services, photos, and the best contact path.</p>
-          </article>
-          <article class="reveal reveal-up">
-            <span>02</span>
-            <h3>Confirm the scope</h3>
-            <p>We keep the page focused: what to build, what it costs, and what counts as done.</p>
-          </article>
-          <article class="reveal reveal-up">
-            <span>03</span>
-            <h3>Review and launch</h3>
-            <p>You review the page, request the included revision, and get a cleaner public link.</p>
-          </article>
-        </div>
-      </section>
-
-      <section id="work" class="section work-section reveal" aria-labelledby="work-title">
-        <div class="section-head reveal reveal-up">
-          <p class="eyebrow">Work</p>
-          <h2 id="work-title">Demos you can click through.</h2>
-          <p>
-            All demos are working pages, not screenshots. They show the kind of
-            layout, tool, and quality I build for real projects.
-          </p>
-        </div>
-
-        <article class="work-flagship reveal reveal-up">
-          <div class="work-flagship-copy">
-            <span>Flagship demo</span>
-            <h3>Local Business Command Center</h3>
-            <p>
-              Live quote estimator, daily workflow checklist, animated dashboard,
-              and a copy-ready end-of-day summary — all in one dark premium page.
-            </p>
-            <a href="demos/local-business-command-center/index.html">Open Command Center →</a>
-          </div>
-          <div class="work-flagship-tags" aria-hidden="true">
-            <span class="wft">Quote estimator</span>
-            <span class="wft">Checklist + progress</span>
-            <span class="wft">Dashboard visual</span>
-            <span class="wft">Copy to clipboard</span>
-            <span class="wft">Scroll animation</span>
-            <span class="wft">No libraries</span>
-          </div>
-        </article>
-
-        <div class="work-grid stagger">
-          <article class="work-card reveal reveal-up">
-            <span>Service business</span>
-            <h3>Service Business Demo</h3>
-            <p>Full-page site with pricing tiers, trust signals, and a quote form for a fictional service business.</p>
-            <a href="demos/service-business-landing-page/index.html">Open demo</a>
-          </article>
-
-          <article class="work-card reveal reveal-up">
-            <span>Detailing demo</span>
-            <h3>GlossLane Mobile Detailing</h3>
-            <p>Mobile-detailing landing page with service packages, quote capture, and booking CTAs.</p>
-            <a href="demos/mobile-detailing-landing-page/index.html">Open GlossLane</a>
-          </article>
-
-          <article class="work-card reveal reveal-up">
-            <span>Estimating tool</span>
-            <h3>Cleaning Quote Calculator</h3>
-            <p>Instant cleaning price estimator with home size, service type, and add-on checkboxes.</p>
-            <a href="demos/cleaning-quote-calculator/index.html">Open calculator</a>
-          </article>
-
-          <article class="work-card reveal reveal-up">
-            <span>Billing tool</span>
-            <h3>Invoice Builder</h3>
-            <p>Browser-only invoice builder with live preview, line items, tax, and print export.</p>
-            <a href="demos/invoice-builder/index.html">Open invoice builder</a>
-          </article>
-        </div>
-
-        <div class="work-more-link reveal reveal-up">
-          <a href="portfolio/index.html">View all 13 demos in the portfolio →</a>
-        </div>
-      </section>
-
-      <section id="tools" class="section tools-preview-section reveal" aria-labelledby="tools-title">
-        <div class="section-head reveal reveal-up">
-          <p class="eyebrow">Practical Tools</p>
-          <h2 id="tools-title">Small builders that do actual work in the browser.</h2>
-          <p>
-            Beyond landing pages, Philip Builds Studio builds lightweight tools
-            for repeated local-business tasks: estimating, billing, reporting,
-            and simple decision flows.
-          </p>
-        </div>
-        <div class="tools-preview-layout">
-          <article class="tools-preview-main reveal reveal-scale">
-            <span>Tool showroom</span>
-            <h3>Cleaning Quote Calculator</h3>
-            <p>Rooms, add-ons, urgency, animated estimate breakdown, owner dashboard, and demo confirmation.</p>
-            <a class="button primary" href="demos/cleaning-quote-calculator/index.html">Open calculator</a>
-          </article>
-          <div class="tools-preview-grid stagger">
-            <article class="reveal reveal-up">
-              <span>Billing</span>
-              <h3>Invoice Builder</h3>
-              <p>Line items, tax, discount, live preview, copy summary, and browser print.</p>
-              <a href="demos/invoice-builder/index.html">Open invoice tool</a>
-            </article>
-            <article class="reveal reveal-up">
-              <span>Estimating</span>
-              <h3>Contractor Estimate Builder</h3>
-              <p>Quantity, unit price, markup, and printable estimate structure.</p>
-              <a href="demos/contractor-estimate-builder/index.html">Open estimate builder</a>
-            </article>
-            <article class="reveal reveal-up">
-              <span>Operations</span>
-              <h3>Shift Downtime Calculator</h3>
-              <p>Turns downtime minutes into a clean end-of-shift report.</p>
-              <a href="demos/shift-downtime-calculator/index.html">Open downtime tool</a>
-            </article>
-            <article class="reveal reveal-up">
-              <span>Planning</span>
-              <h3>Cashflow Lab</h3>
-              <p>Shapes service offers, pricing, and delivery checklists.</p>
-              <a href="demos/cashflow-lab/index.html">Open Cashflow Lab</a>
-            </article>
+            <div class="actions">
+              <a class="btn primary" href="start-project/index.html">Start a project</a>
+              <button class="btn" type="button" data-assistant-open="Help me choose a starting point">Ask the assistant</button>
+            </div>
           </div>
         </div>
-      </section>
-
-      <section id="faq" class="section faq-section reveal" aria-labelledby="faq-title">
-        <div class="section-head reveal reveal-up">
-          <p class="eyebrow">FAQ</p>
-          <h2 id="faq-title">Straight answers before the project starts.</h2>
-        </div>
-        <div class="faq-grid stagger">
-          <article class="reveal reveal-up">
-            <h3>What do you need from me?</h3>
-            <p>Your business name, services, prices if you have them, photos, and the best contact button.</p>
-          </article>
-          <article class="reveal reveal-up">
-            <h3>Is this a huge website project?</h3>
-            <p>No. The goal is a clean, useful site with a simple scope and fixed price.</p>
-          </article>
-          <article class="reveal reveal-up">
-            <h3>Can you update it later?</h3>
-            <p>Yes. Site Care covers small updates like new photos, price edits, promos, and quick fixes.</p>
-          </article>
-        </div>
-      </section>
-
-      <section id="trust" class="section reveal" aria-labelledby="trust-title">
-        <div class="section-head reveal reveal-up">
-          <p class="eyebrow">Honest proof</p>
-          <h2 id="trust-title">No invented reviews. Just work you can inspect.</h2>
-          <p>
-            There are no invented clients or testimonials here. The proof is the
-            build itself — open any demo, click around, view the source.
-          </p>
-        </div>
-        <div class="proof-strip reveal reveal-up" aria-label="By the numbers">
-          <div><strong>13</strong><span>front-end demos</span></div>
-          <div><strong>6</strong><span>guided walkthroughs</span></div>
-          <div><strong>0</strong><span>trackers or analytics</span></div>
-          <div><strong>0</strong><span>API keys in the browser</span></div>
-        </div>
-        <div class="problem-grid stagger">
-          <article class="reveal reveal-up">
-            <h3>Working, not mocked</h3>
-            <p>Every demo is a live front-end you can click end to end — no screenshots, no fake payments or bookings.</p>
-          </article>
-          <article class="reveal reveal-up">
-            <h3>Light and private</h3>
-            <p>Static demos, optional Vercel AI endpoint, no analytics, no trackers, no external fonts or images. The matcher memory stays on your device.</p>
-          </article>
-          <article class="reveal reveal-up">
-            <h3>Built with care</h3>
-            <p>Mobile-first layouts, visible focus states, and reduced-motion support — the details that separate a real build from a template.</p>
-          </article>
-        </div>
-        <div class="actions reveal reveal-up">
-          <a class="button primary" href="project-matcher/index.html">Find your fit</a>
-          <a class="button" href="studio-os/index.html">See the roadmap</a>
-        </div>
-      </section>
-
-      <section id="about" class="section reveal" aria-labelledby="about-title">
-        <div class="section-head reveal reveal-up">
-          <p class="eyebrow">About</p>
-          <h2 id="about-title">A small front-end studio, run by one person.</h2>
-        </div>
-        <div class="about-body reveal reveal-up">
-          <p>
-            Philip Builds Studio is a small front-end studio focused on websites
-            that feel useful from the first tap — landing pages, quote flows,
-            calculators, menus, invoice tools, and lightweight customer paths.
-          </p>
-          <p>
-            The work emphasizes mobile-first polish, clear customer paths, and
-            front-end interactions that actually do something. Every demo on this
-            site is a working, fictional concept you can click through — not a
-            screenshot. It's the honest way to show the kind of build you'd get.
-          </p>
-        </div>
-      </section>
-
-      <section id="contact" class="section contact-section reveal" aria-labelledby="contact-title">
-        <div class="reveal reveal-up">
-          <p class="eyebrow">Final CTA</p>
-          <h2 id="contact-title">Ready to start something?</h2>
-          <p>
-            Pick a project type and it builds a short, pre-filled email you can
-            review and send yourself. No forms, no backend, nothing is stored.
-          </p>
-        </div>
-        <div class="actions reveal reveal-scale">
-          <a class="button primary" href="start-project/index.html">Start a project</a>
-          <button type="button" class="button" data-assistant-open="Help me choose a starting point">Ask the assistant</button>
-        </div>
-        <p class="contact-status" id="projectBriefStatus" aria-live="polite">
-          Helpful to include: business name, current link, what you want built, and the demo that's closest.
-        </p>
       </section>
     </main>
 
     <!-- Built with Filipino pride 🇵🇭 -->
-    <footer class="site-footer">
-      <p><strong>Philip Builds Studio</strong> <span aria-hidden="true" title="Filipino-owned studio" style="font-size:0.85em;opacity:0.55;margin-left:3px;">🇵🇭</span></p>
-      <a href="portfolio/index.html">Portfolio</a>
-      <a href="start-project/index.html">Start a project</a>
+    <footer>
+      <span><strong>Philip Miranda · Philip Builds Studio</strong> <span aria-hidden="true" title="Filipino-owned" style="font-size:0.85em;opacity:0.55;">🇵🇭</span> — applied AI, cloud &amp; web systems, built in public. Claims labeled Live / Prototype / Planned / Learning.</span>
+      <span><a href="ai-lab/index.html">AI Lab</a> · <a href="case-studies/index.html">Case studies</a> · <a href="portfolio/index.html">Portfolio</a></span>
     </footer>
   </body>
 </html>

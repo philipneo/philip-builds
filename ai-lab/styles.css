@@ -417,3 +417,15 @@
     display: none;
   }
 }
+
+/* ── Linked roadmap tiles + reviewer strip links ── */
+.road-tile-link,
+.rv-link {
+  color: var(--mint);
+  font-weight: 750;
+  text-decoration: none;
+}
+.road-tile-link:hover,
+.rv-link:hover { text-decoration: underline; }
+.road-tile-link:focus-visible,
+.rv-link:focus-visible { outline: 3px solid rgba(94, 234, 212, 0.4); outline-offset: 2px; border-radius: 4px; }
