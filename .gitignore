@@ -37,3 +37,8 @@ dtla_medspa_prospects.csv
 .env.*
 !.env.example
 node_modules/
+
+# Local QA/audit artifacts
+docs/QA_BASELINE_*.md
+outputs/lighthouse-baseline/
+screenshots/
