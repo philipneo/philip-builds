@@ -50,8 +50,8 @@
             </p>
             <p class="lab-note">
               Honest scope: this is <strong>applied engineering practice and documented
-              prototypes</strong>, not a claim of senior ML, security, or cloud-architect
-              status. Every item below is labeled live, prototype, planned, or learning.
+              prototypes</strong>, not a claim of advanced ML, security, cloud, or
+              architecture status. Every item below is labeled live, prototype, planned, or learning.
             </p>
             <div class="actions">
               <a class="btn primary" href="#live-system">View live system</a>
@@ -257,7 +257,8 @@ GET /api/chat  <span class="c-ok">200</span>
           <p>
             The second Neo Labs build: a front-end prototype of a security-aware
             retrieval layer over this site's public content. Guarded queries, ranked
-            results with claim-safety labels, visible pipeline states — and the real
+            results with claim-safety labels, visible pipeline states, explicit
+            threat modeling, and a prototype-vs-production boundary — with the real
             embeddings + vector index architecture labeled as planned, not done.
           </p>
         </div>
@@ -268,6 +269,7 @@ GET /api/chat  <span class="c-ok">200</span>
               <li>Local search and ranking over a curated public-content index</li>
               <li>Extraction-intent guardrail that refuses secret and private-data queries</li>
               <li>Claim-safety label (Live / Prototype / Planned / Learning) on every result</li>
+              <li>Threat model for prompt injection, private-file leakage, logging, and route safety</li>
               <li>Honest empty, too-broad, offline, and refusal states</li>
             </ul>
           </div>

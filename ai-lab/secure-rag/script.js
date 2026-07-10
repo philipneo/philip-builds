@@ -100,6 +100,60 @@
       summary: "This page — a front-end simulation of a security-aware retrieval layer over public portfolio content. Local keyword ranking today; embeddings and a vector index are planned."
     },
     {
+      id: "architecture-layers",
+      title: "Secure RAG architecture layer map",
+      status: "prototype",
+      source: "Secure RAG · architecture",
+      href: "index.html#architecture-layers",
+      keywords: ["architecture", "layers", "retrieval", "access", "control", "guardrail", "audit", "logging", "evaluation", "vector", "database", "cloud", "system", "design"],
+      summary: "The demo separates retrieval, access control, guardrails, audit logging, future vector database work, and evaluation so each layer is explicit instead of hidden in one feature."
+    },
+    {
+      id: "threat-model",
+      title: "Visible threat model and mitigations",
+      status: "prototype",
+      source: "Secure RAG · threat model",
+      href: "index.html#threat-model",
+      keywords: ["threat", "model", "security", "prompt", "injection", "private", "leakage", "overbroad", "retrieval", "hallucinated", "proof", "logging", "privacy", "risk", "mitigation"],
+      summary: "The page documents risks including prompt injection, private-file leakage, overbroad retrieval, hallucinated proof, logging privacy, and route injection, with concrete mitigations for each."
+    },
+    {
+      id: "source-boundary",
+      title: "Source boundary and citation discipline",
+      status: "prototype",
+      source: "Secure RAG · retrieval console",
+      href: "index.html#search",
+      keywords: ["source", "boundary", "citation", "citations", "whitelist", "public", "page", "proof", "browser", "keys", "safe", "answer"],
+      summary: "Results can only point to whitelisted public pages and curated public summaries. If the answer is outside that boundary, the demo refuses, returns no results, or labels it as planned."
+    },
+    {
+      id: "prototype-production",
+      title: "Prototype versus production boundaries",
+      status: "prototype",
+      source: "Secure RAG · honesty panel",
+      href: "index.html#prototype-production",
+      keywords: ["prototype", "production", "honesty", "requirements", "required", "backend", "vector", "database", "private", "document", "search", "semantic", "accuracy", "claim"],
+      summary: "The prototype-vs-production panel states what is live, what is simulated, what production would require, and what should not be claimed yet."
+    },
+    {
+      id: "secure-rag-case-study",
+      title: "Secure RAG case study",
+      status: "live",
+      source: "Case Study 01",
+      href: "../../case-studies/secure-rag/index.html",
+      keywords: ["case", "study", "qa", "evidence", "documentation", "secure", "rag", "resume", "interview", "release", "proof"],
+      summary: "The published case study documents the problem, system design, security decisions, QA evidence, lessons learned, resume bullets, and what remains future work."
+    },
+    {
+      id: "career-proof",
+      title: "Resume proof from the Secure RAG demo",
+      status: "prototype",
+      source: "Secure RAG · resume proof",
+      href: "index.html#scope",
+      keywords: ["resume", "career", "proof", "secure", "ai", "product", "retrieval", "architecture", "front-end", "system", "cloud", "security", "privacy", "qa", "evaluation"],
+      summary: "The demo provides evidence for secure AI product thinking, retrieval architecture, front-end system design, cloud deployment awareness, security/privacy reasoning, and QA/evaluation mindset."
+    },
+    {
       id: "learning-path",
       title: "Learning path: Python, NumPy, pandas, SQL, scikit-learn, PyTorch",
       status: "learning",
@@ -367,10 +421,16 @@
   /* Route whitelist: result links may only point at known internal pages. */
   var ROUTE_WHITELIST = [
     "index.html",
+    "index.html#architecture-layers",
     "index.html#architecture",
+    "index.html#search",
+    "index.html#threat-model",
+    "index.html#prototype-production",
+    "index.html#scope",
     "../index.html",
     "../index.html#live-system",
     "../index.html#roadmap",
+    "../../case-studies/secure-rag/index.html",
     "../../portfolio/index.html",
     "../../index.html",
     "../../start-project/index.html"
@@ -378,6 +438,12 @@
 
   function safeHref(href) {
     return ROUTE_WHITELIST.indexOf(href) !== -1 ? href : "../index.html";
+  }
+
+  function confidenceLabel(relevance) {
+    if (relevance >= 0.82) return "High";
+    if (relevance >= 0.56) return "Medium";
+    return "Low";
   }
 
   function renderStateCard(kind, kicker, title, body, extra) {
@@ -451,6 +517,8 @@
 
       var claim = CLAIM_NOTES[doc.status];
       meta.appendChild(el("span", "rag-claim" + (claim.caution ? " is-caution" : ""), claim.text));
+      meta.appendChild(el("span", "rag-confidence", "Confidence: " + confidenceLabel(r.relevance)));
+      meta.appendChild(el("span", "rag-source-inline", "Source boundary: whitelisted public page"));
       card.appendChild(meta);
 
       var why = el("p", "rag-why");

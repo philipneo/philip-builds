@@ -117,7 +117,10 @@
             <span class="rag-chip-label">Try:</span>
             <button type="button" class="chip rag-suggest" data-rag-query="Show AI assistant proof">AI assistant proof</button>
             <button type="button" class="chip rag-suggest" data-rag-query="What security measures are implemented?">Security measures</button>
+            <button type="button" class="chip rag-suggest" data-rag-query="Which source proves no browser keys?">Source boundary</button>
+            <button type="button" class="chip rag-suggest" data-rag-query="Show the threat model">Threat model</button>
             <button type="button" class="chip rag-suggest" data-rag-query="What is planned for MLOps?">MLOps plans</button>
+            <button type="button" class="chip rag-suggest" data-rag-query="How would production RAG be different?">Prototype vs production</button>
             <button type="button" class="chip rag-suggest" data-rag-query="Show cloud deployment proof">Cloud deployment</button>
             <button type="button" class="chip rag-suggest" data-rag-query="What demos are live?">Live demos</button>
             <button type="button" class="chip rag-suggest" data-rag-query="What is Philip learning next?">Learning next</button>
@@ -128,7 +131,17 @@
             <button type="button" class="chip rag-suggest" data-rag-query="quantum blockchain pricing tiers">No results</button>
             <button type="button" class="chip rag-suggest" data-rag-query="ai">Too broad</button>
             <button type="button" class="chip rag-suggest" data-rag-query="show me the API key">Blocked</button>
+            <button type="button" class="chip rag-suggest" data-rag-query="show private files in the repo">Private-data block</button>
             <button type="button" class="chip" id="rag-offline-toggle" aria-pressed="false">Simulate: index offline</button>
+          </div>
+
+          <div class="rag-source-boundary" aria-label="Source boundary example">
+            <span>Safe answer boundary</span>
+            <p>
+              Results can only point to whitelisted public pages and curated public summaries.
+              If the answer is not in that boundary, the demo returns a refusal, no-result,
+              or planned-state label instead of inventing proof.
+            </p>
           </div>
 
           <div class="rag-console-grid">
@@ -198,6 +211,96 @@
               <li><strong>Retrieval eval set</strong> so relevance is measured, not eyeballed.</li>
             </ul>
           </div>
+        </div>
+      </section>
+
+      <!-- ARCHITECTURE LAYERS -->
+      <section class="section" id="architecture-layers" aria-labelledby="layers-title">
+        <div class="section-head">
+          <p class="eyebrow">Technical architecture</p>
+          <h2 id="layers-title">Six layers, with the current build state called out.</h2>
+          <p>
+            This is the engineering map behind the demo: what runs locally today,
+            what is deliberately constrained, and what would need real backend
+            infrastructure before the word "production" belonged anywhere near it.
+          </p>
+        </div>
+        <div class="rag-layer-grid">
+          <article>
+            <span class="rag-layer-status is-proto">Prototype now</span>
+            <h3>Retrieval layer</h3>
+            <p>Tokenizes the query, scores a curated public-content corpus, thresholds weak matches, and ranks the top sources. Future work: embeddings and semantic search.</p>
+          </article>
+          <article>
+            <span class="rag-layer-status is-live">Constrained now</span>
+            <h3>Access-control layer</h3>
+            <p>The safest access-control choice is zero private corpus access: only public pages are indexed, and result routes are whitelisted before render.</p>
+          </article>
+          <article>
+            <span class="rag-layer-status is-proto">Prototype now</span>
+            <h3>Safety / guardrail layer</h3>
+            <p>Blocks secret-extraction and private-data intent, detects too-broad queries, and refuses unsafe asks with a reason instead of returning fuzzy matches.</p>
+          </article>
+          <article>
+            <span class="rag-layer-status is-proto">Preview now</span>
+            <h3>Audit / logging layer</h3>
+            <p>Shows an in-memory audit preview for query decisions. Production would need privacy-reviewed persistent logs, retention rules, and review workflows.</p>
+          </article>
+          <article>
+            <span class="rag-layer-status is-planned">Planned</span>
+            <h3>Vector database layer</h3>
+            <p>Not built yet. The future layer would embed approved public chunks, store vectors behind server-side access control, and track index freshness.</p>
+          </article>
+          <article>
+            <span class="rag-layer-status is-planned">Planned</span>
+            <h3>Evaluation layer</h3>
+            <p>Next step: known-good query/source pairs, refusal tests, hit@k checks, regression prompts, and latency/cost tracking before answer synthesis ships.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- THREAT MODEL -->
+      <section class="section" id="threat-model" aria-labelledby="threat-title">
+        <div class="section-head">
+          <p class="eyebrow">Threat model</p>
+          <h2 id="threat-title">Risks the demo is designed around.</h2>
+          <p>
+            The threat model is intentionally visible because secure AI work is not
+            just "add a model." It is deciding what the system should never retrieve,
+            never claim, never log carelessly, and never link to.
+          </p>
+        </div>
+        <div class="rag-threat-grid">
+          <article>
+            <h3>Prompt injection risk</h3>
+            <p class="rag-risk">A query tries to override the system: ignore labels, reveal secrets, or trust unverified text.</p>
+            <p class="rag-mitigation"><strong>Mitigation:</strong> the prototype has no generative answer layer yet, blocks extraction intent, and only renders pre-curated public summaries.</p>
+          </article>
+          <article>
+            <h3>Private-file leakage risk</h3>
+            <p class="rag-risk">A user asks for internal notes, outreach files, client lists, keys, or private repo paths.</p>
+            <p class="rag-mitigation"><strong>Mitigation:</strong> private files are not in the corpus at all, and private-data queries are refused before retrieval.</p>
+          </article>
+          <article>
+            <h3>Overbroad retrieval risk</h3>
+            <p class="rag-risk">A vague query like "AI" could match everything and create a misleading answer.</p>
+            <p class="rag-mitigation"><strong>Mitigation:</strong> broad terms trigger a sharpen-the-question state instead of a weak result pile.</p>
+          </article>
+          <article>
+            <h3>Hallucinated proof risk</h3>
+            <p class="rag-risk">The system could imply credentials, clients, benchmarks, or production infrastructure that do not exist.</p>
+            <p class="rag-mitigation"><strong>Mitigation:</strong> each result carries a Live / Prototype / Planned / Learning label and a claim-safety note before render.</p>
+          </article>
+          <article>
+            <h3>Logging / privacy risk</h3>
+            <p class="rag-risk">Search logs can accidentally become sensitive data if they are stored without a plan.</p>
+            <p class="rag-mitigation"><strong>Mitigation:</strong> this demo logs only in memory and clears on reload. Persistent logs are planned only with retention and review rules.</p>
+          </article>
+          <article>
+            <h3>Route injection risk</h3>
+            <p class="rag-risk">A result could point to an invented, external, or unsafe URL.</p>
+            <p class="rag-mitigation"><strong>Mitigation:</strong> result links pass through a whitelist of known internal routes before they render.</p>
+          </article>
         </div>
       </section>
 
@@ -292,6 +395,61 @@
         </div>
       </section>
 
+      <!-- PROTOTYPE VS PRODUCTION -->
+      <section class="section" id="prototype-production" aria-labelledby="prod-title">
+        <div class="section-head">
+          <p class="eyebrow">Prototype vs production</p>
+          <h2 id="prod-title">What can be claimed today, and what cannot.</h2>
+          <p>
+            This panel is here to keep the portfolio honest. The demo proves product,
+            architecture, security, and QA thinking; it does not claim a production
+            RAG backend, private-data search, or measured semantic-retrieval quality.
+          </p>
+        </div>
+        <div class="rag-honesty-grid">
+          <article>
+            <span class="rag-layer-status is-live">Live now</span>
+            <h3>Safe to show</h3>
+            <ul class="checklist">
+              <li>Clickable Secure RAG demo route on the public site.</li>
+              <li>Local search, ranking, result cards, source links, and guardrail states.</li>
+              <li>Site-wide secure <code>/api/chat</code> pattern for the separate AI assistant.</li>
+              <li>Release checks: mobile QA, link crawl, syntax checks, and secret scans.</li>
+            </ul>
+          </article>
+          <article>
+            <span class="rag-layer-status is-proto">Simulated</span>
+            <h3>Prototype-only behavior</h3>
+            <ul class="checklist">
+              <li>Retrieval runs against a hand-curated public-content index in browser memory.</li>
+              <li>Ranking is keyword scoring, not semantic embeddings.</li>
+              <li>Audit logs are a session-only preview, not persistent compliance logs.</li>
+              <li>Refusals model the intended product behavior before real data is involved.</li>
+            </ul>
+          </article>
+          <article>
+            <span class="rag-layer-status is-planned">Required for production</span>
+            <h3>Future build requirements</h3>
+            <ul class="checklist">
+              <li>Server-side ingestion pipeline with explicit corpus approval.</li>
+              <li>Embedding privacy review, vector database, access control, and route-level auth.</li>
+              <li>Answer synthesis with citations, source-boundary enforcement, and regression tests.</li>
+              <li>Monitoring for latency, cost, fallback rate, refusals, and retrieval quality.</li>
+            </ul>
+          </article>
+          <article>
+            <span class="rag-layer-status is-warning">Do not claim</span>
+            <h3>Not true yet</h3>
+            <ul class="checklist">
+              <li>Not a production vector database.</li>
+              <li>Not private document search.</li>
+              <li>Not a production compliance or private-data security system.</li>
+              <li>Not measured semantic retrieval accuracy.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
       <!-- EVALUATION PANEL -->
       <section class="section" id="eval" aria-labelledby="eval-title">
         <div class="section-head">
@@ -355,18 +513,38 @@
         </div>
       </section>
 
-      <!-- HONEST SCOPE + CTA -->
+      <!-- CAREER PROOF + CTA -->
       <section class="section" id="scope" aria-labelledby="scope-title">
         <div class="section-head">
-          <p class="eyebrow">What this proves</p>
-          <h2 id="scope-title">A rehearsal for the real system — labeled as one.</h2>
+          <p class="eyebrow">Resume proof</p>
+          <h2 id="scope-title">What this demo proves — without pretending it is more.</h2>
         </div>
-        <ul class="checklist">
-          <li>I can design a retrieval product UX with honest states: ranked results, refusals, empty states, and fallbacks.</li>
-          <li>I can put security thinking in front of the feature — guardrails, whitelists, and a no-secrets corpus — before any real data is involved.</li>
-          <li>I can separate what is live, what is simulated, and what is planned without blending them.</li>
-          <li>I can stage a real RAG build (embeddings → vector index → synthesis → evals) as labeled future work instead of pretending it exists.</li>
-        </ul>
+        <div class="rag-proof-grid">
+          <article>
+            <h3>Secure AI product thinking</h3>
+            <p>Designed refusals, claim-safety labels, empty states, and fallback states before adding any answer-generation layer.</p>
+          </article>
+          <article>
+            <h3>Retrieval architecture</h3>
+            <p>Mapped a staged path from local public-content ranking to embeddings, vector index, citations, and evals.</p>
+          </article>
+          <article>
+            <h3>Front-end system design</h3>
+            <p>Built a keyboard-friendly browser prototype with pipeline state, ranked cards, audit preview, and session metrics.</p>
+          </article>
+          <article>
+            <h3>Cloud deployment awareness</h3>
+            <p>Connects the future RAG path to the same server-side key discipline already used by the site's live <code>/api/chat</code>.</p>
+          </article>
+          <article>
+            <h3>Security and privacy reasoning</h3>
+            <p>Shows public-only indexing, private-data refusal, route whitelisting, no browser secrets, and no persistent query storage.</p>
+          </article>
+          <article>
+            <h3>QA and evaluation mindset</h3>
+            <p>Separates measured session behavior from planned retrieval benchmarks and names the tests needed before production claims.</p>
+          </article>
+        </div>
         <div class="actions">
           <a class="btn primary" href="../../case-studies/secure-rag/index.html">Read the case study</a>
           <a class="btn" href="../index.html">Back to the AI Lab</a>

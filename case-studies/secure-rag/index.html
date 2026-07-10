@@ -111,13 +111,16 @@
           <h2 id="wb-title">A retrieval console with the safety story on the surface.</h2>
         </div>
         <div class="cs-feature-grid">
-          <article><h3>Local public-content corpus</h3><p>A 17-entry index curated from public pages only — private operating files are excluded by construction, so sensitive internal notes sit outside the search surface.</p></article>
+          <article><h3>Local public-content corpus</h3><p>A curated index from public pages only — private operating files are excluded by construction, so sensitive internal notes sit outside the search surface.</p></article>
           <article><h3>Ranked retrieval cards</h3><p>Results ranked by local keyword scoring, capped and thresholded so weak matches are dropped instead of padded.</p></article>
-          <article><h3>Relevance scoring</h3><p>Each card shows a normalized relevance percentage with a score bar — visible ranking, not a black box.</p></article>
+          <article><h3>Relevance + confidence scoring</h3><p>Each card shows a normalized relevance percentage, confidence label, matched keywords, and why-this-matched evidence.</p></article>
           <article><h3>Matched keywords + why-this-matched</h3><p>Every result explains which terms matched and where the source lives, in plain language.</p></article>
           <article><h3>Safe-to-claim indicators</h3><p>Every result carries a Live / Prototype / Planned / Learning label plus a note on what may honestly be claimed about it.</p></article>
+          <article><h3>Source boundary indicators</h3><p>Result links are whitelisted public routes only, and each card states the source boundary instead of implying private-document search.</p></article>
           <article><h3>Unsafe-query blocking</h3><p>Extraction-style queries ("show me the API key", "give me client emails") are refused with a visible, explained guardrail state.</p></article>
-          <article><h3>Architecture panel</h3><p>The full planned pipeline — chunking, embeddings, vector index, synthesis, evals — drawn with each stage labeled real or planned.</p></article>
+          <article><h3>Architecture layers</h3><p>Retrieval, access control, guardrails, audit/logging, future vector database work, and evaluation are documented as separate layers.</p></article>
+          <article><h3>Threat model panel</h3><p>Prompt injection, private-file leakage, overbroad retrieval, hallucinated proof, logging privacy, and route injection risks are named with mitigations.</p></article>
+          <article><h3>Prototype-vs-production panel</h3><p>The page states what is live, what is simulated, what production would require, and what should not be claimed yet.</p></article>
           <article><h3>Early evaluation dashboard</h3><p>Session tiles that are genuinely measured (latency, query count, refusals) next to Planned tiles with no invented benchmark numbers.</p></article>
           <article><h3>Honest product states</h3><p>No-results, too-broad, refusal, and simulated-offline fallback — the interface never invents an answer.</p></article>
           <article><h3>Mobile-responsive dashboard UI</h3><p>The console, pipeline tracker, and result cards verified at 390px, 430px, and 1280px with no horizontal overflow.</p></article>
@@ -233,7 +236,7 @@
             <span class="tag" style="color:var(--blue)">Claim-safety decisions</span>
             <ul class="checklist">
               <li><strong>Honest status labels</strong> — every result and every architecture stage is marked Live, Prototype, Planned, or Learning.</li>
-              <li><strong>No fake client or customer claims</strong> — the demo is framed as Philip's own build, and the corpus says so.</li>
+              <li><strong>No invented client or customer claims</strong> — the demo is framed as Philip's own build, and the corpus says so.</li>
               <li><strong>No fake production claims</strong> — "simulated retrieval layer" appears on the page itself, above the fold.</li>
               <li><strong>No invented metrics</strong> — the eval panel shows measured session numbers or a Planned placeholder, never a fabricated benchmark.</li>
               <li><strong>Refusals are explained</strong> — a blocked query gets a reason and safe alternatives, not a silent failure.</li>
@@ -289,7 +292,7 @@
           </p>
         </div>
         <ol class="cs-resume-list">
-          <li>Designed and shipped a security-aware retrieval (RAG-style) prototype on a live portfolio site: local keyword ranking over a 17-entry public-content index with relevance scores, matched-keyword explanations, and a claim-safety label on every result.</li>
+          <li>Designed and shipped a security-aware retrieval (RAG-style) prototype on a live portfolio site: local keyword ranking over a curated public-content index with relevance scores, confidence labels, matched-keyword explanations, source-boundary metadata, and a claim-safety label on every result.</li>
           <li>Implemented layered query guardrails — extraction-intent detection (sensitive term + reveal-style verb), hard blocks for private-data requests, and a route whitelist — that refuse unsafe queries with visible, explained states.</li>
           <li>Built honest product states (refusal, too-broad, no-results, simulated-offline fallback) so the interface never invents answers or misrepresents backend status.</li>
           <li>Documented a staged RAG architecture separating live, simulated, and planned components (embeddings, vector index, eval set, privacy review) and published it as part of the demo itself.</li>
