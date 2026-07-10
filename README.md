@@ -1,47 +1,58 @@
-# Philip Builds Studio
+# Philip Builds Studio / Neo Labs
 
-Public website and demo workbench for Philip Builds Studio, a small website-building business for local service businesses.
+Public website and technical portfolio for Philip Miranda.
 
-Open `index.html` in a browser to preview the public Philip Builds Studio homepage.
+The current direction is Neo Labs: applied AI, cloud, security-aware front-end systems, and honest learning-in-public documentation. The local-business website studio remains present as the applied/client-style lane in the portfolio.
 
-## Site-Building Mode
+Open `index.html` in a browser to preview the site.
 
-Philip Builds Studio is now centered on a simpler public offer:
+## Current Focus
 
-> Clean, mobile-ready one-page websites for local service businesses. Fast turnaround, fixed price, no tech headaches.
+Primary proof-of-work:
 
-Public assets:
+- Live AI Portfolio Assistant on the public site.
+- Same-origin `/api/chat` backend on Vercel, with API keys kept server-side.
+- Rule-based fallback when model replies are unavailable.
+- Secure RAG Portfolio Search prototype at `ai-lab/secure-rag/index.html`.
+- Secure RAG case study at `case-studies/secure-rag/index.html`.
 
-- `portfolio/index.html` - a simple portfolio page for Philip.
-- `demos/mobile-detailing-landing-page/index.html` - GlossLane business landing page demo.
-- `demos/barber-booking-landing-page/index.html` - Crown & Fade barber booking landing page demo.
-- `demos/shift-downtime-calculator/index.html` - a clickable operations tool demo.
-- `demos/cashflow-lab/index.html` - archived internal planning tool.
+## Secure RAG Scope
+
+`ai-lab/secure-rag/` is an honest front-end prototype, not a production retrieval platform.
+
+What is live/simulated now:
+
+- Local public-content search over a curated in-browser corpus.
+- Ranked result cards with relevance, confidence, source boundary, and claim-safety labels.
+- Guardrails for secret-extraction and private-data requests.
+- Threat model and prototype-vs-production panels.
+- Session-only audit preview and measured local latency.
+
+What remains future work:
+
+- Server-side ingestion pipeline.
+- Embeddings and vector database.
+- Access-controlled retrieval API.
+- Answer synthesis with citations.
+- Retrieval eval set, prompt regression tests, and persistent privacy-reviewed logs.
 
 ## Folder Map
 
-- `index.html`, `styles.css`, `script.js` - the public Philip Builds Studio homepage.
-- `portfolio/` - Philip's public portfolio page.
-- `demos/` - clickable public demo apps, including the archived Cashflow Lab.
+- `index.html`, `styles.css` - public homepage for Neo Labs / Philip Builds Studio.
+- `ai-lab/` - AI Lab pages, including the Secure RAG prototype.
+- `case-studies/` - engineering case studies and release notes for shipped proof-of-work.
+- `portfolio/` - public portfolio and local-business studio demos.
+- `demos/` - clickable public demo apps.
+- `shared/` - shared site CSS/JS, assistant UI, and AI config helpers.
+- `api/` - Vercel serverless backend endpoints.
 - `docs/` - setup and publishing instructions.
-- `private/` - internal business ops, trackers, sales notes, and planning files.
-
-Open pages directly in a browser. No install step required.
-
-Best first offer:
-
-> I build a clean one-page website for local service businesses starting at `$150`.
-
-Use the demos to show layout quality, clear calls to action, and simple useful tools.
-
-## Build Priorities
-
-1. Keep the homepage clear and business-facing.
-2. Make demos easy to find and click.
-3. Keep packages simple: Starter, Standard, Monthly Care.
-4. Avoid false claims about real clients.
-5. Keep mobile layout clean.
+- `private/` - ignored internal operating notes and business files.
+- `outputs/` - ignored local/generated QA or delivery artifacts.
 
 ## Guardrails
 
-Do not spam. Do not promise guaranteed revenue. Do not automate medical, legal, or financial advice. Keep a human in the loop for messages that affect customers.
+- Do not commit API keys, `.env` files, private notes, or generated QA artifacts.
+- Do not expose private files through public links.
+- Do not claim invented clients, invented revenue, completed credentials, promised outcomes, or production AI infrastructure that is not built.
+- Keep status labels honest: Live, Prototype, Planned, Learning.
+- For AI changes, run syntax checks, link/static checks where available, and secret scans before committing.
