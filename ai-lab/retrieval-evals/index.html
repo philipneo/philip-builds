@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Retrieval Eval Harness — Neo Labs | Philip Builds Studio</title>
+    <meta name="description" content="A live, in-browser eval harness that regression-tests the Secure RAG prototype: guardrail refusal tests, false-positive checks, hit@k retrieval checks, honesty-state checks, and contract checks — every number measured on this page, none invented." />
+    <link rel="canonical" href="https://philipneo.github.io/philip-builds/ai-lab/retrieval-evals/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Philip Builds Studio" />
+    <meta property="og:title" content="Retrieval Eval Harness — Neo Labs" />
+    <meta property="og:description" content="Regression evals that run live in the browser against the Secure RAG prototype: refusals, hit@k, honesty states, and contract checks." />
+    <meta property="og:url" content="https://philipneo.github.io/philip-builds/ai-lab/retrieval-evals/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Retrieval Eval Harness — Neo Labs" />
+    <meta name="twitter:description" content="A live eval suite for the Secure RAG prototype — measured in the browser, labeled honestly." />
+    <meta property="og:image" content="https://philipneo.github.io/philip-builds/assets/og/philip-builds-studio-og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:image" content="https://philipneo.github.io/philip-builds/assets/og/philip-builds-studio-og.png" />
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../../shared/site.css" />
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../../shared/assistant.css" />
+    <script src="../../shared/ai-config.js" defer></script>
+    <script src="../../shared/reveal.js" defer></script>
+    <script src="../../shared/assistant.js" defer data-assistant-root="../../" data-assistant-context="portfolio"></script>
+    <script src="../secure-rag/script.js" defer></script>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header class="site-head">
+      <a class="site-brand" href="../../index.html"><span>PBS</span> Philip Builds Studio</a>
+      <nav aria-label="Site">
+        <a href="../../index.html">Home</a>
+        <a href="../../portfolio/index.html">Portfolio</a>
+        <a href="../index.html">AI Lab</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="section hero lab-hero">
+        <div class="lab-hero-grid">
+          <div class="lab-hero-copy">
+            <span class="badge">Neo Labs · Lab demo · Evaluation</span>
+            <p class="eyebrow">Regression evals, run live</p>
+            <h1>Retrieval Eval Harness.</h1>
+            <p class="lab-lead">
+              The third Neo Labs build: an eval suite that <strong>runs in your browser
+              right now</strong> against the same engine that powers the
+              <a class="ev-inline-link" href="../secure-rag/index.html">Secure RAG prototype</a>.
+              Guardrail refusal tests, false-positive checks, hit@k retrieval checks,
+              honesty-state checks, and contract checks — every result below is
+              measured on this page load, not typed into the HTML.
+            </p>
+            <p class="lab-note">
+              Honest scope: this is <strong>regression testing, not a benchmark</strong>.
+              The eval set was authored against this same curated corpus, so it proves
+              known behavior still holds after changes — it does not prove semantic
+              retrieval quality. That measurement waits for real embeddings and is
+              labeled planned below, not claimed.
+            </p>
+            <div class="actions">
+              <a class="btn primary" href="#results">See the results</a>
+              <button class="btn" id="eval-rerun" type="button">Re-run the suite</button>
+              <a class="btn" href="../secure-rag/index.html">Open the engine under test</a>
+            </div>
+          </div>
+          <aside class="lab-system-card" aria-label="Eval suite summary">
+            <span class="system-label">Suite snapshot · measured now</span>
+            <h2>Live suite results</h2>
+            <p>These numbers come from the run that just executed in your browser. Re-run the suite and they recompute.</p>
+            <dl class="system-metrics">
+              <div><dt>Checks run</dt><dd><span id="eval-stat-total">—</span></dd></div>
+              <div><dt>Passed</dt><dd><span id="eval-stat-passed">—</span></dd></div>
+              <div><dt>Failed</dt><dd><span id="eval-stat-failed">—</span></dd></div>
+              <div><dt>Pass rate</dt><dd><span id="eval-stat-rate">—</span></dd></div>
+              <div><dt>Avg ranking latency</dt><dd><span id="eval-stat-avg">—</span></dd></div>
+              <div><dt>p95 latency</dt><dd><span id="eval-stat-p95">—</span></dd></div>
+              <div><dt>Corpus size</dt><dd><span id="eval-stat-docs">—</span> documents</dd></div>
+            </dl>
+          </aside>
+        </div>
+      </section>
+
+      <!-- WHY -->
+      <section class="section" id="why" aria-labelledby="why-title">
+        <div class="section-head">
+          <p class="eyebrow">Why this exists</p>
+          <h2 id="why-title">A guardrail you never test is a guardrail you only hope works.</h2>
+          <p>
+            The Secure RAG page promises specific behavior: refuse extraction
+            queries, answer security questions instead of over-blocking them, keep
+            known-good results ranked, degrade honestly, and never link outside the
+            route whitelist. This page turns each promise into a check that either
+            passes or fails in public.
+          </p>
+        </div>
+        <div class="lab-layer-grid">
+          <article>
+            <span class="tag">Regression contract</span>
+            <h3>Locked expectations</h3>
+            <p>Every expected outcome was captured from real engine output first, then locked in. If a corpus or guardrail edit changes behavior, this page turns red before a visitor finds the break.</p>
+          </article>
+          <article>
+            <span class="tag">Both failure directions</span>
+            <h3>Refusals and false positives</h3>
+            <p>Blocking "show me the API key" is half the job. The suite also proves "What security measures are implemented?" still gets answered — a guardrail that over-blocks fails too.</p>
+          </article>
+          <article>
+            <span class="tag">Same code, no mocks</span>
+            <h3>Tests the real engine</h3>
+            <p>The harness imports the exact script the demo runs — same corpus, same scoring, same whitelist. There is no test double that could drift from production behavior.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- RESULTS -->
+      <section class="section" id="results" aria-labelledby="results-title">
+        <div class="section-head">
+          <p class="eyebrow">Live results</p>
+          <h2 id="results-title">The suite, check by check.</h2>
+          <p id="eval-verdict" class="ev-verdict" role="status">Running the suite…</p>
+        </div>
+        <div id="eval-results" class="ev-results" aria-live="polite"></div>
+      </section>
+
+      <!-- WHAT THIS DOES NOT MEASURE -->
+      <section class="section" id="limits" aria-labelledby="limits-title">
+        <div class="section-head">
+          <p class="eyebrow">Honest limits</p>
+          <h2 id="limits-title">What this harness does not measure.</h2>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <span class="tag" style="color:var(--mint)">Measured here</span>
+            <ul class="clean">
+              <li>Guardrail refusals hold for known extraction and private-data queries</li>
+              <li>Security questions are answered, not over-blocked</li>
+              <li>Known-good sources stay in their expected top-k positions</li>
+              <li>Broad, unanswerable, and offline queries degrade honestly</li>
+              <li>Route whitelist, claim labels, and score bounds stay intact</li>
+              <li>Local ranking latency, averaged over repeated runs</li>
+            </ul>
+          </div>
+          <div class="card">
+            <span class="tag" style="color:var(--gold)">Not measured — labeled planned</span>
+            <ul class="clean">
+              <li>Semantic retrieval quality — needs real embeddings and a held-out eval set</li>
+              <li>Model answer quality — there is no generative answer layer yet</li>
+              <li>Prompt regression for the live assistant — separate planned suite</li>
+              <li>Adversarial guardrail coverage beyond the locked query list</li>
+              <li>Cost and latency of a real backend — nothing here leaves the browser</li>
+            </ul>
+          </div>
+        </div>
+        <p class="ev-footnote">
+          One more honest note: a suite authored by the same person who built the
+          engine tends to test what the engine already does well. The value is
+          catching regressions and documenting intent — independent red-teaming is
+          future work, and is listed as such.
+        </p>
+      </section>
+
+      <!-- CTA -->
+      <section class="section" id="next" aria-labelledby="next-title">
+        <div class="section-head">
+          <p class="eyebrow">Keep going</p>
+          <h2 id="next-title">See the system this suite protects.</h2>
+        </div>
+        <div class="actions">
+          <a class="btn primary" href="../secure-rag/index.html">Open the Secure RAG prototype</a>
+          <a class="btn" href="../../case-studies/secure-rag/index.html">Read the case study</a>
+          <a class="btn" href="../index.html">Back to the AI Lab</a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Built with Filipino pride 🇵🇭 -->
+    <footer>
+      <span>Retrieval Eval Harness — a Neo Labs build. Every number on this page is measured in your browser at run time; nothing is hard-coded.</span>
+      <span><a href="../index.html">AI Lab</a> · <a href="../../portfolio/index.html">Portfolio</a> · <a href="../../index.html">Home</a></span>
+    </footer>
+  </body>
+</html>

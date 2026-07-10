@@ -203,7 +203,7 @@
             <h3>Planned <span class="status-pill next">Not built</span></h3>
             <ul class="road-tiles">
               <li>Embeddings + vector database</li>
-              <li>Retrieval eval set + prompt regression tests</li>
+              <li>Semantic eval set + prompt regression tests (a keyword-level regression harness shipped after this study — see the AI Lab)</li>
               <li>Access logs + embedding privacy review</li>
             </ul>
           </div>
@@ -330,7 +330,7 @@
           <li><strong>Privacy review</strong> — review what is embedded before anything is embedded.</li>
           <li><strong>Embedding model</strong> — add real embeddings for semantic matching.</li>
           <li><strong>Vector database</strong> — a real index with access control in front of it.</li>
-          <li><strong>Retrieval eval set</strong> — known-good query→source pairs so relevance is measured, not eyeballed.</li>
+          <li><strong>Retrieval eval set</strong> — known-good query→source pairs so relevance is measured, not eyeballed. First slice shipped since this study: a keyword-level <a href="../../ai-lab/retrieval-evals/index.html">regression harness</a> runs live in the AI Lab; the semantic version still waits for embeddings.</li>
           <li><strong>Prompt regression tests</strong> — automated checks that guardrails survive prompt changes.</li>
           <li><strong>Logs and monitoring</strong> — persistent audit logs with a review workflow.</li>
           <li><strong>Real backend, only when safe</strong> — answer synthesis behind the same server-side key pattern as the live assistant, and not before the eval set exists.</li>

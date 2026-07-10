@@ -199,6 +199,15 @@
       summary: "The real version of this page: embedded public content in a vector index with access control, an eval set, and an embedding privacy review before anything is indexed."
     },
     {
+      id: "retrieval-evals",
+      title: "Retrieval Eval Harness (runs live in the browser)",
+      status: "live",
+      source: "Neo Labs · lab demo",
+      href: "../retrieval-evals/index.html",
+      keywords: ["eval", "evals", "evaluation", "harness", "regression", "tests", "testing", "refusal", "hit", "suite", "pass", "fail", "measured", "qa"],
+      summary: "A live eval harness that regression-tests this search engine in the browser: guardrail refusal tests, false-positive checks, hit@k retrieval checks, honesty-state checks, and contract checks, with measured latency."
+    },
+    {
       id: "certs-targeted",
       title: "Targeted certifications (none claimed as completed)",
       status: "planned",
@@ -346,12 +355,37 @@
     };
   }
 
+  /* Route whitelist: result links may only point at known internal pages. */
+  var ROUTE_WHITELIST = [
+    "index.html",
+    "index.html#architecture-layers",
+    "index.html#architecture",
+    "index.html#search",
+    "index.html#threat-model",
+    "index.html#prototype-production",
+    "index.html#scope",
+    "../index.html",
+    "../index.html#live-system",
+    "../index.html#roadmap",
+    "../retrieval-evals/index.html",
+    "../../case-studies/secure-rag/index.html",
+    "../../portfolio/index.html",
+    "../../index.html",
+    "../../start-project/index.html"
+  ];
+
+  function safeHref(href) {
+    return ROUTE_WHITELIST.indexOf(href) !== -1 ? href : "../index.html";
+  }
+
   var engine = {
     CORPUS: CORPUS,
+    ROUTE_WHITELIST: ROUTE_WHITELIST,
     tokenize: tokenize,
     classifyQuery: classifyQuery,
     scoreDoc: scoreDoc,
-    runSearch: runSearch
+    runSearch: runSearch,
+    safeHref: safeHref
   };
 
   /* Expose the pure engine for local QA. No secrets or external services. */
@@ -416,28 +450,6 @@
     ["parse", "guard", "retrieve", "rank", "claims", "render"].forEach(function (s) {
       setStep(s, "", "idle");
     });
-  }
-
-  /* Route whitelist: result links may only point at known internal pages. */
-  var ROUTE_WHITELIST = [
-    "index.html",
-    "index.html#architecture-layers",
-    "index.html#architecture",
-    "index.html#search",
-    "index.html#threat-model",
-    "index.html#prototype-production",
-    "index.html#scope",
-    "../index.html",
-    "../index.html#live-system",
-    "../index.html#roadmap",
-    "../../case-studies/secure-rag/index.html",
-    "../../portfolio/index.html",
-    "../../index.html",
-    "../../start-project/index.html"
-  ];
-
-  function safeHref(href) {
-    return ROUTE_WHITELIST.indexOf(href) !== -1 ? href : "../index.html";
   }
 
   function confidenceLabel(relevance) {

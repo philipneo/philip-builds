@@ -14,6 +14,7 @@ Primary proof-of-work:
 - Same-origin `/api/chat` backend on Vercel, with API keys kept server-side.
 - Rule-based fallback when model replies are unavailable.
 - Secure RAG Portfolio Search prototype at `ai-lab/secure-rag/index.html`.
+- Retrieval Eval Harness at `ai-lab/retrieval-evals/index.html` — a live in-browser regression suite (refusal tests, hit@k checks, honesty states, contract checks) against the Secure RAG engine.
 - Secure RAG case study at `case-studies/secure-rag/index.html`.
 
 ## Secure RAG Scope
@@ -34,7 +35,7 @@ What remains future work:
 - Embeddings and vector database.
 - Access-controlled retrieval API.
 - Answer synthesis with citations.
-- Retrieval eval set, prompt regression tests, and persistent privacy-reviewed logs.
+- Semantic eval set, prompt regression tests, and persistent privacy-reviewed logs. (A keyword-level regression eval harness is live at `ai-lab/retrieval-evals/`.)
 
 ## Folder Map
 

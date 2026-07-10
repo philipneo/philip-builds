@@ -62,6 +62,7 @@
             <div class="actions">
               <a class="btn primary" href="#search">Try the search</a>
               <a class="btn" href="#architecture">View planned architecture</a>
+              <a class="btn" href="../retrieval-evals/index.html">Run the eval harness</a>
             </div>
             <div class="rag-hero-pills" role="group" aria-label="Prototype status summary">
               <span class="state-pill s-checking">Prototype</span>
@@ -252,9 +253,9 @@
             <p>Not built yet. The future layer would embed approved public chunks, store vectors behind server-side access control, and track index freshness.</p>
           </article>
           <article>
-            <span class="rag-layer-status is-planned">Planned</span>
+            <span class="rag-layer-status is-live">Live now</span>
             <h3>Evaluation layer</h3>
-            <p>Next step: known-good query/source pairs, refusal tests, hit@k checks, regression prompts, and latency/cost tracking before answer synthesis ships.</p>
+            <p>A live in-browser <a href="../retrieval-evals/index.html">eval harness</a> regression-tests refusals, hit@k rankings, honesty states, and the route whitelist. Semantic eval sets wait for real embeddings.</p>
           </article>
         </div>
       </section>
@@ -413,6 +414,7 @@
             <ul class="checklist">
               <li>Clickable Secure RAG demo route on the public site.</li>
               <li>Local search, ranking, result cards, source links, and guardrail states.</li>
+              <li>In-browser regression eval harness for guardrails, rankings, and honesty states.</li>
               <li>Site-wide secure <code>/api/chat</code> pattern for the separate AI assistant.</li>
               <li>Release checks: mobile QA, link crawl, syntax checks, and secret scans.</li>
             </ul>
@@ -458,7 +460,8 @@
           <p>
             Session tiles below are real numbers measured in your browser right now.
             Everything a real vector pipeline would need is listed as planned — with
-            no invented benchmark scores.
+            no invented benchmark scores. For the full regression suite that tests
+            this engine, <a href="../retrieval-evals/index.html">run the eval harness</a>.
           </p>
         </div>
         <div class="rag-eval-grid">
@@ -481,6 +484,12 @@
             <p>Queries refused this session for secret- or private-data extraction intent.</p>
           </article>
           <article class="rag-eval-tile">
+            <span class="rag-eval-chip is-measured">Measured</span>
+            <h3>Regression suite</h3>
+            <p class="rag-eval-value">Live</p>
+            <p>Refusal, hit@k, honesty-state, and contract checks run against this engine in the browser. <a href="../retrieval-evals/index.html">Run the eval harness →</a></p>
+          </article>
+          <article class="rag-eval-tile">
             <span class="rag-eval-chip is-design">By design</span>
             <h3>Hallucination risk</h3>
             <p class="rag-eval-value">Low</p>
@@ -500,9 +509,9 @@
           </article>
           <article class="rag-eval-tile is-planned-tile">
             <span class="rag-eval-chip is-planned">Planned</span>
-            <h3>Retrieval relevance</h3>
+            <h3>Semantic retrieval relevance</h3>
             <p class="rag-eval-value">—</p>
-            <p>A scored eval set (hit@k over known-good query→source pairs) lands with real embeddings. No score is claimed until it is measured.</p>
+            <p>A keyword-level hit@k suite is live in the eval harness; scored semantic relevance lands with real embeddings. No semantic score is claimed until it is measured.</p>
           </article>
           <article class="rag-eval-tile is-planned-tile">
             <span class="rag-eval-chip is-planned">Planned</span>

@@ -1,0 +1,136 @@
+/* Retrieval Eval Harness — page styles. Builds on shared/site.css + ai-lab/styles.css. */
+
+.ev-inline-link {
+  color: var(--mint);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ── Verdict banner ── */
+.ev-verdict {
+  margin-top: 14px;
+  padding: 12px 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel);
+  font-weight: 700;
+}
+
+.ev-verdict.is-pass {
+  border-color: rgba(94, 234, 212, 0.35);
+  background: rgba(94, 234, 212, 0.07);
+  color: var(--mint);
+}
+
+.ev-verdict.is-fail {
+  border-color: rgba(248, 113, 113, 0.4);
+  background: rgba(248, 113, 113, 0.08);
+  color: #fca5a5;
+}
+
+/* ── Categories ── */
+.ev-results {
+  display: grid;
+  gap: 22px;
+  margin-top: 8px;
+}
+
+.ev-category {
+  min-width: 0;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  background: var(--panel);
+}
+
+.ev-cat-head h3 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+}
+
+.ev-cat-count {
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.ev-cat-count.is-pass { background: rgba(94, 234, 212, 0.16); color: var(--mint); }
+.ev-cat-count.is-fail { background: rgba(248, 113, 113, 0.15); color: #fca5a5; }
+
+.ev-cat-note {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* ── Results table ── */
+.ev-table-wrap {
+  margin-top: 14px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.ev-table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.ev-table th {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.07em;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.ev-table td {
+  padding: 10px;
+  border-bottom: 1px solid var(--soft);
+  vertical-align: top;
+}
+
+.ev-table tbody tr:last-child td { border-bottom: 0; }
+
+.ev-table tr.is-failing td { background: rgba(248, 113, 113, 0.05); }
+
+.ev-test { color: #e7eef7; font-weight: 700; }
+
+.ev-expected, .ev-observed { color: var(--muted); }
+
+.ev-pill {
+  display: inline-flex;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.ev-pill.is-pass { background: rgba(94, 234, 212, 0.16); color: var(--mint); }
+.ev-pill.is-fail { background: rgba(248, 113, 113, 0.15); color: #fca5a5; }
+
+.ev-footnote {
+  max-width: 78ch;
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .ev-category { padding: 16px; }
+  .ev-table { font-size: 0.8rem; }
+}

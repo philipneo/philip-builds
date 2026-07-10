@@ -277,7 +277,7 @@ GET /api/chat  <span class="c-ok">200</span>
             <span class="tag" style="color:var(--gold)">Planned next</span>
             <ul class="clean">
               <li>Real embeddings and a vector index, after an embedding privacy review</li>
-              <li>Retrieval eval set and prompt regression tests</li>
+              <li>Semantic eval sets — the keyword-level eval harness is already live</li>
               <li>Answer synthesis with citations, behind the same server-side key pattern</li>
               <li>Access control and persistent audit logs</li>
             </ul>
@@ -286,6 +286,46 @@ GET /api/chat  <span class="c-ok">200</span>
         <div class="actions">
           <a class="btn primary" href="secure-rag/index.html">Open the Secure RAG prototype</a>
           <a class="btn" href="../case-studies/secure-rag/index.html">Read the case study</a>
+        </div>
+      </section>
+
+      <!-- LAB DEMO: RETRIEVAL EVAL HARNESS -->
+      <section class="section" id="retrieval-evals" aria-labelledby="rev-title">
+        <div class="section-head">
+          <p class="eyebrow">Lab demo · Live · Shipped July 2026</p>
+          <h2 id="rev-title">Retrieval Eval Harness.</h2>
+          <p>
+            The third Neo Labs build: a regression eval suite that runs live in the
+            browser against the same engine the Secure RAG demo uses. Guardrail
+            refusal tests, false-positive checks, hit@k retrieval checks, honesty-state
+            checks, and contract checks — every result measured at page load, none
+            typed into the HTML.
+          </p>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <span class="tag" style="color:var(--mint)">Measured on the page</span>
+            <ul class="clean">
+              <li>Extraction and private-data queries still get refused with zero results</li>
+              <li>Security questions still get answered — over-blocking fails the suite too</li>
+              <li>Known-good sources hold their expected top-k rankings</li>
+              <li>Route whitelist, claim labels, and score bounds stay intact</li>
+              <li>Local ranking latency, averaged over repeated runs</li>
+            </ul>
+          </div>
+          <div class="card">
+            <span class="tag" style="color:var(--gold)">Still planned — labeled honestly</span>
+            <ul class="clean">
+              <li>Semantic retrieval quality measurement, once real embeddings exist</li>
+              <li>Prompt regression tests for the live assistant</li>
+              <li>Independent adversarial red-teaming beyond the locked query list</li>
+              <li>Cost and latency tracking for a real backend</li>
+            </ul>
+          </div>
+        </div>
+        <div class="actions">
+          <a class="btn primary" href="retrieval-evals/index.html">Run the eval harness</a>
+          <a class="btn" href="secure-rag/index.html">Open the engine under test</a>
         </div>
       </section>
 
@@ -309,6 +349,7 @@ GET /api/chat  <span class="c-ok">200</span>
               <li>Lighthouse / accessibility QA</li>
               <li>Secret scan release checks</li>
               <li><a class="road-tile-link" href="secure-rag/index.html">Secure RAG search prototype demo →</a></li>
+              <li><a class="road-tile-link" href="retrieval-evals/index.html">Retrieval eval harness (live in-browser) →</a></li>
             </ul>
           </div>
           <div class="road-col">
@@ -349,7 +390,7 @@ GET /api/chat  <span class="c-ok">200</span>
           <article>
             <span class="tag">Evaluation</span>
             <h3>Model and prompt tests</h3>
-            <p>Planned regression prompts, response checks, and route validation so assistant changes can be tested before shipping.</p>
+            <p>Retrieval-level regression evals now run live in the browser. Prompt regression tests and response checks for the assistant itself are still planned.</p>
           </article>
           <article>
             <span class="tag">Observability</span>
