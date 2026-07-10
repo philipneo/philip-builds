@@ -44,6 +44,7 @@
       <a class="header-cta" href="#calculator">Get a Quote</a>
     </header>
 
+    <main>
     <!-- HERO -->
     <section id="top" class="s-hero">
       <div class="hero-inner">
@@ -232,26 +233,26 @@
           <div class="calc-section">
             <div class="calc-section-label">Home size</div>
             <div class="size-btns" role="group" aria-label="Home size">
-              <button class="size-btn" type="button" data-size="0.9" data-size-label="Apartment">Apartment<span>under 900 sq ft</span></button>
-              <button class="size-btn is-active" type="button" data-size="1" data-size-label="Standard home">Standard<span>900–2,000 sq ft</span></button>
-              <button class="size-btn" type="button" data-size="1.25" data-size-label="Large home">Large<span>2,000+ sq ft</span></button>
+              <button class="size-btn" type="button" data-size="0.9" data-size-label="Apartment" aria-pressed="false">Apartment<span>under 900 sq ft</span></button>
+              <button class="size-btn is-active" type="button" data-size="1" data-size-label="Standard home" aria-pressed="true">Standard<span>900–2,000 sq ft</span></button>
+              <button class="size-btn" type="button" data-size="1.25" data-size-label="Large home" aria-pressed="false">Large<span>2,000+ sq ft</span></button>
             </div>
           </div>
 
           <div class="calc-section">
             <div class="calc-section-label">Cleaning condition</div>
             <div class="condition-btns" role="group" aria-label="Cleaning condition">
-              <button class="condition-btn" type="button" data-condition="0.85" data-condition-label="Light tidy">
+              <button class="condition-btn" type="button" data-condition="0.85" data-condition-label="Light tidy" aria-pressed="false">
                 <span class="cond-name">Light tidy</span>
                 <span class="cond-desc">Maintained, light upkeep</span>
                 <span class="cond-mult">×0.85</span>
               </button>
-              <button class="condition-btn is-active" type="button" data-condition="1" data-condition-label="Standard clean">
+              <button class="condition-btn is-active" type="button" data-condition="1" data-condition-label="Standard clean" aria-pressed="true">
                 <span class="cond-name">Standard</span>
                 <span class="cond-desc">Normal lived-in home</span>
                 <span class="cond-mult">×1.0</span>
               </button>
-              <button class="condition-btn" type="button" data-condition="1.4" data-condition-label="Deep clean">
+              <button class="condition-btn" type="button" data-condition="1.4" data-condition-label="Deep clean" aria-pressed="false">
                 <span class="cond-name">Deep clean</span>
                 <span class="cond-desc">Heavy buildup, move-out</span>
                 <span class="cond-mult">×1.4</span>
@@ -262,9 +263,9 @@
           <div class="calc-section">
             <div class="calc-section-label">Bedrooms</div>
             <div class="counter-row">
-              <button class="counter-btn" type="button" data-counter="bed" data-dir="-1">−</button>
+              <button class="counter-btn" type="button" data-counter="bed" data-dir="-1" aria-label="Remove one bedroom">−</button>
               <span class="counter-val" id="bedVal">1</span>
-              <button class="counter-btn" type="button" data-counter="bed" data-dir="1">+</button>
+              <button class="counter-btn" type="button" data-counter="bed" data-dir="1" aria-label="Add one bedroom">+</button>
               <span class="counter-price" id="bedPrice">$25</span>
             </div>
           </div>
@@ -272,9 +273,9 @@
           <div class="calc-section">
             <div class="calc-section-label">Bathrooms</div>
             <div class="counter-row">
-              <button class="counter-btn" type="button" data-counter="bath" data-dir="-1">−</button>
+              <button class="counter-btn" type="button" data-counter="bath" data-dir="-1" aria-label="Remove one bathroom">−</button>
               <span class="counter-val" id="bathVal">1</span>
-              <button class="counter-btn" type="button" data-counter="bath" data-dir="1">+</button>
+              <button class="counter-btn" type="button" data-counter="bath" data-dir="1" aria-label="Add one bathroom">+</button>
               <span class="counter-price" id="bathPrice">$25</span>
             </div>
           </div>
@@ -560,6 +561,8 @@
       </div>
     </section>
 
+    </main>
+
     <footer class="site-footer">
       <p class="footer-disc">CleanQuote is a fictional demo created by Philip Builds Studio. No real cleaning service is offered. All prices and estimates are made up for demonstration purposes only. No data is collected or transmitted.</p>
       <div class="footer-links">
@@ -569,7 +572,7 @@
     </footer>
 
     <script src="../../demos/_shared/motion.js" defer></script>
-    <script src="script.js" defer></script>
+    <script src="script.js?v=20260710" defer></script>
     <script src="../../shared/ai-config.js" defer></script>
     <script src="../../shared/assistant.js" defer data-assistant-root="../../" data-assistant-context="cleaning" data-assistant-inline="true"></script>
   </body>

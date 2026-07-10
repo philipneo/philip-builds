@@ -40,6 +40,23 @@ document.addEventListener('DOMContentLoaded', () => {
     laundry: 'Laundry Fold',
   };
 
+  function setPressed(button, pressed) {
+    button.setAttribute('aria-pressed', String(pressed));
+  }
+
+  function selectOne(selector, selected) {
+    document.querySelectorAll(selector).forEach(button => {
+      const active = button === selected;
+      button.classList.toggle('is-active', active);
+      setPressed(button, active);
+    });
+  }
+
+  document.querySelectorAll('[data-toggle]').forEach(button => setPressed(button, button.classList.contains('is-on')));
+  ['[data-urgency]', '[data-size]', '[data-condition]', '[data-freq]'].forEach(selector => {
+    document.querySelectorAll(selector).forEach(button => setPressed(button, button.classList.contains('is-active')));
+  });
+
   // prep tasks tied to scope keys
   const ROOM_PREP = {
     base: { text: 'Clear floors and walkways so the crew can move freely', tag: 'All' },
@@ -384,9 +401,11 @@ document.addEventListener('DOMContentLoaded', () => {
       if (bag[key]) {
         delete bag[key];
         btn.classList.remove('is-on');
+        setPressed(btn, false);
       } else {
         bag[key] = price;
         btn.classList.add('is-on');
+        setPressed(btn, true);
       }
       updateTotal();
     });
@@ -395,8 +414,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ── Urgency buttons ──
   document.querySelectorAll('[data-urgency]').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('[data-urgency]').forEach(b => b.classList.remove('is-active'));
-      btn.classList.add('is-active');
+      selectOne('[data-urgency]', btn);
       state.urgency = parseInt(btn.dataset.urgency, 10);
       updateTotal();
     });
@@ -405,8 +423,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ── Size buttons ──
   document.querySelectorAll('[data-size]').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('[data-size]').forEach(b => b.classList.remove('is-active'));
-      btn.classList.add('is-active');
+      selectOne('[data-size]', btn);
       state.size = parseFloat(btn.dataset.size);
       state.sizeLabel = btn.dataset.sizeLabel;
       updateTotal();
@@ -416,8 +433,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ── Condition buttons ──
   document.querySelectorAll('[data-condition]').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('[data-condition]').forEach(b => b.classList.remove('is-active'));
-      btn.classList.add('is-active');
+      selectOne('[data-condition]', btn);
       state.condition = parseFloat(btn.dataset.condition);
       state.conditionLabel = btn.dataset.conditionLabel;
       updateTotal();
@@ -427,8 +443,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ── Frequency buttons ──
   document.querySelectorAll('[data-freq]').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('[data-freq]').forEach(b => b.classList.remove('is-active'));
-      btn.classList.add('is-active');
+      selectOne('[data-freq]', btn);
       state.freq = parseFloat(btn.dataset.freq);
       state.freqLabel = btn.dataset.freqLabel;
       updateTotal();
@@ -452,11 +467,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const hv = document.getElementById('bathVal'); if (hv) hv.textContent = '1';
       const hp = document.getElementById('bathPrice'); if (hp) hp.textContent = '$25';
 
-      document.querySelectorAll('[data-toggle]').forEach(b => b.classList.remove('is-on'));
-      document.querySelectorAll('[data-urgency]').forEach(b => b.classList.toggle('is-active', b.dataset.urgency === '0'));
-      document.querySelectorAll('[data-size]').forEach(b => b.classList.toggle('is-active', b.dataset.size === '1'));
-      document.querySelectorAll('[data-condition]').forEach(b => b.classList.toggle('is-active', b.dataset.condition === '1'));
-      document.querySelectorAll('[data-freq]').forEach(b => b.classList.toggle('is-active', b.dataset.freq === '1'));
+      document.querySelectorAll('[data-toggle]').forEach(b => {
+        b.classList.remove('is-on');
+        setPressed(b, false);
+      });
+      selectOne('[data-urgency]', document.querySelector('[data-urgency="0"]'));
+      selectOne('[data-size]', document.querySelector('[data-size="1"]'));
+      selectOne('[data-condition]', document.querySelector('[data-condition="1"]'));
+      selectOne('[data-freq]', document.querySelector('[data-freq="1"]'));
 
       // reset sent state too
       if (sentEl && sendBtn) {

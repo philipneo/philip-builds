@@ -54,12 +54,16 @@
     buttons.forEach(function (btn) {
       btn.addEventListener("click", function () {
         var already = btn.classList.contains("is-selected");
-        buttons.forEach(function (b) { b.classList.remove("is-selected"); });
+        buttons.forEach(function (b) {
+          b.classList.remove("is-selected");
+          b.setAttribute("aria-pressed", "false");
+        });
         if (already) {
           selectedType = "";
           selectedDemo = "";
         } else {
           btn.classList.add("is-selected");
+          btn.setAttribute("aria-pressed", "true");
           selectedType = btn.getAttribute("data-type") || "";
           selectedDemo = btn.getAttribute("data-demo") || "";
         }
