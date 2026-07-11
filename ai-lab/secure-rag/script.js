@@ -208,6 +208,15 @@
       summary: "A live eval harness that regression-tests this search engine in the browser: guardrail refusal tests, false-positive checks, hit@k retrieval checks, honesty-state checks, and contract checks, with measured latency."
     },
     {
+      id: "corpus-explorer",
+      title: "Structured Public Corpus + Explorer",
+      status: "live",
+      source: "Neo Labs · lab demo",
+      href: "../corpus-explorer/index.html",
+      keywords: ["corpus", "structured", "content", "chunks", "chunk", "ingestion", "json", "explorer", "provenance", "stable", "ids", "hashes", "allowlist", "boundary"],
+      summary: "Public site pages converted into structured JSON chunks with stable IDs, provenance anchors, and content hashes by an allowlisted build-time script — step 1 of the RAG roadmap, with live boundary checks."
+    },
+    {
       id: "certs-targeted",
       title: "Targeted certifications (none claimed as completed)",
       status: "planned",
@@ -368,6 +377,7 @@
     "../index.html#live-system",
     "../index.html#roadmap",
     "../retrieval-evals/index.html",
+    "../corpus-explorer/index.html",
     "../../case-studies/secure-rag/index.html",
     "../../portfolio/index.html",
     "../../index.html",

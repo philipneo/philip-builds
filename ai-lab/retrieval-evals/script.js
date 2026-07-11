@@ -42,7 +42,8 @@
     { q: "planned embeddings and vector index", expectId: "embeddings-plan", k: 1 },
     { q: "targeted certifications", expectId: "certs-targeted", k: 1 },
     { q: "Which source proves no browser keys?", expectId: "source-boundary", k: 1 },
-    { q: "How would production RAG be different?", expectId: "prototype-production", k: 5 }
+    { q: "How would production RAG be different?", expectId: "prototype-production", k: 5 },
+    { q: "browse the structured corpus chunks", expectId: "corpus-explorer", k: 1 }
   ];
 
   var BROAD_QUERIES = ["ai", "everything", "website"];

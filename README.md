@@ -15,6 +15,7 @@ Primary proof-of-work:
 - Rule-based fallback when model replies are unavailable.
 - Secure RAG Portfolio Search prototype at `ai-lab/secure-rag/index.html`.
 - Retrieval Eval Harness at `ai-lab/retrieval-evals/index.html` — a live in-browser regression suite (refusal tests, hit@k checks, honesty states, contract checks) against the Secure RAG engine.
+- Structured Public Corpus at `ai-lab/corpus-explorer/index.html` — public pages converted into JSON chunks with stable IDs and content hashes by `scripts/build_corpus.py` (allowlist-first, stdlib-only; rerun it after editing public pages).
 - Secure RAG case study at `case-studies/secure-rag/index.html`.
 
 ## Secure RAG Scope
@@ -45,6 +46,7 @@ What remains future work:
 - `portfolio/` - public portfolio and local-business studio demos.
 - `demos/` - clickable public demo apps.
 - `shared/` - shared site CSS/JS, assistant UI, and AI config helpers.
+- `scripts/` - build-time tooling (corpus ingestion); stdlib-only, run manually.
 - `api/` - Vercel serverless backend endpoints.
 - `docs/` - setup and publishing instructions.
 - `private/` - ignored internal operating notes and business files.

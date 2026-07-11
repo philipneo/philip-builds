@@ -312,7 +312,7 @@
           <h2 id="arch-title">The pipeline this prototype is rehearsing.</h2>
           <p>
             Each stage is labeled with what is true today. One stage is live on this
-            site, three are simulated on this page, and four are planned build steps.
+            site, four are prototype or first-slice work, and three are planned build steps.
           </p>
         </div>
         <div class="lab-flow rag-arch-flow" role="group" aria-label="Planned retrieval pipeline stages">
@@ -325,7 +325,7 @@
           <div class="flow-node is-proto">
             <span class="fn-k">Prototype</span>
             <span class="fn-v">Chunking</span>
-            <span class="fn-s">Hand-curated summary entries today; automated chunking comes with the real pipeline.</span>
+            <span class="fn-s">Hand-curated summaries power this demo; a build-time script now generates <a href="../corpus-explorer/index.html">structured chunks</a> — wiring them together is a named next step.</span>
           </div>
           <div class="flow-arrow" aria-hidden="true">→</div>
           <div class="flow-node is-planned">
@@ -358,10 +358,10 @@
             <span class="fn-s">Enforced in code today: every result carries a Live / Prototype / Planned / Learning label.</span>
           </div>
           <div class="flow-arrow" aria-hidden="true">→</div>
-          <div class="flow-node is-planned">
-            <span class="fn-k">Planned</span>
+          <div class="flow-node is-proto">
+            <span class="fn-k">First slice</span>
             <span class="fn-v">Logged evaluation</span>
-            <span class="fn-s">Relevance evals, prompt regression tests, and cost/latency tracking.</span>
+            <span class="fn-s">An in-browser <a href="../retrieval-evals/index.html">regression harness</a> is live; semantic relevance evals, prompt regression, and cost/latency tracking remain planned.</span>
           </div>
         </div>
 

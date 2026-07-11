@@ -1,0 +1,181 @@
+/* Corpus Explorer — page styles. Builds on shared/site.css + ai-lab/styles.css. */
+
+.cx-inline-link {
+  color: var(--mint);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ── Boundary checks ── */
+.cx-checks {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cx-checks li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px;
+  min-width: 0;
+  padding: 12px 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel);
+}
+
+.cx-checks li.is-fail {
+  border-color: rgba(248, 113, 113, 0.4);
+  background: rgba(248, 113, 113, 0.08);
+}
+
+.cx-check-state {
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.is-pass .cx-check-state { background: rgba(94, 234, 212, 0.16); color: var(--mint); }
+.is-fail .cx-check-state { background: rgba(248, 113, 113, 0.15); color: #fca5a5; }
+
+.cx-check-label { color: #e7eef7; font-weight: 700; }
+
+.cx-check-detail { color: var(--muted); font-size: 0.85rem; }
+
+/* ── Filter row ── */
+.cx-filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.cx-filter-label {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.cx-filter-row select,
+.cx-filter-row input {
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--panel);
+  color: #e7eef7;
+  font: inherit;
+  font-size: 0.9rem;
+}
+
+.cx-filter-row input { flex: 1 1 220px; }
+
+.cx-filter-row select:focus-visible,
+.cx-filter-row input:focus-visible {
+  outline: 2px solid var(--mint);
+  outline-offset: 2px;
+}
+
+.cx-count {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+/* ── Chunk cards ── */
+.cx-chunks {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.cx-chunk {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  background: var(--panel);
+}
+
+.cx-chunk-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.cx-chunk-head h3 {
+  color: #fff;
+  font-size: 1rem;
+}
+
+.cx-chunk-page {
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(96, 165, 250, 0.16);
+  color: var(--blue);
+  font-size: 0.65rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.cx-chunk-text {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.cx-chunk-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 12px;
+  color: #9fb2c8;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.cx-chunk-id {
+  color: var(--mint);
+  font-size: 0.75rem;
+  word-break: break-all;
+}
+
+.cx-chunk-link {
+  margin-top: 12px;
+  color: var(--mint);
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.cx-chunk-link:hover { text-decoration: underline; }
+
+.cx-empty,
+.cx-error {
+  padding: 16px;
+  border: 1px dashed var(--line);
+  border-radius: 12px;
+  color: var(--muted);
+}
+
+/* ── Responsive ── */
+@media (max-width: 820px) {
+  .cx-chunks { grid-template-columns: 1fr; }
+  .cx-count { margin-left: 0; flex-basis: 100%; }
+}

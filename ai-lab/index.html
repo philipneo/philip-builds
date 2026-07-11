@@ -329,6 +329,45 @@ GET /api/chat  <span class="c-ok">200</span>
         </div>
       </section>
 
+      <!-- LAB DEMO: STRUCTURED CORPUS -->
+      <section class="section" id="corpus-explorer" aria-labelledby="cx-title">
+        <div class="section-head">
+          <p class="eyebrow">Lab demo · Live · Shipped July 2026</p>
+          <h2 id="cx-title">Structured Public Corpus.</h2>
+          <p>
+            The fourth Neo Labs build, and step 1 of the Secure RAG production
+            roadmap: the site's public pages converted into structured JSON chunks
+            with stable IDs, provenance anchors, and content hashes by an
+            allowlisted, dependency-free build-time script. An explorer page shows
+            every chunk and runs its own boundary checks live.
+          </p>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <span class="tag" style="color:var(--mint)">Shipped in this step</span>
+            <ul class="clean">
+              <li>Allowlist-first ingestion — private/ excluded by construction, not by filter</li>
+              <li>Section-level chunks with stable IDs and source anchors</li>
+              <li>Content hashes for change detection between builds</li>
+              <li>Live boundary checks on the explorer page itself</li>
+            </ul>
+          </div>
+          <div class="card">
+            <span class="tag" style="color:var(--gold)">Still ahead — labeled honestly</span>
+            <ul class="clean">
+              <li>Embedding privacy review, then real embeddings and a vector index</li>
+              <li>Chunk-size tuning for embedding models</li>
+              <li>Wiring the Secure RAG demo to retrieve from this corpus</li>
+              <li>Automated rebuilds — today the script runs manually</li>
+            </ul>
+          </div>
+        </div>
+        <div class="actions">
+          <a class="btn primary" href="corpus-explorer/index.html">Explore the corpus</a>
+          <a class="btn" href="corpus-explorer/corpus.json">View the raw JSON</a>
+        </div>
+      </section>
+
       <!-- ROADMAP -->
       <section class="section" id="roadmap" aria-labelledby="rm-title">
         <div class="section-head">
@@ -350,6 +389,7 @@ GET /api/chat  <span class="c-ok">200</span>
               <li>Secret scan release checks</li>
               <li><a class="road-tile-link" href="secure-rag/index.html">Secure RAG search prototype demo →</a></li>
               <li><a class="road-tile-link" href="retrieval-evals/index.html">Retrieval eval harness (live in-browser) →</a></li>
+              <li><a class="road-tile-link" href="corpus-explorer/index.html">Structured public corpus + explorer →</a></li>
             </ul>
           </div>
           <div class="road-col">
