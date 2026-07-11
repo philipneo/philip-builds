@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Changelog — Neo Labs | Philip Builds Studio</title>
+    <meta name="description" content="The dated, commit-linked changelog of Neo Labs: every lab build from the AI Portfolio Assistant to the Structured Public Corpus, with what shipped, what was verified, and what stayed labeled planned." />
+    <link rel="canonical" href="https://philipneo.github.io/philip-builds/ai-lab/changelog/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Philip Builds Studio" />
+    <meta property="og:title" content="Changelog — Neo Labs" />
+    <meta property="og:description" content="Dated, commit-linked release history of the Neo Labs builds — verifiable against the public git history." />
+    <meta property="og:url" content="https://philipneo.github.io/philip-builds/ai-lab/changelog/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Changelog — Neo Labs" />
+    <meta name="twitter:description" content="Every Neo Labs build, dated and commit-linked." />
+    <meta property="og:image" content="https://philipneo.github.io/philip-builds/assets/og/philip-builds-studio-og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:image" content="https://philipneo.github.io/philip-builds/assets/og/philip-builds-studio-og.png" />
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../../shared/site.css" />
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../../shared/assistant.css" />
+    <script src="../../shared/ai-config.js" defer></script>
+    <script src="../../shared/reveal.js" defer></script>
+    <script src="../../shared/assistant.js" defer data-assistant-root="../../" data-assistant-context="portfolio"></script>
+  </head>
+  <body>
+    <header class="site-head">
+      <a class="site-brand" href="../../index.html"><span>PBS</span> Philip Builds Studio</a>
+      <nav aria-label="Site">
+        <a href="../../index.html">Home</a>
+        <a href="../../portfolio/index.html">Portfolio</a>
+        <a href="../index.html">AI Lab</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="section hero lab-hero">
+        <div class="lab-hero-copy cl-hero">
+          <span class="badge">Neo Labs · Release history</span>
+          <p class="eyebrow">Dated, commit-linked, checkable</p>
+          <h1>The lab changelog.</h1>
+          <p class="lab-lead">
+            Every Neo Labs build, in order, with dates and commit hashes from the
+            <a class="cl-inline-link" href="https://github.com/philipneo/philip-builds">public repository</a>.
+            A portfolio claim you can diff is worth more than one you have to trust —
+            each entry below links to the shipped thing and to the commits behind it.
+          </p>
+          <p class="lab-note">
+            Honest scope: dates and hashes come from real git history. Where a build
+            spans several commits, the entry lists the load-bearing ones rather than
+            pretending it landed in a single perfect change.
+          </p>
+        </div>
+      </section>
+
+      <!-- TIMELINE -->
+      <section class="section" id="timeline" aria-labelledby="tl-title">
+        <div class="section-head">
+          <p class="eyebrow">Release timeline</p>
+          <h2 id="tl-title">Newest first.</h2>
+        </div>
+        <ol class="cl-timeline">
+          <li>
+            <div class="cl-entry-head">
+              <span class="cl-date">2026-07-10</span>
+              <span class="cl-badge is-build">Build 04</span>
+              <h3>Structured Public Corpus + Explorer</h3>
+            </div>
+            <p>
+              Step 1 of the Secure RAG production roadmap, shipped: an allowlist-first,
+              stdlib-only ingestion script converts 8 approved public pages into
+              section-level JSON chunks with stable IDs, provenance anchors, and content
+              hashes. The <a href="../corpus-explorer/index.html">explorer page</a> renders
+              every chunk and runs boundary checks live against the artifact.
+            </p>
+            <ul class="cl-points">
+              <li>private/ excluded by construction — the allowlist is the only input the script reads</li>
+              <li>Duplicate chunk IDs fail the build instead of shipping silently</li>
+              <li>Eval suite grew to cover the new corpus entry; all checks passing at ship time</li>
+            </ul>
+            <p class="cl-commits">Commits: <code>3c3cf47</code></p>
+          </li>
+          <li>
+            <div class="cl-entry-head">
+              <span class="cl-date">2026-07-10</span>
+              <span class="cl-badge is-build">Build 03</span>
+              <h3>Retrieval Eval Harness</h3>
+            </div>
+            <p>
+              A regression eval suite that <a href="../retrieval-evals/index.html">runs live
+              in the browser</a> against the same engine the Secure RAG demo uses — no mocks.
+              Guardrail refusals, false-positive checks, hit@k retrieval, honesty states, and
+              contract invariants, every result measured at page load.
+            </p>
+            <ul class="cl-points">
+              <li>Every expectation captured from real engine output before being locked in</li>
+              <li>Over-blocking fails the suite too — security questions must stay answered</li>
+              <li>Framed honestly as regression testing, not a semantic benchmark</li>
+            </ul>
+            <p class="cl-commits">Commits: <code>a9a7f4c</code></p>
+          </li>
+          <li>
+            <div class="cl-entry-head">
+              <span class="cl-date">2026-07-10</span>
+              <span class="cl-badge is-maint">Hardening</span>
+              <h3>Secure RAG deepening + accessibility pass</h3>
+            </div>
+            <p>
+              The <a href="../secure-rag/index.html">Secure RAG demo</a> gained a visible
+              threat model, a six-layer architecture map, and a prototype-vs-production
+              honesty panel. A parallel pass fixed pressed-state semantics and labels
+              across the demo calculators and the start-project chooser.
+            </p>
+            <p class="cl-commits">Commits: <code>b953a25</code>, <code>61a4279</code>, <code>b373919</code></p>
+          </li>
+          <li>
+            <div class="cl-entry-head">
+              <span class="cl-date">2026-07-05</span>
+              <span class="cl-badge is-docs">Case study</span>
+              <h3>Secure RAG case study published</h3>
+            </div>
+            <p>
+              The first full engineering write-up: problem, system design, security and
+              claim-safety decisions, QA evidence including what review caught, lessons,
+              and resume bullets — <a href="../../case-studies/secure-rag/index.html">documented
+              like a release</a>, including the QA environment's limitations.
+            </p>
+            <p class="cl-commits">Commits: <code>ff4f1dc</code>, <code>39b1459</code>, <code>d178c75</code></p>
+          </li>
+          <li>
+            <div class="cl-entry-head">
+              <span class="cl-date">2026-07-03 → 07-05</span>
+              <span class="cl-badge is-build">Build 02</span>
+              <h3>Secure RAG Portfolio Search</h3>
+            </div>
+            <p>
+              A security-aware retrieval prototype over public portfolio content:
+              guarded queries, ranked results with claim-safety labels, visible pipeline
+              states, and honest refusal/empty/offline states — with embeddings and the
+              vector index explicitly labeled planned, not done.
+            </p>
+            <ul class="cl-points">
+              <li>Extraction-intent guardrail and hard blocks for private-data queries</li>
+              <li>Route whitelist so results can only point at known internal pages</li>
+              <li>Claim-accuracy and guardrail-hardening polish two days after first ship</li>
+            </ul>
+            <p class="cl-commits">Commits: <code>e2b433b</code>, <code>432d848</code></p>
+          </li>
+          <li>
+            <div class="cl-entry-head">
+              <span class="cl-date">2026-06-30 → 07-01</span>
+              <span class="cl-badge is-docs">Lab launch</span>
+              <h3>Neo Labs page ships</h3>
+            </div>
+            <p>
+              The <a href="../index.html">AI Lab</a> becomes a first-class page: the live
+              assistant documented as a case study, the roadmap split into shipped /
+              learning / planned, and the honesty rule set in writing — every claim
+              labeled Live, Prototype, Planned, or Learning.
+            </p>
+            <p class="cl-commits">Commits: <code>2b20162</code>, <code>ff6320e</code></p>
+          </li>
+          <li>
+            <div class="cl-entry-head">
+              <span class="cl-date">2026-06-27 → 06-29</span>
+              <span class="cl-badge is-build">Build 01</span>
+              <h3>AI Portfolio Assistant goes live</h3>
+            </div>
+            <p>
+              The first proof: a real assistant on the public site. Browser UI calls a
+              same-origin <code>/api/chat</code> serverless function on Vercel; the provider
+              key lives in server-side environment variables only, and a rule-based
+              fallback keeps the feature honest when no backend is available.
+            </p>
+            <ul class="cl-points">
+              <li>Front-end assistant first, then the AI-ready serverless architecture, then live activation</li>
+              <li>Backend state detection and error surfaces fixed within two days of going live</li>
+              <li>Route whitelist, prompt constraints, and a reply sanitizer from day one</li>
+            </ul>
+            <p class="cl-commits">Commits: <code>c185526</code>, <code>d5bb06f</code>, <code>d01b95e</code>, <code>31bccc2</code>, <code>104953f</code></p>
+          </li>
+        </ol>
+      </section>
+
+      <!-- CTA -->
+      <section class="section" id="next" aria-labelledby="next-title">
+        <div class="section-head">
+          <p class="eyebrow">Verify it</p>
+          <h2 id="next-title">Don't take the changelog's word for it.</h2>
+          <p>
+            Every hash above is checkable against the
+            <a class="cl-inline-link" href="https://github.com/philipneo/philip-builds/commits/main">commit history</a>,
+            and every build links to the live thing it shipped.
+          </p>
+        </div>
+        <div class="actions">
+          <a class="btn primary" href="../index.html">Back to the AI Lab</a>
+          <a class="btn" href="../corpus-explorer/index.html">Newest build: the corpus</a>
+          <a class="btn" href="../retrieval-evals/index.html">Run the eval harness</a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Built with Filipino pride 🇵🇭 -->
+    <footer>
+      <span>Neo Labs changelog — dated and commit-linked. If an entry can't be verified against git history, it doesn't belong here.</span>
+      <span><a href="../index.html">AI Lab</a> · <a href="../../portfolio/index.html">Portfolio</a> · <a href="../../index.html">Home</a></span>
+    </footer>
+  </body>
+</html>

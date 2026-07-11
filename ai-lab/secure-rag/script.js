@@ -217,6 +217,15 @@
       summary: "Public site pages converted into structured JSON chunks with stable IDs, provenance anchors, and content hashes by an allowlisted build-time script — step 1 of the RAG roadmap, with live boundary checks."
     },
     {
+      id: "lab-changelog",
+      title: "Neo Labs changelog — dated, commit-linked release history",
+      status: "live",
+      source: "Neo Labs · release history",
+      href: "../changelog/index.html",
+      keywords: ["changelog", "release", "notes", "history", "timeline", "builds", "shipped", "dates", "commits", "hashes", "verify"],
+      summary: "Every Neo Labs build in order — assistant, Secure RAG, eval harness, structured corpus — with dates and commit hashes checkable against the public git history."
+    },
+    {
       id: "certs-targeted",
       title: "Targeted certifications (none claimed as completed)",
       status: "planned",
@@ -378,6 +387,7 @@
     "../index.html#roadmap",
     "../retrieval-evals/index.html",
     "../corpus-explorer/index.html",
+    "../changelog/index.html",
     "../../case-studies/secure-rag/index.html",
     "../../portfolio/index.html",
     "../../index.html",

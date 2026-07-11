@@ -1,0 +1,120 @@
+/* Neo Labs changelog — page styles. Builds on shared/site.css + ai-lab/styles.css. */
+
+.cl-hero { max-width: 860px; }
+
+.cl-inline-link {
+  color: var(--mint);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ── Timeline ── */
+.cl-timeline {
+  display: grid;
+  gap: 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cl-timeline > li {
+  position: relative;
+  min-width: 0;
+  padding: 20px 20px 20px 26px;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  background: var(--panel);
+}
+
+.cl-timeline > li::before {
+  content: "";
+  position: absolute;
+  top: 16px;
+  bottom: 16px;
+  left: 12px;
+  width: 3px;
+  border-radius: 3px;
+  background: linear-gradient(180deg, var(--mint), rgba(94, 234, 212, 0.05));
+}
+
+.cl-entry-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.cl-entry-head h3 {
+  flex-basis: 100%;
+  margin-top: 4px;
+  color: #fff;
+}
+
+.cl-date {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.cl-badge {
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.cl-badge.is-build { background: rgba(94, 234, 212, 0.16); color: var(--mint); }
+.cl-badge.is-docs { background: rgba(96, 165, 250, 0.16); color: var(--blue); }
+.cl-badge.is-maint { background: rgba(248, 193, 95, 0.16); color: var(--gold); }
+
+.cl-timeline p {
+  margin-top: 10px;
+  max-width: 86ch;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.cl-points {
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 6px;
+}
+
+.cl-points li {
+  position: relative;
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.cl-points li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: var(--mint);
+}
+
+.cl-commits {
+  margin-top: 12px;
+  font-size: 0.82rem;
+}
+
+.cl-commits code {
+  margin-right: 4px;
+  padding: 2px 7px;
+  border: 1px solid var(--soft);
+  border-radius: 7px;
+  background: rgba(96, 165, 250, 0.08);
+  color: var(--blue);
+  font-size: 0.78rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .cl-timeline > li { padding: 16px 16px 16px 22px; }
+}

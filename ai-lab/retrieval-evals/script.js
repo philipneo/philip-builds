@@ -43,7 +43,8 @@
     { q: "targeted certifications", expectId: "certs-targeted", k: 1 },
     { q: "Which source proves no browser keys?", expectId: "source-boundary", k: 1 },
     { q: "How would production RAG be different?", expectId: "prototype-production", k: 5 },
-    { q: "browse the structured corpus chunks", expectId: "corpus-explorer", k: 1 }
+    { q: "browse the structured corpus chunks", expectId: "corpus-explorer", k: 1 },
+    { q: "show the lab changelog release notes", expectId: "lab-changelog", k: 1 }
   ];
 
   var BROAD_QUERIES = ["ai", "everything", "website"];

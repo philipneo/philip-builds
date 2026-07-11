@@ -38,7 +38,7 @@
       }
     ],
     "chunk_count": 46,
-    "total_chars": 37029
+    "total_chars": 37089
   },
   "chunks": [
     {
@@ -117,9 +117,9 @@
       "page_title": "AI Lab",
       "anchor": "reviewers",
       "title": "Reviewing my work? Start here.",
-      "text": "For reviewers Run a query, then try an unsafe one and watch the guardrail refuse it with a reason. Open the demo → Architecture, security decisions, QA evidence — including what the review caught. Read it → Everything on this site is marked Live, Prototype, Planned, or Learning. Nothing is overclaimed — spot-check any claim against its demo.",
-      "chars": 343,
-      "content_sha1": "db3f8edf8496"
+      "text": "For reviewers Run a query, then try an unsafe one and watch the guardrail refuse it with a reason. Open the demo → Architecture, security decisions, QA evidence — including what the review caught. Read it → Everything on this site is marked Live, Prototype, Planned, or Learning. Nothing is overclaimed — spot-check any claim against its demo or the dated changelog.",
+      "chars": 366,
+      "content_sha1": "15e5fbfb55a9"
     },
     {
       "id": "ai-lab--live-system",
@@ -167,9 +167,9 @@
       "page_title": "AI Lab",
       "anchor": "roadmap",
       "title": "Neo Labs is a build path, not a fake credential wall.",
-      "text": "AI/ML + cloud + security roadmap Shipped proof comes first. Deeper AI/ML, cloud, security, and MLOps work is labeled as learning, planned, or future build. Live AI Portfolio Assistant Same-origin /api/chat integration Vercel serverless deployment Server-side API key handling Fallback and backend state UI Prompt and route guardrails Lighthouse / accessibility QA Secret scan release checks Secure RAG search prototype demo → Retrieval eval harness (live in-browser) → Structured public corpus + explorer → Python for ML NumPy pandas SQL / data workflows scikit-learn PyTorch fundamentals Model evaluation Cloud deployment patterns Secure RAG: real embeddings + vector index AI lead scorer prototype Review sentiment analyzer Cloud ML inference API Model evaluation dashboard Security-aware assistant demo Cloud cost monitor",
-      "chars": 824,
-      "content_sha1": "a91974831cbb"
+      "text": "AI/ML + cloud + security roadmap Shipped proof comes first. Deeper AI/ML, cloud, security, and MLOps work is labeled as learning, planned, or future build. Live AI Portfolio Assistant Same-origin /api/chat integration Vercel serverless deployment Server-side API key handling Fallback and backend state UI Prompt and route guardrails Lighthouse / accessibility QA Secret scan release checks Secure RAG search prototype demo → Retrieval eval harness (live in-browser) → Structured public corpus + explorer → Dated changelog with commit hashes → Python for ML NumPy pandas SQL / data workflows scikit-learn PyTorch fundamentals Model evaluation Cloud deployment patterns Secure RAG: real embeddings + vector index AI lead scorer prototype Review sentiment analyzer Cloud ML inference API Model evaluation dashboard Security-aware assistant demo Cloud cost monitor",
+      "chars": 861,
+      "content_sha1": "0d21adb4bb85"
     },
     {
       "id": "ai-lab--ops-title",
