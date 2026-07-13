@@ -1,249 +1,96 @@
 /* Secure RAG Portfolio Search — simulated retrieval engine.
    Everything runs locally in the browser: no network calls, no external services,
-   no secrets. The corpus below is hand-curated from public pages of this site only. */
+   no secrets. Search content comes from the generated structured public corpus. */
 (function () {
   "use strict";
 
-  /* ── Public-content corpus ──
-     Each entry mirrors something already published on this site. Status labels:
-     live = shipped and visible; prototype = simulated/labeled demo;
-     learning = in-progress study; planned = roadmap item, not built. */
-  var CORPUS = [
-    {
-      id: "assistant-live",
-      title: "AI Portfolio Assistant (live site feature)",
-      status: "live",
-      source: "AI Lab · live system",
-      href: "../index.html#live-system",
-      keywords: ["assistant", "chat", "widget", "live", "proof", "feature", "ux", "portfolio", "ai"],
-      summary: "A real assistant runs on this site: browser UI, a same-origin /api/chat backend, and a rule-based fallback when no backend is available. It is Philip's own build, not client work."
-    },
-    {
-      id: "api-chat",
-      title: "Same-origin /api/chat serverless backend",
-      status: "live",
-      source: "AI Lab · cloud layer",
-      href: "../index.html#live-system",
-      keywords: ["api", "chat", "serverless", "backend", "vercel", "endpoint", "route", "cloud", "deployment", "proof", "function"],
-      summary: "The assistant calls a Vercel serverless function on the same origin. The browser never talks to a model provider directly, and deployment logs make the backend debuggable."
-    },
-    {
-      id: "key-handling",
-      title: "Server-side API key handling",
-      status: "live",
-      source: "AI Lab · security layer",
-      href: "../index.html#live-system",
-      keywords: ["security", "key", "keys", "environment", "variables", "env", "server", "secrets", "protected", "browser", "exposed", "safe", "handling"],
-      summary: "The provider key lives in server-side environment variables on Vercel. It never appears in HTML, CSS, or JS shipped to the browser, and secret scans run before AI changes ship."
-    },
-    {
-      id: "fallback-states",
-      title: "Fallback behavior and honest backend states",
-      status: "live",
-      source: "AI Lab · reliability layer",
-      href: "../index.html#live-system",
-      keywords: ["fallback", "states", "error", "offline", "honest", "quota", "health", "check", "degrade", "reliability"],
-      summary: "On static hosting or any backend failure, the assistant drops to rule-based routing instead of faking AI. The UI reports checking / reachable / unavailable states truthfully."
-    },
-    {
-      id: "guardrails",
-      title: "Prompt guardrails, route whitelist, and reply sanitizer",
-      status: "live",
-      source: "AI Lab · security layer",
-      href: "../index.html#live-system",
-      keywords: ["guardrails", "security", "whitelist", "routes", "sanitizer", "prompt", "safety", "measures", "implemented", "claims", "links"],
-      summary: "Assistant links are restricted to known internal pages, prompt rules forbid invented claims, and a sanitizer strips placeholder or external URLs from replies."
-    },
-    {
-      id: "secret-scans",
-      title: "Secret scan release checks",
-      status: "live",
-      source: "AI Lab · release process",
-      href: "../index.html#live-system",
-      keywords: ["security", "secret", "scan", "release", "checklist", "qa", "measures", "process"],
-      summary: "Grep-based secret scans are part of the release checklist before AI-related changes ship, alongside accessibility and Lighthouse checks."
-    },
-    {
-      id: "cloud-deploy",
-      title: "Cloud deployment: Vercel serverless + static fallback",
-      status: "live",
-      source: "AI Lab · cloud layer",
-      href: "../index.html#live-system",
-      keywords: ["cloud", "deployment", "vercel", "serverless", "github", "pages", "static", "hosting", "deploy", "proof"],
-      summary: "The site deploys to Vercel for real backend mode and degrades honestly on static hosting like GitHub Pages, where the backend cannot run."
-    },
-    {
-      id: "neo-labs",
-      title: "Neo Labs — the AI/ML engineering lab page",
-      status: "live",
-      source: "AI Lab",
-      href: "../index.html",
-      keywords: ["neo", "labs", "lab", "engineering", "roadmap", "ml", "ai", "systems"],
-      summary: "Neo Labs is the technical lab inside Philip Builds Studio: live assistant proof, cloud deployment practice, security-aware design, and a labeled learning roadmap."
-    },
-    {
-      id: "demos-live",
-      title: "Clickable portfolio demos for fictional local businesses",
-      status: "live",
-      source: "Portfolio",
-      href: "../../portfolio/index.html",
-      keywords: ["demos", "portfolio", "live", "clickable", "landing", "pages", "tools", "calculators", "flagship", "command", "center", "websites"],
-      summary: "The portfolio is working front-end demos — landing pages, calculators, and tools for fictional local businesses. The flagship is the Local Business Command Center."
-    },
-    {
-      id: "secure-rag-proto",
-      title: "Secure RAG Portfolio Search (this page)",
-      status: "prototype",
-      source: "Neo Labs · lab demo",
-      href: "index.html",
-      keywords: ["rag", "retrieval", "search", "secure", "vector", "prototype", "index", "ranking", "simulated"],
-      summary: "This page — a front-end simulation of a security-aware retrieval layer over public portfolio content. Local keyword ranking today; embeddings and a vector index are planned."
-    },
-    {
-      id: "architecture-layers",
-      title: "Secure RAG architecture layer map",
-      status: "prototype",
-      source: "Secure RAG · architecture",
-      href: "index.html#architecture-layers",
-      keywords: ["architecture", "layers", "retrieval", "access", "control", "guardrail", "audit", "logging", "evaluation", "vector", "database", "cloud", "system", "design"],
-      summary: "The demo separates retrieval, access control, guardrails, audit logging, future vector database work, and evaluation so each layer is explicit instead of hidden in one feature."
-    },
-    {
-      id: "threat-model",
-      title: "Visible threat model and mitigations",
-      status: "prototype",
-      source: "Secure RAG · threat model",
-      href: "index.html#threat-model",
-      keywords: ["threat", "model", "security", "prompt", "injection", "private", "leakage", "overbroad", "retrieval", "hallucinated", "proof", "logging", "privacy", "risk", "mitigation"],
-      summary: "The page documents risks including prompt injection, private-file leakage, overbroad retrieval, hallucinated proof, logging privacy, and route injection, with concrete mitigations for each."
-    },
-    {
-      id: "source-boundary",
-      title: "Source boundary and citation discipline",
-      status: "prototype",
-      source: "Secure RAG · retrieval console",
-      href: "index.html#search",
-      keywords: ["source", "boundary", "citation", "citations", "whitelist", "public", "page", "proof", "browser", "keys", "safe", "answer"],
-      summary: "Results can only point to whitelisted public pages and curated public summaries. If the answer is outside that boundary, the demo refuses, returns no results, or labels it as planned."
-    },
-    {
-      id: "prototype-production",
-      title: "Prototype versus production boundaries",
-      status: "prototype",
-      source: "Secure RAG · honesty panel",
-      href: "index.html#prototype-production",
-      keywords: ["prototype", "production", "honesty", "requirements", "required", "backend", "vector", "database", "private", "document", "search", "semantic", "accuracy", "claim"],
-      summary: "The prototype-vs-production panel states what is live, what is simulated, what production would require, and what should not be claimed yet."
-    },
-    {
-      id: "secure-rag-case-study",
-      title: "Secure RAG case study",
-      status: "live",
-      source: "Case Study 01",
-      href: "../../case-studies/secure-rag/index.html",
-      keywords: ["case", "study", "qa", "evidence", "documentation", "secure", "rag", "resume", "interview", "release", "proof"],
-      summary: "The published case study documents the problem, system design, security decisions, QA evidence, lessons learned, resume bullets, and what remains future work."
-    },
-    {
-      id: "career-proof",
-      title: "Resume proof from the Secure RAG demo",
-      status: "prototype",
-      source: "Secure RAG · resume proof",
-      href: "index.html#scope",
-      keywords: ["resume", "career", "proof", "secure", "ai", "product", "retrieval", "architecture", "front-end", "system", "cloud", "security", "privacy", "qa", "evaluation"],
-      summary: "The demo provides evidence for secure AI product thinking, retrieval architecture, front-end system design, cloud deployment awareness, security/privacy reasoning, and QA/evaluation mindset."
-    },
-    {
-      id: "learning-path",
-      title: "Learning path: Python, NumPy, pandas, SQL, scikit-learn, PyTorch",
-      status: "learning",
-      source: "AI Lab · roadmap",
-      href: "../index.html#roadmap",
-      keywords: ["learning", "python", "numpy", "pandas", "sql", "scikit-learn", "pytorch", "ml", "next", "studying", "path", "fundamentals"],
-      summary: "In-progress study: Python for ML, NumPy, pandas, SQL and data workflows, scikit-learn, PyTorch fundamentals, model evaluation, and cloud deployment patterns."
-    },
-    {
-      id: "mlops-planned",
-      title: "Planned MLOps discipline: prompt regression tests + model evaluation",
-      status: "planned",
-      source: "AI Lab · roadmap",
-      href: "../index.html#roadmap",
-      keywords: ["mlops", "planned", "evaluation", "evals", "regression", "tests", "prompt", "monitoring", "cost", "latency", "tracking", "next", "discipline"],
-      summary: "Planned engineering practice: prompt regression tests, model evaluation, cost and latency tracking, and monitoring for fallback behavior. Labeled planned — not claimed as done."
-    },
-    {
-      id: "inference-api",
-      title: "Planned: cloud ML inference API",
-      status: "planned",
-      source: "AI Lab · roadmap",
-      href: "../index.html#roadmap",
-      keywords: ["cloud", "ml", "inference", "api", "planned", "model", "deploy", "next"],
-      summary: "A roadmap demo: deploying a small model behind a cloud inference API using the same server-side key discipline as /api/chat."
-    },
-    {
-      id: "eval-dashboard",
-      title: "Planned: model evaluation dashboard",
-      status: "planned",
-      source: "AI Lab · roadmap",
-      href: "../index.html#roadmap",
-      keywords: ["evaluation", "dashboard", "model", "planned", "metrics", "monitoring", "next"],
-      summary: "A roadmap demo: a dashboard for model quality, fallback rates, latency, and cost — the visible face of the planned MLOps layer."
-    },
-    {
-      id: "embeddings-plan",
-      title: "Planned: real embeddings + vector index for this search",
-      status: "planned",
-      source: "Secure RAG · roadmap",
-      href: "index.html#architecture",
-      keywords: ["embeddings", "vector", "database", "index", "planned", "rag", "retrieval", "semantic", "next"],
-      summary: "The real version of this page: embedded public content in a vector index with access control, an eval set, and an embedding privacy review before anything is indexed."
-    },
-    {
-      id: "retrieval-evals",
-      title: "Retrieval Eval Harness (runs live in the browser)",
-      status: "live",
-      source: "Neo Labs · lab demo",
-      href: "../retrieval-evals/index.html",
-      keywords: ["eval", "evals", "evaluation", "harness", "regression", "tests", "testing", "refusal", "hit", "suite", "pass", "fail", "measured", "qa"],
-      summary: "A live eval harness that regression-tests this search engine in the browser: guardrail refusal tests, false-positive checks, hit@k retrieval checks, honesty-state checks, and contract checks, with measured latency."
-    },
-    {
-      id: "corpus-explorer",
-      title: "Structured Public Corpus + Explorer",
-      status: "live",
-      source: "Neo Labs · lab demo",
-      href: "../corpus-explorer/index.html",
-      keywords: ["corpus", "structured", "content", "chunks", "chunk", "ingestion", "json", "explorer", "provenance", "stable", "ids", "hashes", "allowlist", "boundary"],
-      summary: "Public site pages converted into structured JSON chunks with stable IDs, provenance anchors, and content hashes by an allowlisted build-time script — step 1 of the RAG roadmap, with live boundary checks."
-    },
-    {
-      id: "lab-changelog",
-      title: "Neo Labs changelog — dated, commit-linked release history",
-      status: "live",
-      source: "Neo Labs · release history",
-      href: "../changelog/index.html",
-      keywords: ["changelog", "release", "notes", "history", "timeline", "builds", "shipped", "dates", "commits", "hashes", "verify"],
-      summary: "Every Neo Labs build in order — assistant, Secure RAG, eval harness, structured corpus — with dates and commit hashes checkable against the public git history."
-    },
-    {
-      id: "certs-targeted",
-      title: "Targeted certifications (none claimed as completed)",
-      status: "planned",
-      source: "AI Lab · learning path",
-      href: "../index.html#roadmap",
-      keywords: ["certifications", "certs", "aws", "deeplearning", "google", "nvidia", "planned", "targeted", "credentials", "learning"],
-      summary: "Certifications on the roadmap — DeepLearning.AI ML Specialization, AWS ML Engineer Associate, NVIDIA DLI, Google Cloud ML Engineer. All listed as planned or targeted, none claimed as done."
-    },
-    {
-      id: "security-assistant-plan",
-      title: "Planned: security-aware assistant demo",
-      status: "planned",
-      source: "AI Lab · roadmap",
-      href: "../index.html#roadmap",
-      keywords: ["security", "assistant", "planned", "demo", "aware", "privacy", "next"],
-      summary: "A roadmap demo focused on assistant privacy and safety behavior: what the model is allowed to see, say, and refuse."
-    }
+  var APPROVED_PAGES = [
+    "index.html",
+    "ai-lab/index.html",
+    "ai-lab/secure-rag/index.html",
+    "ai-lab/retrieval-evals/index.html",
+    "case-studies/index.html",
+    "case-studies/secure-rag/index.html",
+    "portfolio/index.html",
+    "start-project/index.html"
   ];
+
+  var STATUS_BY_PAGE = {
+    "ai-lab/secure-rag/index.html": "prototype"
+  };
+  var STATUS_OVERRIDES = {
+    "ai-lab--roadmap": "planned",
+    "ai-lab--lp-title": "planned",
+    "index--learning": "learning",
+    "ai-lab--ops-title": "planned"
+  };
+  var ALIASES = {
+    "ai-lab--roadmap": ["mlops", "evals", "next"],
+    "ai-lab--live-system": ["assistant", "serverless", "backend", "api", "keys", "fallback"],
+    "ai-lab-secure-rag--threat-model": ["security", "risks", "mitigations"],
+    "case-studies-secure-rag--security": ["guardrails", "keys", "private", "refusal"],
+    "portfolio--biz-demos-title": ["demos", "websites", "live"],
+    "ai-lab--corpus-explorer": ["chunks", "structured", "provenance"]
+  };
+
+  function preview(text, limit) {
+    var value = String(text || "").replace(/\s+/g, " ").trim();
+    if (value.length <= limit) return value;
+    var cut = value.slice(0, limit + 1).replace(/\s+\S*$/, "");
+    return cut + "…";
+  }
+
+  function validateArtifact(artifact) {
+    if (!artifact || !artifact.meta || !Array.isArray(artifact.meta.pages) ||
+        !Array.isArray(artifact.chunks) || artifact.chunks.length === 0) {
+      return "Corpus artifact is missing or malformed.";
+    }
+    var pages = artifact.meta.pages.map(function (item) { return item && item.page; });
+    if (pages.length !== APPROVED_PAGES.length || APPROVED_PAGES.some(function (page) { return pages.indexOf(page) === -1; })) {
+      return "Corpus page boundary does not match the pinned allowlist.";
+    }
+    var ids = {};
+    for (var i = 0; i < artifact.chunks.length; i++) {
+      var chunk = artifact.chunks[i];
+      if (!chunk || !chunk.id || !chunk.title || !chunk.text || chunk.text.length < 60 ||
+          !chunk.content_sha1 || APPROVED_PAGES.indexOf(chunk.page) === -1 ||
+          !/^[a-z0-9-]+$/.test(chunk.anchor || "") || ids[chunk.id]) {
+        return "Corpus chunk contract failed at position " + i + ".";
+      }
+      ids[chunk.id] = true;
+    }
+    if (artifact.meta.chunk_count !== artifact.chunks.length || artifact.chunks.length < 30) {
+      return "Corpus artifact is incomplete or truncated.";
+    }
+    return "";
+  }
+
+  function constructedHref(chunk) {
+    if (!chunk || APPROVED_PAGES.indexOf(chunk.page) === -1 || !/^[a-z0-9-]+$/.test(chunk.anchor || "")) {
+      return "";
+    }
+    return "../../" + chunk.page + "#" + chunk.anchor;
+  }
+
+  var ARTIFACT = typeof globalThis !== "undefined" ? globalThis.PBS_CORPUS : null;
+  var CORPUS_ERROR = validateArtifact(ARTIFACT);
+  var META = CORPUS_ERROR ? null : ARTIFACT.meta;
+  var CORPUS = CORPUS_ERROR ? [] : ARTIFACT.chunks.map(function (chunk) {
+    return {
+      id: chunk.id,
+      title: chunk.title,
+      text: chunk.text,
+      summary: preview(chunk.text, 300),
+      status: STATUS_OVERRIDES[chunk.id] || STATUS_BY_PAGE[chunk.page] || "live",
+      source: chunk.page_title + " · #" + chunk.anchor,
+      href: constructedHref(chunk),
+      keywords: (ALIASES[chunk.id] || []).slice(),
+      page: chunk.page,
+      anchor: chunk.anchor,
+      content_sha1: chunk.content_sha1,
+      chars: chunk.chars
+    };
+  });
 
   var CLAIM_NOTES = {
     live: { text: "Safe to claim: shipped and visible on this site.", caution: false },
@@ -281,9 +128,9 @@
       .filter(function (t) { return t.length > 1 && STOPWORDS.indexOf(t) === -1; });
   }
 
-  /* Precomputed token sets for title/summary matching. */
+  /* Precomputed token sets for title, anchor, and full chunk-text matching. */
   var DOC_TOKENS = CORPUS.map(function (doc) {
-    return { title: tokenize(doc.title), summary: tokenize(doc.summary) };
+    return { title: tokenize(doc.title), anchor: tokenize(doc.anchor), text: tokenize(doc.text) };
   });
 
   function classifyQuery(raw) {
@@ -326,7 +173,8 @@
         }
       }
       if (best < 2.5 && docTokens.title.indexOf(t) !== -1) { best = 2.5; hit = t; }
-      if (best === 0 && docTokens.summary.indexOf(t) !== -1) { best = 1; hit = t; }
+      if (best < 2 && docTokens.anchor.indexOf(t) !== -1) { best = 2; hit = t; }
+      if (best === 0 && docTokens.text.indexOf(t) !== -1) { best = 1; hit = t; }
       if (best > 0) {
         score += best;
         if (hit && matched.indexOf(hit) === -1) matched.push(hit);
@@ -342,6 +190,9 @@
 
     if (verdict.type !== "ok") {
       return { state: verdict.type, reason: verdict.reason, results: [], tookMs: 0, note: "" };
+    }
+    if (CORPUS_ERROR) {
+      return { state: "corpus-error", reason: "Index unavailable. The corpus artifact failed to load, so no results can be served. This is a real failure state, not the simulated offline demo — regenerate it with scripts/build_corpus.py. Unsafe queries are still refused.", results: [], tookMs: 0, note: "" };
     }
     if (opts.offline) {
       return { state: "offline", reason: "Retrieval index unavailable (simulated). Safe error state: no partial or invented answers.", results: [], tookMs: 0, note: "" };
@@ -373,34 +224,19 @@
     };
   }
 
-  /* Route whitelist: result links may only point at known internal pages. */
-  var ROUTE_WHITELIST = [
-    "index.html",
-    "index.html#architecture-layers",
-    "index.html#architecture",
-    "index.html#search",
-    "index.html#threat-model",
-    "index.html#prototype-production",
-    "index.html#scope",
-    "../index.html",
-    "../index.html#live-system",
-    "../index.html#roadmap",
-    "../retrieval-evals/index.html",
-    "../corpus-explorer/index.html",
-    "../changelog/index.html",
-    "../../case-studies/secure-rag/index.html",
-    "../../portfolio/index.html",
-    "../../index.html",
-    "../../start-project/index.html"
-  ];
-
   function safeHref(href) {
-    return ROUTE_WHITELIST.indexOf(href) !== -1 ? href : "../index.html";
+    var match = /^\.\.\/\.\.\/([^#]+)#([a-z0-9-]+)$/.exec(String(href || ""));
+    return match && APPROVED_PAGES.indexOf(match[1]) !== -1 ? href : "../index.html";
   }
 
   var engine = {
     CORPUS: CORPUS,
-    ROUTE_WHITELIST: ROUTE_WHITELIST,
+    DOCS: CORPUS,
+    META: META,
+    CORPUS_ERROR: CORPUS_ERROR,
+    APPROVED_PAGES: APPROVED_PAGES,
+    STATUS_OVERRIDES: STATUS_OVERRIDES,
+    ALIASES: ALIASES,
     tokenize: tokenize,
     classifyQuery: classifyQuery,
     scoreDoc: scoreDoc,
@@ -433,8 +269,12 @@
   var evalQueries = document.getElementById("rag-eval-queries");
   var evalBlocks = document.getElementById("rag-eval-blocks");
   var docStat = document.querySelector('[data-rag-stat="docs"]');
+  var pageStat = document.querySelector('[data-rag-stat="pages"]');
+  var generatedStat = document.querySelector('[data-rag-stat="generated"]');
 
   if (docStat) docStat.textContent = String(CORPUS.length);
+  if (pageStat) pageStat.textContent = META ? String(META.pages.length) : "—";
+  if (generatedStat) generatedStat.textContent = META ? META.generated : "unavailable";
 
   var REDUCED_MOTION = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var STEP_DELAY = REDUCED_MOTION ? 0 : 130;
@@ -490,6 +330,17 @@
     return card;
   }
 
+  if (CORPUS_ERROR) {
+    form.setAttribute("aria-disabled", "true");
+    input.disabled = true;
+    Array.prototype.forEach.call(form.querySelectorAll("button"), function (button) { button.disabled = true; });
+    resultsEl.textContent = "";
+    resultsEl.appendChild(renderStateCard("is-blocked", "k-blocked", "Index unavailable", {
+      lead: "Index unavailable.",
+      rest: "The corpus artifact failed to load, so no results can be served. This is a real failure state, not the simulated offline demo — regenerate it with scripts/build_corpus.py. Unsafe queries are still refused."
+    }));
+  }
+
   function renderResults(outcome, query) {
     resultsEl.textContent = "";
 
@@ -518,6 +369,11 @@
       alt.appendChild(lab);
       resultsEl.appendChild(renderStateCard("is-warn", "k-warn", "Fallback mode",
         { lead: "Index offline (simulated).", rest: outcome.reason + " A production system would alert, log, and degrade exactly this visibly." }, alt));
+      return;
+    }
+    if (outcome.state === "corpus-error") {
+      resultsEl.appendChild(renderStateCard("is-blocked", "k-blocked", "Index unavailable",
+        { lead: "Index unavailable.", rest: outcome.reason }));
       return;
     }
     if (outcome.state === "empty") {
@@ -551,6 +407,7 @@
       meta.appendChild(el("span", "rag-claim" + (claim.caution ? " is-caution" : ""), claim.text));
       meta.appendChild(el("span", "rag-confidence", "Confidence: " + confidenceLabel(r.relevance)));
       meta.appendChild(el("span", "rag-source-inline", "Source boundary: whitelisted public page"));
+      meta.appendChild(el("span", "rag-source-inline", "Chunk " + doc.id + " · sha1 " + doc.content_sha1));
       card.appendChild(meta);
 
       var why = el("p", "rag-why");
@@ -640,11 +497,20 @@
         ["claims", "skip", "skipped"],
         ["render", "pass", "fallback"]
       ];
+    } else if (outcome.state === "corpus-error") {
+      steps = [
+        ["parse", "pass", "ok"],
+        ["guard", "pass", "ok"],
+        ["retrieve", "blocked", "artifact error"],
+        ["rank", "skip", "skipped"],
+        ["claims", "skip", "skipped"],
+        ["render", "blocked", "error"]
+      ];
     } else {
       steps = [
         ["parse", "pass", outcome.tokens.length + " terms"],
         ["guard", "pass", "ok"],
-        ["retrieve", "pass", CORPUS.length + " docs"],
+        ["retrieve", "pass", CORPUS.length + " chunks"],
         ["rank", outcome.results.length ? "pass" : "warn", outcome.results.length + " kept"],
         ["claims", "pass", "labeled"],
         ["render", "pass", outcome.results.length ? "served" : "empty"]
@@ -667,6 +533,7 @@
       var decision = outcome.state === "blocked" ? "refused"
         : outcome.state === "broad" ? "too broad"
         : outcome.state === "offline" ? "fallback"
+        : outcome.state === "corpus-error" ? "artifact error"
         : "served";
       appendAudit(query, decision, outcome.state === "ok" ? outcome.results.length : outcome.state === "empty" ? 0 : undefined);
     }, steps.length + 1);

@@ -26,8 +26,9 @@
     <script src="../../shared/ai-config.js" defer></script>
     <script src="../../shared/reveal.js" defer></script>
     <script src="../../shared/assistant.js" defer data-assistant-root="../../" data-assistant-context="portfolio"></script>
-    <script src="../secure-rag/script.js" defer></script>
-    <script src="script.js" defer></script>
+    <script src="../corpus-explorer/corpus.js?v=20260711" defer></script>
+    <script src="../secure-rag/script.js?v=20260711" defer></script>
+    <script src="script.js?v=20260711" defer></script>
   </head>
   <body>
     <header class="site-head">
@@ -57,7 +58,7 @@
             </p>
             <p class="lab-note">
               Honest scope: this is <strong>regression testing, not a benchmark</strong>.
-              The eval set was authored against this same curated corpus, so it proves
+              The eval set was authored against the same generated public corpus the engine retrieves from, so it proves
               known behavior still holds after changes — it does not prove semantic
               retrieval quality. That measurement waits for real embeddings and is
               labeled planned below, not claimed.
@@ -79,7 +80,7 @@
               <div><dt>Pass rate</dt><dd><span id="eval-stat-rate">—</span></dd></div>
               <div><dt>Avg ranking latency</dt><dd><span id="eval-stat-avg">—</span></dd></div>
               <div><dt>p95 latency</dt><dd><span id="eval-stat-p95">—</span></dd></div>
-              <div><dt>Corpus size</dt><dd><span id="eval-stat-docs">—</span> documents</dd></div>
+              <div><dt>Corpus size</dt><dd><span id="eval-stat-docs">—</span> chunks</dd></div>
             </dl>
           </aside>
         </div>

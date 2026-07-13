@@ -266,7 +266,7 @@ GET /api/chat  <span class="c-ok">200</span>
           <div class="card">
             <span class="tag" style="color:var(--blue)">Simulated on the page</span>
             <ul class="clean">
-              <li>Local search and ranking over a curated public-content index</li>
+              <li>Local search and ranking over the generated structured public corpus (shared with the corpus explorer)</li>
               <li>Extraction-intent guardrail that refuses secret and private-data queries</li>
               <li>Claim-safety label (Live / Prototype / Planned / Learning) on every result</li>
               <li>Threat model for prompt injection, private-file leakage, logging, and route safety</li>
@@ -350,6 +350,7 @@ GET /api/chat  <span class="c-ok">200</span>
               <li>Section-level chunks with stable IDs and source anchors</li>
               <li>Content hashes for change detection between builds</li>
               <li>Live boundary checks on the explorer page itself</li>
+              <li>Now the retrieval source for the Secure RAG demo</li>
             </ul>
           </div>
           <div class="card">
@@ -357,7 +358,6 @@ GET /api/chat  <span class="c-ok">200</span>
             <ul class="clean">
               <li>Embedding privacy review, then real embeddings and a vector index</li>
               <li>Chunk-size tuning for embedding models</li>
-              <li>Wiring the Secure RAG demo to retrieve from this corpus</li>
               <li>Automated rebuilds — today the script runs manually</li>
             </ul>
           </div>

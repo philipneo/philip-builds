@@ -67,6 +67,27 @@
         <ol class="cl-timeline">
           <li>
             <div class="cl-entry-head">
+              <span class="cl-date">2026-07-11</span>
+              <span class="cl-badge is-build">Build 05</span>
+              <h3>Corpus-Backed Secure RAG Retrieval</h3>
+            </div>
+            <p>
+              The <a href="../secure-rag/index.html">Secure RAG demo</a> now retrieves
+              from the generated structured public corpus — the same artifact rendered
+              by the Corpus Explorer. The hand-authored content index is gone; the engine
+              keeps only claim-status and search-alias metadata on top of the generated chunks.
+            </p>
+            <ul class="cl-points">
+              <li>One public-content artifact shared by the explorer and retrieval engine</li>
+              <li>Structural page and anchor validation for every generated result link</li>
+              <li><code>build_corpus.py --check</code> fails QA when page content and the committed artifact drift</li>
+              <li>Eval expectations re-captured from real corpus-backed output; 42/42 checks passing locally</li>
+              <li>Still local keyword ranking — no embeddings, semantic benchmark, or production RAG claim</li>
+            </ul>
+            <p class="cl-commits">Commit: <em>pending review — working tree not committed</em></p>
+          </li>
+          <li>
+            <div class="cl-entry-head">
               <span class="cl-date">2026-07-10</span>
               <span class="cl-badge is-build">Build 04</span>
               <h3>Structured Public Corpus + Explorer</h3>

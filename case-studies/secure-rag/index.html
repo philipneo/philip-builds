@@ -53,8 +53,7 @@
             </p>
             <p class="lab-note">
               Honest scope: the demo behind this case study is a front-end
-              prototype. Retrieval is simulated with local keyword ranking over a
-              hand-curated public-content index — it is <strong>not</strong> a
+              prototype. Retrieval is simulated with local keyword ranking over structured public content (originally a hand-curated index; since Build 05, the generated public corpus) — it is <strong>not</strong> a
               production vector database or an enterprise RAG system, and this
               case study never claims it is.
             </p>
@@ -111,7 +110,7 @@
           <h2 id="wb-title">A retrieval console with the safety story on the surface.</h2>
         </div>
         <div class="cs-feature-grid">
-          <article><h3>Local public-content corpus</h3><p>A curated index from public pages only — private operating files are excluded by construction, so sensitive internal notes sit outside the search surface.</p></article>
+          <article><h3>Generated public-content corpus</h3><p>An allowlisted build artifact from public pages only — private operating files are excluded by construction, so sensitive internal notes sit outside the search surface.</p></article>
           <article><h3>Ranked retrieval cards</h3><p>Results ranked by local keyword scoring, capped and thresholded so weak matches are dropped instead of padded.</p></article>
           <article><h3>Relevance + confidence scoring</h3><p>Each card shows a normalized relevance percentage, confidence label, matched keywords, and why-this-matched evidence.</p></article>
           <article><h3>Matched keywords + why-this-matched</h3><p>Every result explains which terms matched and where the source lives, in plain language.</p></article>
@@ -160,7 +159,7 @@
           <div class="flow-node is-proto">
             <span class="fn-k">Prototype</span>
             <span class="fn-v">Local retrieval + ranking</span>
-            <span class="fn-s">Keyword scoring over the curated index; thresholds drop weak matches.</span>
+            <span class="fn-s">Keyword scoring over the generated corpus; thresholds drop weak matches.</span>
           </div>
           <div class="flow-arrow" aria-hidden="true">→</div>
           <div class="flow-node is-proto">
@@ -292,7 +291,7 @@
           </p>
         </div>
         <ol class="cs-resume-list">
-          <li>Designed and shipped a security-aware retrieval (RAG-style) prototype on a live portfolio site: local keyword ranking over a curated public-content index with relevance scores, confidence labels, matched-keyword explanations, source-boundary metadata, and a claim-safety label on every result.</li>
+          <li>Designed and shipped a security-aware retrieval (RAG-style) prototype on a live portfolio site: local keyword ranking over a generated structured public corpus with relevance scores, confidence labels, matched-keyword explanations, source-boundary metadata, and a claim-safety label on every result.</li>
           <li>Implemented layered query guardrails — extraction-intent detection (sensitive term + reveal-style verb), hard blocks for private-data requests, and a route whitelist — that refuse unsafe queries with visible, explained states.</li>
           <li>Built honest product states (refusal, too-broad, no-results, simulated-offline fallback) so the interface never invents answers or misrepresents backend status.</li>
           <li>Documented a staged RAG architecture separating live, simulated, and planned components (embeddings, vector index, eval set, privacy review) and published it as part of the demo itself.</li>
@@ -326,14 +325,14 @@
           <p>Ordered steps, each labeled planned until it ships:</p>
         </div>
         <ol class="cs-roadmap-list">
-          <li><strong>Structured content</strong> — convert public site content into structured JSON chunks with stable IDs. Shipped since this study: an allowlisted build-time script now generates the corpus, browsable in the <a href="../../ai-lab/corpus-explorer/index.html">corpus explorer</a>.</li>
-          <li><strong>Privacy review</strong> — review what is embedded before anything is embedded.</li>
-          <li><strong>Embedding model</strong> — add real embeddings for semantic matching.</li>
-          <li><strong>Vector database</strong> — a real index with access control in front of it.</li>
-          <li><strong>Retrieval eval set</strong> — known-good query→source pairs so relevance is measured, not eyeballed. First slice shipped since this study: a keyword-level <a href="../../ai-lab/retrieval-evals/index.html">regression harness</a> runs live in the AI Lab; the semantic version still waits for embeddings.</li>
-          <li><strong>Prompt regression tests</strong> — automated checks that guardrails survive prompt changes.</li>
-          <li><strong>Logs and monitoring</strong> — persistent audit logs with a review workflow.</li>
-          <li><strong>Real backend, only when safe</strong> — answer synthesis behind the same server-side key pattern as the live assistant, and not before the eval set exists.</li>
+          <li><span><strong>Structured content</strong> — convert public site content into structured JSON chunks with stable IDs. Shipped since this study: an allowlisted build-time script now generates the corpus, browsable in the <a href="../../ai-lab/corpus-explorer/index.html">corpus explorer</a>. Build 05 completed the loop: the demo now retrieves from this generated corpus, and the hand-authored index it replaced is gone.</span></li>
+          <li><span><strong>Privacy review</strong> — review what is embedded before anything is embedded.</span></li>
+          <li><span><strong>Embedding model</strong> — add real embeddings for semantic matching.</span></li>
+          <li><span><strong>Vector database</strong> — a real index with access control in front of it.</span></li>
+          <li><span><strong>Retrieval eval set</strong> — known-good query→source pairs so relevance is measured, not eyeballed. First slice shipped since this study: a keyword-level <a href="../../ai-lab/retrieval-evals/index.html">regression harness</a> runs live in the AI Lab; the semantic version still waits for embeddings.</span></li>
+          <li><span><strong>Prompt regression tests</strong> — automated checks that guardrails survive prompt changes.</span></li>
+          <li><span><strong>Logs and monitoring</strong> — persistent audit logs with a review workflow.</span></li>
+          <li><span><strong>Real backend, only when safe</strong> — answer synthesis behind the same server-side key pattern as the live assistant, and not before the eval set exists.</span></li>
         </ol>
         <div class="actions">
           <a class="btn primary" href="../../ai-lab/secure-rag/index.html">Open the live demo</a>

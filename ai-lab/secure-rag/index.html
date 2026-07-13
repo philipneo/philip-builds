@@ -26,7 +26,8 @@
     <script src="../../shared/ai-config.js" defer></script>
     <script src="../../shared/reveal.js" defer></script>
     <script src="../../shared/assistant.js" defer data-assistant-root="../../" data-assistant-context="portfolio"></script>
-    <script src="script.js" defer></script>
+    <script src="../corpus-explorer/corpus.js?v=20260711" defer></script>
+    <script src="script.js?v=20260711" defer></script>
   </head>
   <body>
     <header class="site-head">
@@ -53,11 +54,7 @@
               model — the next Neo Labs step toward real embeddings and a vector index.
             </p>
             <p class="lab-note">
-              Honest scope: this is a <strong>simulated retrieval layer</strong> that runs
-              entirely in your browser. Ranking is local keyword scoring over a
-              hand-curated index of public site content — no embeddings, no vector
-              database, and no model calls yet. Those layers are on the planned
-              architecture below and are labeled as planned, not done.
+              Honest scope: this is a <strong>simulated retrieval layer</strong> that runs entirely in your browser. Ranking is local keyword scoring over the site's <strong>generated structured public corpus</strong> — the same artifact the Corpus Explorer renders, built from an allowlist of public pages. No embeddings, no vector database, and no model calls yet. Those layers are on the planned architecture below and are labeled as planned, not done.
             </p>
             <div class="actions">
               <a class="btn primary" href="#search">Try the search</a>
@@ -74,10 +71,11 @@
           <aside class="lab-system-card rag-index-card" aria-label="Retrieval index snapshot">
             <span class="system-label">Index snapshot</span>
             <h2>Public content index</h2>
-            <p>Everything searchable on this page comes from public pages of this site. Private operating files are excluded by construction.</p>
+            <p>Everything searchable on this page comes from the generated structured public corpus — the same artifact the Corpus Explorer renders. Private operating files are excluded by construction.</p>
             <dl class="system-metrics">
-              <div><dt>Documents</dt><dd><span data-rag-stat="docs">—</span> curated entries</dd></div>
-              <div><dt>Sources</dt><dd>Public site pages only</dd></div>
+              <div><dt>Chunks</dt><dd><span data-rag-stat="docs">—</span> from the generated corpus</dd></div>
+              <div><dt>Sources</dt><dd><span data-rag-stat="pages">—</span> approved public pages</dd></div>
+              <div><dt>Generated</dt><dd><span data-rag-stat="generated">—</span></dd></div>
               <div><dt>Ranking</dt><dd>Local keyword scoring</dd></div>
               <div><dt>Embeddings</dt><dd>Planned — not built yet</dd></div>
               <div><dt>Secrets</dt><dd>0 in corpus, by design</dd></div>
@@ -139,7 +137,7 @@
           <div class="rag-source-boundary" aria-label="Source boundary example">
             <span>Safe answer boundary</span>
             <p>
-              Results can only point to whitelisted public pages and curated public summaries.
+              Results can only point to whitelisted public pages and generated public chunks.
               If the answer is not in that boundary, the demo returns a refusal, no-result,
               or planned-state label instead of inventing proof.
             </p>
@@ -230,7 +228,7 @@
           <article>
             <span class="rag-layer-status is-proto">Prototype now</span>
             <h3>Retrieval layer</h3>
-            <p>Tokenizes the query, scores a curated public-content corpus, thresholds weak matches, and ranks the top sources. Future work: embeddings and semantic search.</p>
+            <p>Tokenizes the query, scores the generated structured public corpus, thresholds weak matches, and ranks the top sources. Future work: embeddings and semantic search.</p>
           </article>
           <article>
             <span class="rag-layer-status is-live">Constrained now</span>
@@ -275,7 +273,7 @@
           <article>
             <h3>Prompt injection risk</h3>
             <p class="rag-risk">A query tries to override the system: ignore labels, reveal secrets, or trust unverified text.</p>
-            <p class="rag-mitigation"><strong>Mitigation:</strong> the prototype has no generative answer layer yet, blocks extraction intent, and only renders pre-curated public summaries.</p>
+            <p class="rag-mitigation"><strong>Mitigation:</strong> the prototype has no generative answer layer yet, blocks extraction intent, and only renders generated public chunks.</p>
           </article>
           <article>
             <h3>Private-file leakage risk</h3>
@@ -322,10 +320,10 @@
             <span class="fn-s">Portfolio pages, AI Lab docs, and demo descriptions already published on this site.</span>
           </div>
           <div class="flow-arrow" aria-hidden="true">→</div>
-          <div class="flow-node is-proto">
-            <span class="fn-k">Prototype</span>
+          <div class="flow-node is-live">
+            <span class="fn-k">Live</span>
             <span class="fn-v">Chunking</span>
-            <span class="fn-s">Hand-curated summaries power this demo; a build-time script now generates <a href="../corpus-explorer/index.html">structured chunks</a> — wiring them together is a named next step.</span>
+            <span class="fn-s">A build-time script generates the structured chunks this demo retrieves from — browsable in the <a href="../corpus-explorer/index.html">corpus explorer</a>.</span>
           </div>
           <div class="flow-arrow" aria-hidden="true">→</div>
           <div class="flow-node is-planned">
@@ -378,7 +376,7 @@
           <div class="road-col">
             <h3>Simulated on this page <span class="status-pill proto">Prototype</span></h3>
             <ul class="road-tiles">
-              <li>Local search + ranking over a curated index</li>
+              <li>Local search + ranking over the generated public corpus</li>
               <li>Extraction-intent guardrail with refusals</li>
               <li>Claim-safety labels on every result</li>
               <li>Session-only audit log preview</li>
@@ -423,7 +421,7 @@
             <span class="rag-layer-status is-proto">Simulated</span>
             <h3>Prototype-only behavior</h3>
             <ul class="checklist">
-              <li>Retrieval runs against a hand-curated public-content index in browser memory.</li>
+              <li>Retrieval runs against the generated structured public corpus, loaded into browser memory.</li>
               <li>Ranking is keyword scoring, not semantic embeddings.</li>
               <li>Audit logs are a session-only preview, not persistent compliance logs.</li>
               <li>Refusals model the intended product behavior before real data is involved.</li>

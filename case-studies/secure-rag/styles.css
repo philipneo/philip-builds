@@ -212,6 +212,10 @@ main .pbs-reveal {
   line-height: 1.55;
 }
 
+.cs-roadmap-list li > span {
+  min-width: 0;
+}
+
 .cs-roadmap-list li::before {
   content: counter(cs-road);
   flex-shrink: 0;

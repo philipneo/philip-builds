@@ -15,7 +15,7 @@ Primary proof-of-work:
 - Rule-based fallback when model replies are unavailable.
 - Secure RAG Portfolio Search prototype at `ai-lab/secure-rag/index.html`.
 - Retrieval Eval Harness at `ai-lab/retrieval-evals/index.html` — a live in-browser regression suite (refusal tests, hit@k checks, honesty states, contract checks) against the Secure RAG engine.
-- Structured Public Corpus at `ai-lab/corpus-explorer/index.html` — public pages converted into JSON chunks with stable IDs and content hashes by `scripts/build_corpus.py` (allowlist-first, stdlib-only; rerun it after editing public pages).
+- Structured Public Corpus at `ai-lab/corpus-explorer/index.html` — public pages converted into JSON chunks with stable IDs and content hashes by `scripts/build_corpus.py` (allowlist-first, stdlib-only; rerun it after editing public pages, then verify with `python3 scripts/build_corpus.py --check`).
 - Secure RAG case study at `case-studies/secure-rag/index.html`.
 - Dated, commit-linked changelog at `ai-lab/changelog/index.html` — keep it updated when a lab build ships.
 
@@ -25,7 +25,7 @@ Primary proof-of-work:
 
 What is live/simulated now:
 
-- Local public-content search over a curated in-browser corpus.
+- Local keyword search over the generated structured public corpus shared with the Corpus Explorer.
 - Ranked result cards with relevance, confidence, source boundary, and claim-safety labels.
 - Guardrails for secret-extraction and private-data requests.
 - Threat model and prototype-vs-production panels.

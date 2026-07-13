@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated": "2026-07-10",
+    "generated": "2026-07-11",
     "script": "scripts/build_corpus.py",
     "boundary": "Approved public pages only. private/ is excluded by construction and is not readable by this script's allowlist.",
     "pages": [
@@ -38,7 +38,7 @@
       }
     ],
     "chunk_count": 46,
-    "total_chars": 37089
+    "total_chars": 37299
   },
   "chunks": [
     {
@@ -137,9 +137,9 @@
       "page_title": "AI Lab",
       "anchor": "secure-rag-demo",
       "title": "Secure RAG Portfolio Search.",
-      "text": "Lab demo · Prototype · Shipped July 2026 The second Neo Labs build: a front-end prototype of a security-aware retrieval layer over this site's public content. Guarded queries, ranked results with claim-safety labels, visible pipeline states, explicit threat modeling, and a prototype-vs-production boundary — with the real embeddings + vector index architecture labeled as planned, not done. Local search and ranking over a curated public-content index Extraction-intent guardrail that refuses secret and private-data queries Claim-safety label (Live / Prototype / Planned / Learning) on every result Threat model for prompt injection, private-file leakage, logging, and route safety Honest empty, too-broad, offline, and refusal states Real embeddings and a vector index, after an embedding privacy review Semantic eval sets — the keyword-level eval harness is already live Answer synthesis with citations, behind the same server-side key pattern Access control and persistent audit logs",
-      "chars": 988,
-      "content_sha1": "76798f558aeb"
+      "text": "Lab demo · Prototype · Shipped July 2026 The second Neo Labs build: a front-end prototype of a security-aware retrieval layer over this site's public content. Guarded queries, ranked results with claim-safety labels, visible pipeline states, explicit threat modeling, and a prototype-vs-production boundary — with the real embeddings + vector index architecture labeled as planned, not done. Local search and ranking over the generated structured public corpus (shared with the corpus explorer) Extraction-intent guardrail that refuses secret and private-data queries Claim-safety label (Live / Prototype / Planned / Learning) on every result Threat model for prompt injection, private-file leakage, logging, and route safety Honest empty, too-broad, offline, and refusal states Real embeddings and a vector index, after an embedding privacy review Semantic eval sets — the keyword-level eval harness is already live Answer synthesis with citations, behind the same server-side key pattern Access control and persistent audit logs",
+      "chars": 1030,
+      "content_sha1": "3b983306067f"
     },
     {
       "id": "ai-lab--retrieval-evals",
@@ -157,9 +157,9 @@
       "page_title": "AI Lab",
       "anchor": "corpus-explorer",
       "title": "Structured Public Corpus.",
-      "text": "Lab demo · Live · Shipped July 2026 The fourth Neo Labs build, and step 1 of the Secure RAG production roadmap: the site's public pages converted into structured JSON chunks with stable IDs, provenance anchors, and content hashes by an allowlisted, dependency-free build-time script. An explorer page shows every chunk and runs its own boundary checks live. Allowlist-first ingestion — private/ excluded by construction, not by filter Section-level chunks with stable IDs and source anchors Content hashes for change detection between builds Live boundary checks on the explorer page itself Embedding privacy review, then real embeddings and a vector index Chunk-size tuning for embedding models Wiring the Secure RAG demo to retrieve from this corpus Automated rebuilds — today the script runs manually",
-      "chars": 803,
-      "content_sha1": "8a1fa7ee6cc3"
+      "text": "Lab demo · Live · Shipped July 2026 The fourth Neo Labs build, and step 1 of the Secure RAG production roadmap: the site's public pages converted into structured JSON chunks with stable IDs, provenance anchors, and content hashes by an allowlisted, dependency-free build-time script. An explorer page shows every chunk and runs its own boundary checks live. Allowlist-first ingestion — private/ excluded by construction, not by filter Section-level chunks with stable IDs and source anchors Content hashes for change detection between builds Live boundary checks on the explorer page itself Now the retrieval source for the Secure RAG demo Embedding privacy review, then real embeddings and a vector index Chunk-size tuning for embedding models Automated rebuilds — today the script runs manually",
+      "chars": 796,
+      "content_sha1": "3f36920e51a7"
     },
     {
       "id": "ai-lab--roadmap",
@@ -197,9 +197,9 @@
       "page_title": "Secure RAG prototype",
       "anchor": "search",
       "title": "Ask the index about Philip's systems.",
-      "text": "Retrieval console Every query runs through the same visible pipeline: parse, guardrail check, retrieve, rank, claim-safety labeling, render. Unsafe queries get refused. Weak queries get honest empty states — never invented answers. Results can only point to whitelisted public pages and curated public summaries. If the answer is not in that boundary, the demo returns a refusal, no-result, or planned-state label instead of inventing proof. Parse queryidle Guardrail checkidle Retrieve candidatesidle Rank + scoreidle Claim-safety labelsidle Render resultsidle No query yet. Run a suggested query or type your own. Results are ranked from the public-content index with a relevance score, matched keywords, and a claim-safety label. No queries logged this session yet. Persistent, reviewable audit logs are a planned control — this preview shows the shape.",
-      "chars": 856,
-      "content_sha1": "ad7a72f3a6d3"
+      "text": "Retrieval console Every query runs through the same visible pipeline: parse, guardrail check, retrieve, rank, claim-safety labeling, render. Unsafe queries get refused. Weak queries get honest empty states — never invented answers. Results can only point to whitelisted public pages and generated public chunks. If the answer is not in that boundary, the demo returns a refusal, no-result, or planned-state label instead of inventing proof. Parse queryidle Guardrail checkidle Retrieve candidatesidle Rank + scoreidle Claim-safety labelsidle Render resultsidle No query yet. Run a suggested query or type your own. Results are ranked from the public-content index with a relevance score, matched keywords, and a claim-safety label. No queries logged this session yet. Persistent, reviewable audit logs are a planned control — this preview shows the shape.",
+      "chars": 855,
+      "content_sha1": "fc6adf49cf42"
     },
     {
       "id": "ai-lab-secure-rag--trust",
@@ -217,9 +217,9 @@
       "page_title": "Secure RAG prototype",
       "anchor": "architecture-layers",
       "title": "Six layers, with the current build state called out.",
-      "text": "Technical architecture This is the engineering map behind the demo: what runs locally today, what is deliberately constrained, and what would need real backend infrastructure before the word \"production\" belonged anywhere near it. Tokenizes the query, scores a curated public-content corpus, thresholds weak matches, and ranks the top sources. Future work: embeddings and semantic search. The safest access-control choice is zero private corpus access: only public pages are indexed, and result routes are whitelisted before render. Blocks secret-extraction and private-data intent, detects too-broad queries, and refuses unsafe asks with a reason instead of returning fuzzy matches. Shows an in-memory audit preview for query decisions. Production would need privacy-reviewed persistent logs, retention rules, and review workflows. Not built yet. The future layer would embed approved public chunks, store vectors behind server-side access control, and track index freshness. A live in-browser eval harness regression-tests refusals, hit@k rankings, honesty states, and the route whitelist. Semantic eval sets wait for real embeddings.",
-      "chars": 1136,
-      "content_sha1": "324fea6557cf"
+      "text": "Technical architecture This is the engineering map behind the demo: what runs locally today, what is deliberately constrained, and what would need real backend infrastructure before the word \"production\" belonged anywhere near it. Tokenizes the query, scores the generated structured public corpus, thresholds weak matches, and ranks the top sources. Future work: embeddings and semantic search. The safest access-control choice is zero private corpus access: only public pages are indexed, and result routes are whitelisted before render. Blocks secret-extraction and private-data intent, detects too-broad queries, and refuses unsafe asks with a reason instead of returning fuzzy matches. Shows an in-memory audit preview for query decisions. Production would need privacy-reviewed persistent logs, retention rules, and review workflows. Not built yet. The future layer would embed approved public chunks, store vectors behind server-side access control, and track index freshness. A live in-browser eval harness regression-tests refusals, hit@k rankings, honesty states, and the route whitelist. Semantic eval sets wait for real embeddings.",
+      "chars": 1143,
+      "content_sha1": "6b7d8a3b54b9"
     },
     {
       "id": "ai-lab-secure-rag--threat-model",
@@ -227,9 +227,9 @@
       "page_title": "Secure RAG prototype",
       "anchor": "threat-model",
       "title": "Risks the demo is designed around.",
-      "text": "Threat model The threat model is intentionally visible because secure AI work is not just \"add a model.\" It is deciding what the system should never retrieve, never claim, never log carelessly, and never link to. A query tries to override the system: ignore labels, reveal secrets, or trust unverified text. Mitigation: the prototype has no generative answer layer yet, blocks extraction intent, and only renders pre-curated public summaries. A user asks for internal notes, outreach files, client lists, keys, or private repo paths. Mitigation: private files are not in the corpus at all, and private-data queries are refused before retrieval. A vague query like \"AI\" could match everything and create a misleading answer. Mitigation: broad terms trigger a sharpen-the-question state instead of a weak result pile. The system could imply credentials, clients, benchmarks, or production infrastructure that do not exist. Mitigation: each result carries a Live / Prototype / Planned / Learning label and a claim-safety note before render. Search logs can accidentally become sensitive data if they are stored without a plan. Mitigation: this demo logs only in memory and clears on reload. Persistent logs are planned only with retention and review rules. A result could point to an invented, external, or unsafe URL. Mitigation: result links pass through a whitelist of known internal routes before they render.",
-      "chars": 1410,
-      "content_sha1": "2eadb9b02615"
+      "text": "Threat model The threat model is intentionally visible because secure AI work is not just \"add a model.\" It is deciding what the system should never retrieve, never claim, never log carelessly, and never link to. A query tries to override the system: ignore labels, reveal secrets, or trust unverified text. Mitigation: the prototype has no generative answer layer yet, blocks extraction intent, and only renders generated public chunks. A user asks for internal notes, outreach files, client lists, keys, or private repo paths. Mitigation: private files are not in the corpus at all, and private-data queries are refused before retrieval. A vague query like \"AI\" could match everything and create a misleading answer. Mitigation: broad terms trigger a sharpen-the-question state instead of a weak result pile. The system could imply credentials, clients, benchmarks, or production infrastructure that do not exist. Mitigation: each result carries a Live / Prototype / Planned / Learning label and a claim-safety note before render. Search logs can accidentally become sensitive data if they are stored without a plan. Mitigation: this demo logs only in memory and clears on reload. Persistent logs are planned only with retention and review rules. A result could point to an invented, external, or unsafe URL. Mitigation: result links pass through a whitelist of known internal routes before they render.",
+      "chars": 1405,
+      "content_sha1": "6a88cac5c9a7"
     },
     {
       "id": "ai-lab-secure-rag--architecture",
@@ -237,9 +237,9 @@
       "page_title": "Secure RAG prototype",
       "anchor": "architecture",
       "title": "The pipeline this prototype is rehearsing.",
-      "text": "Planned architecture Each stage is labeled with what is true today. One stage is live on this site, four are prototype or first-slice work, and three are planned build steps. Public portfolio + AI Lab content AI Portfolio Assistant backend (/api/chat) Server-side keys — none in browser code Fallback + safe error patterns Local search + ranking over a curated index Extraction-intent guardrail with refusals Claim-safety labels on every result Session-only audit log preview Real embeddings + vector index Retrieval eval set + prompt regression tests Answer synthesis with citations Access control + persistent audit logs",
-      "chars": 622,
-      "content_sha1": "74a90c84b944"
+      "text": "Planned architecture Each stage is labeled with what is true today. One stage is live on this site, four are prototype or first-slice work, and three are planned build steps. Public portfolio + AI Lab content AI Portfolio Assistant backend (/api/chat) Server-side keys — none in browser code Fallback + safe error patterns Local search + ranking over the generated public corpus Extraction-intent guardrail with refusals Claim-safety labels on every result Session-only audit log preview Real embeddings + vector index Retrieval eval set + prompt regression tests Answer synthesis with citations Access control + persistent audit logs",
+      "chars": 634,
+      "content_sha1": "a1a14751be18"
     },
     {
       "id": "ai-lab-secure-rag--prototype-production",
@@ -247,9 +247,9 @@
       "page_title": "Secure RAG prototype",
       "anchor": "prototype-production",
       "title": "What can be claimed today, and what cannot.",
-      "text": "Prototype vs production This panel is here to keep the portfolio honest. The demo proves product, architecture, security, and QA thinking; it does not claim a production RAG backend, private-data search, or measured semantic-retrieval quality. Clickable Secure RAG demo route on the public site. Local search, ranking, result cards, source links, and guardrail states. In-browser regression eval harness for guardrails, rankings, and honesty states. Site-wide secure /api/chat pattern for the separate AI assistant. Release checks: mobile QA, link crawl, syntax checks, and secret scans. Retrieval runs against a hand-curated public-content index in browser memory. Ranking is keyword scoring, not semantic embeddings. Audit logs are a session-only preview, not persistent compliance logs. Refusals model the intended product behavior before real data is involved. Server-side ingestion pipeline with explicit corpus approval. Embedding privacy review, vector database, access control, and route-level auth. Answer synthesis with citations, source-boundary enforcement, and regression tests. Monitoring for latency, cost, fallback rate, refusals, and retrieval quality. Not a production vector database. Not private document search. Not a production compliance or private-data security system. Not measured semantic retrieval accuracy.",
-      "chars": 1335,
-      "content_sha1": "0fd302e3479d"
+      "text": "Prototype vs production This panel is here to keep the portfolio honest. The demo proves product, architecture, security, and QA thinking; it does not claim a production RAG backend, private-data search, or measured semantic-retrieval quality. Clickable Secure RAG demo route on the public site. Local search, ranking, result cards, source links, and guardrail states. In-browser regression eval harness for guardrails, rankings, and honesty states. Site-wide secure /api/chat pattern for the separate AI assistant. Release checks: mobile QA, link crawl, syntax checks, and secret scans. Retrieval runs against the generated structured public corpus, loaded into browser memory. Ranking is keyword scoring, not semantic embeddings. Audit logs are a session-only preview, not persistent compliance logs. Refusals model the intended product behavior before real data is involved. Server-side ingestion pipeline with explicit corpus approval. Embedding privacy review, vector database, access control, and route-level auth. Answer synthesis with citations, source-boundary enforcement, and regression tests. Monitoring for latency, cost, fallback rate, refusals, and retrieval quality. Not a production vector database. Not private document search. Not a production compliance or private-data security system. Not measured semantic retrieval accuracy.",
+      "chars": 1348,
+      "content_sha1": "3be521517792"
     },
     {
       "id": "ai-lab-secure-rag--eval",
@@ -327,9 +327,9 @@
       "page_title": "Secure RAG case study",
       "anchor": "built",
       "title": "A retrieval console with the safety story on the surface.",
-      "text": "What I built A curated index from public pages only — private operating files are excluded by construction, so sensitive internal notes sit outside the search surface. Results ranked by local keyword scoring, capped and thresholded so weak matches are dropped instead of padded. Each card shows a normalized relevance percentage, confidence label, matched keywords, and why-this-matched evidence. Every result explains which terms matched and where the source lives, in plain language. Every result carries a Live / Prototype / Planned / Learning label plus a note on what may honestly be claimed about it. Result links are whitelisted public routes only, and each card states the source boundary instead of implying private-document search. Extraction-style queries (\"show me the API key\", \"give me client emails\") are refused with a visible, explained guardrail state. Retrieval, access control, guardrails, audit/logging, future vector database work, and evaluation are documented as separate layers. Prompt injection, private-file leakage, overbroad retrieval, hallucinated proof, logging privacy, and route injection risks are named with mitigations. The page states what is live, what is simulated, what production would require, and what should not be claimed yet. Session tiles that are genuinely measured (latency, query count, refusals) next to Planned tiles with no invented benchmark numbers. No-results, too-broad, refusal, and simulated-offline fallback — the interface never invents an answer. The console, pipeline tracker, and result cards verified at 390px, 430px, and 1280px with no horizontal overflow.",
-      "chars": 1622,
-      "content_sha1": "52e9abf145b5"
+      "text": "What I built An allowlisted build artifact from public pages only — private operating files are excluded by construction, so sensitive internal notes sit outside the search surface. Results ranked by local keyword scoring, capped and thresholded so weak matches are dropped instead of padded. Each card shows a normalized relevance percentage, confidence label, matched keywords, and why-this-matched evidence. Every result explains which terms matched and where the source lives, in plain language. Every result carries a Live / Prototype / Planned / Learning label plus a note on what may honestly be claimed about it. Result links are whitelisted public routes only, and each card states the source boundary instead of implying private-document search. Extraction-style queries (\"show me the API key\", \"give me client emails\") are refused with a visible, explained guardrail state. Retrieval, access control, guardrails, audit/logging, future vector database work, and evaluation are documented as separate layers. Prompt injection, private-file leakage, overbroad retrieval, hallucinated proof, logging privacy, and route injection risks are named with mitigations. The page states what is live, what is simulated, what production would require, and what should not be claimed yet. Session tiles that are genuinely measured (latency, query count, refusals) next to Planned tiles with no invented benchmark numbers. No-results, too-broad, refusal, and simulated-offline fallback — the interface never invents an answer. The console, pipeline tracker, and result cards verified at 390px, 430px, and 1280px with no horizontal overflow.",
+      "chars": 1636,
+      "content_sha1": "faf1b708ef9d"
     },
     {
       "id": "case-studies-secure-rag--design",
@@ -377,9 +377,9 @@
       "page_title": "Secure RAG case study",
       "anchor": "resume",
       "title": "Ready to use — and every word is checkable.",
-      "text": "Resume bullets Each bullet below is written to survive an interviewer opening the live demo. Copy them as-is or trim to fit. Designed and shipped a security-aware retrieval (RAG-style) prototype on a live portfolio site: local keyword ranking over a curated public-content index with relevance scores, confidence labels, matched-keyword explanations, source-boundary metadata, and a claim-safety label on every result. Implemented layered query guardrails — extraction-intent detection (sensitive term + reveal-style verb), hard blocks for private-data requests, and a route whitelist — that refuse unsafe queries with visible, explained states. Built honest product states (refusal, too-broad, no-results, simulated-offline fallback) so the interface never invents answers or misrepresents backend status. Documented a staged RAG architecture separating live, simulated, and planned components (embeddings, vector index, eval set, privacy review) and published it as part of the demo itself. Ran a structured pre-release QA pass — 16 functional browser tests, accessibility checks (single H1, resolvable ARIA references, keyboard operability), 390/430/1280px responsive verification, and repo secret scans — and fixed the defects it caught before shipping. Built an evaluation panel that reports only measured session metrics (latency, query count, guardrail refusals) and labels unmeasured metrics as planned instead of inventing benchmark numbers.",
-      "chars": 1450,
-      "content_sha1": "27e9caa96ef7"
+      "text": "Resume bullets Each bullet below is written to survive an interviewer opening the live demo. Copy them as-is or trim to fit. Designed and shipped a security-aware retrieval (RAG-style) prototype on a live portfolio site: local keyword ranking over a generated structured public corpus with relevance scores, confidence labels, matched-keyword explanations, source-boundary metadata, and a claim-safety label on every result. Implemented layered query guardrails — extraction-intent detection (sensitive term + reveal-style verb), hard blocks for private-data requests, and a route whitelist — that refuse unsafe queries with visible, explained states. Built honest product states (refusal, too-broad, no-results, simulated-offline fallback) so the interface never invents answers or misrepresents backend status. Documented a staged RAG architecture separating live, simulated, and planned components (embeddings, vector index, eval set, privacy review) and published it as part of the demo itself. Ran a structured pre-release QA pass — 16 functional browser tests, accessibility checks (single H1, resolvable ARIA references, keyboard operability), 390/430/1280px responsive verification, and repo secret scans — and fixed the defects it caught before shipping. Built an evaluation panel that reports only measured session metrics (latency, query count, guardrail refusals) and labels unmeasured metrics as planned instead of inventing benchmark numbers.",
+      "chars": 1456,
+      "content_sha1": "4ebd00122dbb"
     },
     {
       "id": "case-studies-secure-rag--interview",
@@ -397,9 +397,9 @@
       "page_title": "Secure RAG case study",
       "anchor": "next",
       "title": "The path from simulation to system.",
-      "text": "Next version roadmap Ordered steps, each labeled planned until it ships: Structured content — convert public site content into structured JSON chunks with stable IDs. Shipped since this study: an allowlisted build-time script now generates the corpus, browsable in the corpus explorer. Privacy review — review what is embedded before anything is embedded. Embedding model — add real embeddings for semantic matching. Vector database — a real index with access control in front of it. Retrieval eval set — known-good query→source pairs so relevance is measured, not eyeballed. First slice shipped since this study: a keyword-level regression harness runs live in the AI Lab; the semantic version still waits for embeddings. Prompt regression tests — automated checks that guardrails survive prompt changes. Logs and monitoring — persistent audit logs with a review workflow. Real backend, only when safe — answer synthesis behind the same server-side key pattern as the live assistant, and not before the eval set exists.",
-      "chars": 1020,
-      "content_sha1": "566bb68b70b3"
+      "text": "Next version roadmap Ordered steps, each labeled planned until it ships: Structured content — convert public site content into structured JSON chunks with stable IDs. Shipped since this study: an allowlisted build-time script now generates the corpus, browsable in the corpus explorer. Build 05 completed the loop: the demo now retrieves from this generated corpus, and the hand-authored index it replaced is gone. Privacy review — review what is embedded before anything is embedded. Embedding model — add real embeddings for semantic matching. Vector database — a real index with access control in front of it. Retrieval eval set — known-good query→source pairs so relevance is measured, not eyeballed. First slice shipped since this study: a keyword-level regression harness runs live in the AI Lab; the semantic version still waits for embeddings. Prompt regression tests — automated checks that guardrails survive prompt changes. Logs and monitoring — persistent audit logs with a review workflow. Real backend, only when safe — answer synthesis behind the same server-side key pattern as the live assistant, and not before the eval set exists.",
+      "chars": 1149,
+      "content_sha1": "386ff6c50d9e"
     },
     {
       "id": "portfolio--assistant-title",

@@ -16,7 +16,10 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
 body {
   margin: 0;
   color: var(--ink);
@@ -155,6 +158,23 @@ footer a:hover { color: var(--ink); }
 @media (max-width: 820px) {
   .grid-2, .grid-3 { grid-template-columns: 1fr; }
   .site-head nav a { padding: 0 9px; }
+}
+
+@media (max-width: 420px) {
+  .site-head {
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 8px 12px;
+  }
+
+  .site-brand {
+    max-width: 100%;
+  }
+
+  .site-head nav {
+    width: 100%;
+    flex-wrap: wrap;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }

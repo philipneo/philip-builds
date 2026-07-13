@@ -25,26 +25,25 @@
   /* Security questions must be answered from public docs, not refused —
      this catches guardrail over-blocking (false positives). */
   var PRECISION_CASES = [
-    { q: "What security measures are implemented?", expectId: "guardrails", k: 1 },
-    { q: "How are API keys protected?", expectId: "key-handling", k: 1 }
+    { q: "What security measures are implemented?", expectId: "ai-lab-secure-rag--threat-model", k: 1 },
+    { q: "How are API keys protected?", expectId: "ai-lab--live-system", k: 1 }
   ];
 
   var HIT_CASES = [
-    { q: "Show AI assistant proof", expectId: "assistant-live", k: 1 },
-    { q: "Show cloud deployment proof", expectId: "cloud-deploy", k: 2 },
-    { q: "What is planned for MLOps?", expectId: "mlops-planned", k: 1 },
-    { q: "Show the threat model", expectId: "threat-model", k: 1 },
-    { q: "What demos are live?", expectId: "demos-live", k: 1 },
-    { q: "What is Philip learning next?", expectId: "learning-path", k: 1 },
-    { q: "serverless backend endpoint", expectId: "api-chat", k: 1 },
-    { q: "fallback behavior when the model is unavailable", expectId: "fallback-states", k: 1 },
-    { q: "secure rag case study documentation", expectId: "secure-rag-case-study", k: 1 },
-    { q: "planned embeddings and vector index", expectId: "embeddings-plan", k: 1 },
-    { q: "targeted certifications", expectId: "certs-targeted", k: 1 },
-    { q: "Which source proves no browser keys?", expectId: "source-boundary", k: 1 },
-    { q: "How would production RAG be different?", expectId: "prototype-production", k: 5 },
-    { q: "browse the structured corpus chunks", expectId: "corpus-explorer", k: 1 },
-    { q: "show the lab changelog release notes", expectId: "lab-changelog", k: 1 }
+    { q: "Show AI assistant proof", expectId: "ai-lab--live-system", k: 1 },
+    { q: "Show cloud deployment proof", expectId: "ai-lab--live-system", k: 2 },
+    { q: "What is planned for MLOps?", expectId: "ai-lab--roadmap", k: 1 },
+    { q: "Show the threat model", expectId: "ai-lab-secure-rag--threat-model", k: 1 },
+    { q: "What demos are live?", expectId: "portfolio--biz-demos-title", k: 1 },
+    { q: "What is Philip learning next?", expectId: "ai-lab--roadmap", k: 1 },
+    { q: "serverless backend endpoint", expectId: "ai-lab--live-system", k: 1 },
+    { q: "fallback behavior when the model is unavailable", expectId: "ai-lab--live-system", k: 1 },
+    { q: "secure rag case study documentation", expectId: "ai-lab--secure-rag-demo", k: 1 },
+    { q: "planned embeddings and vector index", expectId: "index--learning", k: 1 },
+    { q: "targeted certifications", expectId: "ai-lab--lp-title", k: 1 },
+    { q: "Which source proves no browser keys?", expectId: "ai-lab--live-system", k: 1 },
+    { q: "How would production RAG be different?", expectId: "ai-lab-secure-rag--prototype-production", k: 5 },
+    { q: "browse the structured corpus chunks", expectId: "ai-lab--corpus-explorer", k: 1 }
   ];
 
   var BROAD_QUERIES = ["ai", "everything", "website"];
@@ -126,32 +125,43 @@
   function runContractCases(engine) {
     var corpus = engine.CORPUS;
     var cases = [];
-
-    var unsafe = corpus.filter(function (d) { return engine.safeHref(d.href) !== d.href; });
-    cases.push(caseResult("Every corpus route passes the whitelist",
-      "0 corpus links rewritten by safeHref",
-      unsafe.length + " rewritten" + (unsafe.length ? " (" + unsafe.map(function (d) { return d.id; }).join(", ") + ")" : ""),
-      unsafe.length === 0));
-
-    var badStatus = corpus.filter(function (d) { return VALID_STATUSES.indexOf(d.status) === -1; });
-    cases.push(caseResult("Every document carries a valid claim label",
-      "status ∈ live / prototype / learning / planned",
-      badStatus.length + " invalid", badStatus.length === 0));
+    var metaPages = (engine.META && engine.META.pages || []).map(function (item) { return item.page; });
+    var exactBoundary = metaPages.length === engine.APPROVED_PAGES.length &&
+      engine.APPROVED_PAGES.every(function (page) { return metaPages.indexOf(page) !== -1; }) &&
+      metaPages.every(function (page) { return engine.APPROVED_PAGES.indexOf(page) !== -1; });
+    cases.push(caseResult("Artifact pages exactly match the pinned allowlist",
+      "same 8 pages in both directions", metaPages.length + " artifact pages", exactBoundary));
 
     var ids = {};
-    var dupes = corpus.filter(function (d) {
-      if (ids[d.id]) return true;
-      ids[d.id] = true;
-      return false;
-    });
-    cases.push(caseResult("Document ids are unique",
-      "0 duplicate ids", dupes.length + " duplicates", dupes.length === 0));
+    var dupes = corpus.filter(function (doc) { if (ids[doc.id]) return true; ids[doc.id] = true; return false; });
+    cases.push(caseResult("Chunk ids are unique", "0 duplicate ids", dupes.length + " duplicates", dupes.length === 0));
 
-    var thin = corpus.filter(function (d) {
-      return !d.title || !d.summary || !d.keywords || d.keywords.length < 3;
+    var thin = corpus.filter(function (doc) {
+      return !doc.id || !doc.anchor || !doc.text || doc.text.length < 60 || !doc.content_sha1;
     });
-    cases.push(caseResult("Every document has a title, summary, and ≥3 keywords",
-      "0 thin documents", thin.length + " thin", thin.length === 0));
+    cases.push(caseResult("Every chunk satisfies the generated contract",
+      "id, anchor, ≥60 chars, content_sha1", thin.length + " invalid chunks", thin.length === 0));
+
+    var privateDocs = corpus.filter(function (doc) { return String(doc.page || "").indexOf("private/") === 0; });
+    cases.push(caseResult("No private path enters the retrieval corpus",
+      "0 private/ chunks", privateDocs.length + " private chunks", privateDocs.length === 0));
+
+    var complete = !!engine.META && engine.META.chunk_count === corpus.length && corpus.length >= 30;
+    cases.push(caseResult("Artifact count is complete and non-trivial",
+      "meta count matches and total ≥30", corpus.length + " chunks", complete));
+
+    var badStatus = corpus.filter(function (doc) { return VALID_STATUSES.indexOf(doc.status) === -1; });
+    cases.push(caseResult("Every chunk carries a valid claim label",
+      "status ∈ live / prototype / learning / planned", badStatus.length + " invalid", badStatus.length === 0));
+
+    var annotationKeys = Object.keys(engine.STATUS_OVERRIDES).concat(Object.keys(engine.ALIASES));
+    var orphaned = annotationKeys.filter(function (id) { return !ids[id]; });
+    cases.push(caseResult("Every curated annotation points to a real chunk",
+      "0 orphaned annotation keys", orphaned.length + " orphaned", orphaned.length === 0));
+
+    var unsafe = corpus.filter(function (doc) { return engine.safeHref(doc.href) !== doc.href; });
+    cases.push(caseResult("Every constructed route passes structural validation",
+      "0 corpus links rewritten by safeHref", unsafe.length + " rewritten", unsafe.length === 0));
 
     var out = engine.runSearch("Show cloud deployment proof", {});
     var sorted = true;
@@ -159,15 +169,12 @@
       if (out.results[i].score > out.results[i - 1].score) sorted = false;
     }
     cases.push(caseResult("Results are capped at 5 and rank-ordered",
-      "≤5 results, non-increasing scores",
-      out.results.length + " results, " + (sorted ? "ordered" : "OUT OF ORDER"),
+      "≤5 results, non-increasing scores", out.results.length + " results, " + (sorted ? "ordered" : "OUT OF ORDER"),
       out.results.length <= 5 && sorted));
 
-    var badRel = out.results.filter(function (r) { return !(r.relevance > 0 && r.relevance <= 0.98); });
+    var badRel = out.results.filter(function (result) { return !(result.relevance > 0 && result.relevance <= 0.98); });
     cases.push(caseResult("Relevance stays inside its stated bounds",
-      "0 < relevance ≤ 0.98 for every result",
-      badRel.length + " out of bounds", badRel.length === 0));
-
+      "0 < relevance ≤ 0.98 for every result", badRel.length + " out of bounds", badRel.length === 0));
     return cases;
   }
 
@@ -311,6 +318,12 @@
     if (!engine) {
       verdictEl.className = "ev-verdict is-fail";
       verdictEl.textContent = "Engine failed to load — the Secure RAG script is required for this page.";
+      return;
+    }
+    if (engine.CORPUS_ERROR) {
+      verdictEl.className = "ev-verdict is-fail";
+      verdictEl.textContent = "Corpus artifact failed to load — the engine cannot run its retrieval contract.";
+      if (statDocs) statDocs.textContent = "0";
       return;
     }
     if (statDocs) statDocs.textContent = String(engine.CORPUS.length);
