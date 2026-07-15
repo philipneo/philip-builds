@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated": "2026-07-13",
+    "generated": "2026-07-15",
     "script": "scripts/build_corpus.py",
     "boundary": "Approved public pages only. private/ is excluded by construction and is not readable by this script's allowlist.",
     "pages": [
@@ -38,7 +38,7 @@
       }
     ],
     "chunk_count": 46,
-    "total_chars": 39039
+    "total_chars": 39131
   },
   "chunks": [
     {
@@ -97,9 +97,9 @@
       "page_title": "Home",
       "anchor": "infrastructure",
       "title": "The roadmap names dependencies, not promises.",
-      "text": "Planned infrastructure These systems are planned and unbuilt. They become live only after their security, evaluation, and operational requirements can be demonstrated. Server-side routing with authentication, rate limits, validation, and reviewed logs. A learning environment for deploy, observe, compare, and roll back workflows. A measured view of real eval runs once model and retrieval datasets exist. A server-side inference path with latency, cost, failure, and fallback tracking.",
-      "chars": 486,
-      "content_sha1": "4b5c67abd4df"
+      "text": "Planned infrastructure These systems are planned and unbuilt. They become live only after their security, evaluation, and operational requirements can be demonstrated. Server-side routing with authentication, rate limits, validation, and reviewed logs. A learning environment for deploy, observe, compare, and roll back workflows. A measured view of real eval runs once model and retrieval datasets exist. A server-side inference path with latency, cost, failure, and fallback tracking. Select a planned system to see the gate that must be cleared before it can be labeled Live.",
+      "chars": 578,
+      "content_sha1": "e8924f34436a"
     },
     {
       "id": "index--contact",

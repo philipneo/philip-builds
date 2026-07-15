@@ -23,10 +23,11 @@
     <meta name="twitter:image" content="https://philipneo.github.io/philip-builds/assets/lab/secure-rag-system.webp" />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="shared/site.css" />
-    <link rel="stylesheet" href="styles.css?v=20260713-labs3" />
+    <link rel="stylesheet" href="styles.css?v=20260715-labs4" />
     <link rel="stylesheet" href="shared/assistant.css" />
     <script src="shared/ai-config.js" defer></script>
     <script src="shared/reveal.js" defer></script>
+    <script src="script.js?v=20260715-labs4" defer></script>
     <script src="shared/assistant.js" defer data-assistant-root="" data-assistant-context="home"></script>
   </head>
   <body>
@@ -58,23 +59,59 @@
         />
         <div class="home-hero-shade" aria-hidden="true"></div>
         <div class="home-hero-inner">
-          <p class="home-kicker">Philip Miranda / AI/ML engineering lab</p>
-          <h1 id="home-title">Neo Labs.</h1>
-          <p class="home-hero-statement">AI/ML engineering for real-world systems.</p>
-          <p class="home-hero-lead">
-            A working lab for secure retrieval, evaluation, and public AI systems.
-            Inspect the live routes, failure states, and release evidence behind each build.
-          </p>
-          <div class="actions home-hero-actions">
-            <a class="btn primary" href="#systems">Explore Engineering Labs</a>
-            <a class="btn" href="#evidence">Inspect Evaluation Evidence</a>
+          <div class="home-hero-copy">
+            <p class="home-kicker">Philip Miranda / AI, cloud, security engineering lab</p>
+            <h1 id="home-title">Neo Labs.</h1>
+            <p class="home-hero-statement">Machine-intelligence systems, shipped with evidence.</p>
+            <p class="home-hero-lead">
+              A working lab for secure retrieval, evaluation, and cloud-backed AI interfaces.
+              Inspect the live routes, failure states, source boundaries, and release evidence behind each build.
+            </p>
+            <div class="actions home-hero-actions">
+              <a class="btn primary" href="#systems">Explore Engineering Labs</a>
+              <a class="btn" href="#evidence">Inspect Evaluation Evidence</a>
+            </div>
+            <ul class="home-hero-proof" aria-label="Current engineering proof">
+              <li><strong>46</strong><span>generated corpus chunks</span></li>
+              <li><strong>42/42</strong><span>retrieval checks passing</span></li>
+              <li><strong>8</strong><span>approved public sources</span></li>
+              <li><strong>0</strong><span>browser-exposed API keys</span></li>
+            </ul>
           </div>
-          <ul class="home-hero-proof" aria-label="Current engineering proof">
-            <li><strong>46</strong><span>generated corpus chunks</span></li>
-            <li><strong>42/42</strong><span>retrieval checks passing</span></li>
-            <li><strong>8</strong><span>approved public sources</span></li>
-            <li><strong>0</strong><span>browser-exposed API keys</span></li>
-          </ul>
+
+          <aside class="hero-console" aria-labelledby="hero-console-title">
+            <div class="console-head">
+              <p class="eyebrow">Engineering status</p>
+              <h2 id="hero-console-title">Live lab monitor</h2>
+            </div>
+            <div class="console-screen" id="heroSignalPanel" aria-live="polite">
+              <div class="console-orbit" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <p class="console-state" id="heroSignalState">Secure retrieval layer</p>
+              <p id="heroSignalCopy">
+                Prototype route is live: generated corpus, local ranking, guardrail refusals, and structural source validation.
+              </p>
+              <dl class="console-metrics" aria-label="Selected system status">
+                <div>
+                  <dt>State</dt>
+                  <dd id="heroSignalStatus">Prototype</dd>
+                </div>
+                <div>
+                  <dt>Evidence</dt>
+                  <dd id="heroSignalMetric">42 locked checks</dd>
+                </div>
+              </dl>
+            </div>
+            <div class="console-tabs" role="group" aria-label="Choose a system status to inspect">
+              <button type="button" class="console-tab is-active" aria-pressed="true" aria-controls="heroSignalPanel" data-signal-title="Secure retrieval layer" data-signal-state="Prototype" data-signal-metric="42 locked checks" data-signal-copy="Prototype route is live: generated corpus, local ranking, guardrail refusals, and structural source validation.">RAG</button>
+              <button type="button" class="console-tab" aria-pressed="false" aria-controls="heroSignalPanel" data-signal-title="Evaluation harness" data-signal-state="Live" data-signal-metric="42/42 passing" data-signal-copy="Browser-run regression suite checks refusal, precision, hit@k, honesty states, and corpus contracts against the same engine.">Evals</button>
+              <button type="button" class="console-tab" aria-pressed="false" aria-controls="heroSignalPanel" data-signal-title="Structured corpus" data-signal-state="Live" data-signal-metric="46 chunks" data-signal-copy="Allowlisted build artifact feeds both the Corpus Explorer and Secure RAG retrieval, with deterministic drift checks before release.">Corpus</button>
+              <button type="button" class="console-tab" aria-pressed="false" aria-controls="heroSignalPanel" data-signal-title="AI assistant gateway" data-signal-state="Live" data-signal-metric="Server-side keys" data-signal-copy="Same-origin API route keeps provider secrets off the browser and degrades to a labeled local guide when model mode is unavailable.">API</button>
+            </div>
+          </aside>
         </div>
       </section>
 
@@ -357,23 +394,30 @@
             <span>Planned / 01</span>
             <h3>Secure API Gateway</h3>
             <p>Server-side routing with authentication, rate limits, validation, and reviewed logs.</p>
+            <button type="button" class="roadmap-check" data-roadmap-detail="Gateway gate: define auth boundary, rate-limit policy, request validation, logging retention, and rollback behavior before calling this live." aria-label="Show Secure API Gateway readiness details">Check readiness</button>
           </article>
           <article>
             <span>Planned / 02</span>
             <h3>Cloud &amp; MLOps Lab</h3>
             <p>A learning environment for deploy, observe, compare, and roll back workflows.</p>
+            <button type="button" class="roadmap-check" data-roadmap-detail="MLOps gate: add a reproducible deploy path, run history, monitoring signals, and rollback proof before this moves out of planned." aria-label="Show Cloud and MLOps Lab readiness details">Check readiness</button>
           </article>
           <article>
             <span>Planned / 03</span>
             <h3>Model Evaluation Dashboard</h3>
             <p>A measured view of real eval runs once model and retrieval datasets exist.</p>
+            <button type="button" class="roadmap-check" data-roadmap-detail="Evaluation gate: define datasets, expected behaviors, scoring method, failure thresholds, and versioned run records before publishing metrics." aria-label="Show Model Evaluation Dashboard readiness details">Check readiness</button>
           </article>
           <article>
             <span>Planned / 04</span>
             <h3>ML Inference API</h3>
             <p>A server-side inference path with latency, cost, failure, and fallback tracking.</p>
+            <button type="button" class="roadmap-check" data-roadmap-detail="Inference gate: prove server-side secret handling, latency and cost tracking, timeout behavior, and visible fallback states before launch." aria-label="Show ML Inference API readiness details">Check readiness</button>
           </article>
         </div>
+        <p class="roadmap-readout" id="roadmapReadout" aria-live="polite">
+          Select a planned system to see the gate that must be cleared before it can be labeled Live.
+        </p>
       </section>
 
       <section class="section contact-section" id="contact" aria-labelledby="contact-title">

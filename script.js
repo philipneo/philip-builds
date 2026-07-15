@@ -1,37 +1,7 @@
 const root = document.documentElement;
-
-document.body.classList.remove("no-js");
-document.body.classList.add("js");
-
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-const revealItems = Array.from(document.querySelectorAll(".reveal"));
 
-function showAll() {
-  revealItems.forEach((item) => item.classList.add("is-visible"));
-}
-
-if ("IntersectionObserver" in window && !prefersReducedMotion.matches) {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) {
-          return;
-        }
-
-        entry.target.classList.add("is-visible");
-        observer.unobserve(entry.target);
-      });
-    },
-    {
-      rootMargin: "0px 0px -12% 0px",
-      threshold: 0.14,
-    },
-  );
-
-  revealItems.forEach((item) => observer.observe(item));
-} else {
-  showAll();
-}
+document.body.classList.add("js");
 
 let ticking = false;
 
@@ -51,12 +21,8 @@ function requestScrollUpdate() {
   window.requestAnimationFrame(updateScrollProgress);
 }
 
-updateScrollProgress();
-window.addEventListener("scroll", requestScrollUpdate, { passive: true });
-window.addEventListener("resize", requestScrollUpdate);
 function handleMotionPreferenceChange() {
   if (prefersReducedMotion.matches) {
-    showAll();
     root.style.setProperty("--scroll-progress", "0");
     return;
   }
@@ -64,18 +30,60 @@ function handleMotionPreferenceChange() {
   requestScrollUpdate();
 }
 
+function initHeroSignals() {
+  const tabs = Array.from(document.querySelectorAll("[data-signal-title]"));
+  const title = document.getElementById("heroSignalState");
+  const copy = document.getElementById("heroSignalCopy");
+  const status = document.getElementById("heroSignalStatus");
+  const metric = document.getElementById("heroSignalMetric");
+
+  if (!tabs.length || !title || !copy || !status || !metric) {
+    return;
+  }
+
+  function selectTab(tab) {
+    tabs.forEach((item) => {
+      const active = item === tab;
+      item.classList.toggle("is-active", active);
+      item.setAttribute("aria-pressed", String(active));
+    });
+
+    title.textContent = tab.dataset.signalTitle || "";
+    copy.textContent = tab.dataset.signalCopy || "";
+    status.textContent = tab.dataset.signalState || "";
+    metric.textContent = tab.dataset.signalMetric || "";
+  }
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => selectTab(tab));
+  });
+}
+
+function initRoadmapReadout() {
+  const readout = document.getElementById("roadmapReadout");
+  const buttons = Array.from(document.querySelectorAll("[data-roadmap-detail]"));
+
+  if (!readout || !buttons.length) {
+    return;
+  }
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      readout.textContent = button.dataset.roadmapDetail || "";
+      buttons.forEach((item) => item.classList.toggle("is-selected", item === button));
+    });
+  });
+}
+
+updateScrollProgress();
+initHeroSignals();
+initRoadmapReadout();
+
+window.addEventListener("scroll", requestScrollUpdate, { passive: true });
+window.addEventListener("resize", requestScrollUpdate);
+
 if (typeof prefersReducedMotion.addEventListener === "function") {
   prefersReducedMotion.addEventListener("change", handleMotionPreferenceChange);
 } else if (typeof prefersReducedMotion.addListener === "function") {
   prefersReducedMotion.addListener(handleMotionPreferenceChange);
-}
-
-const projectBriefButton = document.getElementById("projectBriefButton");
-const projectBriefStatus = document.getElementById("projectBriefStatus");
-
-if (projectBriefButton && projectBriefStatus) {
-  projectBriefButton.addEventListener("click", () => {
-    projectBriefStatus.textContent =
-      "Brief ready: business name, current link, services, photos, budget range, and the customer action the page should make easier.";
-  });
 }
