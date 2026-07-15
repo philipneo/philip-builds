@@ -3,326 +3,410 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Philip Miranda — Neo Labs | Applied AI, Cloud &amp; Web Systems, Built in Public</title>
+    <title>Neo Labs | AI/ML Engineering Systems by Philip Miranda</title>
     <meta
       name="description"
-      content="The engineering portfolio of Philip Miranda: a live AI assistant on a serverless backend, a security-aware RAG prototype, technical case studies, QA discipline, and an honest learning roadmap. Every claim is labeled Live, Prototype, Planned, or Learning."
+      content="Neo Labs is Philip Miranda's AI/ML engineering lab for real-world systems: secure retrieval, regression evaluation, a generated public corpus, and a server-backed portfolio assistant, all with honest build-state labels."
     />
     <link rel="canonical" href="https://philipneo.github.io/philip-builds/" />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Philip Builds Studio" />
-    <meta property="og:title" content="Philip Miranda — Neo Labs | Applied AI, Cloud &amp; Web Systems" />
-    <meta property="og:description" content="Built and shipped in public: a live AI assistant, a security-aware RAG prototype, documented case studies, and an honest learning roadmap. Every claim is labeled Live, Prototype, Planned, or Learning." />
+    <meta property="og:site_name" content="Neo Labs" />
+    <meta property="og:title" content="Neo Labs | AI/ML Engineering Systems" />
+    <meta property="og:description" content="Inspect secure retrieval, regression evaluation, generated corpus tooling, and a server-backed AI assistant built in public by Philip Miranda." />
     <meta property="og:url" content="https://philipneo.github.io/philip-builds/" />
+    <meta property="og:image" content="https://philipneo.github.io/philip-builds/assets/lab/secure-rag-system.webp" />
+    <meta property="og:image:width" content="960" />
+    <meta property="og:image:height" content="540" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Philip Miranda — Neo Labs | Applied AI, Cloud &amp; Web Systems" />
-    <meta name="twitter:description" content="Built and shipped in public: a live AI assistant, a security-aware RAG prototype, documented case studies, and an honest learning roadmap." />
-    <meta property="og:image" content="https://philipneo.github.io/philip-builds/assets/og/philip-builds-studio-og.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta name="twitter:image" content="https://philipneo.github.io/philip-builds/assets/og/philip-builds-studio-og.png" />
+    <meta name="twitter:title" content="Neo Labs | AI/ML Engineering Systems" />
+    <meta name="twitter:description" content="Live engineering systems, evaluation evidence, technical case studies, and a gated infrastructure roadmap." />
+    <meta name="twitter:image" content="https://philipneo.github.io/philip-builds/assets/lab/secure-rag-system.webp" />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="shared/site.css" />
-    <link rel="stylesheet" href="ai-lab/styles.css" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=20260713-labs3" />
     <link rel="stylesheet" href="shared/assistant.css" />
     <script src="shared/ai-config.js" defer></script>
     <script src="shared/reveal.js" defer></script>
     <script src="shared/assistant.js" defer data-assistant-root="" data-assistant-context="home"></script>
   </head>
   <body>
-    <header class="site-head">
-      <a class="site-brand" href="index.html"><span>PBS</span> Philip Builds Studio</a>
-      <nav aria-label="Site">
-        <a href="ai-lab/index.html">AI Lab</a>
-        <a href="case-studies/index.html">Case studies</a>
-        <a href="portfolio/index.html">Portfolio</a>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <header class="site-head home-head">
+      <a class="site-brand home-brand" href="index.html" aria-label="Neo Labs home">
+        <span aria-hidden="true">NL</span>
+        <span class="home-brand-copy">
+          <strong>Neo Labs</strong>
+          <small>Philip Miranda</small>
+        </span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="#systems">Systems</a>
+        <a href="#evidence">Evidence</a>
+        <a href="ai-lab/index.html">Lab index</a>
       </nav>
     </header>
 
-    <main>
-      <!-- HERO -->
-      <section class="section hero lab-hero home-hero">
-        <div class="lab-hero-grid">
-          <div class="lab-hero-copy">
-            <span class="badge">Neo Labs · Built in public, labeled honestly</span>
-            <p class="eyebrow">Philip Miranda · applied AI, cloud &amp; front-end systems</p>
-            <h1>I build and ship real systems — in public, with proof.</h1>
-            <p class="lab-lead">
-              Neo Labs is my engineering portfolio: a <strong>live AI assistant</strong>
-              running on a serverless backend, a <strong>security-aware retrieval
-              prototype</strong>, documented case studies, and an honest learning
-              roadmap. Every claim on this site is labeled Live, Prototype, Planned,
-              or Learning — open any demo and check it yourself.
+    <main id="main-content">
+      <section class="home-hero">
+        <img
+          class="home-hero-media"
+          src="assets/lab/retrieval-evals-system.webp"
+          alt="The live Retrieval Evaluation Harness showing its passing guardrail checks"
+          width="937"
+          height="800"
+        />
+        <div class="home-hero-shade" aria-hidden="true"></div>
+        <div class="home-hero-inner">
+          <p class="home-kicker">Philip Miranda / AI/ML engineering lab</p>
+          <h1 id="home-title">Neo Labs.</h1>
+          <p class="home-hero-statement">AI/ML engineering for real-world systems.</p>
+          <p class="home-hero-lead">
+            A working lab for secure retrieval, evaluation, and public AI systems.
+            Inspect the live routes, failure states, and release evidence behind each build.
+          </p>
+          <div class="actions home-hero-actions">
+            <a class="btn primary" href="#systems">Explore Engineering Labs</a>
+            <a class="btn" href="#evidence">Inspect Evaluation Evidence</a>
+          </div>
+          <ul class="home-hero-proof" aria-label="Current engineering proof">
+            <li><strong>46</strong><span>generated corpus chunks</span></li>
+            <li><strong>42/42</strong><span>retrieval checks passing</span></li>
+            <li><strong>8</strong><span>approved public sources</span></li>
+            <li><strong>0</strong><span>browser-exposed API keys</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section systems-section" id="systems" aria-labelledby="systems-title">
+        <div class="section-head home-section-head">
+          <p class="eyebrow">Live engineering systems</p>
+          <h2 id="systems-title">Four systems you can inspect now.</h2>
+          <p>
+            Each route exposes its working state and its boundary. Live means the route
+            runs on the public site; Prototype means the engineering approach is visible
+            without pretending the planned infrastructure already exists.
+          </p>
+        </div>
+
+        <article class="system-feature">
+          <div class="system-feature-copy">
+            <div class="home-status-row">
+              <span class="home-status is-prototype">Prototype</span>
+              <span class="home-status-note">Live route / browser-run retrieval</span>
+            </div>
+            <p class="system-index">System 01</p>
+            <h3>Secure RAG Explorer</h3>
+            <p>
+              Deterministic retrieval over a generated, allowlisted public corpus.
+              The engine exposes stable chunk IDs and hashes, source-boundary metadata,
+              claim-safety labels, refusals, and honest empty or offline states.
             </p>
-            <div class="actions">
-              <a class="btn primary" href="ai-lab/index.html">Explore Neo Labs</a>
-              <a class="btn" href="case-studies/secure-rag/index.html">Read the Secure RAG case study</a>
-              <a class="btn home-studio-cta" href="portfolio/index.html">Websites for local businesses →</a>
-            </div>
-          </div>
-          <aside class="lab-system-card home-latest-card" aria-label="Latest from the lab">
-            <span class="system-label">Latest from the lab</span>
-            <h2>Corpus-Backed Retrieval</h2>
-            <p>Build 05: the Secure RAG demo now retrieves from the generated structured public corpus — the same artifact the Corpus Explorer renders. One source of truth, so what's browsable and what's searchable can't drift, with the regression suite re-locked against it.</p>
-            <dl class="system-metrics">
-              <div><dt>Status</dt><dd>Live · shipped July 2026</dd></div>
-              <div><dt>Boundary</dt><dd>Approved public pages only</dd></div>
-              <div><dt>Also new</dt><dd>Corpus drift check in the build script</dd></div>
+            <dl class="system-facts">
+              <div><dt>Corpus</dt><dd>46 generated chunks</dd></div>
+              <div><dt>Boundary</dt><dd>8 approved public pages</dd></div>
+              <div><dt>Ranking</dt><dd>Local keyword scoring</dd></div>
+              <div><dt>Not claimed</dt><dd>Embeddings or production RAG</dd></div>
             </dl>
-            <div class="home-latest-links">
-              <a href="ai-lab/secure-rag/index.html">Run a corpus-backed query →</a>
-              <a href="ai-lab/changelog/index.html">Read the changelog →</a>
+            <a class="text-command" href="ai-lab/secure-rag/index.html">Open Secure RAG</a>
+          </div>
+          <figure class="system-feature-media">
+            <a href="ai-lab/secure-rag/index.html" aria-label="Open the Secure RAG Explorer">
+              <img
+                src="assets/lab/secure-rag-system.webp"
+                alt="Secure RAG Portfolio Search with its generated public corpus snapshot"
+                width="960"
+                height="540"
+                loading="lazy"
+              />
+            </a>
+            <figcaption>Actual public demo screen. The prototype label and limits are part of the interface.</figcaption>
+          </figure>
+        </article>
+
+        <div class="system-duo">
+          <article class="system-compact system-evals">
+            <div class="home-status-row">
+              <span class="home-status is-live">Live</span>
+              <span class="home-status-note">Runs in the browser</span>
             </div>
-          </aside>
-        </div>
-      </section>
+            <p class="system-index">System 02</p>
+            <h3>Retrieval Evaluation Harness</h3>
+            <p>
+              Forty-two regression checks across hit@k ranking, guardrail refusal and
+              precision, corpus contracts, route safety, and honest failure states.
+            </p>
+            <div class="compact-metric" aria-label="Evaluation result">
+              <strong>42/42</strong>
+              <span>passing across five categories</span>
+            </div>
+            <a class="text-command" href="ai-lab/retrieval-evals/index.html">Run Retrieval Evals</a>
+          </article>
 
-      <!-- PROOF STRIP -->
-      <section class="section home-proof-section" aria-labelledby="proof-title">
-        <h2 id="proof-title" class="visually-hidden">Proof at a glance</h2>
-        <div class="home-proof-strip">
-          <div><strong>1</strong><span>live AI system</span><em>assistant + serverless /api/chat</em></div>
-          <div><strong>3</strong><span>shipped lab demos</span><em>Secure RAG · eval harness · corpus</em></div>
-          <div><strong>1</strong><span>published case study</span><em>with QA evidence and resume bullets</em></div>
-          <div><strong>13</strong><span>clickable demos</span><em>working pages, not screenshots</em></div>
-          <div><strong>0</strong><span>API keys in the browser</span><em>server-side env vars only</em></div>
-          <div><strong>0</strong><span>invented clients</span><em>every claim is checkable</em></div>
+          <article class="system-compact system-corpus">
+            <div class="home-status-row">
+              <span class="home-status is-live">Live</span>
+              <span class="home-status-note">Generated artifact</span>
+            </div>
+            <p class="system-index">System 03</p>
+            <h3>Corpus Explorer</h3>
+            <p>
+              Browse the exact corpus the retrieval engine uses. Every chunk carries a
+              stable ID, content hash, public source route, anchor, and explicit allowlist boundary.
+            </p>
+            <ul class="system-inline-facts" aria-label="Corpus facts">
+              <li>JSON + JavaScript artifacts</li>
+              <li>Deterministic drift check</li>
+              <li>Private paths excluded</li>
+            </ul>
+            <a class="text-command" href="ai-lab/corpus-explorer/index.html">Explore Corpus</a>
+          </article>
         </div>
-      </section>
 
-      <!-- NEO LABS FEATURED -->
-      <section class="section" id="neo-labs" aria-labelledby="nl-title">
-        <div class="section-head">
-          <p class="eyebrow">Neo Labs</p>
-          <h2 id="nl-title">Applied AI, cloud, and security-aware systems.</h2>
-          <p>
-            The lab is the spine of this site: real deployed systems, honest
-            prototypes, and the roadmap between them — built without pretending
-            any of it is further along than it is.
-          </p>
-        </div>
-        <div class="grid-3 home-featured">
-          <a class="card home-featured-card" href="ai-lab/index.html#live-system">
-            <span class="status-pill now">Live</span>
+        <article class="assistant-system">
+          <div>
+            <div class="home-status-row">
+              <span class="home-status is-live">Live</span>
+              <span class="home-status-note">Vercel serverless route</span>
+            </div>
+            <p class="system-index">System 04</p>
             <h3>AI Portfolio Assistant</h3>
-            <p>A real site feature: browser UI → same-origin <code>/api/chat</code> on Vercel → provider, with server-side keys and a rule-based fallback that never fakes AI.</p>
-            <span class="home-featured-go">See the system →</span>
-          </a>
-          <a class="card home-featured-card" href="ai-lab/secure-rag/index.html">
-            <span class="status-pill proto">Prototype</span>
-            <h3>Secure RAG Portfolio Search</h3>
-            <p>A simulated retrieval layer with visible pipeline states, extraction-intent guardrails, relevance scoring, source-boundary metadata, and a claim-safety label on every result.</p>
-            <span class="home-featured-go">Run a query →</span>
-          </a>
-          <a class="card home-featured-card" href="case-studies/secure-rag/index.html">
-            <span class="status-pill now">Shipped</span>
-            <h3>Case Study 01 — Secure RAG</h3>
-            <p>Problem, architecture, security decisions, QA evidence, lessons, resume bullets, and interview talking points — documented like a release.</p>
-            <span class="home-featured-go">Read it →</span>
-          </a>
-        </div>
-        <div class="actions">
-          <a class="btn primary" href="ai-lab/index.html">Explore the AI Lab</a>
-          <a class="btn" href="ai-lab/changelog/index.html">Read the dated changelog</a>
-        </div>
+          </div>
+          <p>
+            A same-origin <code>/api/chat</code> path keeps provider secrets server-side,
+            applies timeout and reply validation, and falls back to a clearly labeled
+            local guide when the model route is unavailable.
+          </p>
+          <div class="assistant-system-actions">
+            <button class="btn primary" type="button" data-assistant-open="Show me the engineering systems">Open AI Assistant</button>
+            <a class="text-command" href="ai-lab/index.html#live-system">Inspect the architecture</a>
+          </div>
+        </article>
       </section>
 
-      <!-- HOW I WORK -->
-      <section class="section" id="how-i-work" aria-labelledby="hw-title">
-        <div class="section-head">
-          <p class="eyebrow">How I work</p>
-          <h2 id="hw-title">Shipped like releases, not homework.</h2>
-          <p>
-            Every Neo Labs project goes through the same pipeline: build it, deploy
-            it, test it (accessibility, mobile, secret scans, functional tests),
-            document it as a case study, and label every component Live, Prototype,
-            Planned, or Learning. If a QA pass catches a defect, the case study says
-            so — because "16 of 16 tests, one overflow caught and fixed" is worth
-            more than any adjective.
-          </p>
-        </div>
-        <div class="lab-flow" role="group" aria-label="Project pipeline">
-          <div class="flow-node">
-            <span class="fn-k">01</span>
-            <span class="fn-v">Build</span>
-            <span class="fn-s">Static-first, no libraries, security decisions before features.</span>
-          </div>
-          <div class="flow-arrow" aria-hidden="true">→</div>
-          <div class="flow-node">
-            <span class="fn-k">02</span>
-            <span class="fn-v">Ship</span>
-            <span class="fn-s">Deployed to the live site — demos you can open, not screenshots.</span>
-          </div>
-          <div class="flow-arrow" aria-hidden="true">→</div>
-          <div class="flow-node">
-            <span class="fn-k">03</span>
-            <span class="fn-v">Test</span>
-            <span class="fn-s">Functional tests, accessibility checks, mobile passes, secret scans.</span>
-          </div>
-          <div class="flow-arrow" aria-hidden="true">→</div>
-          <div class="flow-node">
-            <span class="fn-k">04</span>
-            <span class="fn-v">Document</span>
-            <span class="fn-s">A case study with architecture, QA evidence, and lessons.</span>
-          </div>
-          <div class="flow-arrow" aria-hidden="true">→</div>
-          <div class="flow-node">
-            <span class="fn-k">05</span>
-            <span class="fn-v">Label</span>
-            <span class="fn-s">Live / Prototype / Planned / Learning — nothing overclaimed.</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- CASE STUDIES -->
-      <section class="section" id="case-studies" aria-labelledby="cs-title">
-        <div class="section-head">
-          <p class="eyebrow">Case studies</p>
-          <h2 id="cs-title">Every project ships with its paper trail.</h2>
-          <p>
-            A demo shows what works; the case study shows how it was designed,
-            guarded, and tested — and what may honestly be claimed about it.
-          </p>
-        </div>
-        <div class="grid-2">
-          <a class="card home-featured-card" href="case-studies/secure-rag/index.html">
-            <span class="status-pill now">Shipped · July 2026</span>
-            <h3>Case Study 01 — Secure RAG Portfolio Search</h3>
-            <p>Security-aware retrieval: guarded queries, claim-safety labels, staged architecture, and a QA report that includes what the review caught.</p>
-            <span class="home-featured-go">Read the case study →</span>
-          </a>
-          <div class="card home-cs-slot" aria-label="Next case study placeholder">
-            <span class="status-pill next">Planned</span>
-            <h3>Case Study 02 — next lab build</h3>
-            <p>Every future Neo Labs project ships with its case study. Candidates on the roadmap: AI lead scorer prototype, model evaluation dashboard, cloud ML inference API.</p>
-            <span class="home-featured-go"><a href="case-studies/index.html">About the case-study system →</a></span>
-          </div>
-        </div>
-      </section>
-
-      <!-- LEARNING ROADMAP SNAPSHOT -->
-      <section class="section" id="learning" aria-labelledby="lr-title">
-        <div class="section-head">
-          <p class="eyebrow">Learning roadmap</p>
-          <h2 id="lr-title">Labeled honestly: learning, planned, targeted.</h2>
-          <p>
-            Shipped proof comes first; the rest of the path is labeled as exactly
-            what it is. Nothing below is claimed as completed.
-          </p>
-        </div>
-        <div class="roadmap">
-          <div class="road-col">
-            <h3>Learning now <span class="status-pill learning">In progress</span></h3>
-            <ul class="road-tiles">
-              <li>Python for ML · NumPy · pandas</li>
-              <li>SQL and data workflows</li>
-              <li>scikit-learn · PyTorch fundamentals</li>
-              <li>Model evaluation basics</li>
+      <section class="section evidence-section" id="evidence" aria-labelledby="evidence-title">
+        <div class="evidence-layout">
+          <div class="evidence-copy">
+            <p class="eyebrow">Evaluation and security proof</p>
+            <h2 id="evidence-title">The evidence is part of the product.</h2>
+            <p>
+              The public harness imports the same corpus and retrieval engine as the
+              Secure RAG route. It checks both blocking and over-blocking, known-good
+              rankings, honest failure modes, and structural safety contracts.
+            </p>
+            <div class="evidence-score" aria-label="Current retrieval evaluation result">
+              <strong>42</strong>
+              <span>checks passing</span>
+              <small>9 refusal / 2 precision / 14 hit@k / 7 honesty / 10 contract</small>
+            </div>
+            <ul class="evidence-list">
+              <li>Private sources stay outside the corpus by allowlist construction.</li>
+              <li>External, private, and traversal-like result targets are rejected.</li>
+              <li>Corpus drift fails the build-time check before release.</li>
+              <li>Fallback, blocked, broad, and empty states remain explicit.</li>
             </ul>
+            <div class="actions">
+              <a class="btn evidence-primary" href="ai-lab/retrieval-evals/index.html">Inspect Evaluation Evidence</a>
+              <a class="btn evidence-secondary" href="ai-lab/secure-rag/index.html#threat-model">Review the threat model</a>
+            </div>
           </div>
-          <div class="road-col">
-            <h3>Planned next <span class="status-pill next">Planned</span></h3>
-            <ul class="road-tiles">
-              <li>Secure RAG: real embeddings + vector index</li>
-              <li>Model evaluation dashboard</li>
-              <li>Cloud ML inference API</li>
-              <li>Public source links for lab projects</li>
-            </ul>
-          </div>
-          <div class="road-col">
-            <h3>Targeted certs <span class="status-pill next">None claimed</span></h3>
-            <ul class="road-tiles">
-              <li>DeepLearning.AI ML Specialization</li>
-              <li>AWS ML Engineer — Associate</li>
-              <li>Google Cloud Professional ML Engineer</li>
-            </ul>
-          </div>
-        </div>
-        <div class="actions">
-          <a class="btn" href="ai-lab/index.html#roadmap">See the full roadmap</a>
+          <figure class="evidence-media">
+            <a href="ai-lab/retrieval-evals/index.html#results" aria-label="Open the passing retrieval evaluation results">
+              <img
+                src="assets/lab/retrieval-evals-system.webp"
+                alt="Retrieval Evaluation Harness showing all 42 checks passing and the guardrail refusal table"
+                width="937"
+                height="800"
+                loading="lazy"
+              />
+            </a>
+            <figcaption>Captured from the live browser-run suite; the linked page reruns the checks on load.</figcaption>
+          </figure>
         </div>
       </section>
 
-      <!-- ABOUT -->
-      <section class="section" id="about" aria-labelledby="about-title">
-        <div class="section-head">
-          <p class="eyebrow">About</p>
-          <h2 id="about-title">One person, building a track record in public.</h2>
+      <section class="section case-study-section" id="case-study" aria-labelledby="case-study-title">
+        <div class="case-study-grid">
+          <div class="case-study-intro">
+            <p class="eyebrow">Featured technical case study</p>
+            <h2 id="case-study-title">Secure RAG, documented like a release.</h2>
+            <p>
+              The case study connects the demo to its engineering decisions: public-only
+              ingestion, visible guardrails, route validation, claim-safety metadata,
+              release QA, and the line between a browser prototype and production retrieval.
+            </p>
+            <a class="btn primary" href="case-studies/secure-rag/index.html">See Technical Case Study</a>
+          </div>
+          <dl class="case-study-proof">
+            <div>
+              <dt>Problem</dt>
+              <dd>Make retrieval behavior inspectable without exposing or implying private-data access.</dd>
+            </div>
+            <div>
+              <dt>Decision</dt>
+              <dd>Exclude private sources structurally, then add visible refusal and route-safety layers.</dd>
+            </div>
+            <div>
+              <dt>Evidence</dt>
+              <dd>Generated corpus provenance, 42 locked checks, link QA, secret scans, and responsive browser verification.</dd>
+            </div>
+            <div>
+              <dt>Limit</dt>
+              <dd>Keyword retrieval only. No embeddings, vector database, semantic benchmark, or production claim.</dd>
+            </div>
+          </dl>
         </div>
-        <div class="home-about">
+      </section>
+
+      <section class="section build-section" id="learning" aria-labelledby="build-title">
+        <div class="section-head home-section-head">
+          <p class="eyebrow">Current build / engineering timeline</p>
+          <h2 id="build-title">Build 05 is complete. Future gates are explicit.</h2>
           <p>
-            I'm Philip Miranda. I'm building my way into AI and software engineering
-            by shipping real systems instead of collecting claims: a live AI
-            assistant with a secure serverless backend, a security-aware retrieval
-            prototype, and documented case studies with QA evidence. I run Philip
-            Builds Studio — small websites and tools for local businesses — as the
-            applied side of the same discipline. I'm currently studying Python, SQL,
-            and machine-learning fundamentals, and everything on the roadmap is
-            labeled honestly: nothing here claims to be more finished than it is.
+            The lab has moved from a live assistant to a generated corpus and corpus-backed
+            retrieval. Planned embeddings and a vector index remain behind privacy and
+            evaluation gates; they are not part of the current system.
           </p>
         </div>
+
+        <ol class="build-timeline" aria-label="Neo Labs build history">
+          <li><span>01</span><strong>AI Portfolio Assistant</strong><small>Live server-backed route</small></li>
+          <li><span>02</span><strong>Secure RAG Explorer</strong><small>Prototype retrieval + guardrails</small></li>
+          <li><span>03</span><strong>Retrieval Evals</strong><small>Browser-run regression suite</small></li>
+          <li><span>04</span><strong>Structured Corpus</strong><small>Allowlisted generated artifact</small></li>
+          <li class="is-current"><span>05</span><strong>Corpus-Backed Retrieval</strong><small>Committed as <code>8775e00</code></small></li>
+        </ol>
+
+        <div class="development-queue" aria-labelledby="development-title">
+          <div class="development-head">
+            <p class="eyebrow">In development</p>
+            <h3 id="development-title">Planned work, ordered by dependency.</h3>
+          </div>
+          <ol>
+            <li>
+              <span class="queue-state">Build 06 / Planned</span>
+              <strong>Embedding Privacy Review</strong>
+              <p>Decide what may be embedded, retained, and logged before adding an embedding model.</p>
+            </li>
+            <li>
+              <span class="queue-state">Build 07 / Gated</span>
+              <strong>Hybrid Retrieval Engine</strong>
+              <p>Add planned embeddings and a vector index to deterministic lexical ranking only after the privacy review and eval set.</p>
+            </li>
+            <li>
+              <span class="queue-state">Planned</span>
+              <strong>Prompt Regression System</strong>
+              <p>Lock assistant guardrails and answer behavior against a versioned prompt test set.</p>
+            </li>
+            <li>
+              <span class="queue-state">Planned</span>
+              <strong>AI Security Test Suite</strong>
+              <p>Expand beyond the current locked queries with broader adversarial and failure-mode coverage.</p>
+            </li>
+          </ol>
+        </div>
+        <a class="text-command build-log-link" href="ai-lab/changelog/index.html">Read the commit-linked build log</a>
       </section>
 
-      <!-- STUDIO LANE -->
-      <section class="section" id="studio" aria-labelledby="studio-title">
-        <div class="section-head">
-          <p class="eyebrow">The applied lane</p>
-          <h2 id="studio-title">Philip Builds Studio</h2>
+      <section class="section career-section" id="career-proof" aria-labelledby="career-title">
+        <div class="career-grid">
+          <div class="career-intro">
+            <p class="eyebrow">Career proof / skills evidence</p>
+            <h2 id="career-title">Skills mapped to inspectable work.</h2>
+            <p>
+              No credential wall and no invented client story. Each capability below
+              points to a system, test surface, or architecture decision a reviewer can open.
+            </p>
+          </div>
+          <dl class="career-evidence">
+            <div>
+              <dt>Secure AI product thinking</dt>
+              <dd>Public-only corpus boundaries, extraction-intent refusals, route whitelisting, and honest product states.</dd>
+              <a href="ai-lab/secure-rag/index.html">Inspect Secure RAG</a>
+            </div>
+            <div>
+              <dt>Evaluation discipline</dt>
+              <dd>Regression contracts for ranking, guardrail precision, failure behavior, and generated artifact integrity.</dd>
+              <a href="ai-lab/retrieval-evals/index.html">Run the harness</a>
+            </div>
+            <div>
+              <dt>Cloud and API boundaries</dt>
+              <dd>Same-origin serverless routing, server-side environment secrets, timeouts, sanitization, and explicit fallback.</dd>
+              <a href="ai-lab/index.html#live-system">Review the assistant architecture</a>
+            </div>
+            <div>
+              <dt>Release engineering</dt>
+              <dd>Deterministic corpus generation, drift checks, browser QA, link crawling, secret scans, and commit-linked changelogs.</dd>
+              <a href="ai-lab/changelog/index.html">Review release history</a>
+            </div>
+          </dl>
         </div>
-        <div class="card home-studio-card">
+      </section>
+
+      <section class="section infrastructure-section" id="infrastructure" aria-labelledby="infrastructure-title">
+        <div class="section-head home-section-head">
+          <p class="eyebrow">Planned infrastructure</p>
+          <h2 id="infrastructure-title">The roadmap names dependencies, not promises.</h2>
           <p>
-            The same engineering discipline, pointed at local businesses:
-            mobile-first sites, quote calculators, and small workflow tools — fixed
-            scope, honest claims, working demos. If you're a business owner rather
-            than a reviewer, start here.
+            These systems are planned and unbuilt. They become live only after their
+            security, evaluation, and operational requirements can be demonstrated.
+          </p>
+        </div>
+        <div class="infrastructure-list">
+          <article>
+            <span>Planned / 01</span>
+            <h3>Secure API Gateway</h3>
+            <p>Server-side routing with authentication, rate limits, validation, and reviewed logs.</p>
+          </article>
+          <article>
+            <span>Planned / 02</span>
+            <h3>Cloud &amp; MLOps Lab</h3>
+            <p>A learning environment for deploy, observe, compare, and roll back workflows.</p>
+          </article>
+          <article>
+            <span>Planned / 03</span>
+            <h3>Model Evaluation Dashboard</h3>
+            <p>A measured view of real eval runs once model and retrieval datasets exist.</p>
+          </article>
+          <article>
+            <span>Planned / 04</span>
+            <h3>ML Inference API</h3>
+            <p>A server-side inference path with latency, cost, failure, and fallback tracking.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section contact-section" id="contact" aria-labelledby="contact-title">
+        <div class="contact-main">
+          <p class="eyebrow">Contact / project lane</p>
+          <h2 id="contact-title">Start with the engineering evidence.</h2>
+          <p>
+            Reviewing Philip for a role, collaboration, or technical project? Open the
+            case study or use the assistant for a guided route through the lab.
           </p>
           <div class="actions">
-            <a class="btn primary" href="portfolio/index.html">Browse services &amp; demos →</a>
-            <a class="btn" href="start-project/index.html">Start a project</a>
+            <a class="btn primary" href="case-studies/secure-rag/index.html">See Technical Case Studies</a>
+            <button class="btn" type="button" data-assistant-open="Guide me through the engineering evidence">Open AI Assistant</button>
           </div>
         </div>
-      </section>
-
-      <!-- CONTACT -->
-      <section class="section" id="contact" aria-labelledby="contact-title">
-        <div class="section-head">
-          <p class="eyebrow">Contact</p>
-          <h2 id="contact-title">Two ways to start a conversation.</h2>
-        </div>
-        <div class="grid-2">
-          <div class="card">
-            <span class="tag" style="color:var(--mint)">Opportunities &amp; collaboration</span>
-            <p style="margin-top:8px;">
-              Reviewing my work for a role, program, or collaboration? The fastest
-              tour: open the Secure RAG demo, then read the case study. The project
-              starter below builds a pre-filled email — it works for opportunities
-              too.
-            </p>
-            <div class="actions">
-              <a class="btn primary" href="case-studies/secure-rag/index.html">Start with the case study</a>
-            </div>
+        <aside class="studio-secondary" aria-labelledby="studio-secondary-title">
+          <p class="eyebrow">Secondary archive</p>
+          <h3 id="studio-secondary-title">Philip Builds Studio</h3>
+          <p>
+            The earlier local-business sites and small tools remain available as a
+            working frontend archive. They are no longer the primary homepage journey.
+          </p>
+          <div class="studio-secondary-links">
+            <a href="portfolio/index.html">Browse legacy studio work</a>
+            <a href="start-project/index.html">Start a scoped website project</a>
           </div>
-          <div class="card">
-            <span class="tag" style="color:var(--blue)">Hire the studio</span>
-            <p style="margin-top:8px;">
-              Need a small site or tool for a local business? Pick a project type
-              and it builds a short, pre-filled email you review and send yourself.
-              No forms, no backend, nothing stored.
-            </p>
-            <div class="actions">
-              <a class="btn primary" href="start-project/index.html">Start a project</a>
-              <button class="btn" type="button" data-assistant-open="Help me choose a starting point">Ask the assistant</button>
-            </div>
-          </div>
-        </div>
+        </aside>
       </section>
     </main>
 
-    <!-- Built with Filipino pride 🇵🇭 -->
-    <footer>
-      <span><strong>Philip Miranda · Philip Builds Studio</strong> <span aria-hidden="true" title="Filipino-owned" style="font-size:0.85em;opacity:0.55;">🇵🇭</span> — applied AI, cloud &amp; web systems, built in public. Claims labeled Live / Prototype / Planned / Learning.</span>
-      <span><a href="ai-lab/index.html">AI Lab</a> · <a href="case-studies/index.html">Case studies</a> · <a href="portfolio/index.html">Portfolio</a></span>
+    <footer class="home-footer">
+      <span><strong>Neo Labs</strong> by Philip Miranda / AI/ML engineering for real-world systems.</span>
+      <span><a href="ai-lab/index.html">Engineering Labs</a> · <a href="case-studies/index.html">Case studies</a> · <a href="portfolio/index.html">Studio archive</a></span>
     </footer>
   </body>
 </html>

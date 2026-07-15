@@ -22,6 +22,7 @@
     "ai-lab--roadmap": "planned",
     "ai-lab--lp-title": "planned",
     "index--learning": "learning",
+    "index--infrastructure": "planned",
     "ai-lab--ops-title": "planned"
   };
   var ALIASES = {
@@ -30,7 +31,9 @@
     "ai-lab-secure-rag--threat-model": ["security", "risks", "mitigations"],
     "case-studies-secure-rag--security": ["guardrails", "keys", "private", "refusal"],
     "portfolio--biz-demos-title": ["demos", "websites", "live"],
-    "ai-lab--corpus-explorer": ["chunks", "structured", "provenance"]
+    "ai-lab--corpus-explorer": ["chunks", "structured", "provenance"],
+    "ai-lab--secure-rag-demo": ["documentation", "case", "study"],
+    "index--learning": ["embeddings", "vector", "index"]
   };
 
   function preview(text, limit) {
