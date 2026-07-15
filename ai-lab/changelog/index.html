@@ -67,6 +67,27 @@
         <ol class="cl-timeline">
           <li>
             <div class="cl-entry-head">
+              <span class="cl-date">2026-07-15</span>
+              <span class="cl-badge is-build">Build 06</span>
+              <h3>Embedding Privacy Review</h3>
+            </div>
+            <p>
+              The privacy work ships before the embedding model does. A public
+              <a href="../embedding-privacy-review/index.html">review page</a> documents
+              the measured retrieval gaps that motivate embeddings, the query-egress
+              threat model, provider selection criteria with dated facts, three candidate
+              architectures, and the explicit five-decision register that gates Build 07.
+            </p>
+            <ul class="cl-points">
+              <li>A locked 20-query paraphrase probe runs live in the browser against the real engine — the gap number is measured on every page load, never typed in</li>
+              <li>Nothing activates: no provider is called, no key configured, no vector computed, no visitor-query egress anywhere on the site</li>
+              <li>Recommended architecture: hybrid build-time vectors with the keyword engine as permanent fallback and comparison baseline</li>
+              <li>Guardrail-before-network invariant defined: a refused query must never produce a network call</li>
+            </ul>
+            <p class="cl-commits">Commit: <code>pending review</code></p>
+          </li>
+          <li>
+            <div class="cl-entry-head">
               <span class="cl-date">2026-07-11</span>
               <span class="cl-badge is-build">Build 05</span>
               <h3>Corpus-Backed Secure RAG Retrieval</h3>

@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Embedding Privacy Review — Neo Labs | Philip Builds Studio</title>
+    <meta name="description" content="Build 06: the privacy and architecture review that gates real embeddings for the Secure RAG prototype. Measured retrieval gaps, threat model, provider criteria, and an explicit decision register — no embeddings run today, and no visitor query leaves the browser." />
+    <link rel="canonical" href="https://philipneo.github.io/philip-builds/ai-lab/embedding-privacy-review/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Philip Builds Studio" />
+    <meta property="og:title" content="Embedding Privacy Review — Neo Labs" />
+    <meta property="og:description" content="The privacy work ships before the embedding model does: measured keyword-retrieval gaps, query-egress threat model, provider criteria, and the decision register that gates Build 07." />
+    <meta property="og:url" content="https://philipneo.github.io/philip-builds/ai-lab/embedding-privacy-review/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Embedding Privacy Review — Neo Labs" />
+    <meta name="twitter:description" content="Privacy before embeddings: measured gaps, threat model, provider criteria, decision register. Nothing embedded today." />
+    <meta property="og:image" content="https://philipneo.github.io/philip-builds/assets/lab/secure-rag-system.webp" />
+    <meta property="og:image:width" content="960" />
+    <meta property="og:image:height" content="540" />
+    <meta name="twitter:image" content="https://philipneo.github.io/philip-builds/assets/lab/secure-rag-system.webp" />
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../../shared/site.css" />
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../../shared/assistant.css" />
+    <script src="../../shared/ai-config.js" defer></script>
+    <script src="../../shared/reveal.js" defer></script>
+    <script src="../../shared/assistant.js" defer data-assistant-root="../../" data-assistant-context="portfolio"></script>
+    <script src="../corpus-explorer/corpus.js?v=20260715" defer></script>
+    <script src="../secure-rag/script.js?v=20260713" defer></script>
+    <script src="script.js?v=20260715" defer></script>
+  </head>
+  <body>
+    <header class="site-head">
+      <a class="site-brand" href="../../index.html"><span>PBS</span> Philip Builds Studio</a>
+      <nav aria-label="Site">
+        <a href="../../index.html">Home</a>
+        <a href="../../portfolio/index.html">Portfolio</a>
+        <a href="../index.html">AI Lab</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="section hero lab-hero">
+        <div class="lab-hero-grid">
+          <div class="lab-hero-copy">
+            <span class="badge">Neo Labs · Build 06 · Privacy &amp; architecture review</span>
+            <p class="eyebrow">The privacy work ships before the model does</p>
+            <h1>Embedding Privacy Review.</h1>
+            <p class="lab-lead">
+              The next Secure RAG step is a real embedding model — and the safest way to
+              add one is to <strong>decide the privacy architecture first</strong>. This
+              page is that review: the measured retrieval gaps that motivate embeddings,
+              the threat model for sending anything to a provider, the architecture
+              options, and the explicit decisions that gate
+              <a class="epr-inline-link" href="../index.html#roadmap">Build 07</a>.
+            </p>
+            <p class="lab-note">
+              Honest scope: <strong>nothing on this site computes embeddings today.</strong>
+              No visitor query leaves your browser on any Neo Labs page. Keyword retrieval
+              over the <a class="epr-inline-link" href="../corpus-explorer/index.html">generated public corpus</a>
+              remains the working engine, and every number below is either measured live
+              on this page or carries the date it was verified.
+            </p>
+          </div>
+          <aside class="lab-system-card epr-status-card" aria-label="Review status">
+            <span class="system-label">Build 06 status</span>
+            <h2>Review complete. Activation gated.</h2>
+            <dl class="system-metrics">
+              <div><dt>This review</dt><dd>Shipped as documentation</dd></div>
+              <div><dt>Embeddings</dt><dd>Planned · gated on decisions below</dd></div>
+              <div><dt>Visitor-query egress</dt><dd>None today, on any page</dd></div>
+              <div><dt>Working engine</dt><dd>Keyword ranking · regression-locked</dd></div>
+            </dl>
+          </aside>
+        </div>
+      </section>
+
+      <!-- MEASURED GAP -->
+      <section class="section" id="measured-gap" aria-labelledby="gap-title">
+        <div class="section-head">
+          <p class="eyebrow">Evidence, not appetite</p>
+          <h2 id="gap-title">First: prove keyword retrieval actually falls short.</h2>
+          <p>
+            An embedding model is a privacy liability the moment it touches a query, so
+            it has to earn its place. This probe runs <strong>20 locked paraphrase
+            queries</strong> — questions a real visitor might type, phrased without the
+            page's own keywords — against the same engine the
+            <a class="epr-inline-link" href="../secure-rag/index.html">Secure RAG demo</a>
+            uses, in your browser, right now.
+          </p>
+        </div>
+        <p id="epr-verdict" class="epr-verdict" role="status">Running the paraphrase probe…</p>
+        <div id="epr-results" class="epr-results" aria-live="polite"></div>
+        <p class="epr-footnote">
+          Method: a query counts as answered when any chunk a human judged as answering
+          it appears in the engine's top 5 (hit@5). The query set and acceptable chunks
+          were locked on 2026-07-15 after being measured offline; this page re-measures
+          them on every load, so the number above is reproduced — never typed in. This is
+          a <strong>targeted gap probe, not a semantic benchmark</strong>: it exists to
+          show which phrasings keyword scoring misses, which is exactly the gap
+          embeddings are meant to close.
+        </p>
+        <noscript>
+          <p class="epr-footnote"><strong>JavaScript is off, so the probe cannot run here.</strong>
+          When last measured offline against this corpus (2026-07-15, JavaScriptCore):
+          13 of 20 paraphrase queries were answered; 7 missed on synonym gaps.</p>
+        </noscript>
+      </section>
+
+      <!-- WHAT WOULD BE EMBEDDED -->
+      <section class="section" id="inputs" aria-labelledby="inputs-title">
+        <div class="section-head">
+          <p class="eyebrow">Exact input set</p>
+          <h2 id="inputs-title">What would — and would not — be embedded.</h2>
+        </div>
+        <div class="grid-2">
+          <div class="card epr-card-good">
+            <h3>Embedded (build time, once per release)</h3>
+            <ul class="epr-list">
+              <li>The title and text of each generated corpus chunk — currently <span data-epr-stat="chunks">…</span> chunks from <span data-epr-stat="pages">…</span> approved public pages</li>
+              <li>All of it is <strong>already public by construction</strong>: the corpus allowlist is the build script's only input, and you can read every chunk in the <a class="epr-inline-link" href="../corpus-explorer/index.html">Corpus Explorer</a></li>
+            </ul>
+          </div>
+          <div class="card epr-card-bad">
+            <h3>Never embedded</h3>
+            <ul class="epr-list">
+              <li>Anything under <code>private/</code> — excluded from the corpus by construction, so it cannot reach an embedding pipeline that only reads the corpus</li>
+              <li>Visitor queries, in the recommended default — and in any hosted mode, only with the explicit, disclosed decision in the register below</li>
+              <li>Queries the guardrail refuses: the <strong>guardrail-before-network invariant</strong> means a blocked query must be refused before any network call could happen</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card epr-contract">
+          <h3>Integrity contract for the vector artifact</h3>
+          <p>
+            If vectors ship, they ship like the corpus does: a generated, committed
+            artifact — keyed by <code>chunk_id</code> + <code>content_sha1</code> +
+            model + dimensions + generation date. A <code>build_vectors.py --check</code>
+            mode would validate vector–corpus alignment <strong>without any API
+            call</strong>, mirroring the corpus drift check, and the eval suite would
+            gain stale-vector, orphan, dimension, and count checks before anything goes
+            live.
+          </p>
+        </div>
+      </section>
+
+      <!-- ARCHITECTURES -->
+      <section class="section" id="architectures" aria-labelledby="arch-title">
+        <div class="section-head">
+          <p class="eyebrow">Three ways to add embeddings</p>
+          <h2 id="arch-title">Local, hosted, or hybrid — the privacy shape differs.</h2>
+        </div>
+        <div class="epr-arch-grid">
+          <article class="card">
+            <span class="status-pill next">Considered</span>
+            <h3>Fully local (in-browser model)</h3>
+            <p>An open model (e.g. a MiniLM-class encoder, ~23&nbsp;MB) embeds both chunks and queries in the browser. Zero egress, total privacy.</p>
+            <p class="epr-arch-verdict">Rejected for web delivery: a multi-megabyte dependency on a static portfolio page fails the performance budget. Viable for offline tooling.</p>
+          </article>
+          <article class="card">
+            <span class="status-pill next">Considered</span>
+            <h3>Fully hosted</h3>
+            <p>Chunks and every visitor query go to a provider API at request time.</p>
+            <p class="epr-arch-verdict">Rejected as the default: it makes every visitor's search a third-party data event, and the demo must not do that silently.</p>
+          </article>
+          <article class="card epr-arch-recommended">
+            <span class="status-pill now">Recommended</span>
+            <h3>Hybrid, build-time first</h3>
+            <p>Chunk vectors are computed once at build time (public text only) and committed as a public artifact. Query embedding happens only in an explicitly disclosed hosted mode via a same-origin <code>/api/embed</code> route — with the keyword engine as the always-on fallback and comparison baseline.</p>
+            <p class="epr-arch-verdict">Best privacy-to-capability ratio, and it keeps the working system working.</p>
+          </article>
+        </div>
+        <div class="epr-table-wrap" tabindex="0" role="region" aria-label="Architecture comparison">
+          <table class="epr-table">
+            <caption class="visually-hidden-epr">Comparison of embedding architectures</caption>
+            <thead>
+              <tr><th scope="col">Dimension</th><th scope="col">Local</th><th scope="col">Hosted</th><th scope="col">Hybrid (recommended)</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Visitor privacy</th><td>Total — no egress</td><td>Every query egresses</td><td>No egress by default; disclosed opt-in mode</td></tr>
+              <tr><th scope="row">Page payload</th><td>~23 MB model</td><td>No model payload</td><td>~100 KB vector artifact</td></tr>
+              <tr><th scope="row">Per-query cost</th><td>None</td><td>Provider-billed</td><td>None locally; provider-billed only in hosted mode</td></tr>
+              <tr><th scope="row">Failure mode</th><td>Slow devices struggle</td><td>Provider outage kills search</td><td>Falls back to keyword engine</td></tr>
+              <tr><th scope="row">Complexity</th><td>High (browser ML)</td><td>Medium</td><td>Medium — mirrors the existing corpus pipeline</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- THREAT MODEL -->
+      <section class="section" id="threat-model" aria-labelledby="tm-title">
+        <div class="section-head">
+          <p class="eyebrow">Threat model</p>
+          <h2 id="tm-title">What could go wrong, and what answers it.</h2>
+        </div>
+        <div class="epr-threats">
+          <article class="card">
+            <h3>Visitor-query egress</h3>
+            <p><strong>Risk:</strong> hosted query embedding turns every search into a third-party data event, invisibly.</p>
+            <p><strong>Answer:</strong> local keyword mode stays the default; hosted mode requires the explicit decision below plus an on-page disclosure the visitor can see before typing.</p>
+          </article>
+          <article class="card">
+            <h3>Guardrail bypass via the network path</h3>
+            <p><strong>Risk:</strong> an extraction-intent query gets embedded (and thus egressed) before the refusal logic sees it.</p>
+            <p><strong>Answer:</strong> the guardrail-before-network invariant, enforced by tests: <code>classifyQuery</code> runs first, and a blocked query must produce zero network activity.</p>
+          </article>
+          <article class="card">
+            <h3>Vector inversion</h3>
+            <p><strong>Risk:</strong> published vectors could be partially inverted back into text.</p>
+            <p><strong>Answer:</strong> only text that is already public — and browsable in the explorer — would ever be embedded, so inversion can reveal nothing that isn't already on these pages.</p>
+          </article>
+          <article class="card">
+            <h3>Provider retention &amp; training</h3>
+            <p><strong>Risk:</strong> embedded text or queries are retained by the provider, or used to train models.</p>
+            <p><strong>Answer:</strong> the provider criteria below make no-training defaults, retention windows, and stricter options an explicit selection requirement — re-verified at implementation time, not assumed.</p>
+          </article>
+          <article class="card">
+            <h3>Key exposure</h3>
+            <p><strong>Risk:</strong> an embedding API key reaches the browser.</p>
+            <p><strong>Answer:</strong> same discipline as the existing assistant backend: keys live in server-side environment variables behind a same-origin route; this page and the artifact contain none. The secret scan runs before every release.</p>
+          </article>
+          <article class="card">
+            <h3>Stale or orphaned vectors</h3>
+            <p><strong>Risk:</strong> page copy changes, the corpus regenerates, and vectors silently describe text that no longer exists.</p>
+            <p><strong>Answer:</strong> content-hash keying plus a no-network <code>--check</code> drift gate, and eval-suite contract checks that fail on any mismatch.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- PROVIDER CRITERIA -->
+      <section class="section" id="providers" aria-labelledby="prov-title">
+        <div class="section-head">
+          <p class="eyebrow">Provider criteria</p>
+          <h2 id="prov-title">Selection is a privacy decision, not a pricing one.</h2>
+          <p>
+            Facts below were verified from provider documentation on
+            <strong>2026-07-11 / 2026-07-12</strong> and must be re-verified at
+            implementation time — retention and training policies change.
+          </p>
+        </div>
+        <div class="epr-table-wrap" tabindex="0" role="region" aria-label="Provider comparison">
+          <table class="epr-table">
+            <caption class="visually-hidden-epr">Embedding provider comparison as verified July 2026</caption>
+            <thead>
+              <tr><th scope="col">Option</th><th scope="col">Training on API data</th><th scope="col">Retention</th><th scope="col">Stricter options</th><th scope="col">Indicative cost</th><th scope="col">Verdict</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">OpenAI (text-embedding-3-small)</th>
+                <td>Not by default (API policy since 2023-03)</td>
+                <td>Abuse-monitoring logs up to 30 days</td>
+                <td>Zero-data-retention on approval; regional processing exists</td>
+                <td>~$0.02 / 1M tokens</td>
+                <td>Leading candidate</td>
+              </tr>
+              <tr>
+                <th scope="row">Gemini embeddings (paid tier)</th>
+                <td>Paid tier: no; <strong>free tier trains on content with human review — disqualifying for queries</strong></td>
+                <td>~30-day abuse logs (paid)</td>
+                <td>Paid tier required as a floor</td>
+                <td>~$0.15–0.20 / 1M tokens</td>
+                <td>Possible, ~7–10× cost</td>
+              </tr>
+              <tr>
+                <th scope="row">Voyage AI</th>
+                <td><strong>Trains on API data by default</strong>; opt-out requires payment setup and is org-level</td>
+                <td>Per policy at review time</td>
+                <td>Opt-out is one-way, not default</td>
+                <td>—</td>
+                <td>Ruled out on defaults</td>
+              </tr>
+              <tr>
+                <th scope="row">Local open model (MiniLM-class)</th>
+                <td>Never — nothing leaves the machine</td>
+                <td>None</td>
+                <td>N/A</td>
+                <td>Free; ~23 MB payload</td>
+                <td>Rejected for web, viable for offline QA</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- DECISION REGISTER -->
+      <section class="section" id="decisions" aria-labelledby="dec-title">
+        <div class="section-head">
+          <p class="eyebrow">The gate itself</p>
+          <h2 id="dec-title">Five decisions, then Build 07 can exist.</h2>
+          <p>
+            These are deliberately not made by the review. They are the project owner's
+            calls, recorded here so the gate is public and the eventual implementation
+            can be checked against it.
+          </p>
+        </div>
+        <ol class="epr-decisions">
+          <li>
+            <h3>Proceed with embeddings at all?</h3>
+            <p>Recommendation: yes — the measured gap above is real, and the hybrid build-time architecture keeps privacy intact by default.</p>
+          </li>
+          <li>
+            <h3>Accept visitor-query egress in a hosted mode?</h3>
+            <p>Recommendation: only with an on-page disclosure visible before the first query, and with local keyword mode remaining the default experience.</p>
+          </li>
+          <li>
+            <h3>Which provider, and what spend cap?</h3>
+            <p>Requires confirming what is actually configured in the deployment environment and setting a hard spend limit before any key is used.</p>
+          </li>
+          <li>
+            <h3>Publish the vector artifact publicly?</h3>
+            <p>Recommendation: yes — it would contain only transformations of already-public text — but it is an explicit publication decision, not a default.</p>
+          </li>
+          <li>
+            <h3>Zero-data-retention / regional processing?</h3>
+            <p>Recommendation: request stricter options where the provider offers them; document whichever level is actually granted.</p>
+          </li>
+        </ol>
+        <p class="lab-note">
+          Until these are answered, <strong>nothing activates</strong>. No provider is
+          called, no key is configured by this review, no vector is computed, and this
+          page stays exactly as private as the rest of the site: fully static, fully local.
+        </p>
+      </section>
+
+      <!-- BUILD 07 PREVIEW -->
+      <section class="section" id="build-07" aria-labelledby="b7-title">
+        <div class="section-head">
+          <p class="eyebrow">After the gate</p>
+          <h2 id="b7-title">What Build 07 would ship.</h2>
+        </div>
+        <ul class="epr-list epr-b7">
+          <li><code>scripts/build_vectors.py</code> — stdlib-only, key from environment, emits the committed vector artifact, with a no-network <code>--check</code> drift gate</li>
+          <li>A same-origin <code>/api/embed</code> route with the same server-side-key discipline as the existing assistant backend</li>
+          <li>Hybrid ranking that fuses keyword and vector signals, displayed with both signals visible — so the comparison against the keyword baseline stays inspectable</li>
+          <li>Eval-suite extensions: vector–corpus contract checks, and this page's paraphrase probe re-run against hybrid retrieval to measure the actual improvement</li>
+          <li>On-page mode disclosure wherever a query could leave the browser</li>
+        </ul>
+        <div class="actions">
+          <a class="btn primary" href="../retrieval-evals/index.html">See the current regression suite</a>
+          <a class="btn" href="../secure-rag/index.html">Run the keyword engine it gates</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span><strong>Neo Labs</strong> by Philip Miranda — privacy reviewed before capability added. Claims labeled Live / Prototype / Planned.</span>
+      <span><a href="../index.html">AI Lab</a> · <a href="../changelog/index.html">Changelog</a> · <a href="../../case-studies/index.html">Case studies</a></span>
+    </footer>
+  </body>
+</html>
