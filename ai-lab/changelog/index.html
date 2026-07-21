@@ -68,6 +68,28 @@
           <li>
             <div class="cl-entry-head">
               <span class="cl-date">2026-07-15</span>
+              <span class="cl-badge is-build">Build 07</span>
+              <h3>Hybrid Retrieval Lab — readiness &amp; lexical layer</h3>
+            </div>
+            <p>
+              Build 07 begins with measurement, not a model. A public
+              <a href="../hybrid-retrieval-lab/index.html">readiness lab</a> classifies
+              every failure in the paraphrase probe, ships a deterministic lexical
+              improvement layer (<code>b07-lex-1</code>), and documents the
+              provider-neutral hybrid architecture — reciprocal-rank fusion, failure
+              fallback, vector lifecycle — that activates only after the Build 06 gates.
+            </p>
+            <ul class="cl-points">
+              <li>Lexical layer: weak morphological matching tier (half-weight, cannot overturn the ranking contract), seven corpus-grounded acronym/variant expansions, and single-token threshold scaling</li>
+              <li>Measured honestly: paraphrase probe 13/20 → 14/20 at hit@5; the 42-check regression suite preserved throughout; remaining misses documented as embedding-class vocabulary gaps</li>
+              <li>Live extended metrics on the lab page: hit@1, hit@3, hit@5, and mean reciprocal rank, re-measured in the browser on every load</li>
+              <li>Still keyword retrieval — the lexical layer is explicitly not semantic search, and no embeddings, vectors, provider calls, or query egress exist anywhere</li>
+            </ul>
+            <p class="cl-commits">Commit: <code>pending review</code></p>
+          </li>
+          <li>
+            <div class="cl-entry-head">
+              <span class="cl-date">2026-07-15</span>
               <span class="cl-badge is-build">Build 06</span>
               <h3>Embedding Privacy Review</h3>
             </div>

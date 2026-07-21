@@ -112,10 +112,56 @@
     "of", "for", "to", "in", "on", "at", "with", "and", "or", "it", "its",
     "this", "that", "these", "those", "there", "here",
     "has", "have", "had", "please", "tell", "about", "any", "some",
-    "philip", "philips", "his", "he", "them", "they"
+    "philip", "philips", "his", "he", "them", "they", "from", "come", "comes"
   ];
 
   var BROAD_TERMS = ["ai", "ml", "tech", "stuff", "things", "everything", "anything", "website", "site", "work"];
+
+  /* Build 07 lexical layer — deterministic token normalization. This is light
+     suffix folding so that morphological variants ("measuring"/"measured",
+     "certifications"/"certs") land on the same token. It is NOT stemming-quality
+     NLP and it is NOT semantic retrieval; both sides (corpus and query) are
+     folded identically, so matching stays exact and reproducible. */
+  function normalizeToken(t) {
+    if (t.length > 5 && t.slice(-3) === "ies") return t.slice(0, -3) + "y";
+    if (t.length > 6 && t.slice(-3) === "ing") { t = t.slice(0, -3); }
+    else if (t.length > 5 && t.slice(-2) === "ed") { t = t.slice(0, -2); }
+    else if (t.length > 3 && t.slice(-1) === "s" && t.slice(-2) !== "ss") { t = t.slice(0, -1); }
+    /* Final e-fold so one morphological family lands on one stem:
+       measure/measures/measured/measuring all become "measur". */
+    if (t.length > 4 && t.slice(-1) === "e") { t = t.slice(0, -1); }
+    return t;
+  }
+
+  /* Build 07 lexical layer — corpus-grounded query expansions. Every entry maps
+     visitor vocabulary onto a token the corpus actually uses (acronyms and
+     lexeme variants only — no meaning-level synonyms, which stay honest
+     embedding territory). Keys are FOLDED forms (normalizeToken output) so
+     plural/variant phrasings share one entry; values are raw corpus tokens. */
+  var EXPANSIONS = {
+    "artificial": ["ai"],
+    "evaluation": ["eval"],
+    "certification": ["cert", "credential"],
+    "websit": ["site"],
+    "webpag": ["page"]
+  };
+  var PAIR_EXPANSIONS = [
+    [["quality", "assurance"], ["qa"]],
+    [["machine", "learning"], ["ml"]]
+  ];
+
+  function expandTokens(tokens) {
+    var out = tokens.slice();
+    function add(t) { if (out.indexOf(t) === -1) out.push(t); }
+    tokens.forEach(function (t) {
+      (EXPANSIONS[normalizeToken(t)] || []).forEach(add);
+    });
+    PAIR_EXPANSIONS.forEach(function (rule) {
+      var all = rule[0].every(function (t) { return tokens.indexOf(t) !== -1; });
+      if (all) rule[1].forEach(add);
+    });
+    return out;
+  }
 
   /* Guardrail patterns. Extraction intent = sensitive noun + reveal-style verb.
      Hard blocks cover private-data asks regardless of verb. */
@@ -133,12 +179,19 @@
 
   /* Precomputed token sets for title, anchor, and full chunk-text matching. */
   var DOC_TOKENS = CORPUS.map(function (doc) {
-    return { title: tokenize(doc.title), anchor: tokenize(doc.anchor), text: tokenize(doc.text) };
+    var text = tokenize(doc.text);
+    return {
+      title: tokenize(doc.title),
+      anchor: tokenize(doc.anchor),
+      text: text,
+      /* Build 07: folded text tokens for the weak morphological tier only. */
+      textNorm: text.map(normalizeToken)
+    };
   });
 
   function classifyQuery(raw) {
     var q = String(raw || "").trim();
-    if (!q) return { type: "broad", reason: "Empty query." };
+    if (!q) return { type: "empty", reason: "Enter a specific question about the public portfolio or AI Lab pages." };
     if (HARD_BLOCK_RE.test(q)) {
       return { type: "blocked", reason: "This query asks for private or personal data. The index only contains public portfolio content, and private files are excluded by construction." };
     }
@@ -148,7 +201,7 @@
     }
     var tokens = tokenize(q);
     if (tokens.length === 0) {
-      return { type: "broad", reason: "The query has no searchable terms after removing filler words." };
+      return { type: "empty", reason: "The query has no searchable terms after removing filler words." };
     }
     if (tokens.length === 1 && BROAD_TERMS.indexOf(tokens[0]) !== -1) {
       return { type: "broad", reason: "“" + tokens[0] + "” matches most of the index. A more specific question ranks meaningfully." };
@@ -178,6 +231,11 @@
       if (best < 2.5 && docTokens.title.indexOf(t) !== -1) { best = 2.5; hit = t; }
       if (best < 2 && docTokens.anchor.indexOf(t) !== -1) { best = 2; hit = t; }
       if (best === 0 && docTokens.text.indexOf(t) !== -1) { best = 1; hit = t; }
+      /* Build 07: weak morphological tier. A folded-form text match ("keys" ~
+         "key", "measuring" ~ "measured") scores half a raw text match, so it
+         can surface results raw matching misses but cannot overturn the
+         established ranking contract. */
+      if (best === 0 && docTokens.textNorm.indexOf(normalizeToken(t)) !== -1) { best = 0.5; hit = t; }
       if (best > 0) {
         score += best;
         if (hit && matched.indexOf(hit) === -1) matched.push(hit);
@@ -201,15 +259,22 @@
       return { state: "offline", reason: "Retrieval index unavailable (simulated). Safe error state: no partial or invented answers.", results: [], tookMs: 0, note: "" };
     }
 
+    /* Build 07 lexical layer: expand normalized query tokens with corpus-grounded
+       acronyms/variants, and scale the keep-threshold for single-informative-token
+       queries (a lone text match scores 1.0 and could never reach the multi-token
+       threshold of 2.4, which was tuned for 2+ token queries). */
+    var queryTokens = expandTokens(verdict.tokens);
+    var keepThreshold = verdict.tokens.length === 1 ? 1.0 : 2.4;
+
     var scored = [];
     for (var i = 0; i < CORPUS.length; i++) {
-      var res = scoreDoc(CORPUS[i], DOC_TOKENS[i], verdict.tokens);
-      if (res.score >= 2.4) {
+      var res = scoreDoc(CORPUS[i], DOC_TOKENS[i], queryTokens);
+      if (res.score >= keepThreshold) {
         scored.push({
           doc: CORPUS[i],
           score: res.score,
           matched: res.matched,
-          relevance: Math.min(0.98, res.score / (3 * verdict.tokens.length))
+          relevance: Math.min(0.98, res.score / (3 * queryTokens.length))
         });
       }
     }
@@ -244,7 +309,12 @@
     classifyQuery: classifyQuery,
     scoreDoc: scoreDoc,
     runSearch: runSearch,
-    safeHref: safeHref
+    safeHref: safeHref,
+    normalizeToken: normalizeToken,
+    expandTokens: expandTokens,
+    EXPANSIONS: EXPANSIONS,
+    PAIR_EXPANSIONS: PAIR_EXPANSIONS,
+    LEXICAL_VERSION: "b07-lex-1"
   };
 
   /* Expose the pure engine for local QA. No secrets or external services. */
@@ -256,9 +326,8 @@
   if (typeof module !== "undefined" && module.exports) {
     module.exports = engine;
   }
-  if (typeof window === "undefined" || !document.getElementById("rag-input")) {
-    return;
-  }
+  function initDom() {
+  if (typeof document === "undefined") return;
 
   /* ── DOM layer ── */
   var form = document.querySelector(".rag-form");
@@ -274,6 +343,9 @@
   var docStat = document.querySelector('[data-rag-stat="docs"]');
   var pageStat = document.querySelector('[data-rag-stat="pages"]');
   var generatedStat = document.querySelector('[data-rag-stat="generated"]');
+
+  if (!form || !input || !resultsEl || !pipelineEl || !tookEl || !auditEl ||
+      !offlineToggle || !evalLatency || !evalQueries || !evalBlocks) return;
 
   if (docStat) docStat.textContent = String(CORPUS.length);
   if (pageStat) pageStat.textContent = META ? String(META.pages.length) : "—";
@@ -561,4 +633,13 @@
     offlineToggle.textContent = offline ? "Index offline — click to restore" : "Simulate: index offline";
     if (offline && input.value.trim()) execute(input.value);
   });
+  }
+
+  if (typeof window !== "undefined") {
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initDom);
+    } else {
+      initDom();
+    }
+  }
 })();

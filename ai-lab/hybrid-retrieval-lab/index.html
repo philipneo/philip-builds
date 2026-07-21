@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hybrid Retrieval Lab — Neo Labs | Philip Builds Studio</title>
+    <meta name="description" content="Build 07 readiness: measured keyword-retrieval failure taxonomy, a shipped lexical improvement layer with before/after numbers, provider-neutral hybrid architecture with reciprocal-rank fusion, and the activation gates. No embeddings run; no visitor query leaves the browser." />
+    <link rel="canonical" href="https://philipneo.github.io/philip-builds/ai-lab/hybrid-retrieval-lab/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Philip Builds Studio" />
+    <meta property="og:title" content="Hybrid Retrieval Lab — Neo Labs" />
+    <meta property="og:description" content="From keyword retrieval toward privacy-aware hybrid search: real failure analysis, a measured lexical layer, fusion architecture, and explicit activation gates." />
+    <meta property="og:url" content="https://philipneo.github.io/philip-builds/ai-lab/hybrid-retrieval-lab/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hybrid Retrieval Lab — Neo Labs" />
+    <meta name="twitter:description" content="Build 07 readiness: measured gaps, lexical layer, fusion design, activation gates. Still no egress." />
+    <meta property="og:image" content="https://philipneo.github.io/philip-builds/assets/lab/retrieval-evals-system.webp" />
+    <meta property="og:image:width" content="937" />
+    <meta property="og:image:height" content="800" />
+    <meta name="twitter:image" content="https://philipneo.github.io/philip-builds/assets/lab/retrieval-evals-system.webp" />
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../../shared/site.css" />
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="../embedding-privacy-review/styles.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../../shared/assistant.css" />
+    <script src="../../shared/ai-config.js" defer></script>
+    <script src="../../shared/reveal.js" defer></script>
+    <script src="../../shared/assistant.js" defer data-assistant-root="../../" data-assistant-context="portfolio"></script>
+    <script src="../corpus-explorer/corpus.js?v=20260715" defer></script>
+    <script src="../secure-rag/script.js?v=20260715b" defer></script>
+    <script src="script.js?v=20260715" defer></script>
+  </head>
+  <body>
+    <header class="site-head">
+      <a class="site-brand" href="../../index.html"><span>PBS</span> Philip Builds Studio</a>
+      <nav aria-label="Site">
+        <a href="../../index.html">Home</a>
+        <a href="../../portfolio/index.html">Portfolio</a>
+        <a href="../index.html">AI Lab</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="section hero lab-hero">
+        <div class="lab-hero-grid">
+          <div class="lab-hero-copy">
+            <span class="badge">Neo Labs · Build 07 · Architecture review</span>
+            <p class="eyebrow">Readiness before activation</p>
+            <h1>Hybrid Retrieval Lab.</h1>
+            <p class="lab-lead">
+              Build 07 will fuse today's keyword engine with embedding-based retrieval —
+              once the <a class="epr-inline-link" href="../embedding-privacy-review/index.html">privacy
+              gates</a> are cleared. This lab is the engineering between here and there:
+              a real failure taxonomy of what keyword scoring misses, a <strong>shipped
+              lexical improvement layer</strong> with honest before/after numbers, and
+              the provider-neutral fusion architecture waiting behind the gate.
+            </p>
+            <p class="lab-note">
+              Honest scope: retrieval on this site is still <strong>local keyword
+              scoring — not semantic search</strong>. The lexical layer below improves
+              morphology and acronym handling; it does not understand meaning. No
+              embedding model runs, no vector exists, and no visitor query leaves
+              your browser on any page.
+            </p>
+          </div>
+          <aside class="lab-system-card epr-status-card" aria-label="Build 07 status">
+            <span class="system-label">Build 07 status</span>
+            <h2>In development. Activation gated.</h2>
+            <dl class="system-metrics">
+              <div><dt>Lexical layer</dt><dd>Shipped · <code>b07-lex-1</code></dd></div>
+              <div><dt>Embeddings</dt><dd>Gated on the Build 06 register</dd></div>
+              <div><dt>Visitor-query egress</dt><dd>None, on any page</dd></div>
+              <div><dt>Regression contract</dt><dd>Preserved — <a class="epr-inline-link" href="../retrieval-evals/index.html">run it live</a></dd></div>
+            </dl>
+          </aside>
+        </div>
+      </section>
+
+      <!-- LIVE METRICS -->
+      <section class="section" id="metrics" aria-labelledby="metrics-title">
+        <div class="section-head">
+          <p class="eyebrow">Measured, not promised</p>
+          <h2 id="metrics-title">The paraphrase probe, with full ranking metrics.</h2>
+          <p>
+            The same 20 locked paraphrase queries from the
+            <a class="epr-inline-link" href="../embedding-privacy-review/index.html">Build 06 review</a>,
+            re-run against the live engine in your browser — now reported as hit@1,
+            hit@3, hit@5, and mean reciprocal rank, because a system that finds the
+            right chunk at rank 5 is not the same as one that finds it first.
+          </p>
+        </div>
+        <div class="hrl-scoreboard" id="hrl-scoreboard" role="status" aria-live="polite">
+          <div><strong id="hrl-hit1">…</strong><span>hit@1</span></div>
+          <div><strong id="hrl-hit3">…</strong><span>hit@3</span></div>
+          <div><strong id="hrl-hit5">…</strong><span>hit@5</span></div>
+          <div><strong id="hrl-mrr">…</strong><span>mean reciprocal rank</span></div>
+        </div>
+        <p class="epr-footnote" id="hrl-baseline-note">
+          Baseline for comparison: before the Build 07 lexical layer, this probe
+          measured <strong>13/20 at hit@5</strong> (locked and dated 2026-07-15,
+          pre-lexical engine, reproducible from git history). The scoreboard above is
+          measured on this page load with the current engine. If the numbers ever
+          disagree with the copy on this page, trust the scoreboard — and file it as
+          a bug.
+        </p>
+        <div id="hrl-results" class="epr-results" aria-live="polite"></div>
+        <noscript>
+          <p class="epr-footnote"><strong>JavaScript is off, so the probe cannot run here.</strong>
+          When last measured offline (2026-07-15, JavaScriptCore, post-lexical engine):
+          14/20 at hit@5; the six remaining misses are vocabulary-level gaps that
+          keyword matching cannot close without embeddings.</p>
+        </noscript>
+      </section>
+
+      <!-- LEXICAL LAYER -->
+      <section class="section" id="lexical" aria-labelledby="lex-title">
+        <div class="section-head">
+          <p class="eyebrow">Shipped in Build 07 · <code>b07-lex-1</code></p>
+          <h2 id="lex-title">First, earn every win that doesn't need a model.</h2>
+          <p>
+            Before adding an embedding model — with its privacy, cost, and drift
+            surface — the keyword engine took every improvement that stays
+            deterministic, local, and explainable. Three changes shipped:
+          </p>
+        </div>
+        <div class="epr-threats">
+          <article class="card">
+            <h3>1 · Weak morphological tier</h3>
+            <p>Suffix-folded text matching ("keys" ~ "key", "measuring" ~ "measured") scores <strong>half</strong> a raw text match. It can surface results raw matching misses, but by design it cannot overturn the established ranking contract — the 42-check suite pins the winners.</p>
+          </article>
+          <article class="card">
+            <h3>2 · Corpus-grounded expansions</h3>
+            <p>A seven-entry table maps visitor vocabulary onto tokens the corpus actually uses: <code>quality assurance → QA</code>, <code>machine learning → ML</code>, <code>certification → cert, credential</code>, <code>website → site</code>. Acronyms and lexeme variants only — meaning-level synonymy stays embedding territory, honestly.</p>
+          </article>
+          <article class="card">
+            <h3>3 · Single-token threshold</h3>
+            <p>The keep-threshold of 2.4 was tuned for multi-word queries; a lone informative word ("certifications") matching chunk text scores 1.0 and could never qualify. Single-token queries now use a 1.0 threshold — broad single terms are still refused by the guardrail before scoring.</p>
+          </article>
+        </div>
+        <p class="epr-footnote">
+          Result: hit@5 moved from <strong>13/20 to 14/20</strong> with the 42-check
+          regression contract fully preserved — measured before and after via the same
+          offline JavaScriptCore harness, and re-measured live above. The modest gain is
+          the honest headline: most remaining misses are vocabulary gaps
+          ("hire" vs "start a project") that <em>no</em> amount of lexical tuning closes
+          without overfitting to the test set.
+        </p>
+      </section>
+
+      <!-- FAILURE TAXONOMY -->
+      <section class="section" id="taxonomy" aria-labelledby="tax-title">
+        <div class="section-head">
+          <p class="eyebrow">Failure analysis · authored 2026-07-15</p>
+          <h2 id="tax-title">Every original miss, classified.</h2>
+          <p>
+            The seven queries the pre-lexical engine missed, what actually happened,
+            and whether a fix is legitimately lexical or genuinely needs embeddings.
+            This table is authored analysis of measured runs — the live probe above
+            shows the current behavior of each query.
+          </p>
+        </div>
+        <div class="epr-table-wrap" tabindex="0" role="region" aria-label="Failure taxonomy for the seven original probe misses">
+          <table class="epr-table">
+            <thead>
+              <tr><th scope="col">Query</th><th scope="col">What happened</th><th scope="col">Failure class</th><th scope="col">Verdict</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="epr-q">"quality assurance process"</td><td>Zero results — the corpus says "QA", never "quality assurance"</td><td>Acronym gap</td><td class="epr-hit">Expansion added; still lands just under the multi-token threshold — a known, documented near-miss</td></tr>
+              <tr><td class="epr-q">"measuring search accuracy"</td><td>Wrong page card outranked the eval chunks ("measuring" ≠ "measured")</td><td>Morphology + vocabulary</td><td class="epr-miss">Partially lexical; "accuracy" itself is a meaning-level gap → embeddings</td></tr>
+              <tr><td class="epr-q">"where does the content index come from"</td><td>Function words "come"/"from" matched everywhere and drowned the corpus-explorer chunk</td><td>Ranking noise</td><td class="epr-hit">Stopword additions shipped ("from", "come")</td></tr>
+              <tr><td class="epr-q">"what certifications does philip have"</td><td>The token was IN the chunk — but a single text match (1.0) could never reach the 2.4 threshold</td><td>Threshold artifact</td><td class="epr-hit">Fixed by single-token threshold scaling; now answered</td></tr>
+              <tr><td class="epr-q">"machine learning study plan"</td><td>"ML" acronym gap plus "study plan" vs "learning roadmap" vocabulary</td><td>Acronym + vocabulary</td><td class="epr-miss">ML expansion shipped; "study plan" ↔ "roadmap" is semantic → embeddings</td></tr>
+              <tr><td class="epr-q">"future production hardening"</td><td>"Hardening" appears nowhere in the corpus</td><td>Vocabulary / coverage</td><td class="epr-miss">Embedding-class — or a copy decision on the case-study page</td></tr>
+              <tr><td class="epr-q">"can i hire you for a website"</td><td>Zero overlap: visitors say "hire" and "website"; the corpus says "start a project" and "site"</td><td>Vocabulary / intent</td><td class="epr-miss">"website → site" expansion shipped but insufficient; "hire" is intent-level → embeddings</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- HYBRID ARCHITECTURE -->
+      <section class="section" id="architecture" aria-labelledby="arch-title">
+        <div class="section-head">
+          <p class="eyebrow">Provider-neutral design</p>
+          <h2 id="arch-title">The hybrid pipeline, layer by layer.</h2>
+          <p>
+            When the Build 06 gates clear, this is the shape of the system. Every layer
+            left of "vector retrieval" already exists and keeps working if everything
+            to the right fails or is never activated.
+          </p>
+        </div>
+        <ol class="hrl-pipeline">
+          <li><strong>Intake &amp; validation</strong><span>Length limits, input normalization — exists today</span></li>
+          <li><strong>Guardrails</strong><span>Extraction-intent and private-data refusals run first; a blocked query must produce zero network activity — the guardrail-before-network invariant, enforced by tests</span></li>
+          <li><strong>Disclosure state</strong><span>If hosted mode is ever enabled, the egress notice renders before the first keystroke reaches a provider</span></li>
+          <li><strong>Keyword retrieval</strong><span>The current engine, including the b07-lex-1 layer — permanent baseline and fallback</span></li>
+          <li><strong>Vector retrieval (gated)</strong><span>Cosine over build-time chunk vectors; query embedding via same-origin route only in disclosed hosted mode</span></li>
+          <li><strong>Fusion</strong><span>Reciprocal-rank fusion of the two ranked lists (see below), deduplicated by chunk ID</span></li>
+          <li><strong>Provenance &amp; labels</strong><span>Chunk IDs, content hashes, claim-safety labels, and both retrieval signals displayed — inspectable, not blended away</span></li>
+          <li><strong>Failure fallback</strong><span>Provider timeout, rate-limit, or error → keyword results with a visible degraded-mode notice; never a blank page, never a fake answer</span></li>
+          <li><strong>Versioning &amp; rollback</strong><span>Vectors keyed by chunk hash + model + dims + date; corpus drift fails the build check; rollback is one git revert</span></li>
+        </ol>
+        <div class="epr-table-wrap" tabindex="0" role="region" aria-label="Fusion method comparison">
+          <table class="epr-table">
+            <thead>
+              <tr><th scope="col">Fusion method</th><th scope="col">How it works</th><th scope="col">Fit for this corpus</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Weighted score combination</th><td>Blend raw scores with tuned weights</td><td>Poor — keyword scores (0–15+) and cosine scores (0–1) live on incompatible scales; normalization adds tuning surface a 46-chunk corpus can't validate</td></tr>
+              <tr><th scope="row">Reciprocal-rank fusion (recommended)</th><td>Score by rank position only: Σ 1/(k + rank), k=60</td><td><strong>Best fit</strong> — scale-free, no tuning beyond one constant, well-studied, and trivially explainable on a results card</td></tr>
+              <tr><th scope="row">Confidence-gated vector use</th><td>Vector search only when keyword confidence is low</td><td>Attractive for cost, but adds a threshold that hides which signal answered — worse for an inspectable demo</td></tr>
+              <tr><th scope="row">Candidate generation + rerank</th><td>One system retrieves, the other reorders</td><td>Overkill at 46 chunks; justified at the scale where retrieval and ranking genuinely separate</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="epr-footnote">
+          Why RRF: this is a small, public, privacy-sensitive corpus where
+          <strong>explainability beats optimality</strong>. Rank-based fusion means the
+          result card can honestly say "keyword rank 2 · vector rank 1 → fused rank 1"
+          with no hidden normalization to defend. The keyword baseline stays visible as
+          a comparison column, so the semantic layer has to <em>prove</em> its value on
+          the same probe this page already runs.
+        </p>
+      </section>
+
+      <!-- ACTIVATION GATES -->
+      <section class="section" id="gates" aria-labelledby="gates-title">
+        <div class="section-head">
+          <p class="eyebrow">What must be true first</p>
+          <h2 id="gates-title">Activation gates, in dependency order.</h2>
+        </div>
+        <ul class="epr-list epr-b7">
+          <li><strong>The five Build 06 decisions</strong> — proceed, egress disclosure, provider + spend cap, vector publication, retention level — answered and recorded on the <a class="epr-inline-link" href="../embedding-privacy-review/index.html">review page</a></li>
+          <li><strong>Provider facts re-verified</strong> at implementation time (the review's facts are dated 2026-07-11/12 and expire by design)</li>
+          <li><strong><code>build_vectors.py --check</code></strong> green: vectors aligned to the corpus by chunk ID + content hash, with no network call needed to verify</li>
+          <li><strong>Eval extensions locked</strong>: stale-vector, orphan, dimension, and count contract checks, plus this probe re-run against hybrid retrieval — activation requires beating the 14/20 keyword baseline on held-out paraphrases, not just these 20</li>
+          <li><strong>Guardrail-before-network test</strong>: every refusal case in the 42-check suite re-verified to produce zero network activity in hosted mode</li>
+          <li><strong>Rollback rehearsed</strong>: one revert returns to keyword-only with no data loss, because vectors are a generated artifact, not state</li>
+        </ul>
+        <div class="actions">
+          <a class="btn primary" href="../embedding-privacy-review/index.html">Read the privacy review</a>
+          <a class="btn" href="../retrieval-evals/index.html">Run the regression suite</a>
+          <a class="btn" href="../secure-rag/index.html">Query the current engine</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span><strong>Neo Labs</strong> by Philip Miranda — measured before promised. Claims labeled Live / Prototype / Planned.</span>
+      <span><a href="../index.html">AI Lab</a> · <a href="../changelog/index.html">Changelog</a> · <a href="../../case-studies/index.html">Case studies</a></span>
+    </footer>
+  </body>
+</html>

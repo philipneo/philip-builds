@@ -17,6 +17,7 @@ Primary proof-of-work:
 - Retrieval Eval Harness at `ai-lab/retrieval-evals/index.html` — a live in-browser regression suite (refusal tests, hit@k checks, honesty states, contract checks) against the Secure RAG engine.
 - Structured Public Corpus at `ai-lab/corpus-explorer/index.html` — public pages converted into JSON chunks with stable IDs and content hashes by `scripts/build_corpus.py` (allowlist-first, stdlib-only; rerun it after editing public pages, then verify with `python3 scripts/build_corpus.py --check`).
 - Embedding Privacy Review at `ai-lab/embedding-privacy-review/index.html` — the Build 06 gate: measured keyword-retrieval gaps (live paraphrase probe), query-egress threat model, provider criteria, and the decision register that must be answered before any embedding work activates.
+- Hybrid Retrieval Lab at `ai-lab/hybrid-retrieval-lab/index.html` — Build 07 readiness: failure taxonomy for every probe miss, the shipped deterministic lexical layer (`b07-lex-1`, 13/20 → 14/20 hit@5 with the 42-check contract preserved), provider-neutral RRF fusion architecture, and the activation gates.
 - Secure RAG case study at `case-studies/secure-rag/index.html`.
 - Dated, commit-linked changelog at `ai-lab/changelog/index.html` — keep it updated when a lab build ships.
 
